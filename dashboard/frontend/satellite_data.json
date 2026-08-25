@@ -1,0 +1,9006 @@
+{
+  "generated_at_utc": "2026-08-24T00:42:45.726525+00:00",
+  "source": "Sentinel-2 SR Harmonized via Google Earth Engine",
+  "start_date": "2023-01-01",
+  "end_date": "2026-08-24",
+  "cloud_threshold_percent": 20.0,
+  "scale_meters": 10.0,
+  "sites": [
+    {
+      "site_id": "WL-BUF-01",
+      "site_name": "Buffelsdraai Reforestation Project \u2014 Monitoring Area 01",
+      "project_id": "WL-BUF",
+      "project_name": "Buffelsdraai Reforestation Project",
+      "latitude": -29.653359,
+      "longitude": 30.987363,
+      "latest_ndvi": 0.4487,
+      "avg_ndvi": 0.5679,
+      "change": -0.223,
+      "change_percent": -22.3,
+      "trend": "Stable",
+      "improvement_rate": 45.0,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.6571
+        },
+        {
+          "date": "2023-02",
+          "ndvi": 0.6926
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.6622
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.5833
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.5853
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.5255
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.4889
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.4575
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.5467
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.5978
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.6546
+        },
+        {
+          "date": "2024-01",
+          "ndvi": 0.6478
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.6517
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.6112
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.6261
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.6007
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.5475
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.4764
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.3718
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.3708
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.5139
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.6082
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.6286
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.6043
+        },
+        {
+          "date": "2025-03",
+          "ndvi": 0.6672
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.6778
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.6425
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.5615
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.5241
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.4359
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.5304
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.5349
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.5974
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.6152
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.6009
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.5799
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.6149
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.4259
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.5979
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.5174
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.4487
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-BUF-01.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-BUF-02",
+      "site_name": "Buffelsdraai Reforestation Project \u2014 Monitoring Area 02",
+      "project_id": "WL-BUF",
+      "project_name": "Buffelsdraai Reforestation Project",
+      "latitude": -29.617786,
+      "longitude": 30.966553,
+      "latest_ndvi": 0.4915,
+      "avg_ndvi": 0.6518,
+      "change": -0.067,
+      "change_percent": -6.7,
+      "trend": "Stable",
+      "improvement_rate": 47.5,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.7642
+        },
+        {
+          "date": "2023-02",
+          "ndvi": 0.4969
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.7816
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.7318
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.7018
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.5592
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.5055
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.4394
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.5409
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.6397
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.7295
+        },
+        {
+          "date": "2024-01",
+          "ndvi": 0.683
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.7746
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.7239
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.761
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.7273
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.6367
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.5467
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.4091
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.4033
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.4846
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.6815
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.7352
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.8025
+        },
+        {
+          "date": "2025-03",
+          "ndvi": 0.8202
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.8276
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.7935
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.6709
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.5802
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.5063
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.5168
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.5266
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.622
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.7257
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.773
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.7534
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.7965
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.6466
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.7714
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.6425
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.4915
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-BUF-02.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-BUF-03",
+      "site_name": "Buffelsdraai Reforestation Project \u2014 Monitoring Area 03",
+      "project_id": "WL-BUF",
+      "project_name": "Buffelsdraai Reforestation Project",
+      "latitude": -29.650263,
+      "longitude": 31.000001,
+      "latest_ndvi": 0.3936,
+      "avg_ndvi": 0.4846,
+      "change": -0.21100000000000002,
+      "change_percent": -21.1,
+      "trend": "Stable",
+      "improvement_rate": 47.5,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.5482
+        },
+        {
+          "date": "2023-02",
+          "ndvi": 0.5707
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.597
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.4688
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.5262
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.4733
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.4177
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.3901
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.4536
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.5204
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.5612
+        },
+        {
+          "date": "2024-01",
+          "ndvi": 0.4264
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.5537
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.5101
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.541
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.51
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.4886
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.4111
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.3207
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.3293
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.4548
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.529
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.5378
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.5244
+        },
+        {
+          "date": "2025-03",
+          "ndvi": 0.5764
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.5964
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.5655
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.4742
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.4412
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.3792
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.476
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.4703
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.5175
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.53
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.5199
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.4909
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.5437
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.2718
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.5246
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.4348
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.3936
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-BUF-03.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-BUF-04",
+      "site_name": "Buffelsdraai Reforestation Project \u2014 Monitoring Area 04",
+      "project_id": "WL-BUF",
+      "project_name": "Buffelsdraai Reforestation Project",
+      "latitude": -29.643678,
+      "longitude": 30.956882,
+      "latest_ndvi": 0.501,
+      "avg_ndvi": 0.6157,
+      "change": -0.14800000000000002,
+      "change_percent": -14.8,
+      "trend": "Stable",
+      "improvement_rate": 57.5,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.6876
+        },
+        {
+          "date": "2023-02",
+          "ndvi": 0.7494
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.7642
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.7113
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.718
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.5353
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.4702
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.3798
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.493
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.5458
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.6839
+        },
+        {
+          "date": "2024-01",
+          "ndvi": 0.601
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.7277
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.6975
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.7323
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.7193
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.6266
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.5538
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.3364
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.3525
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.4448
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.5945
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.6587
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.7434
+        },
+        {
+          "date": "2025-03",
+          "ndvi": 0.7648
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.7941
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.7799
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.6816
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.6175
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.4093
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.4686
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.4796
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.5631
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.634
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.688
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.689
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.7473
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.5242
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.7637
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.6102
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.501
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-BUF-04.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-BUF-05",
+      "site_name": "Buffelsdraai Reforestation Project \u2014 Monitoring Area 05",
+      "project_id": "WL-BUF",
+      "project_name": "Buffelsdraai Reforestation Project",
+      "latitude": -29.644668,
+      "longitude": 30.956719,
+      "latest_ndvi": 0.483,
+      "avg_ndvi": 0.5919,
+      "change": -0.157,
+      "change_percent": -15.7,
+      "trend": "Stable",
+      "improvement_rate": 57.5,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.6585
+        },
+        {
+          "date": "2023-02",
+          "ndvi": 0.7329
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.7511
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.6965
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.7071
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.5235
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.4601
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.3652
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.4568
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.5169
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.6532
+        },
+        {
+          "date": "2024-01",
+          "ndvi": 0.6008
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.7072
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.6765
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.7134
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.7012
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.6115
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.5351
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.3198
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.331
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.406
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.5534
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.6255
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.7232
+        },
+        {
+          "date": "2025-03",
+          "ndvi": 0.7458
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.7791
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.766
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.6604
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.5913
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.3868
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.4332
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.4383
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.5173
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.5856
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.6575
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.6577
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.7202
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.4963
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.7373
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.585
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.483
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-BUF-05.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-BUF-06",
+      "site_name": "Buffelsdraai Reforestation Project \u2014 Monitoring Area 06",
+      "project_id": "WL-BUF",
+      "project_name": "Buffelsdraai Reforestation Project",
+      "latitude": -29.643588,
+      "longitude": 30.982639,
+      "latest_ndvi": 0.4479,
+      "avg_ndvi": 0.5546,
+      "change": -0.168,
+      "change_percent": -16.8,
+      "trend": "Stable",
+      "improvement_rate": 47.5,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.6153
+        },
+        {
+          "date": "2023-02",
+          "ndvi": 0.6296
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.6612
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.5648
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.591
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.5203
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.4705
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.4259
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.5184
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.5542
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.6429
+        },
+        {
+          "date": "2024-01",
+          "ndvi": 0.6148
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.6282
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.5622
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.6142
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.584
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.5462
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.4651
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.3512
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.3462
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.4948
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.6065
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.6208
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.6623
+        },
+        {
+          "date": "2025-03",
+          "ndvi": 0.6583
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.6769
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.6437
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.5641
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.5115
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.4345
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.5193
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.5499
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.607
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.6251
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.6106
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.5802
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.6378
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.243
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.6153
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.5228
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.4479
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-BUF-06.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-BUF-07",
+      "site_name": "Buffelsdraai Reforestation Project \u2014 Monitoring Area 07",
+      "project_id": "WL-BUF",
+      "project_name": "Buffelsdraai Reforestation Project",
+      "latitude": -29.654285,
+      "longitude": 30.995864,
+      "latest_ndvi": 0.4549,
+      "avg_ndvi": 0.5436,
+      "change": -0.161,
+      "change_percent": -16.1,
+      "trend": "Stable",
+      "improvement_rate": 45.0,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.5928
+        },
+        {
+          "date": "2023-02",
+          "ndvi": 0.6368
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.6354
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.5615
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.5945
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.5234
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.4768
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.4385
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.5248
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.5815
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.6046
+        },
+        {
+          "date": "2024-01",
+          "ndvi": 0.4953
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.6062
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.5646
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.6024
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.5677
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.5338
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.4737
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.3666
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.3892
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.5044
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.5863
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.5906
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.4989
+        },
+        {
+          "date": "2025-03",
+          "ndvi": 0.618
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.6441
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.6199
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.5352
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.5126
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.4423
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.5482
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.544
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.5965
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.5999
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.5883
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.5653
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.6072
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.3504
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.5952
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.5146
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.4549
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-BUF-07.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-BUF-08",
+      "site_name": "Buffelsdraai Reforestation Project \u2014 Monitoring Area 08",
+      "project_id": "WL-BUF",
+      "project_name": "Buffelsdraai Reforestation Project",
+      "latitude": -29.637597,
+      "longitude": 30.990299,
+      "latest_ndvi": 0.5583,
+      "avg_ndvi": 0.675,
+      "change": -0.11900000000000001,
+      "change_percent": -11.9,
+      "trend": "Stable",
+      "improvement_rate": 50.0,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.7166
+        },
+        {
+          "date": "2023-02",
+          "ndvi": 0.745
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.7604
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.6416
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.6967
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.6118
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.5407
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.5022
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.6341
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.6861
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.7589
+        },
+        {
+          "date": "2024-01",
+          "ndvi": 0.7311
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.7368
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.683
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.7402
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.7205
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.6815
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.5896
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.4432
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.4718
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.5973
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.7271
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.7333
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.7816
+        },
+        {
+          "date": "2025-03",
+          "ndvi": 0.7715
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.7946
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.7724
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.705
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.6349
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.548
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.65
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.6734
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.736
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.7557
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.7392
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.7213
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.761
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.5245
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.7511
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.6481
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.5583
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-BUF-08.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-DAR-01",
+      "site_name": "Dartmoor Nature Reserve Project \u2014 Monitoring Area 01",
+      "project_id": "WL-DAR",
+      "project_name": "Dartmoor Nature Reserve Project",
+      "latitude": -29.32817,
+      "longitude": 30.302861,
+      "latest_ndvi": 0.5467,
+      "avg_ndvi": 0.6357,
+      "change": -0.121,
+      "change_percent": -12.1,
+      "trend": "Stable",
+      "improvement_rate": 48.7,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.718
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.7547
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.6748
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.627
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.5205
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.4815
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.5326
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.5995
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.7275
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.7146
+        },
+        {
+          "date": "2024-01",
+          "ndvi": 0.7513
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.7804
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.682
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.6476
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.6832
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.5886
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.4732
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.4375
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.5224
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.5691
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.6073
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.6336
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.8016
+        },
+        {
+          "date": "2025-03",
+          "ndvi": 0.7414
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.6529
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.6234
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.545
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.4992
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.5114
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.586
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.5853
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.6175
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.7113
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.7618
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.7404
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.7458
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.6891
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.6936
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.6467
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.5467
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-DAR-01.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-DAR-02",
+      "site_name": "Dartmoor Nature Reserve Project \u2014 Monitoring Area 02",
+      "project_id": "WL-DAR",
+      "project_name": "Dartmoor Nature Reserve Project",
+      "latitude": -29.302625,
+      "longitude": 30.259836,
+      "latest_ndvi": 0.4182,
+      "avg_ndvi": 0.5567,
+      "change": -0.295,
+      "change_percent": -29.5,
+      "trend": "Stable",
+      "improvement_rate": 41.0,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.7312
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.7025
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.6549
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.482
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.4071
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.3921
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.3708
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.422
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.5578
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.5915
+        },
+        {
+          "date": "2024-01",
+          "ndvi": 0.7013
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.7115
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.6764
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.6049
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.5333
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.4541
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.343
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.3492
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.4247
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.4961
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.5974
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.7175
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.7869
+        },
+        {
+          "date": "2025-03",
+          "ndvi": 0.7402
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.7086
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.6249
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.4806
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.4295
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.396
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.4332
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.486
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.567
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.6486
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.6718
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.6561
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.6382
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.6075
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.5662
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.4888
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.4182
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-DAR-02.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-DAR-03",
+      "site_name": "Dartmoor Nature Reserve Project \u2014 Monitoring Area 03",
+      "project_id": "WL-DAR",
+      "project_name": "Dartmoor Nature Reserve Project",
+      "latitude": -29.308513,
+      "longitude": 30.295356,
+      "latest_ndvi": 0.8351,
+      "avg_ndvi": 0.8509,
+      "change": -0.013000000000000001,
+      "change_percent": -1.3,
+      "trend": "Stable",
+      "improvement_rate": 46.2,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.8814
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.8753
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.8783
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.8694
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.8352
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.8061
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.7956
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.8203
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.8623
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.8558
+        },
+        {
+          "date": "2024-01",
+          "ndvi": 0.8756
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.8943
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.8751
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.8408
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.8606
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.8568
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.8204
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.7857
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.7377
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.8052
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.8271
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.837
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.8892
+        },
+        {
+          "date": "2025-03",
+          "ndvi": 0.8842
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.8865
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.8894
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.872
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.8522
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.8069
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.8048
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.81
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.8664
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.8796
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.8729
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.8702
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.8767
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.8809
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.8858
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.8788
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.8351
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-DAR-03.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-DAR-04",
+      "site_name": "Dartmoor Nature Reserve Project \u2014 Monitoring Area 04",
+      "project_id": "WL-DAR",
+      "project_name": "Dartmoor Nature Reserve Project",
+      "latitude": -29.326073,
+      "longitude": 30.303656,
+      "latest_ndvi": 0.4683,
+      "avg_ndvi": 0.6111,
+      "change": -0.213,
+      "change_percent": -21.3,
+      "trend": "Stable",
+      "improvement_rate": 46.2,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.722
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.7536
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.6834
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.5898
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.464
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.4269
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.489
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.5617
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.725
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.7189
+        },
+        {
+          "date": "2024-01",
+          "ndvi": 0.7589
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.772
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.6978
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.6465
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.6411
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.5184
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.3953
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.3601
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.484
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.5525
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.6114
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.6404
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.8225
+        },
+        {
+          "date": "2025-03",
+          "ndvi": 0.7533
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.6545
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.6045
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.4711
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.4181
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.4293
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.5643
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.5908
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.6282
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.692
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.7471
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.7414
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.7417
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.6713
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.6527
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.5785
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.4683
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-DAR-04.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-DAR-05",
+      "site_name": "Dartmoor Nature Reserve Project \u2014 Monitoring Area 05",
+      "project_id": "WL-DAR",
+      "project_name": "Dartmoor Nature Reserve Project",
+      "latitude": -29.314074,
+      "longitude": 30.29647,
+      "latest_ndvi": 0.81,
+      "avg_ndvi": 0.8247,
+      "change": 0.003,
+      "change_percent": 0.3,
+      "trend": "Stable",
+      "improvement_rate": 46.2,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.8513
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.854
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.8511
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.8462
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.8002
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.758
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.7428
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.7509
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.8093
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.813
+        },
+        {
+          "date": "2024-01",
+          "ndvi": 0.8466
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.8715
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.8563
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.8294
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.8441
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.8362
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.7909
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.7365
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.7016
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.763
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.7989
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.8187
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.8685
+        },
+        {
+          "date": "2025-03",
+          "ndvi": 0.8626
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.8726
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.8706
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.8542
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.8278
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.7803
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.77
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.7786
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.8415
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.8625
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.8604
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.8574
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.8704
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.8781
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.8815
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.8721
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.81
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-DAR-05.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-DAR-06",
+      "site_name": "Dartmoor Nature Reserve Project \u2014 Monitoring Area 06",
+      "project_id": "WL-DAR",
+      "project_name": "Dartmoor Nature Reserve Project",
+      "latitude": -29.309771,
+      "longitude": 30.283868,
+      "latest_ndvi": 0.7568,
+      "avg_ndvi": 0.7791,
+      "change": -0.04,
+      "change_percent": -4.0,
+      "trend": "Stable",
+      "improvement_rate": 43.6,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.8302
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.8241
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.8159
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.7831
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.7496
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.7281
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.6786
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.7269
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.8137
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.8111
+        },
+        {
+          "date": "2024-01",
+          "ndvi": 0.8392
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.8546
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.8349
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.7853
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.7895
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.7712
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.7242
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.7021
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.6336
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.6988
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.7217
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.7622
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.847
+        },
+        {
+          "date": "2025-03",
+          "ndvi": 0.8316
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.8289
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.8163
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.7803
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.7612
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.7204
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.7231
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.732
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.79
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.8177
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.8229
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.812
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.8147
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.8154
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.8162
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.7986
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.7568
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-DAR-06.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-UTH-01",
+      "site_name": "Upper uThukela Project \u2014 Monitoring Area 01",
+      "project_id": "WL-UTH",
+      "project_name": "Upper uThukela Project",
+      "latitude": -28.760531,
+      "longitude": 29.386395,
+      "latest_ndvi": 0.2856,
+      "avg_ndvi": 0.4859,
+      "change": -0.493,
+      "change_percent": -49.3,
+      "trend": "Stable",
+      "improvement_rate": 40.5,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.7393
+        },
+        {
+          "date": "2023-02",
+          "ndvi": 0.758
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.6927
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.4906
+        },
+        {
+          "date": "2023-05",
+          "ndvi": 0.3923
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.3308
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.2643
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.2555
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.256
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.2777
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.4384
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.5288
+        },
+        {
+          "date": "2024-01",
+          "ndvi": 0.7606
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.7538
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.5912
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.5301
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.4546
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.3628
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.2872
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.2607
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.2439
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.3107
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.4461
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.5053
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.7569
+        },
+        {
+          "date": "2025-02",
+          "ndvi": 0.7382
+        },
+        {
+          "date": "2025-03",
+          "ndvi": 0.7097
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.5267
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.4574
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.3417
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.3089
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.3217
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.3825
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.5087
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.5604
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.6121
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.6991
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.7017
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.6831
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.5441
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.4882
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.3355
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.2856
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-UTH-01.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-UTH-02",
+      "site_name": "Upper uThukela Project \u2014 Monitoring Area 02",
+      "project_id": "WL-UTH",
+      "project_name": "Upper uThukela Project",
+      "latitude": -28.76995,
+      "longitude": 29.38664,
+      "latest_ndvi": 0.3529,
+      "avg_ndvi": 0.4854,
+      "change": -0.467,
+      "change_percent": -46.7,
+      "trend": "Declining",
+      "improvement_rate": 35.7,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.7565
+        },
+        {
+          "date": "2023-02",
+          "ndvi": 0.8125
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.7522
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.4622
+        },
+        {
+          "date": "2023-05",
+          "ndvi": 0.3669
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.3371
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.3049
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.2994
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.2827
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.2642
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.3842
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.4824
+        },
+        {
+          "date": "2024-01",
+          "ndvi": 0.8032
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.7682
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.5673
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.4889
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.4354
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.3954
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.3214
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.2888
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.2743
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.3008
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.3977
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.4864
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.7948
+        },
+        {
+          "date": "2025-02",
+          "ndvi": 0.6899
+        },
+        {
+          "date": "2025-03",
+          "ndvi": 0.6395
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.4891
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.4484
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.3538
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.3253
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.3634
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.3978
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.483
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.4718
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.545
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.7506
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.7695
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.6221
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.4591
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.4598
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.4255
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.3529
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-UTH-02.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-UTH-03",
+      "site_name": "Upper uThukela Project \u2014 Monitoring Area 03",
+      "project_id": "WL-UTH",
+      "project_name": "Upper uThukela Project",
+      "latitude": -28.756758,
+      "longitude": 29.406784,
+      "latest_ndvi": 0.3104,
+      "avg_ndvi": 0.5302,
+      "change": -0.40399999999999997,
+      "change_percent": -40.4,
+      "trend": "Stable",
+      "improvement_rate": 40.5,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.675
+        },
+        {
+          "date": "2023-02",
+          "ndvi": 0.7252
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.7011
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.5873
+        },
+        {
+          "date": "2023-05",
+          "ndvi": 0.5025
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.429
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.3038
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.2587
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.2603
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.3159
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.5571
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.6314
+        },
+        {
+          "date": "2024-01",
+          "ndvi": 0.721
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.72
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.6048
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.6367
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.5594
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.4291
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.3188
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.2653
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.2615
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.3341
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.57
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.5981
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.7016
+        },
+        {
+          "date": "2025-02",
+          "ndvi": 0.7542
+        },
+        {
+          "date": "2025-03",
+          "ndvi": 0.7419
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.6919
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.6248
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.449
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.3472
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.2957
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.3463
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.5531
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.6737
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.709
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.7506
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.6916
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.6395
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.6111
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.5535
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.3875
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.3104
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-UTH-03.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-UTH-04",
+      "site_name": "Upper uThukela Project \u2014 Monitoring Area 04",
+      "project_id": "WL-UTH",
+      "project_name": "Upper uThukela Project",
+      "latitude": -28.761651,
+      "longitude": 29.385475,
+      "latest_ndvi": 0.2889,
+      "avg_ndvi": 0.4809,
+      "change": -0.49,
+      "change_percent": -49.0,
+      "trend": "Declining",
+      "improvement_rate": 38.1,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.731
+        },
+        {
+          "date": "2023-02",
+          "ndvi": 0.7525
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.6831
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.476
+        },
+        {
+          "date": "2023-05",
+          "ndvi": 0.3887
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.3322
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.2648
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.2556
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.2551
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.277
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.4483
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.5332
+        },
+        {
+          "date": "2024-01",
+          "ndvi": 0.7503
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.7383
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.577
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.5226
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.4484
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.3592
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.2849
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.2601
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.2454
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.3019
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.4448
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.4998
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.7351
+        },
+        {
+          "date": "2025-02",
+          "ndvi": 0.7156
+        },
+        {
+          "date": "2025-03",
+          "ndvi": 0.705
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.5204
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.4481
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.3395
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.3051
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.3132
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.3802
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.5061
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.5693
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.6073
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.6896
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.6962
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.6764
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.5375
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.4806
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.3348
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.2889
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-UTH-04.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-UTH-05",
+      "site_name": "Upper uThukela Project \u2014 Monitoring Area 05",
+      "project_id": "WL-UTH",
+      "project_name": "Upper uThukela Project",
+      "latitude": -28.744543,
+      "longitude": 29.407402,
+      "latest_ndvi": 0.2471,
+      "avg_ndvi": 0.4322,
+      "change": -0.41600000000000004,
+      "change_percent": -41.6,
+      "trend": "Stable",
+      "improvement_rate": 47.6,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.5898
+        },
+        {
+          "date": "2023-02",
+          "ndvi": 0.606
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.5859
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.4659
+        },
+        {
+          "date": "2023-05",
+          "ndvi": 0.4029
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.3332
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.2313
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.215
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.2212
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.2389
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.432
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.4833
+        },
+        {
+          "date": "2024-01",
+          "ndvi": 0.6036
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.6329
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.514
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.5178
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.4754
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.3394
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.2501
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.2222
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.2154
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.2917
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.4437
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.4882
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.6066
+        },
+        {
+          "date": "2025-02",
+          "ndvi": 0.6455
+        },
+        {
+          "date": "2025-03",
+          "ndvi": 0.6176
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.5002
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.4405
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.3175
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.2437
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.2467
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.3305
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.443
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.5463
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.5287
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.5744
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.5777
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.6078
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.5172
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.4686
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.3249
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.2471
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-UTH-05.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-UTH-06",
+      "site_name": "Upper uThukela Project \u2014 Monitoring Area 06",
+      "project_id": "WL-UTH",
+      "project_name": "Upper uThukela Project",
+      "latitude": -28.76683,
+      "longitude": 29.411456,
+      "latest_ndvi": 0.2937,
+      "avg_ndvi": 0.5062,
+      "change": -0.365,
+      "change_percent": -36.5,
+      "trend": "Declining",
+      "improvement_rate": 35.7,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.6482
+        },
+        {
+          "date": "2023-02",
+          "ndvi": 0.6375
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.6077
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.5256
+        },
+        {
+          "date": "2023-05",
+          "ndvi": 0.4784
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.3863
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.2931
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.2547
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.2573
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.2838
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.5334
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.568
+        },
+        {
+          "date": "2024-01",
+          "ndvi": 0.744
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.7341
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.612
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.6142
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.541
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.4157
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.3028
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.2531
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.2496
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.3141
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.5039
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.5655
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.711
+        },
+        {
+          "date": "2025-02",
+          "ndvi": 0.7006
+        },
+        {
+          "date": "2025-03",
+          "ndvi": 0.655
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.6312
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.5717
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.4285
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.3253
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.2909
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.384
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.5548
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.6512
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.649
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.6854
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.6899
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.6713
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.6413
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.5376
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.3702
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.2937
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-UTH-06.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-UTH-07",
+      "site_name": "Upper uThukela Project \u2014 Monitoring Area 07",
+      "project_id": "WL-UTH",
+      "project_name": "Upper uThukela Project",
+      "latitude": -28.743,
+      "longitude": 29.424476,
+      "latest_ndvi": 0.3053,
+      "avg_ndvi": 0.4684,
+      "change": -0.44,
+      "change_percent": -44.0,
+      "trend": "Stable",
+      "improvement_rate": 40.5,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.6823
+        },
+        {
+          "date": "2023-02",
+          "ndvi": 0.6642
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.6074
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.4725
+        },
+        {
+          "date": "2023-05",
+          "ndvi": 0.3916
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.3607
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.2901
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.2796
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.2864
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.2945
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.4499
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.536
+        },
+        {
+          "date": "2024-01",
+          "ndvi": 0.707
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.7055
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.5012
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.524
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.4386
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.3781
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.2892
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.2582
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.2691
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.3228
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.4362
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.4617
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.6933
+        },
+        {
+          "date": "2025-02",
+          "ndvi": 0.7223
+        },
+        {
+          "date": "2025-03",
+          "ndvi": 0.6203
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.5307
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.4713
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.3887
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.3361
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.3252
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.3726
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.4567
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.5264
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.5595
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.6914
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.6338
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.5994
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.5101
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.4315
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.3578
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.3053
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-UTH-07.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-UTH-08",
+      "site_name": "Upper uThukela Project \u2014 Monitoring Area 08",
+      "project_id": "WL-UTH",
+      "project_name": "Upper uThukela Project",
+      "latitude": -28.732857,
+      "longitude": 29.409231,
+      "latest_ndvi": 0.2573,
+      "avg_ndvi": 0.4633,
+      "change": -0.462,
+      "change_percent": -46.2,
+      "trend": "Stable",
+      "improvement_rate": 40.5,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.6806
+        },
+        {
+          "date": "2023-02",
+          "ndvi": 0.6374
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.5938
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.4479
+        },
+        {
+          "date": "2023-05",
+          "ndvi": 0.3963
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.3371
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.2382
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.2196
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.2222
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.2392
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.4675
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.5678
+        },
+        {
+          "date": "2024-01",
+          "ndvi": 0.6625
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.6997
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.5527
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.5671
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.4957
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.4048
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.3217
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.2877
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.2416
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.3012
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.4564
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.5149
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.689
+        },
+        {
+          "date": "2025-02",
+          "ndvi": 0.6989
+        },
+        {
+          "date": "2025-03",
+          "ndvi": 0.6486
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.6017
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.5018
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.3605
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.2715
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.2449
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.3192
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.4395
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.5683
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.5786
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.6567
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.6503
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.5755
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.5361
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.4626
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.3077
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.2573
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-UTH-08.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-UTH-09",
+      "site_name": "Upper uThukela Project \u2014 Monitoring Area 09",
+      "project_id": "WL-UTH",
+      "project_name": "Upper uThukela Project",
+      "latitude": -28.773395,
+      "longitude": 29.386452,
+      "latest_ndvi": 0.3613,
+      "avg_ndvi": 0.4693,
+      "change": -0.41600000000000004,
+      "change_percent": -41.6,
+      "trend": "Declining",
+      "improvement_rate": 38.1,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.7218
+        },
+        {
+          "date": "2023-02",
+          "ndvi": 0.7897
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.7178
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.4296
+        },
+        {
+          "date": "2023-05",
+          "ndvi": 0.36
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.3323
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.2877
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.2732
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.2527
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.2498
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.3732
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.4926
+        },
+        {
+          "date": "2024-01",
+          "ndvi": 0.7703
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.7574
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.5375
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.4643
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.4059
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.4206
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.3451
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.2837
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.2343
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.2871
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.38
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.4746
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.7692
+        },
+        {
+          "date": "2025-02",
+          "ndvi": 0.7062
+        },
+        {
+          "date": "2025-03",
+          "ndvi": 0.5843
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.5086
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.45
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.3542
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.2988
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.3281
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.369
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.4535
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.4472
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.4954
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.7098
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.7528
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.5678
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.4419
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.473
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.468
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.3613
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-UTH-09.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-UTH-10",
+      "site_name": "Upper uThukela Project \u2014 Monitoring Area 10",
+      "project_id": "WL-UTH",
+      "project_name": "Upper uThukela Project",
+      "latitude": -28.764451,
+      "longitude": 29.388387,
+      "latest_ndvi": 0.3241,
+      "avg_ndvi": 0.4823,
+      "change": -0.498,
+      "change_percent": -49.8,
+      "trend": "Stable",
+      "improvement_rate": 42.9,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.7609
+        },
+        {
+          "date": "2023-02",
+          "ndvi": 0.7866
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.7228
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.4703
+        },
+        {
+          "date": "2023-05",
+          "ndvi": 0.3806
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.3202
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.2711
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.2622
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.2583
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.2642
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.3997
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.5029
+        },
+        {
+          "date": "2024-01",
+          "ndvi": 0.7874
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.7737
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.5878
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.4836
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.4296
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.3722
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.3091
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.2837
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.2601
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.2941
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.3957
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.4739
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.7651
+        },
+        {
+          "date": "2025-02",
+          "ndvi": 0.7023
+        },
+        {
+          "date": "2025-03",
+          "ndvi": 0.7123
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.4885
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.426
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.335
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.3366
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.3508
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.3909
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.5034
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.5038
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.5625
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.7372
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.7506
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.6911
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.491
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.4537
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.3628
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.3241
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-UTH-10.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-MKU-01",
+      "site_name": "Living Lakes Biodiversity & Climate Project \u2014 Mkuze \u2014 Monitoring Area 01",
+      "project_id": "WL-MKU",
+      "project_name": "Living Lakes Biodiversity & Climate Project \u2014 Mkuze",
+      "latitude": -27.629266,
+      "longitude": 32.058818,
+      "latest_ndvi": 0.5675,
+      "avg_ndvi": 0.6424,
+      "change": -0.231,
+      "change_percent": -23.1,
+      "trend": "Stable",
+      "improvement_rate": 47.6,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.7274
+        },
+        {
+          "date": "2023-02",
+          "ndvi": 0.7997
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.8111
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.6613
+        },
+        {
+          "date": "2023-05",
+          "ndvi": 0.7301
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.7032
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.6239
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.4771
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.4491
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.552
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.6909
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.3351
+        },
+        {
+          "date": "2024-01",
+          "ndvi": 0.739
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.7579
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.7527
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.7052
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.6391
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.5912
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.5358
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.4897
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.5258
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.5637
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.6289
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.6341
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.5457
+        },
+        {
+          "date": "2025-02",
+          "ndvi": 0.7511
+        },
+        {
+          "date": "2025-03",
+          "ndvi": 0.7169
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.8058
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.7731
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.6306
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.5641
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.506
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.5115
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.5668
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.6444
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.6979
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.7616
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.6923
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.7637
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.7689
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.6618
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.5695
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.5675
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-MKU-01.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-MKU-02",
+      "site_name": "Living Lakes Biodiversity & Climate Project \u2014 Mkuze \u2014 Monitoring Area 02",
+      "project_id": "WL-MKU",
+      "project_name": "Living Lakes Biodiversity & Climate Project \u2014 Mkuze",
+      "latitude": -27.599273,
+      "longitude": 32.034782,
+      "latest_ndvi": 0.672,
+      "avg_ndvi": 0.5883,
+      "change": 0.068,
+      "change_percent": 6.8,
+      "trend": "Stable",
+      "improvement_rate": 44.7,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.7166
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.7055
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.7129
+        },
+        {
+          "date": "2023-05",
+          "ndvi": 0.7367
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.7505
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.7117
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.206
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.1976
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.2083
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.3567
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.4014
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.8295
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.7191
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.6311
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.5302
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.7168
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.8087
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.3735
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.3058
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.2593
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.3329
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.4025
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.1552
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.8383
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.8156
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.7901
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.653
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.6113
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.553
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.5271
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.4334
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.5199
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.752
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.7894
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.8164
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.794
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.8209
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.7872
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.672
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-MKU-02.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-MKU-03",
+      "site_name": "Living Lakes Biodiversity & Climate Project \u2014 Mkuze \u2014 Monitoring Area 03",
+      "project_id": "WL-MKU",
+      "project_name": "Living Lakes Biodiversity & Climate Project \u2014 Mkuze",
+      "latitude": -27.632669,
+      "longitude": 32.028244,
+      "latest_ndvi": 0.5387,
+      "avg_ndvi": 0.5719,
+      "change": -0.018000000000000002,
+      "change_percent": -1.8,
+      "trend": "Declining",
+      "improvement_rate": 39.5,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.4309
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.7504
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.6016
+        },
+        {
+          "date": "2023-05",
+          "ndvi": 0.5759
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.6783
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.5824
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.391
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.3323
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.4254
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.6919
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.6395
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.5256
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.4742
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.7727
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.6902
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.6126
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.4673
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.3106
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.3178
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.3755
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.4911
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.4418
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.5974
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.7787
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.7195
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.6441
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.5632
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.4842
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.4191
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.4898
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.6231
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.7302
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.7543
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.72
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.7376
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.7148
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.6526
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.5589
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.5387
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-MKU-03.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-MKU-04",
+      "site_name": "Living Lakes Biodiversity & Climate Project \u2014 Mkuze \u2014 Monitoring Area 04",
+      "project_id": "WL-MKU",
+      "project_name": "Living Lakes Biodiversity & Climate Project \u2014 Mkuze",
+      "latitude": -27.615771,
+      "longitude": 32.028137,
+      "latest_ndvi": 0.5556,
+      "avg_ndvi": 0.5355,
+      "change": -0.037000000000000005,
+      "change_percent": -3.7,
+      "trend": "Stable",
+      "improvement_rate": 47.4,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.5504
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.6739
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.605
+        },
+        {
+          "date": "2023-05",
+          "ndvi": 0.5963
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.6125
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.4997
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.4251
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.4118
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.4639
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.5619
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.1776
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.551
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.5224
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.6365
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.6238
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.5988
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.4654
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.3383
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.3659
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.4089
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.4687
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.4703
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.6023
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.6945
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.6703
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.6239
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.5617
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.4552
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.3965
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.4512
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.5336
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.5971
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.6453
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.5958
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.6284
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.6375
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.6281
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.5777
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.5556
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-MKU-04.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-MKU-05",
+      "site_name": "Living Lakes Biodiversity & Climate Project \u2014 Mkuze \u2014 Monitoring Area 05",
+      "project_id": "WL-MKU",
+      "project_name": "Living Lakes Biodiversity & Climate Project \u2014 Mkuze",
+      "latitude": -27.634034,
+      "longitude": 32.03497,
+      "latest_ndvi": 0.4434,
+      "avg_ndvi": 0.5331,
+      "change": -0.184,
+      "change_percent": -18.4,
+      "trend": "Declining",
+      "improvement_rate": 36.8,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.4131
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.7602
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.6105
+        },
+        {
+          "date": "2023-05",
+          "ndvi": 0.5345
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.6204
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.4909
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.3443
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.293
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.3745
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.6688
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.588
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.5122
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.4614
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.7768
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.6895
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.6076
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.4574
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.2485
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.2514
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.3278
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.4262
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.4204
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.7053
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.7589
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.6828
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.6185
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.5302
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.4011
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.3377
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.4316
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.562
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.6849
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.7345
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.6886
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.6856
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.6357
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.5566
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.456
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.4434
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-MKU-05.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-MKU-06",
+      "site_name": "Living Lakes Biodiversity & Climate Project \u2014 Mkuze \u2014 Monitoring Area 06",
+      "project_id": "WL-MKU",
+      "project_name": "Living Lakes Biodiversity & Climate Project \u2014 Mkuze",
+      "latitude": -27.640455,
+      "longitude": 32.040476,
+      "latest_ndvi": 0.5026,
+      "avg_ndvi": 0.5238,
+      "change": -0.156,
+      "change_percent": -15.6,
+      "trend": "Declining",
+      "improvement_rate": 34.2,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.5186
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.766
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.6028
+        },
+        {
+          "date": "2023-05",
+          "ndvi": 0.5732
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.6267
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.5699
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.437
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.3775
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.3316
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.5881
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.3882
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.5545
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.4949
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.722
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.6542
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.5844
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.4911
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.3493
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.3215
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.2746
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.4681
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.4572
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.2389
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.7395
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.6623
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.6099
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.5308
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.4425
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.2902
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.376
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.4872
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.6059
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.7005
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.6578
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.6729
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.6702
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.5893
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.502
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.5026
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-MKU-06.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-SOM-01",
+      "site_name": "Somkhanda Community Game Reserve \u2014 Monitoring Area 01",
+      "project_id": "WL-SOM",
+      "project_name": "Somkhanda Community Game Reserve",
+      "latitude": -27.663628,
+      "longitude": 31.530482,
+      "latest_ndvi": 0.4251,
+      "avg_ndvi": 0.5694,
+      "change": -0.165,
+      "change_percent": -16.5,
+      "trend": "Declining",
+      "improvement_rate": 34.3,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.7449
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.6432
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.6043
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.4929
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.3797
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.3181
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.2178
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.6442
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.654
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.7703
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.6735
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.7135
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.6228
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.476
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.3189
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.3002
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.2146
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.5815
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.6439
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.7914
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.7303
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.7177
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.6544
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.5521
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.4192
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.3509
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.5347
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.6576
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.7155
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.7785
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.7539
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.4842
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.6804
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.6748
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.5643
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.4251
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-SOM-01.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-SOM-02",
+      "site_name": "Somkhanda Community Game Reserve \u2014 Monitoring Area 02",
+      "project_id": "WL-SOM",
+      "project_name": "Somkhanda Community Game Reserve",
+      "latitude": -27.691824,
+      "longitude": 31.546108,
+      "latest_ndvi": 0.3939,
+      "avg_ndvi": 0.5011,
+      "change": -0.18899999999999997,
+      "change_percent": -18.9,
+      "trend": "Stable",
+      "improvement_rate": 45.7,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.6245
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.6454
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.589
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.4623
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.356
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.3024
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.1491
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.4455
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.5916
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.7034
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.6021
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.6489
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.5535
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.4218
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.3021
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.2782
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.2932
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.3775
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.468
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.6636
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.7189
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.6683
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.5753
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.4594
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.3492
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.1942
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.4098
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.5721
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.6374
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.7122
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.6682
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.5319
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.5559
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.6174
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.4965
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.3939
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-SOM-02.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-SOM-03",
+      "site_name": "Somkhanda Community Game Reserve \u2014 Monitoring Area 03",
+      "project_id": "WL-SOM",
+      "project_name": "Somkhanda Community Game Reserve",
+      "latitude": -27.668544,
+      "longitude": 31.574806,
+      "latest_ndvi": 0.3872,
+      "avg_ndvi": 0.5615,
+      "change": -0.23,
+      "change_percent": -23.0,
+      "trend": "Declining",
+      "improvement_rate": 31.4,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.7517
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.6027
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.6155
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.4678
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.3482
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.2915
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.2592
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.6552
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.5584
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.7759
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.6353
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.7198
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.6041
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.456
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.2958
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.2809
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.2597
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.5765
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.675
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.8142
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.747
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.7281
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.65
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.5152
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.3739
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.2975
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.4174
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.6836
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.7461
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.7932
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.775
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.7081
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.6181
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.6134
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.5172
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.3872
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-SOM-03.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-SOM-04",
+      "site_name": "Somkhanda Community Game Reserve \u2014 Monitoring Area 04",
+      "project_id": "WL-SOM",
+      "project_name": "Somkhanda Community Game Reserve",
+      "latitude": -27.694426,
+      "longitude": 31.568039,
+      "latest_ndvi": 0.4147,
+      "avg_ndvi": 0.5415,
+      "change": -0.218,
+      "change_percent": -21.8,
+      "trend": "Declining",
+      "improvement_rate": 37.1,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.7384
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.6334
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.6149
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.5149
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.3944
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.2769
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.0984
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.5387
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.6323
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.733
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.6418
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.7226
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.6252
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.4801
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.3197
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.3114
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.2706
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.3899
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.6446
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.7914
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.7438
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.6863
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.6276
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.5409
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.4075
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.2305
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.4902
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.6318
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.6915
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.7405
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.7201
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.4722
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.5842
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.6247
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.5134
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.4147
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-SOM-04.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-SOM-05",
+      "site_name": "Somkhanda Community Game Reserve \u2014 Monitoring Area 05",
+      "project_id": "WL-SOM",
+      "project_name": "Somkhanda Community Game Reserve",
+      "latitude": -27.668151,
+      "longitude": 31.559086,
+      "latest_ndvi": 0.4036,
+      "avg_ndvi": 0.5644,
+      "change": -0.22,
+      "change_percent": -22.0,
+      "trend": "Declining",
+      "improvement_rate": 31.4,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.7376
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.6389
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.6303
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.4997
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.3821
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.319
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.2299
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.6516
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.5731
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.7541
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.6348
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.7278
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.6342
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.493
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.3181
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.3005
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.221
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.546
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.6047
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.7912
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.7719
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.7283
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.6753
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.5546
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.3966
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.3267
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.455
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.6551
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.6882
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.7885
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.7555
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.6341
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.6368
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.6342
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.5278
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.4036
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-SOM-05.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-SOM-06",
+      "site_name": "Somkhanda Community Game Reserve \u2014 Monitoring Area 06",
+      "project_id": "WL-SOM",
+      "project_name": "Somkhanda Community Game Reserve",
+      "latitude": -27.689422,
+      "longitude": 31.557048,
+      "latest_ndvi": 0.4926,
+      "avg_ndvi": 0.6169,
+      "change": -0.20199999999999999,
+      "change_percent": -20.2,
+      "trend": "Stable",
+      "improvement_rate": 42.9,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.8147
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.7142
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.6861
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.5918
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.4788
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.4118
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.1108
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.7023
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.7358
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.7951
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.7237
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.7546
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.6786
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.5722
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.3905
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.3912
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.4011
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.5305
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.7026
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.8174
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.7959
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.7474
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.7138
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.6305
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.477
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.2789
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.5695
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.6893
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.7455
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.8008
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.79
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.5382
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.6618
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.6943
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.5808
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.4926
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-SOM-06.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-BHE-01",
+      "site_name": "Bhekula Biodiversity, Stewardship & Sustainable Livelihoods Project \u2014 Monitoring Area 01",
+      "project_id": "WL-BHE",
+      "project_name": "Bhekula Biodiversity, Stewardship & Sustainable Livelihoods Project",
+      "latitude": -26.927309,
+      "longitude": 32.677686,
+      "latest_ndvi": 0.8278,
+      "avg_ndvi": 0.7548,
+      "change": 0.138,
+      "change_percent": 13.8,
+      "trend": "Stable",
+      "improvement_rate": 43.6,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.7929
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.6591
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.8407
+        },
+        {
+          "date": "2023-05",
+          "ndvi": 0.858
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.8513
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.7924
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.7606
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.6782
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.6397
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.6809
+        },
+        {
+          "date": "2024-01",
+          "ndvi": 0.5439
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.7726
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.7601
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.792
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.7827
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.7858
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.7593
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.6881
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.6837
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.6281
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.6376
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.6268
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.7728
+        },
+        {
+          "date": "2025-03",
+          "ndvi": 0.7341
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.8578
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.852
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.835
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.7793
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.7228
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.6065
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.6363
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.6545
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.7185
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.8021
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.8371
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.8735
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.8854
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.8906
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.8906
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.8278
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-BHE-01.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-BHE-02",
+      "site_name": "Bhekula Biodiversity, Stewardship & Sustainable Livelihoods Project \u2014 Monitoring Area 02",
+      "project_id": "WL-BHE",
+      "project_name": "Bhekula Biodiversity, Stewardship & Sustainable Livelihoods Project",
+      "latitude": -26.949971,
+      "longitude": 32.668169,
+      "latest_ndvi": 0.815,
+      "avg_ndvi": 0.7609,
+      "change": 0.085,
+      "change_percent": 8.5,
+      "trend": "Stable",
+      "improvement_rate": 53.8,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.784
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.684
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.8599
+        },
+        {
+          "date": "2023-05",
+          "ndvi": 0.8876
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.8774
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.8155
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.7876
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.6933
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.6427
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.6864
+        },
+        {
+          "date": "2024-01",
+          "ndvi": 0.7779
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.821
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.825
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.8807
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.8825
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.8578
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.8001
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.7198
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.6932
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.4295
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.4878
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.537
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.7055
+        },
+        {
+          "date": "2025-03",
+          "ndvi": 0.6612
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.8464
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.8613
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.8612
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.8113
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.7694
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.6677
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.668
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.6767
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.7174
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.778
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.807
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.8495
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.798
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.8524
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.8574
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.815
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-BHE-02.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-BHE-03",
+      "site_name": "Bhekula Biodiversity, Stewardship & Sustainable Livelihoods Project \u2014 Monitoring Area 03",
+      "project_id": "WL-BHE",
+      "project_name": "Bhekula Biodiversity, Stewardship & Sustainable Livelihoods Project",
+      "latitude": -26.931474,
+      "longitude": 32.700631,
+      "latest_ndvi": 0.6213,
+      "avg_ndvi": 0.626,
+      "change": 0.036000000000000004,
+      "change_percent": 3.6,
+      "trend": "Stable",
+      "improvement_rate": 41.0,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.6691
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.6357
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.7006
+        },
+        {
+          "date": "2023-05",
+          "ndvi": 0.6843
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.6547
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.5482
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.4993
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.4742
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.5274
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.6332
+        },
+        {
+          "date": "2024-01",
+          "ndvi": 0.6128
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.6794
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.7078
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.7389
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.6911
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.6628
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.5859
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.4945
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.4969
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.4954
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.5869
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.583
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.7104
+        },
+        {
+          "date": "2025-03",
+          "ndvi": 0.5526
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.7523
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.7083
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.6492
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.5545
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.4917
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.4368
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.5682
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.6301
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.6736
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.7014
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.6753
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.7332
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.7625
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.7453
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.71
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.6213
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-BHE-03.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-BHE-04",
+      "site_name": "Bhekula Biodiversity, Stewardship & Sustainable Livelihoods Project \u2014 Monitoring Area 04",
+      "project_id": "WL-BHE",
+      "project_name": "Bhekula Biodiversity, Stewardship & Sustainable Livelihoods Project",
+      "latitude": -26.944551,
+      "longitude": 32.686947,
+      "latest_ndvi": 0.6499,
+      "avg_ndvi": 0.6591,
+      "change": -0.002,
+      "change_percent": -0.2,
+      "trend": "Stable",
+      "improvement_rate": 43.6,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.7143
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.7426
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.7544
+        },
+        {
+          "date": "2023-05",
+          "ndvi": 0.6915
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.6799
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.6012
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.5719
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.5207
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.5304
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.6157
+        },
+        {
+          "date": "2024-01",
+          "ndvi": 0.3949
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.7033
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.7283
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.7689
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.7334
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.7181
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.6569
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.5643
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.5571
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.5909
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.6201
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.5895
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.734
+        },
+        {
+          "date": "2025-03",
+          "ndvi": 0.3561
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.8097
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.7885
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.7179
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.6261
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.5445
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.4808
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.5948
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.6491
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.695
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.7618
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.7555
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.7821
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.811
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.8056
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.7516
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.6499
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-BHE-04.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-BHE-05",
+      "site_name": "Bhekula Biodiversity, Stewardship & Sustainable Livelihoods Project \u2014 Monitoring Area 05",
+      "project_id": "WL-BHE",
+      "project_name": "Bhekula Biodiversity, Stewardship & Sustainable Livelihoods Project",
+      "latitude": -26.948031,
+      "longitude": 32.693126,
+      "latest_ndvi": 0.654,
+      "avg_ndvi": 0.6443,
+      "change": 0.053,
+      "change_percent": 5.3,
+      "trend": "Stable",
+      "improvement_rate": 48.7,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.6691
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.6959
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.7111
+        },
+        {
+          "date": "2023-05",
+          "ndvi": 0.6924
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.6382
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.5223
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.4924
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.4797
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.5193
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.6129
+        },
+        {
+          "date": "2024-01",
+          "ndvi": 0.6317
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.6728
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.7062
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.7479
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.706
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.6785
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.6128
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.5282
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.5361
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.5776
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.6169
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.6021
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.7316
+        },
+        {
+          "date": "2025-03",
+          "ndvi": 0.4927
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.7809
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.7512
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.6941
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.6075
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.5194
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.485
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.6052
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.6551
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.6909
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.652
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.7244
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.7641
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.7824
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.7792
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.7526
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.654
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-BHE-05.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-FER-01",
+      "site_name": "Ferncliff Nature Reserve \u2014 Monitoring Area 01",
+      "project_id": "WL-FER",
+      "project_name": "Ferncliff Nature Reserve",
+      "latitude": -29.574971,
+      "longitude": 30.371518,
+      "latest_ndvi": 0.6007,
+      "avg_ndvi": 0.6365,
+      "change": -0.022000000000000002,
+      "change_percent": -2.2,
+      "trend": "Stable",
+      "improvement_rate": 51.3,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.6716
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.6951
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.6684
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.6673
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.5953
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.5596
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.5028
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.5523
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.6212
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.6316
+        },
+        {
+          "date": "2024-01",
+          "ndvi": 0.6886
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.6803
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.6635
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.668
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.6723
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.6221
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.5761
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.4932
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.5342
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.6009
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.6164
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.6316
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.6751
+        },
+        {
+          "date": "2025-03",
+          "ndvi": 0.7092
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.7206
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.7069
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.6701
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.6318
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.5848
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.5197
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.6019
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.6544
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.6795
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.6602
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.6534
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.6888
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.702
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.7123
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.6781
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.6007
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-FER-01.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-FER-02",
+      "site_name": "Ferncliff Nature Reserve \u2014 Monitoring Area 02",
+      "project_id": "WL-FER",
+      "project_name": "Ferncliff Nature Reserve",
+      "latitude": -29.528545,
+      "longitude": 30.345974,
+      "latest_ndvi": 0.5826,
+      "avg_ndvi": 0.6505,
+      "change": -0.055999999999999994,
+      "change_percent": -5.6,
+      "trend": "Stable",
+      "improvement_rate": 46.2,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.7496
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.7978
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.6539
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.6535
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.5495
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.4712
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.4173
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.5163
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.6914
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.7122
+        },
+        {
+          "date": "2024-01",
+          "ndvi": 0.754
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.6467
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.712
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.7092
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.6662
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.5743
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.407
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.3434
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.4847
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.5694
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.6753
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.7216
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.7188
+        },
+        {
+          "date": "2025-03",
+          "ndvi": 0.7698
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.7238
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.7432
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.713
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.5966
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.5361
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.5677
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.6821
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.737
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.7178
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.7184
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.7127
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.7395
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.7863
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.7768
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.7195
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.5826
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-FER-02.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-FER-03",
+      "site_name": "Ferncliff Nature Reserve \u2014 Monitoring Area 03",
+      "project_id": "WL-FER",
+      "project_name": "Ferncliff Nature Reserve",
+      "latitude": -29.559624,
+      "longitude": 30.386583,
+      "latest_ndvi": 0.3438,
+      "avg_ndvi": 0.3856,
+      "change": -0.077,
+      "change_percent": -7.7,
+      "trend": "Stable",
+      "improvement_rate": 48.7,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.4142
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.4457
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.4163
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.4033
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.3497
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.3199
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.2997
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.3191
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.3886
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.4003
+        },
+        {
+          "date": "2024-01",
+          "ndvi": 0.4299
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.4214
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.4193
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.432
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.4034
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.3729
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.3199
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.2582
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.2885
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.3371
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.3703
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.3851
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.4048
+        },
+        {
+          "date": "2025-03",
+          "ndvi": 0.4531
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.4714
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.4558
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.4085
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.3699
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.3357
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.3276
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.3672
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.4032
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.4151
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.4083
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.3929
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.4144
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.4243
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.4283
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.4064
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.3438
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-FER-03.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-FER-04",
+      "site_name": "Ferncliff Nature Reserve \u2014 Monitoring Area 04",
+      "project_id": "WL-FER",
+      "project_name": "Ferncliff Nature Reserve",
+      "latitude": -29.527653,
+      "longitude": 30.3889,
+      "latest_ndvi": 0.5269,
+      "avg_ndvi": 0.5797,
+      "change": -0.162,
+      "change_percent": -16.2,
+      "trend": "Stable",
+      "improvement_rate": 46.2,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.6537
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.7509
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.7291
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.6441
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.5696
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.4813
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.4194
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.4269
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.54
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.5754
+        },
+        {
+          "date": "2024-01",
+          "ndvi": 0.6506
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.6812
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.6804
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.6508
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.6062
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.5597
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.4291
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.3146
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.3012
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.3471
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.481
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.5314
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.7316
+        },
+        {
+          "date": "2025-03",
+          "ndvi": 0.7232
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.751
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.7478
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.6535
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.5702
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.4798
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.4352
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.4597
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.5338
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.6036
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.6639
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.6735
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.6954
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.6514
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.6516
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.6104
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.5269
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-FER-04.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-FER-05",
+      "site_name": "Ferncliff Nature Reserve \u2014 Monitoring Area 05",
+      "project_id": "WL-FER",
+      "project_name": "Ferncliff Nature Reserve",
+      "latitude": -29.571539,
+      "longitude": 30.3693,
+      "latest_ndvi": 0.7079,
+      "avg_ndvi": 0.7313,
+      "change": -0.011000000000000001,
+      "change_percent": -1.1,
+      "trend": "Stable",
+      "improvement_rate": 56.4,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.7685
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.7868
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.7713
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.7742
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.7079
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.664
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.5779
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.6411
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.7047
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.7142
+        },
+        {
+          "date": "2024-01",
+          "ndvi": 0.7848
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.7855
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.7496
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.7585
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.7684
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.7243
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.6794
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.5645
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.6095
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.6828
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.6975
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.7173
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.7841
+        },
+        {
+          "date": "2025-03",
+          "ndvi": 0.8005
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.8097
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.8009
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.7653
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.7316
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.6834
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.6506
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.6854
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.746
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.771
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.7554
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.7527
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.7874
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.7957
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.8119
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.7801
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.7079
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-FER-05.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-SON-01",
+      "site_name": "Sontuli Education Centre \u2014 Monitoring Area 01",
+      "project_id": "WL-SON",
+      "project_name": "Sontuli Education Centre",
+      "latitude": -28.26858,
+      "longitude": 31.893292,
+      "latest_ndvi": 0.5388,
+      "avg_ndvi": 0.6192,
+      "change": -0.053,
+      "change_percent": -5.3,
+      "trend": "Stable",
+      "improvement_rate": 40.5,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.7103
+        },
+        {
+          "date": "2023-02",
+          "ndvi": 0.5238
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.7489
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.7155
+        },
+        {
+          "date": "2023-05",
+          "ndvi": 0.7068
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.6311
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.5392
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.456
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.3322
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.3425
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.6783
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.6998
+        },
+        {
+          "date": "2024-01",
+          "ndvi": 0.7525
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.7331
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.6438
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.6932
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.607
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.5293
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.4678
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.349
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.3216
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.4392
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.6282
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.458
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.638
+        },
+        {
+          "date": "2025-02",
+          "ndvi": 0.7236
+        },
+        {
+          "date": "2025-03",
+          "ndvi": 0.7534
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.7734
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.7436
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.7317
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.6955
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.6068
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.4333
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.627
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.6865
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.7431
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.7394
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.6926
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.7158
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.7366
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.7148
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.6247
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.5388
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-SON-01.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-SON-02",
+      "site_name": "Sontuli Education Centre \u2014 Monitoring Area 02",
+      "project_id": "WL-SON",
+      "project_name": "Sontuli Education Centre",
+      "latitude": -28.261747,
+      "longitude": 31.88249,
+      "latest_ndvi": 0.4798,
+      "avg_ndvi": 0.6284,
+      "change": -0.188,
+      "change_percent": -18.8,
+      "trend": "Stable",
+      "improvement_rate": 42.9,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.7493
+        },
+        {
+          "date": "2023-02",
+          "ndvi": 0.6157
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.7997
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.7172
+        },
+        {
+          "date": "2023-05",
+          "ndvi": 0.6854
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.6115
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.5201
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.439
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.3317
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.3551
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.6982
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.751
+        },
+        {
+          "date": "2024-01",
+          "ndvi": 0.7062
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.7699
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.6499
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.6894
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.6095
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.4977
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.4377
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.3142
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.3103
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.4234
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.66
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.5896
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.7532
+        },
+        {
+          "date": "2025-02",
+          "ndvi": 0.7942
+        },
+        {
+          "date": "2025-03",
+          "ndvi": 0.8158
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.8207
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.7883
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.7361
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.6606
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.565
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.4203
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.6508
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.7072
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.7846
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.6538
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.7178
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.7191
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.7437
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.683
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.5941
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.4798
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-SON-02.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-SON-03",
+      "site_name": "Sontuli Education Centre \u2014 Monitoring Area 03",
+      "project_id": "WL-SON",
+      "project_name": "Sontuli Education Centre",
+      "latitude": -28.26441,
+      "longitude": 31.876157,
+      "latest_ndvi": 0.4908,
+      "avg_ndvi": 0.6036,
+      "change": -0.161,
+      "change_percent": -16.1,
+      "trend": "Declining",
+      "improvement_rate": 38.1,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.7075
+        },
+        {
+          "date": "2023-02",
+          "ndvi": 0.6668
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.7481
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.6957
+        },
+        {
+          "date": "2023-05",
+          "ndvi": 0.6665
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.6035
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.5043
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.4195
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.3361
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.3419
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.6822
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.7302
+        },
+        {
+          "date": "2024-01",
+          "ndvi": 0.4107
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.7455
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.6213
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.6808
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.6008
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.4878
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.4346
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.3123
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.3122
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.3583
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.6253
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.5689
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.7098
+        },
+        {
+          "date": "2025-02",
+          "ndvi": 0.749
+        },
+        {
+          "date": "2025-03",
+          "ndvi": 0.7386
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.7738
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.7476
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.7168
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.6537
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.5704
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.4456
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.6268
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.6732
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.7444
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.6827
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.6745
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.6907
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.7167
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.6796
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.6108
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.4908
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-SON-03.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    },
+    {
+      "site_id": "WL-SON-04",
+      "site_name": "Sontuli Education Centre \u2014 Monitoring Area 04",
+      "project_id": "WL-SON",
+      "project_name": "Sontuli Education Centre",
+      "latitude": -28.264942,
+      "longitude": 31.891497,
+      "latest_ndvi": 0.5275,
+      "avg_ndvi": 0.6315,
+      "change": -0.111,
+      "change_percent": -11.1,
+      "trend": "Stable",
+      "improvement_rate": 40.5,
+      "ndvi_history": [
+        {
+          "date": "2023-01",
+          "ndvi": 0.7403
+        },
+        {
+          "date": "2023-02",
+          "ndvi": 0.5721
+        },
+        {
+          "date": "2023-03",
+          "ndvi": 0.785
+        },
+        {
+          "date": "2023-04",
+          "ndvi": 0.7304
+        },
+        {
+          "date": "2023-05",
+          "ndvi": 0.7156
+        },
+        {
+          "date": "2023-06",
+          "ndvi": 0.6425
+        },
+        {
+          "date": "2023-07",
+          "ndvi": 0.5481
+        },
+        {
+          "date": "2023-08",
+          "ndvi": 0.4672
+        },
+        {
+          "date": "2023-09",
+          "ndvi": 0.3082
+        },
+        {
+          "date": "2023-10",
+          "ndvi": 0.33
+        },
+        {
+          "date": "2023-11",
+          "ndvi": 0.68
+        },
+        {
+          "date": "2023-12",
+          "ndvi": 0.7372
+        },
+        {
+          "date": "2024-01",
+          "ndvi": 0.7862
+        },
+        {
+          "date": "2024-02",
+          "ndvi": 0.766
+        },
+        {
+          "date": "2024-03",
+          "ndvi": 0.675
+        },
+        {
+          "date": "2024-04",
+          "ndvi": 0.717
+        },
+        {
+          "date": "2024-05",
+          "ndvi": 0.6195
+        },
+        {
+          "date": "2024-06",
+          "ndvi": 0.5315
+        },
+        {
+          "date": "2024-07",
+          "ndvi": 0.4627
+        },
+        {
+          "date": "2024-08",
+          "ndvi": 0.3415
+        },
+        {
+          "date": "2024-09",
+          "ndvi": 0.311
+        },
+        {
+          "date": "2024-10",
+          "ndvi": 0.4587
+        },
+        {
+          "date": "2024-11",
+          "ndvi": 0.6645
+        },
+        {
+          "date": "2024-12",
+          "ndvi": 0.5683
+        },
+        {
+          "date": "2025-01",
+          "ndvi": 0.6321
+        },
+        {
+          "date": "2025-02",
+          "ndvi": 0.753
+        },
+        {
+          "date": "2025-03",
+          "ndvi": 0.7797
+        },
+        {
+          "date": "2025-04",
+          "ndvi": 0.7437
+        },
+        {
+          "date": "2025-05",
+          "ndvi": 0.7628
+        },
+        {
+          "date": "2025-06",
+          "ndvi": 0.7409
+        },
+        {
+          "date": "2025-07",
+          "ndvi": 0.6919
+        },
+        {
+          "date": "2025-08",
+          "ndvi": 0.5994
+        },
+        {
+          "date": "2025-09",
+          "ndvi": 0.435
+        },
+        {
+          "date": "2025-10",
+          "ndvi": 0.6272
+        },
+        {
+          "date": "2025-11",
+          "ndvi": 0.6926
+        },
+        {
+          "date": "2025-12",
+          "ndvi": 0.7512
+        },
+        {
+          "date": "2026-01",
+          "ndvi": 0.7352
+        },
+        {
+          "date": "2026-02",
+          "ndvi": 0.7185
+        },
+        {
+          "date": "2026-03",
+          "ndvi": 0.725
+        },
+        {
+          "date": "2026-04",
+          "ndvi": 0.7416
+        },
+        {
+          "date": "2026-05",
+          "ndvi": 0.7189
+        },
+        {
+          "date": "2026-06",
+          "ndvi": 0.6186
+        },
+        {
+          "date": "2026-07",
+          "ndvi": 0.5275
+        }
+      ],
+      "ndvi_image_url": "ndvi/WL-SON-04.png",
+      "source": "Sentinel-2 SR Harmonized via Google Earth Engine"
+    }
+  ]
+}

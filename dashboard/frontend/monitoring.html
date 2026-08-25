@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>WILDLANDS — Monitoring</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="config.js"></script>
+<style>
+:root{
+  --bg:#06110d;--panel:#091812;--panel2:#0c1d15;--line:#19382a;
+  --green:#73d13d;--yellow:#e5b51b;--red:#ef533f;--blue:#54a8e8;
+  --text:#f1f6f3;--muted:#8ca39a;--soft:#b7c8c0;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:13px "Segoe UI",Arial,sans-serif}
+.app{display:flex;min-height:100vh}
+.sidebar{width:218px;flex:0 0 218px;background:#06100c;border-right:1px solid var(--line);padding:18px 10px;display:flex;flex-direction:column;min-height:100vh}
+.brand{display:flex;align-items:center;gap:10px;padding:2px 5px 25px}
+.logo{width:39px;height:39px;border:3px solid var(--green);border-radius:50%;display:grid;place-items:center;color:var(--green);font-size:17px}
+.brand-title{font-size:20px;font-weight:900}.brand-sub{font-size:7px;color:var(--green);line-height:1.2;max-width:135px}
+.nav{display:flex;flex-direction:column;gap:3px}.nav a{padding:10px 10px;color:#b7c8bf;text-decoration:none;border-radius:7px}.nav a:hover{background:#0d2117;color:#fff}.nav a.active{background:#123c20;color:#fff;border-left:3px solid var(--green)}
+.spacer{flex:1}.field{margin-top:12px;border:1px solid #224b33;border-radius:9px;background:#081710;padding:12px}.field b{font-size:9px;color:var(--green);letter-spacing:.7px}.field h4{margin:8px 0 4px}.field p{font-size:10px;color:var(--muted);line-height:1.45;margin:0 0 10px}.field a{display:block;text-align:center;text-decoration:none;background:#1b512a;color:#fff;padding:8px;border-radius:6px;font-weight:800;font-size:10px}
+
+.main{flex:1;min-width:0;padding:22px 28px 28px}.top{display:flex;justify-content:space-between;gap:20px;border-bottom:1px solid var(--line);padding-bottom:17px}.eyebrow{color:var(--green);font-size:10px;letter-spacing:1.4px}.title{font-size:31px;font-weight:900;margin:5px 0}.subtitle{color:var(--muted);font-size:12px}.actions{display:flex;gap:8px}.btn{border:1px solid #28513a;background:#091812;color:#fff;border-radius:7px;padding:9px 12px;font-weight:800;cursor:pointer}.btn.primary{background:#1d542b}.btn:hover{filter:brightness(1.12)}
+.status{margin:14px 0;border:1px solid var(--line);background:#081710;padding:9px 12px;border-radius:8px;color:var(--soft)}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--yellow);margin-right:7px}.dot.ok{background:var(--green)}.dot.bad{background:var(--red)}
+
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:13px}.control,.search{background:#091812;color:#fff;border:1px solid #28513a;border-radius:7px;padding:10px 11px}.search{min-width:240px;flex:1}.reset{background:#091812}
+
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:13px}.kpi{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:13px}.kpi-label{font-size:9px;color:var(--muted);letter-spacing:.8px}.kpi-value{font-size:27px;font-weight:900;margin:9px 0 3px}.kpi-note{font-size:10px;color:var(--muted)}.green{color:var(--green)}.yellow{color:var(--yellow)}.red{color:var(--red)}.blue{color:var(--blue)}
+
+.grid-main{display:grid;grid-template-columns:1.15fr .85fr;gap:12px}.card{background:var(--panel);border:1px solid var(--line);border-radius:9px;overflow:hidden}.card-head{padding:13px 15px;border-bottom:1px solid var(--line)}.card-head strong{font-size:13px}.card-head small{display:block;color:var(--muted);margin-top:3px;font-size:10px}
+#map{height:405px}
+
+.site{padding:15px}.site-top{display:flex;justify-content:space-between;gap:12px}.site-id{font-size:21px;font-weight:900}.project{color:var(--muted);margin-top:2px}.badge{padding:5px 8px;border-radius:18px;font-size:9px;font-weight:900;text-transform:uppercase;height:max-content}.badge.improving{background:#143b1d;color:#7de34c}.badge.stable{background:#40350d;color:#f0c92d}.badge.declining{background:#431813;color:#ff7665}.badge.unavailable{background:#1c2923;color:#a4b5ad}
+.site-alert{margin:13px 0;padding:10px;border-radius:7px;background:#321510;border:1px solid #5a241b;color:#ff9b8e;font-size:11px}.site-alert.ok{background:#102b18;border-color:#205a2c;color:#9be76e}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:7px;overflow:hidden}.metric{padding:11px;border-right:1px solid var(--line)}.metric:last-child{border-right:0}.metric span{display:block;color:var(--muted);font-size:9px}.metric b{display:block;margin-top:5px;font-size:17px}.details{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.detail{background:#07140f;border:1px solid #173428;border-radius:6px;padding:8px}.detail span{display:block;color:var(--muted);font-size:8px;text-transform:uppercase}.detail b{display:block;margin-top:4px;font-size:10px}.site-actions{display:flex;gap:7px;margin-top:12px}
+
+.lower{display:grid;grid-template-columns:1fr .75fr;gap:12px;margin-top:12px}.queue,.activity{min-height:235px}.queue-item{display:flex;justify-content:space-between;gap:12px;padding:11px 14px;border-bottom:1px solid #132b20}.queue-item:last-child{border-bottom:0}.q-main b{display:block;font-size:11px}.q-main span{display:block;color:var(--muted);font-size:9px;margin-top:3px}.q-change{font-weight:900;color:var(--red)}.q-change.good{color:var(--green)}.empty{padding:30px;text-align:center;color:var(--muted)}
+.activity-item{padding:11px 14px;border-bottom:1px solid #132b20}.activity-item:last-child{border-bottom:0}.activity-item b{font-size:11px}.activity-item span{display:block;color:var(--muted);font-size:9px;margin-top:3px}.activity-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);margin-right:7px}
+
+.register{margin-top:12px}.table-wrap{overflow:auto}.table{width:100%;border-collapse:collapse;min-width:850px}.table th,.table td{text-align:left;padding:9px 11px;border-bottom:1px solid #132b20;white-space:nowrap}.table th{font-size:8px;color:var(--muted);letter-spacing:.7px}.table td{font-size:10px}.click{color:#bfe7a8;font-weight:800;cursor:pointer}.mini{font-size:8px;padding:3px 6px;border-radius:15px;font-weight:900}.mini.green{background:#143b1d}.mini.yellow{background:#40350d}.mini.red{background:#431813}.mini.grey{background:#1c2923;color:#a4b5ad}
+.footer{display:flex;justify-content:space-between;border-top:1px solid #10261b;margin-top:16px;padding-top:11px;color:#657a70;font-size:9px}
+
+@media(max-width:1150px){.kpis{grid-template-columns:repeat(3,1fr)}.grid-main,.lower{grid-template-columns:1fr}}
+@media(max-width:750px){.app{display:block}.sidebar{width:100%;min-height:auto}.main{padding:17px}.top{display:block}.actions{margin-top:12px}.kpis{grid-template-columns:1fr 1fr}.metrics{grid-template-columns:1fr}.metric{border-right:0;border-bottom:1px solid var(--line)}.metric:last-child{border-bottom:0}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><div class="logo">◯</div><div><div class="brand-title">WILDLANDS</div><div class="brand-sub">RESTORING NATURE. TRANSFORMING LIVES.</div></div></div>
+  <nav class="nav">
+    <a href="index.html">⌂ &nbsp;Overview</a>
+    <a href="projects.html">▤ &nbsp;Projects</a>
+    <a class="active" href="monitoring.html" aria-current="page">◉ &nbsp;Monitoring</a>
+    <a href="analytics.html">▥ &nbsp;Analytics</a>
+    <a href="reports.html">▤ &nbsp;Reports</a>
+    <a href="data-management.html">⊞ &nbsp;Data Management</a>
+  </nav>
+  <div class="spacer"></div>
+  <div class="field"><b>● FIELD OPERATIONS</b><h4>New Observation</h4><p>Capture a field observation and sync it to the WILDLANDS database.</p><a href="field-monitoring.html">Open Field Form →</a></div>
+</aside>
+
+<main class="main">
+<header class="top">
+  <div><div class="eyebrow">FIELD + SATELLITE MONITORING</div><div class="title">Monitoring</div><div class="subtitle">Track site condition, identify areas requiring attention and coordinate field action.</div></div>
+  <div class="actions"><button class="btn" onclick="loadData()">↻ Refresh</button><button class="btn primary" onclick="openField()">＋ New Observation</button></div>
+</header>
+
+<div class="status"><span id="dot" class="dot"></span><span id="status">Connecting to WILDLANDS monitoring data…</span></div>
+
+<div class="filters">
+  <select id="project" class="control"><option value="">All Projects</option></select>
+  <select id="area" class="control"><option value="">All Monitoring Areas</option></select>
+  <select id="statusFilter" class="control"><option value="">All Statuses</option><option value="improving">Improving</option><option value="stable">Stable</option><option value="declining">Declining</option><option value="unavailable">Satellite unavailable</option></select>
+  <input id="search" class="search" placeholder="Search site, project or status…" oninput="render()">
+  <button class="btn reset" onclick="resetFilters()">Reset</button>
+</div>
+
+<section class="kpis">
+  <div class="kpi"><div class="kpi-label">AREAS MONITORED</div><div class="kpi-value" id="kAreas">—</div><div class="kpi-note">Current monitoring register</div></div>
+  <div class="kpi"><div class="kpi-label">NEEDS ATTENTION</div><div class="kpi-value red" id="kAttention">—</div><div class="kpi-note">Declining areas</div></div>
+  <div class="kpi"><div class="kpi-label">LAST SATELLITE</div><div class="kpi-value blue" id="kSatellite">—</div><div class="kpi-note">Latest Sentinel-2 composite</div></div>
+  <div class="kpi"><div class="kpi-label">FIELD RECORDS</div><div class="kpi-value green" id="kField">—</div><div class="kpi-note">Synced observations</div></div>
+  <div class="kpi"><div class="kpi-label">SITES WITHOUT SATELLITE</div><div class="kpi-value yellow" id="kMissing">—</div><div class="kpi-note">Requires data follow-up</div></div>
+</section>
+
+<section class="grid-main">
+  <div class="card"><div class="card-head"><strong>Current Monitoring Map</strong><small>Operational location view — colours indicate current site status.</small></div><div id="map"></div></div>
+  <div class="card"><div class="card-head"><strong>Selected Monitoring Area</strong><small>Current operational state and field context.</small></div><div id="sitePanel" class="site"><div class="empty">Select a monitoring area on the map or register.</div></div></div>
+</section>
+
+<section class="lower">
+  <div class="card queue"><div class="card-head"><strong>Attention Queue</strong><small>Areas that may require field investigation.</small></div><div id="attention"></div></div>
+  <div class="card activity"><div class="card-head"><strong>Recent Field Activity</strong><small>Latest observations received by the system.</small></div><div id="activity"></div></div>
+</section>
+
+<section class="card register">
+  <div class="card-head"><strong>Monitoring Register</strong><small>Select a project or area to inspect its operational monitoring register.</small></div>
+  <div class="table-wrap"><table class="table"><thead><tr><th>SITE</th><th>PROJECT</th><th>STATUS</th><th>LATEST NDVI</th><th>CHANGE</th><th>LATEST SATELLITE DATE</th><th>LAST FIELD</th><th>FIELD RECORDS</th><th>ACTION</th></tr></thead><tbody id="rows"></tbody></table></div>
+</section>
+
+<footer class="footer"><span>WILDLANDS Geospatial Restoration Monitoring & Decision Support</span><span id="updated"></span></footer>
+</main>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+let sites=[], observations=[], map=null, markers=null, selected=null;
+
+const API=(typeof API_BASE_URL!=="undefined"&&API_BASE_URL)?String(API_BASE_URL).replace(/\/$/,""):"http://localhost:8000";
+
+function val(o,keys,d=null){for(const k of keys){if(o&&o[k]!==undefined&&o[k]!==null&&o[k]!=="")return o[k]}return d}
+function num(v){const n=Number(v);return Number.isFinite(n)?n:null}
+function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function siteId(s){return String(val(s,["site_id","siteId","id","SITE_ID","restoration_id"],"UNKNOWN"))}
+function projectId(s){return String(val(s,["project_id","projectId","PROJECT_ID","project_code"],"UNASSIGNED"))}
+function projectName(s){return String(val(s,["project_name","projectName","PROJECT","project","name"],projectId(s)))}
+function latitude(s){return num(val(s,["latitude","lat","LATITUDE","y"],null))}
+function longitude(s){return num(val(s,["longitude","lon","lng","LONGITUDE","x"],null))}
+function latestNdvi(s){return num(val(s,["latest_ndvi","latestNdvi","ndvi","NDVI","current_ndvi"],null))}
+function change(s){
+  let v=num(val(s,["change","ndvi_change","ndviChange"],null));
+  if(v!==null)return Math.abs(v)>1?v/100:v;
+  v=num(val(s,["change_percent","changePercentage","CHANGE_PERCENT"],null));
+  return v===null?null:v/100;
+}
+function status(s){const c=change(s);if(c===null)return"unavailable";if(c>.015)return"improving";if(c<-.015)return"declining";return"stable"}
+function dateValue(v){if(!v)return null;const d=new Date(v);return Number.isNaN(d.getTime())?String(v):d}
+function dateText(v){const d=dateValue(v);if(!d)return"—";if(typeof d==="string")return d;return d.toLocaleDateString(undefined,{day:"2-digit",month:"short",year:"numeric"})}
+function lastSatellite(s){
+  // Production satellite_data.json stores the observation dates inside ndvi_history.
+  // The builder sorts this history chronologically, so the last entry is the
+  // latest Sentinel-2 composite date.
+  const history = Array.isArray(s?.ndvi_history) ? s.ndvi_history : [];
+  const dates = history
+    .map(h => val(h,["date","observation_date","timestamp"],null))
+    .filter(Boolean)
+    .map(dateValue)
+    .filter(d => d instanceof Date && !Number.isNaN(d.getTime()));
+  if(dates.length) return new Date(Math.max(...dates.map(d => d.getTime())));
+
+  // Fallbacks for future/alternate satellite schemas.
+  return val(s,["latest_date","latestDate","satellite_date","satelliteDate","date","observation_date"],null);
+}
+function fieldRecords(s){const id=siteId(s);return observations.filter(o=>String(val(o,["site_id","siteId","SITE_ID"],"")).trim()===id)}
+function lastField(s){const r=fieldRecords(s).sort((a,b)=>new Date(val(b,["observation_date","date","created_at","createdAt"],0))-new Date(val(a,["observation_date","date","created_at","createdAt"],0)));return r[0]||null}
+
+function initMap(){
+  if(map)return;
+  map=L.map("map").setView([-29.2,30.7],7);
+  const osm=L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{attribution:"© OpenStreetMap contributors"}).addTo(map);
+  const satellite=L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",{attribution:"Esri World Imagery"});
+  L.control.layers({"OpenStreetMap":osm,"Satellite":satellite}).addTo(map);
+  markers=L.layerGroup().addTo(map);
+}
+
+async function loadData(){
+  try{
+    initMap();
+    const [apiRes,satRes]=await Promise.all([
+      fetch(API+"/api/observations?cache="+Date.now()),
+      fetch("satellite_data.json?cache="+Date.now())
+    ]);
+    if(!apiRes.ok)throw new Error("API /api/observations unavailable");
+    const apiJson=await apiRes.json();
+    observations=Array.isArray(apiJson)?apiJson:(apiJson.observations||apiJson.data||[]);
+
+    let satelliteRows=[];
+    if(satRes.ok){
+      const satJson=await satRes.json();
+      satelliteRows=Array.isArray(satJson)?satJson:(satJson.sites||satJson.data||[]);
+    }
+
+    const merged=new Map();
+
+    satelliteRows.forEach(s=>{
+      const key=String(val(s,["site_id","siteId","id","SITE_ID"],"")).trim();
+      if(!key)return;
+      merged.set(key,{...s,site_id:key,satellite_available:true});
+    });
+
+    observations.forEach(o=>{
+      const key=String(val(o,["site_id","siteId","SITE_ID"],"")).trim();
+      if(!key)return;
+      const p=(o.payload&&typeof o.payload==="object")?o.payload:{};
+      const old=merged.get(key)||{site_id:key,satellite_available:false};
+      merged.set(key,{
+        ...old,...o,site_id:key,
+        project_id:val(o,["project_id","projectId"],old.project_id),
+        project_name:val(o,["project_name","projectName"],old.project_name),
+        latitude:num(val(o,["latitude","lat"],null))??latitude(old),
+        longitude:num(val(o,["longitude","lon","lng"],null))??longitude(old),
+        latest_ndvi:old.satellite_available?old.latest_ndvi:val(p,["latest_ndvi","ndvi","NDVI"],old.latest_ndvi),
+        change:old.satellite_available?old.change:val(p,["change","ndvi_change"],old.change)
+      });
+    });
+
+    sites=[...merged.values()];
+    populateFilters();
+    render();
+
+    document.getElementById("dot").className="dot ok";
+    document.getElementById("status").textContent=sites.length+" monitoring areas loaded • "+observations.length+" field observations • "+satelliteRows.length+" satellite records";
+    document.getElementById("updated").textContent="Updated "+new Date().toLocaleString();
+  }catch(e){
+    console.error("Monitoring load failed:",e);
+    document.getElementById("dot").className="dot bad";
+    document.getElementById("status").textContent="Monitoring data unavailable: "+e.message;
+  }
+}
+
+function populateFilters(){
+  const p=document.getElementById("project");
+  p.innerHTML='<option value="">All Projects</option>';
+  [...new Map(sites.map(s=>[projectId(s),projectName(s)])).entries()].sort((a,b)=>a[1].localeCompare(b[1])).forEach(x=>p.add(new Option(x[1],x[0])));
+  p.onchange=()=>{updateAreas();render();};
+  updateAreas();
+}
+function updateAreas(){
+  const p=document.getElementById("project").value,a=document.getElementById("area"),old=a.value;
+  const list=sites.filter(s=>!p||projectId(s)===p);
+  a.innerHTML='<option value="">All Monitoring Areas</option>';
+  list.forEach(s=>a.add(new Option(siteId(s),siteId(s))));
+  if(list.some(s=>siteId(s)===old))a.value=old;
+  a.onchange=render;
+}
+function filtered(){
+  const p=document.getElementById("project").value,a=document.getElementById("area").value,t=document.getElementById("statusFilter").value,q=document.getElementById("search").value.toLowerCase().trim();
+  return sites.filter(s=>{
+    if(p&&projectId(s)!==p)return false;
+    if(a&&siteId(s)!==a)return false;
+    if(t&&status(s)!==t)return false;
+    if(q&&!(siteId(s)+" "+projectName(s)+" "+status(s)).toLowerCase().includes(q))return false;
+    return true;
+  });
+}
+
+function render(){
+  const data=filtered();
+  document.getElementById("kAreas").textContent=data.length;
+  document.getElementById("kAttention").textContent=data.filter(s=>status(s)==="declining").length;
+  const dates=data.map(s=>lastSatellite(s)).filter(Boolean).map(dateValue).filter(x=>x instanceof Date);
+  document.getElementById("kSatellite").textContent=dates.length?dateText(new Date(Math.max(...dates.map(d=>d.getTime())))):"—";
+  document.getElementById("kField").textContent=observations.length;
+  document.getElementById("kMissing").textContent=data.filter(s=>!s.satellite_available||latestNdvi(s)===null).length;
+  renderMap(data);renderAttention(data);renderActivity();renderTable(data);
+
+  const chosenId=document.getElementById("area").value;
+  const chosen=data.find(s=>siteId(s)===chosenId)||selected;
+  if(chosen&&data.some(s=>siteId(s)===siteId(chosen)))showSite(chosen);
+  else if(data.length)showSite(data[0]);
+  else document.getElementById("sitePanel").innerHTML='<div class="empty">No monitoring area matches the current filters.</div>';
+}
+
+function renderMap(data){
+  markers.clearLayers();const bounds=[];
+  data.forEach(s=>{
+    const la=latitude(s),lo=longitude(s);if(la===null||lo===null)return;
+    const t=status(s),color=t==="improving"?"#73d13d":t==="declining"?"#ef533f":t==="stable"?"#e5b51b":"#87958e";
+    const m=L.circleMarker([la,lo],{radius:8,color:"#fff",weight:1,fillColor:color,fillOpacity:.9}).addTo(markers);
+    m.bindTooltip(siteId(s),{direction:"top"});
+    m.on("click",()=>{
+      selected=s;
+      document.getElementById("area").value=siteId(s);
+      showSite(s);
+      renderTable(filtered());
+    });
+    bounds.push([la,lo]);
+  });
+  if(bounds.length)map.fitBounds(bounds,{padding:[20,20]});
+}
+
+function showSite(s){
+  selected=s;
+  const t=status(s),c=change(s),last=lastField(s),records=fieldRecords(s);
+  const badge=t==="improving"?"improving":t==="declining"?"declining":t==="stable"?"stable":"unavailable";
+  const attention=t==="declining";
+  document.getElementById("sitePanel").innerHTML=`
+    <div class="site-top">
+      <div><div class="site-id">${esc(siteId(s))}</div><div class="project">${esc(projectName(s))}</div></div>
+      <span class="badge ${badge}">${esc(t)}</span>
+    </div>
+    <div class="site-alert ${attention?"":"ok"}">${attention?"⚠ This area is declining and should be reviewed.":"✓ No current decline flag for this monitoring area."}</div>
+    <div class="metrics">
+      <div class="metric"><span>Latest NDVI</span><b>${latestNdvi(s)===null?"—":latestNdvi(s).toFixed(3)}</b></div>
+      <div class="metric"><span>Recent Change</span><b>${c===null?"—":(c>=0?"+":"")+(c*100).toFixed(1)+"%"}</b></div>
+      <div class="metric"><span>Field Records</span><b>${records.length}</b></div>
+    </div>
+    <div class="details">
+      <div class="detail"><span>Latest Satellite Date</span><b>${dateText(lastSatellite(s))}</b></div>
+      <div class="detail"><span>Last Field Visit</span><b>${last?dateText(val(last,["observation_date","date","created_at","createdAt"])):"No record"}</b></div>
+      <div class="detail"><span>Latitude</span><b>${latitude(s)===null?"—":latitude(s).toFixed(6)}</b></div>
+      <div class="detail"><span>Longitude</span><b>${longitude(s)===null?"—":longitude(s).toFixed(6)}</b></div>
+    </div>
+    <div class="site-actions">
+      <button class="btn" onclick="openReport('${encodeURIComponent(siteId(s))}')">Area Report</button>
+      <button class="btn primary" onclick="openField('${encodeURIComponent(siteId(s))}')">＋ Field Observation</button>
+    </div>`;
+}
+
+function renderAttention(data){
+  const list=data.filter(s=>status(s)==="declining").sort((a,b)=>(change(a)??0)-(change(b)??0)).slice(0,6);
+  const el=document.getElementById("attention");
+  if(!list.length){el.innerHTML='<div class="empty">No declining areas in the current selection.</div>';return}
+  el.innerHTML=list.map(s=>`<div class="queue-item"><div class="q-main"><b>${esc(siteId(s))}</b><span>${esc(projectName(s))} • Last satellite: ${dateText(lastSatellite(s))}</span></div><div class="q-change">${(change(s)*100).toFixed(1)}%</div></div>`).join("");
+}
+
+function renderActivity(){
+  const el=document.getElementById("activity");
+  const list=[...observations].sort((a,b)=>new Date(val(b,["observation_date","date","created_at","createdAt"],0))-new Date(val(a,["observation_date","date","created_at","createdAt"],0))).slice(0,5);
+  if(!list.length){el.innerHTML='<div class="empty">No field observations received.</div>';return}
+  el.innerHTML=list.map(o=>`<div class="activity-item"><b><span class="activity-dot"></span>${esc(val(o,["site_id","siteId","SITE_ID"],"Unknown site"))}</b><span>${esc(val(o,["observation_type","type","category"],"Field observation"))} • ${dateText(val(o,["observation_date","date","created_at","createdAt"]))}</span></div>`).join("");
+}
+
+function renderTable(data){
+  const el=document.getElementById("rows");
+  const projectSelected = !!document.getElementById("project").value;
+  const areaSelected = !!document.getElementById("area").value;
+
+  if(!projectSelected && !areaSelected){
+    el.innerHTML='<tr><td colspan="9" class="empty">Select a project or monitoring area above to open its monitoring register.</td></tr>';
+    return;
+  }
+
+  if(!data.length){
+    el.innerHTML='<tr><td colspan="9" class="empty">No monitoring areas match the current selection.</td></tr>';
+    return;
+  }
+
+  el.innerHTML=data.map(s=>{
+    const t=status(s),c=change(s),lf=lastField(s),cls=t==="improving"?"green":t==="declining"?"red":t==="stable"?"yellow":"grey";
+    return `<tr>
+      <td class="click" onclick="selectSite('${encodeURIComponent(siteId(s))}')">${esc(siteId(s))}</td>
+      <td>${esc(projectName(s))}</td>
+      <td><span class="mini ${cls}">${esc(t)}</span></td>
+      <td>${latestNdvi(s)===null?"—":latestNdvi(s).toFixed(3)}</td>
+      <td>${c===null?"—":(c>=0?"+":"")+(c*100).toFixed(1)+"%"}</td>
+      <td>${dateText(lastSatellite(s))}</td>
+      <td>${lf?dateText(val(lf,["observation_date","date","created_at","createdAt"])):"—"}</td>
+      <td>${fieldRecords(s).length}</td>
+      <td><button class="btn" onclick="selectSite('${encodeURIComponent(siteId(s))}')">View</button></td>
+    </tr>`;
+  }).join("");
+}
+function selectSite(x){
+  const s=sites.find(v=>siteId(v)===decodeURIComponent(x));
+  if(!s)return;
+  document.getElementById("project").value=projectId(s);
+  updateAreas();
+  document.getElementById("area").value=siteId(s);
+  selected=s;
+  showSite(s);
+  renderTable(filtered());
+  const la=latitude(s),lo=longitude(s);
+  if(la!==null&&lo!==null) map.setView([la,lo],12);
+}
+function resetFilters(){
+  document.getElementById("project").value="";
+  document.getElementById("statusFilter").value="";
+  document.getElementById("search").value="";
+  updateAreas();
+  document.getElementById("area").value="";
+  selected=null;
+  render();
+}
+function openReport(s){window.location.href="reports.html?site="+s}
+function openField(s=""){window.location.href="field-monitoring.html"+(s?"?site="+s:"")}
+
+loadData();
+</script>
+
+<script>
+(function(){
+  const sidebar = document.querySelector('.sidebar');
+  if(!sidebar) return;
+  sidebar.querySelectorAll('.nav a').forEach(a=>{
+    a.classList.remove('active');
+    a.removeAttribute('aria-current');
+  });
+  const current = sidebar.querySelector('a[href="monitoring.html"]');
+  if(current){
+    current.classList.add('active');
+    current.setAttribute('aria-current','page');
+  }
+})();
+</script>
+
+</body>
+</html>

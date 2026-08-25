@@ -1,0 +1,27 @@
+
+services:
+  postgis:
+    image: postgis/postgis:16-3.4
+    container_name: wildlands-postgis
+    environment:
+      POSTGRES_DB: wildlands
+      POSTGRES_USER: wildlands
+      POSTGRES_PASSWORD: wildlands
+    ports:
+      - "5432:5432"
+    volumes:
+      - wildlands_pgdata:/var/lib/postgresql/data
+      - ./schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+
+  api:
+    build: .
+    container_name: wildlands-api
+    environment:
+      DATABASE_URL: postgresql://wildlands:wildlands@postgis:5432/wildlands
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgis
+
+volumes:
+  wildlands_pgdata:

@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WILDLANDS — Data Management</title>
+<script src="config.js"></script>
+<style>
+:root{--bg:#06110d;--p:#091812;--line:#173629;--g:#73d13d;--t:#e9f1ed;--m:#8da197;--y:#e5b51b;--r:#ef533f;--b:#54a8ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--t);font:13px Segoe UI,Arial,sans-serif}.app{display:flex;min-height:100vh}.side{width:265px;background:#06100c;border-right:1px solid var(--line);padding:18px 14px;display:flex;flex-direction:column}.brand{display:flex;gap:12px;align-items:center;margin-bottom:30px}.logo{width:40px;height:40px;border:3px solid var(--g);border-radius:50%}.brand b{font-size:22px}.brand small{display:block;color:var(--g);font-size:8px}.nav a{display:block;padding:11px 12px;border-radius:8px;color:#b8c9c0;text-decoration:none}.nav a.active{background:#104523;color:#fff;border-left:3px solid var(--g)}.spacer{flex:1}.field{border:1px solid #25543a;border-radius:9px;padding:13px;background:#071810}.field strong{color:var(--g);font-size:9px}.field p{color:var(--m);font-size:11px;line-height:1.5}.field a{display:block;background:#18582e;color:#fff;text-align:center;padding:9px;border-radius:7px;text-decoration:none;font-weight:700}.main{flex:1;padding:22px 28px}.head{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:18px}.eyebrow{color:var(--g);font-size:10px;letter-spacing:1.5px}.title{font-size:34px;font-weight:900;margin-top:5px}.sub{color:#9bb0a6;margin-top:5px}.btn{background:#091812;color:#fff;border:1px solid #24513a;border-radius:8px;padding:9px 13px;cursor:pointer;font-weight:700}.primary{background:#1d5a2d}.status{border:1px solid var(--line);background:#071711;border-radius:8px;padding:9px 12px;margin:16px 0;color:var(--m)}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--y);margin-right:7px}.ok{background:var(--g)}.bad{background:var(--r)}.filters{display:grid;grid-template-columns:1.2fr 1.2fr 1fr 1fr auto;gap:9px;margin-bottom:14px}.control,.search{background:#091812;color:#fff;border:1px solid #24513a;border-radius:8px;padding:11px}.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:14px}.kpi,.card{background:var(--p);border:1px solid var(--line);border-radius:9px}.kpi{padding:13px}.label{font-size:9px;color:var(--m);letter-spacing:1px}.value{font-size:27px;font-weight:900;margin-top:8px}.green{color:var(--g)}.red{color:var(--r)}.blue{color:var(--b)}.yellow{color:var(--y)}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}.card{overflow:hidden}.ct{padding:12px 14px;border-bottom:1px solid var(--line);font-weight:800}.ct small{display:block;color:var(--m);font-weight:400;margin-top:4px}.cb{padding:13px}.checks{display:grid;grid-template-columns:1fr 1fr;gap:9px}.check{border:1px solid var(--line);background:#07130f;border-radius:8px;padding:11px}.row{display:flex;justify-content:space-between}.badge{padding:3px 7px;border-radius:20px;font-size:9px;font-weight:800}.badge.good{background:#123d21;color:#7be84b}.badge.warn{background:#443810;color:#f1ca36}.badge.bad{background:#451a15;color:#ff806f}.progress{height:7px;background:#14271f;border-radius:20px;margin-top:8px;overflow:hidden}.bar{height:100%;background:var(--g)}/* Central Data Register is intentionally closed until clicked */
+.table{margin-bottom:14px}
+.table .ct{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    cursor:pointer;
+    user-select:none;
+}
+.table .ct::after{
+    content:"▸";
+    color:var(--g);
+    font-size:14px;
+    transition:transform .15s ease;
+}
+.table.open .ct::after{
+    transform:rotate(90deg);
+}
+.table .cb,
+.table .scroll{
+    display:none;
+}
+.table.open .cb,
+.table.open .scroll{
+    display:block;
+}
+.scroll{overflow:auto}table{width:100%;border-collapse:collapse;min-width:1000px}th,td{text-align:left;padding:10px;border-bottom:1px solid #12291f}th{font-size:9px;color:var(--m);letter-spacing:.8px}td{font-size:11px}.search{width:100%;margin-bottom:12px}.empty{text-align:center;color:var(--m);padding:28px}.footer{color:#657a70;font-size:9px;border-top:1px solid var(--line);padding-top:12px;display:flex;justify-content:space-between}
+@media(max-width:1100px){.kpis{grid-template-columns:repeat(3,1fr)}.filters{grid-template-columns:1fr 1fr}}@media(max-width:800px){.side{width:210px}.grid{grid-template-columns:1fr}}@media(max-width:600px){.app{display:block}.side{width:100%}.head{display:block}.kpis{grid-template-columns:1fr 1fr}.filters{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="side">
+<div class="brand"><div class="logo"></div><div><b>WILDLANDS</b><small>RESTORING NATURE. TRANSFORMING LIVES.</small></div></div>
+<nav class="nav">
+<a href="index.html">⌂ Overview</a><a href="projects.html">▤ Projects</a><a href="monitoring.html">◉ Monitoring</a><a href="analytics.html">◫ Analytics</a><a href="reports.html">▥ Reports</a><a class="active" href="data-management-QAQC.html">⊞ Data Management</a>
+</nav>
+<div class="spacer"></div>
+<div class="field"><strong>● FIELD OPERATIONS</strong><h4>New Observation</h4><p>Capture a field observation and sync it to the WILDLANDS database.</p><a href="field-monitoring.html">Open Field Form →</a></div>
+</aside>
+<main class="main">
+<div class="head"><div><div class="eyebrow">CENTRAL DATA LAYER</div><div class="title">Data Management</div><div class="sub">Data inventory, completeness and QA/QC for the WILDLANDS monitoring system.</div></div><div><button class="btn" onclick="loadData()">↻ Refresh</button> <button class="btn primary" onclick="exportCSV()">Export CSV</button></div></div>
+<div class="status"><span id="dot" class="dot"></span><span id="status">Loading data…</span></div>
+<div class="filters">
+<select id="project" class="control"><option value="">All Projects</option></select>
+<select id="area" class="control"><option value="">All Sites</option></select>
+<select id="type" class="control"><option value="">All Record Types</option></select>
+<select id="gps" class="control"><option value="">All GPS Status</option><option value="yes">GPS Present</option><option value="no">GPS Missing</option></select>
+<button class="btn" onclick="resetFilters()">Reset</button>
+</div>
+<div class="kpis">
+<div class="kpi"><div class="label">MONITORING AREAS</div><div class="value" id="areas">—</div></div>
+<div class="kpi"><div class="label">OBSERVATIONS</div><div class="value" id="records">—</div></div>
+<div class="kpi"><div class="label">GPS COVERAGE</div><div class="value blue" id="gpsCoverage">—</div></div>
+<div class="kpi"><div class="label">NDVI COVERAGE</div><div class="value green" id="ndviCoverage">—</div></div>
+<div class="kpi"><div class="label">QA/QC ISSUES</div><div class="value red" id="issues">—</div></div>
+</div>
+<div class="grid">
+<section class="card"><div class="ct">Data Quality Checks<small>Automated checks against the current monitoring dataset.</small></div><div class="cb"><div id="checks" class="checks"></div></div></section>
+<section class="card"><div class="ct">Data Completeness<small>Coverage of key fields across the current selection.</small></div><div class="cb" id="complete"></div></section>
+</div>
+<section class="card table" id="centralRegistry">
+<div class="ct" id="centralRegistryToggle" role="button" tabindex="0" aria-expanded="false">
+    <div>
+        Central Data Register
+        <small>Click to open and inspect the central monitoring records.</small>
+    </div>
+</div>
+<div class="cb"><input id="search" class="search" placeholder="Search site, project, observer, notes…" oninput="renderTable()"></div>
+<div class="scroll"><table><thead><tr><th>ID</th><th>PROJECT</th><th>TYPE</th><th>OBSERVER</th><th>DATE</th><th>GPS</th><th>NDVI</th><th>QA/QC</th></tr></thead><tbody id="rows"><tr><td colspan="8" class="empty">Loading…</td></tr></tbody></table></div>
+</section>
+<div class="footer"><span>WILDLANDS Data Management & QA/QC</span><span id="updated"></span></div>
+</main></div>
+<script>
+let sites=[],obs=[];
+const G=(o,k,d=null)=>{for(const x of k)if(o&&o[x]!=null)return o[x];return d};
+const N=v=>{const n=Number(v);return Number.isFinite(n)?n:null};
+const ID=s=>String(G(s,["site_id","siteId","id","SITE_ID","restoration_id"],"UNKNOWN"));
+function PID(s){let x=G(s,["project_id","projectId","PROJECT_ID","project_code"]);if(x)return String(x);let i=ID(s);for(const p of ["WL-UTH","WL-BUF","WL-DAR","WL-LLB","WL-SOM","WL-BHE","WL-FER"])if(i.startsWith(p+"-"))return p;return"UNASSIGNED"}
+function PNAME(s){let x=G(s,["project_name","projectName","PROJECT","project"]);if(x)return String(x);return({"WL-UTH":"Upper uThukela Project","WL-BUF":"Buffelsdraai Reforestation Project","WL-DAR":"Dartmoor Nature Reserve Project","WL-LLB":"Living Lakes Biodiversity & Climate Project","WL-SOM":"Somkhanda Community Game Reserve","WL-BHE":"Bhekula Biodiversity, Stewardship & Sustainable Livelihoods Project","WL-FER":"Ferncliff Nature Reserve"})[PID(s)]||"Unassigned Project"}
+const LAT=s=>N(G(s,["latitude","lat","LATITUDE","y","Y"])), LON=s=>N(G(s,["longitude","lon","lng","LONGITUDE","x","X"]));
+function HIST(s){let h=G(s,["ndvi_history","ndviHistory","history"],[]);return Array.isArray(h)?h:[]}
+function NDVI(s){let h=HIST(s);return h.length?N(G(h.at(-1),["ndvi","NDVI","value","mean"])):N(G(s,["current_ndvi","latest_ndvi","NDVI","ndvi"]))}
+const GPS=s=>LAT(s)!=null&&LON(s)!=null;
+const TYPE=s=>String(G(s,["observation_type","type","record_type","TYPE"],"Satellite / Monitoring"));
+const OBS=s=>String(G(s,["observer","observer_name","created_by","user"],"—"));
+const DATE=s=>String(G(s,["date","observation_date","observed_at","lastVisit","last_visit"],"—"));
+const ESC=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+async function BASE(){if(typeof WILDLANDS_CONFIG!="undefined"&&WILDLANDS_CONFIG?.API_BASE_URL)return String(WILDLANDS_CONFIG.API_BASE_URL).replace(/\/$/,"");if(typeof API_BASE_URL!="undefined")return String(API_BASE_URL).replace(/\/$/,"");return"http://localhost:8000"}
+async function loadData(){
+ try{
+  let r=await fetch("../data.json?cache="+Date.now());if(!r.ok)throw Error("data.json unavailable");let j=await r.json();sites=Array.isArray(j)?j:(j.sites||j.monitoring_areas||j.data||[]);
+  try{let a=await fetch((await BASE())+"/api/observations?cache="+Date.now());if(a.ok){let j=await a.json();obs=Array.isArray(j)?j:(j.observations||j.data||[]);let m=new Map();obs.forEach(o=>{let p=o?.payload&&typeof o.payload=="object"?o.payload:{};let id=String(G(o,["site_id","siteId","id","SITE_ID"],G(p,["site_id","siteId","id","SITE_ID"],""))).trim();if(id)m.set(id,{...(m.get(id)||{}),...o,...p})});sites=sites.map(s=>m.has(ID(s))?{...s,...m.get(ID(s))}:s)}}catch(e){console.warn(e)}
+  populate();render();document.getElementById("dot").className="dot ok";document.getElementById("status").textContent=`${sites.length} monitoring areas loaded • ${obs.length} API observations`;document.getElementById("updated").textContent="Updated "+new Date().toLocaleString()
+ }catch(e){console.error(e);document.getElementById("dot").className="dot bad";document.getElementById("status").textContent="Data unavailable: "+e.message}
+}
+function populate(){
+ let p=document.getElementById("project"),a=document.getElementById("area"),t=document.getElementById("type");p.innerHTML='<option value="">All Projects</option>';[...new Map(sites.map(s=>[PID(s),PNAME(s)])).entries()].sort((a,b)=>a[1].localeCompare(b[1])).forEach(x=>p.add(new Option(x[1],x[0])));a.innerHTML='<option value="">All Sites</option>';sites.forEach(s=>a.add(new Option(ID(s),ID(s))));t.innerHTML='<option value="">All Record Types</option>';[...new Set(sites.map(TYPE))].sort().forEach(x=>t.add(new Option(x,x)));[p,a,t,document.getElementById("gps")].forEach(x=>x.onchange=render)
+}
+function filtered(){let a=sites.slice(),p=project.value,s=area.value,t=type.value,g=gps.value;if(p)a=a.filter(x=>PID(x)==p);if(s)a=a.filter(x=>ID(x)==s);if(t)a=a.filter(x=>TYPE(x)==t);if(g=="yes")a=a.filter(GPS);if(g=="no")a=a.filter(x=>!GPS(x));return a}
+function render(){let d=filtered(),gc=d.filter(GPS).length,nc=d.filter(x=>NDVI(x)!=null).length;areas.textContent=d.length;records.textContent=obs.length||d.length;gpsCoverage.textContent=d.length?Math.round(gc/d.length*100)+"%":"—";ndviCoverage.textContent=d.length?Math.round(nc/d.length*100)+"%":"—";issues.textContent=d.filter(x=>!GPS(x)||NDVI(x)==null||PID(x)=="UNASSIGNED").length;checks(d);complete(d);renderTable()}
+function checks(d){let c=[["Coordinates",d.filter(GPS).length],["NDVI",d.filter(x=>NDVI(x)!=null).length],["Project",d.filter(x=>PID(x)!="UNASSIGNED").length],["NDVI history",d.filter(x=>HIST(x).length).length]];checksEl.innerHTML=c.map(x=>{let q=d.length?Math.round(x[1]/d.length*100):0,cl=q==100?"good":q>=80?"warn":"bad";return`<div class="check"><div class="row"><b>${x[0]}</b><span class="badge ${cl}">${q}%</span></div><small style="color:#8da197">${x[1]} / ${d.length}</small><div class="progress"><div class="bar" style="width:${q}%"></div></div></div>`}).join("")}
+function complete(d){let f=[["Site ID",x=>ID(x)!="UNKNOWN"],["Project",x=>PID(x)!="UNASSIGNED"],["Latitude",x=>LAT(x)!=null],["Longitude",x=>LON(x)!=null],["NDVI",x=>NDVI(x)!=null],["NDVI history",x=>HIST(x).length]];completeEl.innerHTML=f.map(x=>{let n=d.filter(x[1]).length,q=d.length?Math.round(n/d.length*100):0;return`<div style="margin-bottom:12px"><div class="row"><b>${x[0]}</b><span style="color:#8da197">${n}/${d.length} (${q}%)</span></div><div class="progress"><div class="bar" style="width:${q}%"></div></div></div>`}).join("")}
+function renderTable(){let q=search.value.toLowerCase().trim(),d=filtered().filter(s=>!q||(ID(s)+" "+PNAME(s)+" "+OBS(s)+" "+TYPE(s)+" "+DATE(s)).toLowerCase().includes(q));rows.innerHTML=d.map(s=>{let i=[];if(!GPS(s))i.push("GPS missing");if(NDVI(s)==null)i.push("NDVI missing");if(PID(s)=="UNASSIGNED")i.push("Project unresolved");let qa=i.length?`<span class="badge ${i.length>1?"bad":"warn"}">${i.join(" • ")}</span>`:'<span class="badge good">PASS</span>';return`<tr><td>${ESC(ID(s))}</td><td>${ESC(PNAME(s))}</td><td>${ESC(TYPE(s))}</td><td>${ESC(OBS(s))}</td><td>${ESC(DATE(s))}</td><td>${GPS(s)?"Present":"Missing"}</td><td>${NDVI(s)==null?"—":NDVI(s).toFixed(3)}</td><td>${qa}</td></tr>`}).join("")||'<tr><td colspan="8" class="empty">No records match the current filters.</td></tr>'}
+function resetFilters(){project.value=area.value=type.value=gps.value="";search.value="";render()}
+function exportCSV(){let d=filtered(),r=[["site_id","project_id","project_name","latitude","longitude","gps_present","ndvi","record_type","observer","date","qa_status"]];d.forEach(s=>{let i=[];if(!GPS(s))i.push("GPS missing");if(NDVI(s)==null)i.push("NDVI missing");if(PID(s)=="UNASSIGNED")i.push("Project unresolved");r.push([ID(s),PID(s),PNAME(s),LAT(s)??"",LON(s)??"",GPS(s)?"YES":"NO",NDVI(s)??"",TYPE(s),OBS(s),DATE(s),i.length?i.join("; "):"PASS"])});let csv=r.map(x=>x.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(",")).join("\n"),a=document.createElement("a");a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv"}));a.download="WILDLANDS_data_quality.csv";a.click()}
+const areas=document.getElementById("areas"),records=document.getElementById("records"),gpsCoverage=document.getElementById("gpsCoverage"),ndviCoverage=document.getElementById("ndviCoverage"),issues=document.getElementById("issues"),checksEl=document.getElementById("checks"),completeEl=document.getElementById("complete");
+
+/* Central Data Register: closed by default, opens only on click. */
+const centralRegistry=document.getElementById("centralRegistry");
+const centralRegistryToggle=document.getElementById("centralRegistryToggle");
+
+function toggleCentralRegistry(){
+    const open=centralRegistry.classList.toggle("open");
+    centralRegistryToggle.setAttribute("aria-expanded",String(open));
+}
+
+centralRegistryToggle.addEventListener("click",toggleCentralRegistry);
+centralRegistryToggle.addEventListener("keydown",e=>{
+    if(e.key==="Enter" || e.key===" "){
+        e.preventDefault();
+        toggleCentralRegistry();
+    }
+});
+
+loadData();
+</script>
+</body></html>

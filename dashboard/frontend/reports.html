@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WILDLANDS — Reports</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="config.js"></script>
+
+<style>
+:root{
+  --bg:#06110d;
+  --panel:#091812;
+  --panel2:#0d1d16;
+  --line:#173629;
+  --green:#73d13d;
+  --green2:#2d7440;
+  --text:#e9f1ed;
+  --muted:#8da197;
+  --yellow:#e5b51b;
+  --red:#ef533f;
+  --blue:#54a8ff;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:Inter,Segoe UI,Arial,sans-serif;font-size:13px;
+}
+.app{display:flex;min-height:100vh}
+.sidebar{
+  width:265px;flex:0 0 265px;background:#06100c;
+  border-right:1px solid var(--line);padding:18px 14px;
+  display:flex;flex-direction:column;
+}
+.brand{display:flex;gap:12px;align-items:center;margin-bottom:30px}
+.logo{
+  width:40px;height:40px;border:3px solid var(--green);
+  border-radius:50%;position:relative
+}
+.logo:after{
+  content:"";position:absolute;inset:9px;border:2px solid var(--green);
+  border-radius:50%
+}
+.brand-name{font-size:22px;font-weight:900;letter-spacing:.3px}
+.brand-sub{font-size:8px;color:var(--green);margin-top:2px;max-width:150px}
+.nav{display:flex;flex-direction:column;gap:4px}
+.nav a{
+  color:#b8c9c0;text-decoration:none;padding:11px 12px;
+  border-radius:8px;display:block
+}
+.nav a:hover{background:#0c2117}
+.nav a.active{background:#104523;color:#fff;border-left:3px solid var(--green)}
+.nav-icon{display:inline-block;width:24px}
+.sidebar-spacer{flex:1}
+.field-card{
+  border:1px solid #25543a;border-radius:9px;padding:13px;margin-top:15px;
+  background:#071810
+}
+.field-top{font-size:9px;color:var(--green);font-weight:800}
+.field-card h4{margin:10px 0 5px}
+.field-card p{color:var(--muted);font-size:11px;line-height:1.5}
+.field-card a{
+  display:block;background:#18582e;color:white;text-decoration:none;
+  padding:9px;border-radius:7px;font-weight:800;text-align:center
+}
+.main{flex:1;padding:22px 28px;min-width:0}
+.topbar{
+  display:flex;justify-content:space-between;gap:20px;
+  align-items:flex-start;border-bottom:1px solid var(--line);padding-bottom:18px
+}
+.eyebrow{color:var(--green);font-size:10px;letter-spacing:1.5px;text-transform:uppercase}
+.title{font-size:34px;font-weight:900;margin-top:6px}
+.subtitle{color:#9bb0a6;margin-top:6px}
+.controls{display:flex;gap:8px;flex-wrap:wrap}
+.btn{
+  background:#091812;color:var(--text);border:1px solid #24513a;
+  border-radius:8px;padding:9px 13px;cursor:pointer;font-weight:700
+}
+.btn.primary{background:#1d5a2d;border-color:#276b38}
+.btn:hover{filter:brightness(1.12)}
+.filters{
+  display:grid;grid-template-columns:1.4fr 1.4fr 1fr auto;
+  gap:10px;margin:16px 0
+}
+.control{
+  background:#091812;color:#e7efeb;border:1px solid #24513a;
+  border-radius:8px;padding:11px
+}
+.statusbar{
+  border:1px solid var(--line);background:#071711;border-radius:8px;
+  padding:9px 12px;color:var(--muted);margin-bottom:14px
+}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:7px;background:var(--yellow)}
+.dot.ok{background:var(--green)}
+.dot.bad{background:var(--red)}
+.report-shell{
+  border:1px solid var(--line);border-radius:10px;background:var(--panel);
+  overflow:hidden
+}
+.report-head{
+  padding:16px 18px;border-bottom:1px solid var(--line);
+  display:flex;justify-content:space-between;gap:20px
+}
+.report-head h2{margin:0;font-size:20px}
+.report-head p{margin:5px 0 0;color:var(--muted)}
+.kpis{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:14px
+}
+.kpi{
+  background:#081711;border:1px solid var(--line);border-radius:8px;padding:13px
+}
+.kpi-label{font-size:9px;color:var(--muted);letter-spacing:1px}
+.kpi-value{font-size:26px;font-weight:900;margin-top:8px}
+.good{color:var(--green)}
+.warn{color:var(--yellow)}
+.bad{color:var(--red)}
+.grid2{
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 14px 14px
+}
+.card{
+  border:1px solid var(--line);border-radius:8px;background:#07130f;overflow:hidden
+}
+.card-title{padding:11px 13px;border-bottom:1px solid var(--line);font-weight:800}
+.card-body{padding:13px}
+.chart-wrap{height:300px}
+#reportMap{height:300px}
+.raster{
+  width:100%;height:300px;object-fit:contain;background:#06110d;display:block
+}
+.empty{
+  height:300px;display:flex;align-items:center;justify-content:center;
+  color:var(--muted);text-align:center;padding:20px
+}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.info{
+  border:1px solid #153226;border-radius:7px;padding:9px;background:#081711
+}
+.info span{display:block;color:var(--muted);font-size:9px;text-transform:uppercase}
+.info b{display:block;margin-top:4px;word-break:break-word}
+.table-card{margin:0 14px 14px}
+.table-scroll{overflow:auto}
+table{width:100%;border-collapse:collapse;min-width:800px}
+th,td{text-align:left;padding:10px;border-bottom:1px solid #12291f}
+th{font-size:9px;color:var(--muted);letter-spacing:.8px}
+td{font-size:11px}
+.report-btn{padding:6px 9px;border-radius:6px;border:1px solid #2b5b40;background:#0a1b13;color:#dcebe3;cursor:pointer}
+.recommendation-card{
+  margin:0 14px 14px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:#07130f;
+  overflow:hidden;
+}
+.recommendation-body{padding:14px}
+.recommendation-summary{
+  padding:12px 14px;border-radius:7px;
+  background:#0b2116;border-left:4px solid var(--green);
+  line-height:1.55;color:#dbe9e1
+}
+.recommendation-summary.warning{
+  background:#2b1511;border-left-color:var(--red);color:#ffe1dc
+}
+.recommendation-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px}
+.rec-item{border:1px solid #153226;border-radius:7px;padding:10px;background:#081711}
+.rec-item span{display:block;color:var(--muted);font-size:9px;text-transform:uppercase}
+.rec-item b{display:block;margin-top:5px;font-size:11px;line-height:1.45}
+.recommendation-list{margin:10px 0 0 18px;padding:0;color:#cbdad2;line-height:1.65}
+.recommendation-list li{margin-bottom:4px}
+.field-observations-card{margin:0 14px 14px;border:1px solid var(--line);border-radius:8px;background:#07130f;overflow:hidden}
+.field-observations-body{padding:13px}
+.observation-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}
+.observation-stat{border:1px solid #153226;border-radius:7px;padding:10px;background:#081711}
+.observation-stat span{display:block;color:var(--muted);font-size:9px;text-transform:uppercase}
+.observation-stat b{display:block;margin-top:5px;font-size:16px}
+.observation-list{display:flex;flex-direction:column;gap:8px}
+.observation-item{border:1px solid #153226;border-radius:7px;padding:11px;background:#081711}
+.observation-item-head{display:flex;justify-content:space-between;gap:10px;margin-bottom:6px}
+.observation-item-head strong{font-size:11px}
+.observation-date{color:var(--muted);font-size:10px}
+.observation-meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:7px}
+.observation-tag{border:1px solid #24513a;border-radius:5px;padding:3px 6px;color:#bcd0c5;font-size:9px}
+.observation-notes{color:#cbdad2;line-height:1.5;font-size:11px}
+.observation-empty{padding:20px;text-align:center;color:var(--muted);border:1px dashed #234335;border-radius:7px}
+@media(max-width:700px){.observation-summary{grid-template-columns:1fr}}
+
+.footer{
+  color:#657a70;font-size:9px;padding:12px 0;margin-top:14px;
+  border-top:1px solid var(--line);display:flex;justify-content:space-between
+}
+@media(max-width:1000px){
+  .sidebar{width:210px;flex-basis:210px}
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .filters{grid-template-columns:1fr 1fr}
+}
+@media(max-width:700px){
+  .app{display:block}
+  .sidebar{width:100%;height:auto}
+  .grid2{grid-template-columns:1fr}
+  .filters{grid-template-columns:1fr}
+  .topbar{flex-direction:column}
+}
+@media print{
+  body{background:white;color:#111}
+  .sidebar,.topbar,.filters,.statusbar,.table-card,.footer,.report-actions{display:none!important}
+  .main{padding:0}
+  .report-shell{border:0;background:white}
+  .card,.kpi,.info{background:white;border:1px solid #ccc}
+  .card-title,.report-head{border-color:#ccc}
+  .muted,.subtitle,.kpi-label,.info span{color:#555}
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+
+<aside class="sidebar">
+  <div class="brand">
+    <div class="logo"></div>
+    <div>
+      <div class="brand-name">WILDLANDS</div>
+      <div class="brand-sub">RESTORING NATURE. TRANSFORMING LIVES.</div>
+    </div>
+  </div>
+
+  <nav class="nav">
+    <a href="index.html"><span class="nav-icon">⌂</span>Overview</a>
+    <a href="projects.html"><span class="nav-icon">▤</span>Projects</a>
+    <a href="monitoring.html"><span class="nav-icon">◉</span>Monitoring</a>
+    <a href="analytics.html"><span class="nav-icon">◫</span>Analytics</a>
+    <a class="active" href="reports.html"><span class="nav-icon">▥</span>Reports</a>
+    <a href="data-management.html"><span class="nav-icon">⊞</span>Data Management</a>
+  </nav>
+
+  <div class="sidebar-spacer"></div>
+
+
+  <div class="field-card">
+    <div class="field-top">● FIELD OPERATIONS</div>
+    <h4>New Observation</h4>
+    <p>Capture a field observation and sync it to the WILDLANDS database.</p>
+    <a href="field-monitoring.html">Open Field Form →</a>
+  </div>
+</aside>
+
+<main class="main">
+
+<header class="topbar">
+  <div>
+    <div class="eyebrow">Geospatial Intelligence Workspace</div>
+    <div class="title">Reports</div>
+    <div class="subtitle">Generate evidence-based monitoring reports from field and Sentinel-2 intelligence.</div>
+  </div>
+  <div class="controls">
+    <button class="btn" onclick="loadReports()">↻ Refresh</button>
+    
+  </div>
+<div class="actions"><button class="btn primary" onclick="window.print()">🖨 Print / Save PDF</button></div></header>
+
+<div class="filters">
+  <select id="projectSelect" class="control">
+    <option value="">All Projects</option>
+  </select>
+
+  <select id="areaSelect" class="control">
+    <option value="">Select Monitoring Area</option>
+  </select>
+
+  <select id="reportType" class="control">
+    <option value="area">Monitoring Area Report</option>
+    <option value="project">Project Summary</option>
+  </select>
+
+  <button class="btn" onclick="generateSelected()">Generate</button>
+</div>
+
+<div class="statusbar">
+  <span id="statusDot" class="dot"></span>
+  <span id="statusText">Loading WILDLANDS monitoring data…</span>
+</div>
+
+<section class="report-shell">
+
+  <div class="report-head">
+    <div>
+      <h2 id="reportTitle">Monitoring Area Report</h2>
+      <p id="reportSubtitle">Select a monitoring area to generate a report.</p>
+    </div>
+    <div class="controls report-actions">
+      
+    </div>
+  </div>
+
+  <section class="kpis">
+    <div class="kpi">
+      <div class="kpi-label">CURRENT NDVI</div>
+      <div class="kpi-value" id="reportNdvi">—</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">NDVI CHANGE</div>
+      <div class="kpi-value" id="reportChange">—</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">TREND</div>
+      <div class="kpi-value" id="reportTrend">—</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">MONITORING AREAS</div>
+      <div class="kpi-value" id="reportAreas">—</div>
+    </div>
+  </section>
+
+  <div class="grid2">
+
+    <div class="card">
+      <div class="card-title">NDVI History</div>
+      <div class="card-body">
+        <div class="chart-wrap"><canvas id="historyChart"></canvas></div>
+        <div id="historyEmpty" class="empty" style="display:none">No historical NDVI series available.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Satellite Context</div>
+      <div id="reportMap"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">NDVI Raster — Selected Area</div>
+      <div class="card-body">
+        <img id="reportRaster" class="raster" alt="NDVI raster" style="display:none">
+        <div id="rasterEmpty" class="empty">No NDVI raster/image path supplied for this area.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Monitoring Information</div>
+      <div class="card-body">
+        <div class="info-grid" id="reportInfo"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="card table-card">
+    <div class="card-title">Monitoring Areas — Report Register</div>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>AREA ID</th>
+            <th>PROJECT</th>
+            <th>NDVI</th>
+            <th>CHANGE</th>
+            <th>TREND</th>
+            <th>COORDINATES</th>
+            <th>REPORT</th>
+          </tr>
+        </thead>
+        <tbody id="reportRows">
+          <tr><td colspan="7">Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <section class="field-observations-card">
+    <div class="card-title">Field Observations &amp; Evidence</div>
+    <div class="field-observations-body" id="fieldObservationsBody">
+      <div class="observation-empty">Select a monitoring area or project to view field observations.</div>
+    </div>
+  </section>
+
+  <section class="recommendation-card">
+    <div class="card-title">Recommendations &amp; Management Interpretation</div>
+    <div class="recommendation-body" id="recommendationBody">
+      Select a monitoring area or project to generate recommendations.
+    </div>
+  </section>
+
+</section>
+
+<div class="footer">
+  <span>WILDLANDS Geospatial Restoration Monitoring & Decision Support System</span>
+  <span id="generatedAt"></span>
+</div>
+
+</main>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+let sites=[];
+let observations=[];
+let historyChart=null;
+let reportMap=null;
+let mapMarker=null;
+
+function get(obj,keys,fallback=null){
+  for(const k of keys){
+    if(obj && obj[k]!==undefined && obj[k]!==null) return obj[k];
+  }
+  return fallback;
+}
+function num(v){
+  const n=Number(v);
+  return Number.isFinite(n)?n:null;
+}
+function siteId(s){
+  return String(get(s,["site_id","siteId","id","SITE_ID","restoration_id"],"UNKNOWN"));
+}
+function projectId(s){
+  const explicit=get(s,["project_id","projectId","PROJECT_ID","project_code"],null);
+  if(explicit && String(explicit).trim()) return String(explicit);
+  const id=siteId(s);
+  if(id.startsWith("WL-UTH-"))return "WL-UTH";
+  if(id.startsWith("WL-BUF-"))return "WL-BUF";
+  if(id.startsWith("WL-DAR-"))return "WL-DAR";
+  if(id.startsWith("WL-LLB-"))return "WL-LLB";
+  if(id.startsWith("WL-SOM-"))return "WL-SOM";
+  if(id.startsWith("WL-BHE-"))return "WL-BHE";
+  if(id.startsWith("WL-FER-"))return "WL-FER";
+  return "UNASSIGNED";
+}
+function projectName(s){
+  const explicit=get(s,["project_name","projectName","PROJECT","project","programme","program"],null);
+  if(explicit && String(explicit).trim())return String(explicit);
+  const names={
+    "WL-UTH":"Upper uThukela Project",
+    "WL-BUF":"Buffelsdraai Reforestation Project",
+    "WL-DAR":"Dartmoor Nature Reserve Project",
+    "WL-LLB":"Living Lakes Biodiversity & Climate Project",
+    "WL-SOM":"Somkhanda Community Game Reserve",
+    "WL-BHE":"Bhekula Biodiversity, Stewardship & Sustainable Livelihoods Project",
+    "WL-FER":"Ferncliff Nature Reserve"
+  };
+  return names[projectId(s)]||"Unassigned Project";
+}
+function escapeHtml(v){
+  return String(v??"").replace(/[&<>"']/g,c=>({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  }[c]));
+}
+function latitude(s){return num(get(s,["latitude","lat","LATITUDE","y","Y"],null))}
+function longitude(s){return num(get(s,["longitude","lon","lng","LONGITUDE","x","X"],null))}
+function history(s){
+  const h=get(s,["ndvi_history","ndviHistory","history","gee_history"],[]);
+  if(!Array.isArray(h))return [];
+  return h.map((x,i)=>({
+    label:String(get(x,["date","month","period","label"],String(i+1))),
+    value:num(get(x,["ndvi","NDVI","value","mean","mean_ndvi","mean_NDVI"],null))
+  })).filter(x=>x.value!==null);
+}
+function currentNdvi(s){
+  const h=history(s);
+  if(h.length)return h[h.length-1].value;
+  return num(get(s,["current_ndvi","latest_ndvi","NDVI","latestNDVI","ndvi"],null));
+}
+function changeValue(s){
+  const h=history(s);
+  if(h.length>=2){
+    const prev=h[h.length-2].value;
+    const latest=h[h.length-1].value;
+    if(prev!==0)return (latest-prev)/Math.abs(prev);
+  }
+  const direct=num(get(s,["ndvi_change","change","change_pct","ndvi_change_pct"],null));
+  if(direct===null)return null;
+  return Math.abs(direct)>1?direct/100:direct;
+}
+function trend(s){
+  const explicit=String(get(s,["trend","Trend"],"")).toLowerCase();
+  if(explicit.includes("improv"))return "Improving";
+  if(explicit.includes("declin"))return "Declining";
+  if(explicit.includes("stable"))return "Stable";
+  const c=changeValue(s);
+  if(c===null)return "No satellite data";
+  if(c>.015)return "Improving";
+  if(c<-.015)return "Declining";
+  return "Stable";
+}
+function trendClass(t){
+  return t==="Improving"?"good":t==="Declining"?"bad":"warn";
+}
+function fmt(v){
+  const n=num(v);
+  return n===null?"—":n.toFixed(3);
+}
+
+async function apiBase(){
+  if(typeof WILDLANDS_CONFIG!=="undefined" && WILDLANDS_CONFIG?.API_BASE_URL){
+    return String(WILDLANDS_CONFIG.API_BASE_URL).replace(/\/$/,"");
+  }
+  if(typeof API_BASE_URL!=="undefined"){
+    return String(API_BASE_URL).replace(/\/$/,"");
+  }
+  return "http://localhost:8000";
+}
+
+async function loadReports(){
+  try{
+    const r=await fetch("../data.json?cache="+Date.now());
+    if(!r.ok)throw Error("dashboard/data.json unavailable");
+    const raw=await r.json();
+
+    sites=Array.isArray(raw)?raw:(raw.sites||raw.monitoring_areas||raw.data||[]);
+
+    // Pull authoritative project metadata from the same API used elsewhere.
+    try{
+      const base=await apiBase();
+      const ar=await fetch(base+"/api/observations?cache="+Date.now());
+
+      if(ar.ok){
+        const rawApi=await ar.json();
+        observations=Array.isArray(rawApi)?rawApi:(rawApi.observations||rawApi.data||[]);
+        const bySite=new Map();
+
+        observations.forEach(record=>{
+          const payload=record?.payload && typeof record.payload==="object" ? record.payload : {};
+          const sid=String(get(record,["site_id","siteId","id","SITE_ID"],
+            get(payload,["site_id","siteId","id","SITE_ID"],""))).trim();
+          if(!sid)return;
+
+          const pid=get(record,["project_id","projectId","PROJECT_ID","project_code"],
+            get(payload,["project_id","projectId","PROJECT_ID","project_code"],null));
+          const pn=get(record,["project_name","projectName","PROJECT","project"],
+            get(payload,["project_name","projectName","PROJECT","project"],null));
+
+          if(pid||pn)bySite.set(sid,{
+            ...(bySite.get(sid)||{}),
+            ...(pid?{project_id:String(pid)}:{}),
+            ...(pn?{project_name:String(pn)}:{})
+          });
+        });
+
+        sites=sites.map(s=>bySite.has(siteId(s))?{...s,...bySite.get(siteId(s))}:s);
+      }
+    }catch(apiError){
+      console.warn("Project API unavailable; using local project metadata.",apiError);
+    }
+
+    // Merge satellite metadata if present.
+    try{
+      const sr=await fetch("satellite_data.json?cache="+Date.now());
+      if(sr.ok){
+        const rawSat=await sr.json();
+        const rows=Array.isArray(rawSat)?rawSat:(rawSat.sites||rawSat.monitoring_areas||rawSat.records||rawSat.data||[]);
+        const bySite=new Map();
+        rows.forEach(s=>{
+          const id=String(get(s,["site_id","siteId","id","SITE_ID"],"")).trim();
+          if(id)bySite.set(id,{...(bySite.get(id)||{}),...s});
+        });
+        sites=sites.map(s=>bySite.has(siteId(s))?{...s,...bySite.get(siteId(s))}:s);
+      }
+    }catch(e){
+      console.warn("Satellite metadata unavailable.",e);
+    }
+
+    populateFilters();
+
+    // Show the first available project immediately instead of leaving
+    // the Reports page blank on initial load.
+    const firstProjectId = [...new Map(sites.map(s=>[projectId(s),projectName(s)]))]
+      .filter(([id])=>id && id!=="UNASSIGNED")[0]?.[0] || projectId(sites[0]);
+
+    if(firstProjectId){
+      const projectSelect=document.getElementById("projectSelect");
+      const reportType=document.getElementById("reportType");
+
+      projectSelect.value=firstProjectId;
+      reportType.value="project";
+
+      // Populate the monitoring-area selector for the selected project.
+      const filtered=sites.filter(s=>projectId(s)===firstProjectId);
+      const area=document.getElementById("areaSelect");
+      area.innerHTML='<option value="">Select Monitoring Area</option>';
+      filtered.forEach(s=>area.add(new Option(siteId(s),siteId(s))));
+
+      // Render the first project's actual results immediately.
+      generateProject(firstProjectId);
+      renderRegister();
+    }else{
+      renderRegister();
+    }
+
+    document.getElementById("statusDot").className="dot ok";
+    document.getElementById("statusText").textContent=
+      `${sites.length} monitoring areas loaded. Showing the first project results.`;
+    document.getElementById("generatedAt").textContent=
+      "Updated "+new Date().toLocaleString();
+
+    // No project/area is selected on initial load.
+    // The report register and report content remain unselected until the
+    // user explicitly chooses a project or monitoring area.
+
+  }catch(e){
+    console.error(e);
+    document.getElementById("statusDot").className="dot bad";
+    document.getElementById("statusText").textContent="Could not load WILDLANDS monitoring data.";
+  }
+}
+
+function populateFilters(){
+  const project=document.getElementById("projectSelect");
+  const area=document.getElementById("areaSelect");
+
+  const projects=[...new Map(sites.map(s=>[projectId(s),projectName(s)])).entries()]
+    .sort((a,b)=>a[1].localeCompare(b[1]));
+
+  project.innerHTML='<option value="">All Projects</option>';
+  projects.forEach(p=>project.add(new Option(p[1],p[0])));
+
+  project.onchange=()=>{
+    const pid=project.value;
+    const filtered=pid?sites.filter(s=>projectId(s)===pid):sites;
+
+    area.innerHTML='<option value="">Select Monitoring Area</option>';
+    filtered.forEach(s=>area.add(new Option(siteId(s),siteId(s))));
+
+    // Project selection controls the register.
+    // Do not auto-select an area; the user must explicitly choose one.
+    if(pid){
+      renderRegister();
+    }else{
+      renderRegister();
+    }
+  };
+
+  area.onchange=()=>{
+    const site=sites.find(s=>siteId(s)===area.value);
+
+    if(site){
+      generateArea(site);
+    }
+
+    // When an area is selected, the register is restricted to that area.
+    renderRegister();
+  };
+}
+
+
+function observationPayload(record){
+  return record?.payload && typeof record.payload==="object" ? record.payload : {};
+}
+
+function observationSiteId(record){
+  const p=observationPayload(record);
+  return String(get(record,["site_id","siteId","SITE_ID","restoration_id"],
+    get(p,["site_id","siteId","SITE_ID","restoration_id"],""))).trim();
+}
+
+function observationProjectId(record){
+  const p=observationPayload(record);
+  return get(record,["project_id","projectId","PROJECT_ID","project_code"],
+    get(p,["project_id","projectId","PROJECT_ID","project_code"],null));
+}
+
+function observationProjectName(record){
+  const p=observationPayload(record);
+  return get(record,["project_name","projectName","PROJECT","project"],
+    get(p,["project_name","projectName","PROJECT","project"],null));
+}
+
+function observationValue(record, keys){
+  const p=observationPayload(record);
+  return get(record,keys,get(p,keys,null));
+}
+
+function observationDate(record){
+  return observationValue(record,[
+    "observed_at","observation_date","date","observed_on","created_at","createdAt","timestamp"
+  ]);
+}
+
+function observationType(record){
+  return observationValue(record,[
+    "observation_type","observationType","type","category","activity","activity_type"
+  ]);
+}
+
+function observationCondition(record){
+  return observationValue(record,[
+    "condition","vegetation_condition","status","severity","condition_status"
+  ]);
+}
+
+function observationObserver(record){
+  return observationValue(record,[
+    "observer","observer_name","observerName","recorded_by","recordedBy","user_name","username"
+  ]);
+}
+
+function observationNotes(record){
+  return observationValue(record,[
+    "notes","field_notes","observation","description","comments","comment","remarks"
+  ]);
+}
+
+function observationSource(record){
+  return observationValue(record,["source","data_source","origin"]);
+}
+
+function observationsForSite(site){
+  const sid=siteId(site);
+  return observations.filter(o=>observationSiteId(o)===sid);
+}
+
+function observationsForProject(data,pid){
+  const ids=new Set(data.map(siteId));
+  return observations.filter(o=>{
+    const sid=observationSiteId(o);
+    if(ids.has(sid))return true;
+    const op=observationProjectId(o);
+    return pid && op && String(op)===String(pid);
+  });
+}
+
+function formatObservationDate(v){
+  if(v===null || v===undefined || String(v).trim()==="")return "Date not recorded";
+  const d=new Date(v);
+  if(!Number.isNaN(d.getTime()))return d.toLocaleString();
+  return String(v);
+}
+
+function renderFieldObservations(list, contextLabel){
+  const body=document.getElementById("fieldObservationsBody");
+  if(!body)return;
+
+  const sorted=[...list].sort((a,b)=>{
+    const da=new Date(observationDate(a)||0).getTime();
+    const db=new Date(observationDate(b)||0).getTime();
+    return db-da;
+  });
+
+  if(!sorted.length){
+    body.innerHTML=`<div class="observation-empty">
+      No field observations have been recorded for ${escapeHtml(contextLabel)}.
+    </div>`;
+    return;
+  }
+
+  const dates=sorted.map(observationDate).filter(Boolean);
+  const latest=dates.length?formatObservationDate(dates[0]):"Not recorded";
+
+  body.innerHTML=`
+    <div class="observation-summary">
+      <div class="observation-stat"><span>Total Observations</span><b>${sorted.length}</b></div>
+      <div class="observation-stat"><span>Latest Observation</span><b>${escapeHtml(latest)}</b></div>
+      <div class="observation-stat"><span>Evidence Source</span><b>Field Database</b></div>
+    </div>
+    <div class="observation-list">
+      ${sorted.map((o,i)=>{
+        const type=observationType(o);
+        const condition=observationCondition(o);
+        const observer=observationObserver(o);
+        const source=observationSource(o);
+        const notes=observationNotes(o);
+        const sid=observationSiteId(o);
+        return `
+          <article class="observation-item">
+            <div class="observation-item-head">
+              <strong>Observation ${sorted.length-i}</strong>
+              <span class="observation-date">${escapeHtml(formatObservationDate(observationDate(o)))}</span>
+            </div>
+            <div class="observation-meta">
+              ${sid?`<span class="observation-tag">Area: ${escapeHtml(sid)}</span>`:""}
+              ${type?`<span class="observation-tag">Type: ${escapeHtml(type)}</span>`:""}
+              ${condition?`<span class="observation-tag">Condition: ${escapeHtml(condition)}</span>`:""}
+              ${observer?`<span class="observation-tag">Observer: ${escapeHtml(observer)}</span>`:""}
+              ${source?`<span class="observation-tag">Source: ${escapeHtml(source)}</span>`:""}
+            </div>
+            <div class="observation-notes">
+              ${escapeHtml(notes || "No field notes recorded.")}
+            </div>
+          </article>`;
+      }).join("")}
+    </div>`;
+}
+
+function renderFieldObservationsArea(site){
+  renderFieldObservations(observationsForSite(site), siteId(site));
+}
+
+function renderFieldObservationsProject(data,pid){
+  const label=pid?projectName(data[0]):"the selected portfolio";
+  renderFieldObservations(observationsForProject(data,pid), label);
+}
+
+function clearFieldObservations(){
+  const body=document.getElementById("fieldObservationsBody");
+  if(body)body.innerHTML='<div class="observation-empty">Select a monitoring area or project to view field observations.</div>';
+}
+
+function generateSelected(){
+  const type=document.getElementById("reportType").value;
+  if(type==="project"){
+    generateProject(document.getElementById("projectSelect").value);
+    return;
+  }
+  const id=document.getElementById("areaSelect").value;
+  const site=sites.find(s=>siteId(s)===id);
+  if(site)generateArea(site);
+}
+
+function generateArea(site){
+  document.getElementById("reportTitle").textContent=
+    projectName(site)+" — "+siteId(site);
+  document.getElementById("reportSubtitle").textContent=
+    get(site,["ecosystem_focus","ecosystem","restoration_type"],"Monitoring Area Report");
+
+  const nd=currentNdvi(site);
+  const ch=changeValue(site);
+  const tr=trend(site);
+
+  document.getElementById("reportNdvi").textContent=fmt(nd);
+  document.getElementById("reportChange").textContent=
+    ch===null?"—":(ch>=0?"+":"")+(ch*100).toFixed(1)+"%";
+  document.getElementById("reportChange").className="kpi-value "+trendClass(tr);
+  document.getElementById("reportTrend").textContent=tr;
+  document.getElementById("reportTrend").className="kpi-value "+trendClass(tr);
+  document.getElementById("reportAreas").textContent="1";
+
+  const areaSelect=document.getElementById("areaSelect");
+  areaSelect.value=siteId(site);
+
+  renderHistory(site);
+  renderMap(site);
+  renderRaster(site);
+  renderInfo(site);
+  renderRecommendationsArea(site);
+  renderFieldObservationsArea(site);
+}
+
+function generateProject(pid){
+  const data=pid?sites.filter(s=>projectId(s)===pid):sites;
+  if(!data.length)return;
+
+  const nd=data.map(currentNdvi).filter(v=>v!==null);
+  const ch=data.map(changeValue).filter(v=>v!==null);
+  const meanNd=nd.length?nd.reduce((a,b)=>a+b,0)/nd.length:null;
+  const meanCh=ch.length?ch.reduce((a,b)=>a+b,0)/ch.length:null;
+
+  document.getElementById("reportTitle").textContent=
+    pid?projectName(data[0]):"WILDLANDS Portfolio Summary";
+  document.getElementById("reportSubtitle").textContent=
+    "Project-level monitoring summary";
+
+  document.getElementById("reportNdvi").textContent=fmt(meanNd);
+  document.getElementById("reportChange").textContent=
+    meanCh===null?"—":(meanCh>=0?"+":"")+(meanCh*100).toFixed(1)+"%";
+  document.getElementById("reportTrend").textContent=
+    meanCh===null?"—":meanCh>.015?"Improving":meanCh<-.015?"Declining":"Stable";
+  document.getElementById("reportTrend").className=
+    "kpi-value "+trendClass(document.getElementById("reportTrend").textContent);
+  document.getElementById("reportAreas").textContent=String(data.length);
+
+  renderProjectHistory(data);
+  renderProjectMap(data);
+  document.getElementById("reportRaster").style.display="none";
+  document.getElementById("rasterEmpty").style.display="flex";
+
+  document.getElementById("reportInfo").innerHTML=`
+    <div class="info"><span>Project</span><b>${escapeHtml(pid?projectName(data[0]):"All Projects")}</b></div>
+    <div class="info"><span>Project ID</span><b>${escapeHtml(pid||"Portfolio")}</b></div>
+    <div class="info"><span>Monitoring Areas</span><b>${data.length}</b></div>
+    <div class="info"><span>Improving</span><b>${data.filter(s=>trend(s)==="Improving").length}</b></div>
+    <div class="info"><span>Stable</span><b>${data.filter(s=>trend(s)==="Stable").length}</b></div>
+    <div class="info"><span>Declining</span><b>${data.filter(s=>trend(s)==="Declining").length}</b></div>
+  `;
+  renderRecommendationsProject(data,pid);
+  renderFieldObservationsProject(data,pid);
+}
+
+function renderHistory(site){
+  if(historyChart)historyChart.destroy();
+
+  const h=history(site);
+  const canvas=document.getElementById("historyChart");
+  const empty=document.getElementById("historyEmpty");
+
+  if(!h.length){
+    canvas.style.display="none";
+    empty.style.display="flex";
+    return;
+  }
+
+  canvas.style.display="block";
+  empty.style.display="none";
+
+  historyChart=new Chart(canvas,{
+    type:"line",
+    data:{
+      labels:h.map(x=>x.label),
+      datasets:[{
+        label:"NDVI",
+        data:h.map(x=>x.value),
+        borderColor:"#73d13d",
+        backgroundColor:"rgba(115,209,61,.12)",
+        fill:true,
+        tension:.3
+      }]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false}},
+      scales:{
+        y:{min:0,max:1,grid:{color:"#203129"},ticks:{color:"#8da197"}},
+        x:{grid:{display:false},ticks:{color:"#8da197"}}
+      }
+    }
+  });
+}
+
+function renderProjectHistory(data){
+  if(historyChart)historyChart.destroy();
+  const grouped={};
+
+  data.forEach(s=>{
+    history(s).forEach(h=>{
+      if(!grouped[h.label])grouped[h.label]=[];
+      grouped[h.label].push(h.value);
+    });
+  });
+
+  const labels=Object.keys(grouped).sort();
+  const values=labels.map(k=>{
+    const v=grouped[k];
+    return v.length?v.reduce((a,b)=>a+b,0)/v.length:null;
+  });
+
+  const canvas=document.getElementById("historyChart");
+  document.getElementById("historyEmpty").style.display=labels.length?"none":"flex";
+  canvas.style.display=labels.length?"block":"none";
+
+  if(!labels.length)return;
+
+  historyChart=new Chart(canvas,{
+    type:"line",
+    data:{labels,datasets:[{
+      label:"Mean NDVI",
+      data:values,
+      borderColor:"#73d13d",
+      backgroundColor:"rgba(115,209,61,.12)",
+      fill:true,tension:.3
+    }]},
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false}},
+      scales:{
+        y:{min:0,max:1,grid:{color:"#203129"},ticks:{color:"#8da197"}},
+        x:{grid:{display:false},ticks:{color:"#8da197"}}
+      }
+    }
+  });
+}
+
+function renderMap(site){
+  if(reportMap)reportMap.remove();
+
+  const lat=latitude(site),lon=longitude(site);
+  reportMap=L.map("reportMap").setView(
+    lat!==null&&lon!==null?[lat,lon]:[-29.2,30.7],
+    lat!==null&&lon!==null?13:7
+  );
+
+  L.tileLayer(
+    "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+    {attribution:"Esri World Imagery"}
+  ).addTo(reportMap);
+
+  if(lat!==null&&lon!==null){
+    mapMarker=L.marker([lat,lon]).addTo(reportMap)
+      .bindPopup("<b>"+escapeHtml(siteId(site))+"</b><br>"+escapeHtml(projectName(site)))
+      .openPopup();
+  }
+}
+
+function renderProjectMap(data){
+  if(reportMap)reportMap.remove();
+
+  const points=data.map(s=>[latitude(s),longitude(s),s])
+    .filter(x=>x[0]!==null&&x[1]!==null);
+
+  reportMap=L.map("reportMap").setView([-29.2,30.7],7);
+  L.tileLayer(
+    "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+    {attribution:"Esri World Imagery"}
+  ).addTo(reportMap);
+
+  const bounds=[];
+  points.forEach(([lat,lon,s])=>{
+    const marker=L.circleMarker([lat,lon],{
+      radius:7,fillColor:"#73d13d",color:"#fff",weight:1,fillOpacity:.9
+    }).addTo(reportMap);
+    marker.bindPopup("<b>"+escapeHtml(siteId(s))+"</b><br>"+escapeHtml(projectName(s)));
+    bounds.push([lat,lon]);
+  });
+
+  if(bounds.length)reportMap.fitBounds(bounds,{padding:[20,20]});
+}
+
+function renderRaster(site){
+  const img=document.getElementById("reportRaster");
+  const empty=document.getElementById("rasterEmpty");
+
+  const url=get(site,["ndvi_image_url","ndviImageUrl","raster_url","rasterUrl"],null)
+    ||"ndvi/"+encodeURIComponent(siteId(site))+".png";
+
+  img.onload=()=>{
+    img.style.display="block";
+    empty.style.display="none";
+  };
+  img.onerror=()=>{
+    img.style.display="none";
+    empty.style.display="flex";
+  };
+  img.src=String(url);
+}
+
+function renderInfo(site){
+  document.getElementById("reportInfo").innerHTML=`
+    <div class="info"><span>Area ID</span><b>${escapeHtml(siteId(site))}</b></div>
+    <div class="info"><span>Project</span><b>${escapeHtml(projectName(site))}</b></div>
+    <div class="info"><span>Project ID</span><b>${escapeHtml(projectId(site))}</b></div>
+    <div class="info"><span>Latitude</span><b>${fmt(latitude(site))}</b></div>
+    <div class="info"><span>Longitude</span><b>${fmt(longitude(site))}</b></div>
+    <div class="info"><span>Area</span><b>${escapeHtml(get(site,["area","area_ha","area_hectares"],"—"))} ha</b></div>
+    <div class="info"><span>Status</span><b>${trend(site)}</b></div>
+    <div class="info"><span>Latest Observation</span><b>${escapeHtml(get(site,["lastVisit","last_visit","date"],"Pipeline data"))}</b></div>
+  `;
+}
+
+
+function latestSatelliteDate(site){
+  const h=history(site);
+  return h.length?h[h.length-1].label:"Not available";
+}
+
+function recommendationData(site){
+  const nd=currentNdvi(site);
+  const ch=changeValue(site);
+  const tr=trend(site);
+  const h=history(site);
+
+  if(tr==="Declining"){
+    return {
+      level:"warning",
+      title:"Priority field review recommended",
+      summary:`Vegetation condition is showing a declining signal for ${siteId(site)}. The satellite indicator should be treated as an early warning and verified through field inspection before intervention decisions are made.`,
+      actions:[
+        "Conduct a field verification visit and document the observed vegetation condition.",
+        "Check recent field observations for grazing pressure, disturbance, fire, invasive species, drought stress or other site-specific drivers.",
+        "Compare the latest satellite signal with the site's recent NDVI history to confirm that the decline is persistent rather than a single-period anomaly.",
+        "Record the field finding against this monitoring area so the next reporting cycle has an auditable evidence trail."
+      ]
+    };
+  }
+
+  if(tr==="Improving"){
+    return {
+      level:"good",
+      title:"Continue current restoration approach",
+      summary:`The latest satellite signal indicates improving vegetation condition at ${siteId(site)}. Current evidence supports continued monitoring and maintenance of the existing restoration approach.`,
+      actions:[
+        "Continue routine field monitoring and maintain the current restoration interventions.",
+        "Use subsequent satellite observations to confirm that the improvement is sustained.",
+        "Document successful field practices so they can be evaluated for replication at comparable sites."
+      ]
+    };
+  }
+
+  if(tr==="Stable"){
+    return {
+      level:"stable",
+      title:"Maintain routine monitoring",
+      summary:`The latest satellite signal for ${siteId(site)} is broadly stable. There is no current decline flag, but stability should not automatically be interpreted as restoration success.`,
+      actions:[
+        "Continue scheduled field and satellite monitoring.",
+        "Review the next observation cycle for evidence of sustained improvement or emerging decline.",
+        "Use field observations to determine whether the stable signal reflects healthy vegetation, slow recovery or limited change."
+      ]
+    };
+  }
+
+  return {
+    level:"stable",
+    title:"Verify data coverage before interpretation",
+    summary:`A reliable satellite trend is not currently available for ${siteId(site)}. Management conclusions should therefore be deferred until sufficient monitoring data are available.`,
+    actions:[
+      "Confirm that the monitoring area has valid coordinates and satellite coverage.",
+      "Check the satellite processing pipeline and latest available observation date.",
+      "Obtain a field observation if the site requires immediate operational assessment."
+    ]
+  };
+}
+
+function renderRecommendationsArea(site){
+  const r=recommendationData(site);
+  const cls=r.level==="warning"?"warning":"";
+  const lf=get(site,["lastVisit","last_visit","date"],null);
+  document.getElementById("recommendationBody").innerHTML=`
+    <div class="recommendation-summary ${cls}">
+      <strong>${escapeHtml(r.title)}</strong><br>
+      ${escapeHtml(r.summary)}
+    </div>
+    <div class="recommendation-grid">
+      <div class="rec-item"><span>Latest Satellite</span><b>${escapeHtml(latestSatelliteDate(site))}</b></div>
+      <div class="rec-item"><span>Current Evidence</span><b>NDVI ${fmt(currentNdvi(site))} · ${changeValue(site)===null?"Change unavailable":(changeValue(site)>=0?"+":"")+(changeValue(site)*100).toFixed(1)+"%"}</b></div>
+      <div class="rec-item"><span>Field Evidence</span><b>${escapeHtml(lf||"No field visit recorded in this dataset")}</b></div>
+      <div class="rec-item"><span>Decision Status</span><b>${escapeHtml(trend(site)==="Declining"?"Requires investigation":"Routine monitoring")}</b></div>
+    </div>
+    <ul class="recommendation-list">
+      ${r.actions.map(x=>`<li>${escapeHtml(x)}</li>`).join("")}
+    </ul>`;
+}
+
+function renderRecommendationsProject(data,pid){
+  const declining=data.filter(s=>trend(s)==="Declining");
+  const improving=data.filter(s=>trend(s)==="Improving");
+  const stable=data.filter(s=>trend(s)==="Stable");
+  const unavailable=data.filter(s=>trend(s)==="No satellite data");
+  let title="Continue routine monitoring";
+  let summary=`The selected project contains ${data.length} monitoring areas. Current monitoring evidence shows ${improving.length} improving, ${stable.length} stable, ${declining.length} declining and ${unavailable.length} without a usable satellite trend.`;
+
+  if(declining.length){
+    title="Prioritise field verification of declining areas";
+    summary+=` ${declining.length} area${declining.length>1?"s are":" is"} currently showing a declining satellite signal and should be prioritised for field investigation.`;
+  }else if(unavailable.length===data.length){
+    title="Resolve satellite monitoring coverage";
+    summary+=" No areas currently have a usable satellite trend, so management interpretation should wait for data coverage to be restored.";
+  }else if(improving.length===data.length){
+    title="Maintain and document the current restoration approach";
+    summary+=" All monitored areas are currently showing an improving signal; continue monitoring to confirm that the improvement is sustained.";
+  }
+
+  const actions=[];
+  if(declining.length)actions.push(`Prioritise field verification for ${declining.map(s=>siteId(s)).join(", ")}.`);
+  if(unavailable.length)actions.push(`Resolve satellite-data gaps for ${unavailable.length} monitoring area${unavailable.length>1?"s":""}.`);
+  actions.push("Continue scheduled satellite and field monitoring.");
+  actions.push("Review the next monitoring cycle before changing restoration interventions.");
+
+  document.getElementById("recommendationBody").innerHTML=`
+    <div class="recommendation-summary ${declining.length?"warning":""}">
+      <strong>${escapeHtml(title)}</strong><br>${escapeHtml(summary)}
+    </div>
+    <div class="recommendation-grid">
+      <div class="rec-item"><span>Improving</span><b>${improving.length} areas</b></div>
+      <div class="rec-item"><span>Stable</span><b>${stable.length} areas</b></div>
+      <div class="rec-item"><span>Declining</span><b>${declining.length} areas</b></div>
+      <div class="rec-item"><span>Satellite Gaps</span><b>${unavailable.length} areas</b></div>
+    </div>
+    <ul class="recommendation-list">
+      ${actions.map(x=>`<li>${escapeHtml(x)}</li>`).join("")}
+    </ul>`;
+}
+
+function renderRegister(){
+  const pid=document.getElementById("projectSelect").value;
+  const aid=document.getElementById("areaSelect").value;
+  const tbody=document.getElementById("reportRows");
+
+  // The register must never show the full dataset by default.
+  // It only becomes populated after the user selects a project or area.
+  if(!pid && !aid){
+    tbody.innerHTML='<tr><td colspan="7" class="empty">Select a project or monitoring area to view the register.</td></tr>';
+    return;
+  }
+
+  let data=[];
+  if(aid){
+    data=sites.filter(s=>siteId(s)===aid);
+  }else if(pid){
+    data=sites.filter(s=>projectId(s)===pid);
+  }
+
+  tbody.innerHTML=data.map(s=>{
+    const c=changeValue(s);
+    const t=trend(s);
+    return `
+      <tr>
+        <td>${escapeHtml(siteId(s))}</td>
+        <td>${escapeHtml(projectName(s))}</td>
+        <td>${fmt(currentNdvi(s))}</td>
+        <td class="${trendClass(t)}">${c===null?"—":(c>=0?"+":"")+(c*100).toFixed(1)+"%"}</td>
+        <td class="${trendClass(t)}">${t}</td>
+        <td>${latitude(s)!==null&&longitude(s)!==null?latitude(s).toFixed(5)+", "+longitude(s).toFixed(5):"—"}</td>
+        <td><button class="report-btn" onclick="selectReport('${encodeURIComponent(siteId(s))}')">Open Report</button></td>
+      </tr>
+    `;
+  }).join("");
+}
+
+function selectReport(encoded){
+  const id=decodeURIComponent(encoded);
+  const site=sites.find(s=>siteId(s)===id);
+  if(!site)return;
+
+  document.getElementById("reportType").value="area";
+  document.getElementById("areaSelect").value=id;
+  document.getElementById("projectSelect").value=projectId(site);
+
+  const pid=projectId(site);
+  const filtered=pid?sites.filter(s=>projectId(s)===pid):sites;
+  const area=document.getElementById("areaSelect");
+  area.innerHTML='<option value="">Select Monitoring Area</option>';
+  filtered.forEach(s=>area.add(new Option(siteId(s),siteId(s))));
+  area.value=id;
+
+  generateArea(site);
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+clearFieldObservations();
+loadReports();
+</script>
+</body>
+</html>

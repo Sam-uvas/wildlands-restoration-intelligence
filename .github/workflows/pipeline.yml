@@ -1,0 +1,53 @@
+# Example scheduled run — adjust the cron and secrets to your setup.
+#
+# Requires a GEE service account (not your personal OAuth login) for
+# unattended auth: create one in Google Cloud Console, download its
+# JSON key, and store it as the GEE_SERVICE_ACCOUNT_KEY repo secret.
+#
+# The QGIS report stage is commented out below because standard GitHub
+# runners don't have QGIS installed — run that stage in the qgis/qgis
+# Docker image instead (see README.md), either as a separate job here
+# or on your own scheduled machine.
+
+name: restoration-pipeline
+
+on:
+  schedule:
+    - cron: "0 3 * * 1"   # every Monday 03:00 UTC
+  workflow_dispatch: {}     # allows manual "Run workflow" button too
+
+jobs:
+  fetch-and-merge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Authenticate to Earth Engine
+        run: |
+          echo '${{ secrets.GEE_SERVICE_ACCOUNT_KEY }}' > /tmp/gee_key.json
+          python3 -c "
+          import ee
+          creds = ee.ServiceAccountCredentials(None, '/tmp/gee_key.json')
+          ee.Initialize(creds, project='${{ secrets.GEE_PROJECT }}')
+          print('GEE auth OK')
+          "
+
+      - name: Run pipeline
+        env:
+          GEE_PROJECT: ${{ secrets.GEE_PROJECT }}
+        run: python3 run_pipeline.py
+
+      - name: Commit updated dashboard data
+        run: |
+          git config user.name "restoration-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add dashboard/data.json data/gee_ndvi_data.csv data/gee_trends.csv
+          git commit -m "Automated data refresh" || echo "No changes"
+          git push

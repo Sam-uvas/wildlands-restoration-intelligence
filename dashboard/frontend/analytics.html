@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>WILDLANDS — Analytics</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+:root{
+ --bg:#06110d;--panel:#0a1813;--panel2:#0d2018;--border:#1b3b2b;
+ --green:#73d13d;--green2:#2d7440;--text:#f2f7f3;--muted:#8da39a;
+ --yellow:#e4b51b;--red:#ef533f;--blue:#54a9e8;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif}
+.app{display:flex;min-height:100vh}
+.sidebar{width:218px;flex:0 0 218px;background:#07130f;border-right:1px solid #173629;padding:22px 14px 16px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column}
+.brand{display:flex;gap:11px;align-items:center;padding:0 3px 25px}
+.brand-mark{width:40px;height:40px;flex:0 0 40px;border:3px solid var(--green);border-radius:50%;display:grid;place-items:center;color:var(--green)}
+.brand-title{font-size:20px;font-weight:800;letter-spacing:.6px}.brand-sub{font-size:7.5px;color:#72b94c;text-transform:uppercase;max-width:145px}
+.nav{display:flex;flex-direction:column;gap:3px}.nav a{display:flex;align-items:center;gap:9px;color:#b9c9c1;text-decoration:none;padding:11px 10px;border-radius:7px;font-size:12.5px}.nav a:hover{background:#0e2418;color:#fff}.nav a.active{background:#123b20;color:#fff;box-shadow:inset 2px 0 var(--green)}.nav-icon{width:18px;color:#9cb5a9;text-align:center}.nav a.active .nav-icon{color:var(--green)}.sidebar-spacer{flex:1}.nav-bottom{border-top:1px solid #132b20;padding-top:9px;margin-top:12px}
+.field-card{margin-top:12px;padding:13px;border:1px solid #214832;border-radius:9px;background:linear-gradient(145deg,#0d2418,#08150f)}.field-top{color:#77cf4b;font-size:9px;letter-spacing:.8px;font-weight:700}.field-card h4{margin:8px 0 5px;font-size:13px}.field-card p{margin:0 0 11px;color:#7f978c;font-size:10px;line-height:1.45}.field-card a{display:flex;justify-content:space-between;padding:8px 9px;border-radius:6px;background:#1b4825;color:#fff;text-decoration:none;font-size:10.5px;font-weight:700}
+.main{flex:1;min-width:0;padding:24px 28px 32px}.topbar{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:18px}.eyebrow{color:var(--green);font-size:10px;text-transform:uppercase;letter-spacing:1.2px}.title{font-size:30px;font-weight:800;margin:5px 0}.subtitle{font-size:12px;color:var(--muted)}.controls{display:flex;gap:8px;flex-wrap:wrap}.control,.btn{border:1px solid var(--border);background:#0a1813;color:#eaf2ed;padding:9px 12px;border-radius:7px}.btn{cursor:pointer;text-decoration:none;font-size:11px}.btn:hover{background:#15311f}.btn.primary{background:#214d27}
+.filters{display:flex;gap:10px;flex-wrap:wrap;padding:12px;border:1px solid var(--border);background:var(--panel);border-radius:10px;margin-bottom:14px}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:14px}.kpi{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:15px}.label{font-size:9px;color:#8ba79a;letter-spacing:.7px}.value{font-size:25px;font-weight:800;margin:10px 0 3px}.note{font-size:10px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:1.25fr .75fr;gap:14px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}.card{background:var(--panel);border:1px solid var(--border);border-radius:10px;overflow:hidden}.head{padding:14px 16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}.head strong{font-size:13px}.head span{display:block;color:var(--muted);font-size:10px;margin-top:3px}.chart{height:315px;padding:14px 16px}.map{height:315px}
+.insights{padding:14px 16px}.insight{padding:13px 0;border-bottom:1px solid #173226}.insight:last-child{border:0}.insight strong{font-size:11px}.insight p{font-size:10px;color:var(--muted);line-height:1.5;margin:5px 0 0}.positive{color:var(--green)}.warning{color:var(--yellow)}.negative{color:var(--red)}
+.table-wrap{overflow:auto}.table{width:100%;border-collapse:collapse;font-size:10px}.table th,.table td{padding:10px 11px;border-bottom:1px solid #173226;text-align:left;white-space:nowrap}.table th{font-size:8px;color:#8da79b;letter-spacing:.7px}.status{padding:4px 7px;border-radius:20px;font-size:8px;text-transform:uppercase;font-weight:800}.status.good{background:#163c1d;color:#7be43e}.status.warn{background:#3a310d;color:#f0c92c}.status.bad{background:#401814;color:#ff7462}
+.footer{margin-top:17px;padding:12px 3px;border-top:1px solid #10261b;color:#667d72;font-size:9px;display:flex;justify-content:space-between}
+@media(max-width:1150px){.kpis{grid-template-columns:repeat(3,1fr)}.grid,.grid2{grid-template-columns:1fr}}
+@media(max-width:800px){.sidebar{width:190px;flex-basis:190px}.main{padding:18px}.kpis{grid-template-columns:repeat(2,1fr)}.topbar{flex-direction:column}}
+@media(max-width:600px){.app{display:block}.sidebar{position:relative;width:100%;height:auto}.kpis{grid-template-columns:1fr}}
+</style>
+
+<style id="spatial-risk-styles">
+.risk-legend{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px 14px;
+  align-items:center;
+  margin-top:10px;
+  padding:9px 11px;
+  border:1px solid #e6e9ee;
+  border-radius:10px;
+  background:#fff;
+  font-size:12px;
+  color:#4b5563;
+}
+.risk-legend-item{display:flex;align-items:center;gap:6px}
+.risk-dot{width:10px;height:10px;border-radius:50%;display:inline-block;border:1px solid rgba(0,0,0,.12)}
+.risk-dot.improving{background:#2e7d32}
+.risk-dot.stable{background:#d4a72c}
+.risk-dot.declining{background:#c62828}
+.risk-dot.unavailable{background:#9aa0a6}
+.risk-summary{margin-left:auto;font-weight:600;color:#374151}
+.risk-popup h4{margin:0 0 5px;font-size:14px}
+.risk-popup .risk-value{font-weight:700}
+.risk-popup .risk-row{margin:3px 0}
+.leaflet-risk-marker{border-radius:50%;border:2px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.28)}
+</style>
+
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+ <div class="brand"><div class="brand-mark">◯</div><div><div class="brand-title">WILDLANDS</div><div class="brand-sub">Restoring nature. Transforming lives.</div></div></div>
+ <nav class="nav">
+  <a href="index.html"><span class="nav-icon">⌂</span>Overview</a>
+  <a href="projects.html"><span class="nav-icon">▤</span>Projects</a>
+  <a href="monitoring.html"><span class="nav-icon">◉</span>Monitoring</a>
+  <a class="active" href="analytics.html"><span class="nav-icon">◫</span>Analytics</a>
+  <a href="reports.html"><span class="nav-icon">▥</span>Reports</a>
+  <a href="data-management.html"><span class="nav-icon">⊞</span>Data Management</a>
+ </nav>
+ <div class="sidebar-spacer"></div>
+ <nav class="nav nav-bottom">
+ <div class="field-card"><div class="field-top">● FIELD OPERATIONS</div><h4>New Observation</h4><p>Capture a field observation and sync it to the WILDLANDS database.</p><a href="field-monitoring.html">Open Field Form <span>→</span></a></div>
+</aside>
+
+<main class="main">
+<header class="topbar">
+ <div><div class="eyebrow">Geospatial Intelligence Workspace</div><div class="title">Analytics</div><div class="subtitle">Satellite-derived vegetation trends, spatial change and restoration priorities.</div></div>
+ <div class="controls"><button class="btn" onclick="loadData()">↻ Refresh</button><button class="btn primary" onclick="exportCSV()">Export CSV</button></div>
+</header>
+
+<div class="filters">
+ <select id="project" class="control"><option value="">All Projects</option></select>
+ <select id="area" class="control"><option value="">All Monitoring Areas</option></select>
+ <select id="metric" class="control"><option value="ndvi">NDVI</option><option value="change">NDVI Change</option></select>
+ <button class="btn" onclick="resetFilters()">Reset</button>
+</div>
+
+<section class="kpis">
+ <div class="kpi"><div class="label">MONITORING AREAS</div><div class="value" id="areas">—</div><div class="note">Current selection</div></div>
+ <div class="kpi"><div class="label">MEAN NDVI</div><div class="value" id="mean">—</div><div class="note">Latest satellite indicator</div></div>
+ <div class="kpi"><div class="label">IMPROVING</div><div class="value positive" id="improving">—</div><div class="note">Positive NDVI trend</div></div>
+ <div class="kpi"><div class="label">DECLINING</div><div class="value negative" id="declining">—</div><div class="note">Requires attention</div></div>
+ <div class="kpi"><div class="label">MEAN CHANGE</div><div class="value" id="change">—</div><div class="note">Latest NDVI movement</div></div>
+</section>
+
+<section class="grid">
+ <div class="card">
+  <div class="head"><div><strong id="chartTitle">NDVI by Monitoring Area</strong><span>Compare current vegetation condition</span></div></div>
+  <div class="chart"><canvas id="ndviChart"></canvas></div>
+ </div>
+ <div class="card">
+  <div class="head"><div><strong>Spatial Vegetation Condition</strong><span>Monitoring areas coloured by NDVI trend</span></div></div>
+  <div id="map" class="map"></div>
+<div id="riskLegend" class="risk-legend">
+  <div class="risk-legend-item"><span class="risk-dot improving"></span>Improving</div>
+  <div class="risk-legend-item"><span class="risk-dot stable"></span>Stable</div>
+  <div class="risk-legend-item"><span class="risk-dot declining"></span>Declining</div>
+  <div class="risk-legend-item"><span class="risk-dot unavailable"></span>No satellite data</div>
+  <div id="riskSummary" class="risk-summary">Risk map: loading…</div>
+</div>
+
+ </div>
+</section>
+
+<section class="grid2">
+ <div class="card">
+  <div class="head"><div><strong>Change Detection</strong><span>Areas with the strongest recent movement</span></div></div>
+  <div class="table-wrap"><table class="table"><thead><tr><th>AREA</th><th>NDVI</th><th>CHANGE</th><th>TREND</th></tr></thead><tbody id="changeRows"></tbody></table></div>
+ </div>
+ <div class="card" id="priority">
+  <div class="head"><div><strong>Priority Areas</strong><span>Potential intervention candidates based on declining indicators</span></div></div>
+  <div class="insights" id="priorityList"></div>
+ </div>
+</section>
+
+<section class="grid2">
+ <div class="card" id="insights">
+  <div class="head"><div><strong>Analytical Insights</strong><span>Automatically derived from the selected dataset</span></div></div>
+  <div class="insights" id="insightList"></div>
+ </div>
+ <div class="card">
+  <div class="head"><div><strong>Interpretation</strong><span>How to read the analytics</span></div></div>
+  <div class="insights">
+   <div class="insight"><strong class="positive">Higher NDVI</strong><p>Generally indicates stronger green vegetation presence. Compare areas over time rather than treating one value as a standalone ecological conclusion.</p></div>
+   <div class="insight"><strong class="warning">Stable</strong><p>Small changes around the current value are classified as stable by the dashboard's trend threshold.</p></div>
+   <div class="insight"><strong class="negative">Declining</strong><p>A negative recent NDVI change flags an area for further investigation. Satellite indicators should be combined with field observations before intervention decisions.</p></div>
+  </div>
+ </div>
+</section>
+
+<footer class="footer"><span>WILDLANDS Geospatial Restoration Monitoring & Decision Support System</span><span id="updated">—</span></footer>
+</main>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+let sites=[], chart=null;
+const map=L.map("map").setView([-29.2,30.7],7);
+const osm=L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{attribution:"© OpenStreetMap contributors"}).addTo(map);
+const sat=L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",{attribution:"Esri World Imagery"});
+L.control.layers({"OpenStreetMap":osm,"Satellite":sat},{},{collapsed:false}).addTo(map);
+const markers=L.layerGroup().addTo(map);
+
+function get(o,keys,d=null){for(const k of keys)if(o&&o[k]!==undefined&&o[k]!==null)return o[k];return d}
+function num(v){const n=Number(v);return Number.isFinite(n)?n:null}
+function id(s){return String(get(s,["site_id","siteId","id","SITE_ID","restoration_id"],"UNKNOWN"))}
+function pid(s){
+ const explicit=get(s,[
+  "project_id","projectId","PROJECT_ID","project_code"
+ ],null);
+
+ if(explicit!==null && String(explicit).trim()){
+  return String(explicit);
+ }
+
+ // Preserve the original WILDLANDS project-code convention when a site
+ // registry uses IDs such as WL-UTH-01.
+ const sid=id(s);
+
+ if(sid.startsWith("WL-UTH-")) return "WL-UTH";
+ if(sid.startsWith("WL-BUF-")) return "WL-BUF";
+ if(sid.startsWith("WL-DAR-")) return "WL-DAR";
+ if(sid.startsWith("WL-LLB-")) return "WL-LLB";
+ if(sid.startsWith("WL-SOM-")) return "WL-SOM";
+ if(sid.startsWith("WL-BHE-")) return "WL-BHE";
+ if(sid.startsWith("WL-FER-")) return "WL-FER";
+
+ return "UNASSIGNED";
+}
+
+function pname(s){
+ const explicit=get(s,[
+  "project_name","projectName","PROJECT","project",
+  "programme","program"
+ ],null);
+
+ if(
+  explicit!==null &&
+  String(explicit).trim() &&
+  String(explicit).toLowerCase()!=="unknown project"
+ ){
+  return String(explicit);
+ }
+
+ const project=pid(s);
+
+ const names={
+  "WL-UTH":"Upper uThukela Project",
+  "WL-BUF":"Buffelsdraai Reforestation Project",
+  "WL-DAR":"Dartmoor Nature Reserve Project",
+  "WL-LLB":"Living Lakes Biodiversity & Climate Project",
+  "WL-SOM":"Somkhanda Community Game Reserve",
+  "WL-BHE":"Bhekula Biodiversity, Stewardship & Sustainable Livelihoods Project",
+  "WL-FER":"Ferncliff Nature Reserve"
+ };
+
+ return names[project] || "Unassigned Project";
+}
+function history(s){
+ const h=get(s,["ndvi_history","ndviHistory","history","ndvi_trend","trend_data","gee_history"],[]);
+ if(!Array.isArray(h)) return [];
+ return h.map((x,i)=>{
+   if(x && typeof x==="object"){
+     return {
+       date:get(x,["date","month","period","label"],String(i+1)),
+       value:num(get(x,["ndvi","NDVI","value","mean","mean_ndvi","mean_NDVI"],null))
+     };
+   }
+   return {date:String(i+1),value:num(x)};
+ }).filter(x=>x.value!==null);
+}
+
+function ndvi(s){
+ const h=history(s);
+ if(h.length) return h[h.length-1].value;
+ return num(get(s,["ndvi","NDVI","current_ndvi","currentNdvi","latest_ndvi","latestNDVI"],null));
+}
+
+function chg(s){
+ const h=history(s);
+ if(h.length>=2){
+   const previous=h[h.length-2].value;
+   const latest=h[h.length-1].value;
+   if(previous!==null && latest!==null && previous!==0){
+     return (latest-previous)/Math.abs(previous);
+   }
+ }
+ let direct=num(get(s,["change","ndvi_change","ndviChange","CHANGE","change_pct","ndvi_change_pct"],null));
+ if(direct!==null) return Math.abs(direct)>1 ? direct/100 : direct;
+ return 0;
+}
+function lat(s){return num(get(s,["latitude","lat","LATITUDE","y"],null))}
+function lon(s){return num(get(s,["longitude","lon","lng","LONGITUDE","x"],null))}
+function field(s){return num(get(s,["field_health","fieldHealth","FIELD_HEALTH"],null))}
+function iap(s){return num(get(s,["iap_cover","iapCover","IAP_COVER"],null))}
+function trend(s){return chg(s)>.015?"improving":chg(s)<-.015?"declining":"stable"}
+function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+
+async function loadData(){
+ try{
+
+  /*
+   * 1. Load the satellite/site dataset.
+   * analytics.html lives in dashboard/frontend/, while data.json lives
+   * directly under dashboard/.
+   */
+  const dataResponse=await fetch(
+   "../data.json?cache="+Date.now()
+  );
+
+  if(!dataResponse.ok){
+   throw Error("dashboard/data.json unavailable");
+  }
+
+  const raw=await dataResponse.json();
+
+  sites=Array.isArray(raw)
+   ? raw
+   : (
+      raw.sites ||
+      raw.monitoring_areas ||
+      raw.data ||
+      []
+     );
+
+  /*
+   * 2. Load the authoritative project information from the same API used
+   * by the WILDLANDS Projects page.
+   *
+   * We do NOT invent project names from site names.
+   * The API supplies project_id/project_name for field records.
+   */
+  try{
+
+   const apiBase=
+    (
+     typeof WILDLANDS_CONFIG!=="undefined" &&
+     WILDLANDS_CONFIG &&
+     WILDLANDS_CONFIG.API_BASE_URL
+    )
+    ? WILDLANDS_CONFIG.API_BASE_URL
+    : "http://localhost:8000";
+
+   const apiResponse=await fetch(
+    apiBase.replace(/\/$/,"")+
+    "/api/observations?cache="+Date.now()
+   );
+
+   if(apiResponse.ok){
+
+    const apiRaw=await apiResponse.json();
+
+    const observations=
+     Array.isArray(apiRaw)
+     ? apiRaw
+     : (
+        apiRaw.observations ||
+        apiRaw.data ||
+        []
+       );
+
+    const projectBySite=new Map();
+
+    observations.forEach(function(record){
+
+     const payload=
+      record &&
+      typeof record.payload==="object" &&
+      record.payload!==null
+      ? record.payload
+      : {};
+
+     const siteId=String(
+      get(
+       record,
+       ["site_id","siteId","id","SITE_ID","restoration_id"],
+       get(payload,["site_id","siteId","id","SITE_ID"],"")
+      )
+     ).trim();
+
+     if(!siteId) return;
+
+     const projectId=
+      get(
+       record,
+       ["project_id","projectId","PROJECT_ID","project_code"],
+       get(payload,["project_id","projectId","PROJECT_ID","project_code"],null)
+      );
+
+     const projectName=
+      get(
+       record,
+       ["project_name","projectName","PROJECT","project","programme","program"],
+       get(payload,["project_name","projectName","PROJECT","project"],null)
+      );
+
+     if(
+      (projectId!==null && String(projectId).trim()) ||
+      (projectName!==null && String(projectName).trim())
+     ){
+
+      const previous=projectBySite.get(siteId)||{};
+
+      projectBySite.set(siteId,{
+       ...previous,
+       ...(projectId!==null && String(projectId).trim()
+        ? {project_id:String(projectId)}
+        : {}),
+       ...(projectName!==null && String(projectName).trim()
+        ? {project_name:String(projectName)}
+        : {})
+      });
+
+     }
+
+    });
+
+    sites=sites.map(function(site){
+
+     const metadata=projectBySite.get(id(site));
+
+     return metadata
+      ? {...site,...metadata}
+      : site;
+
+    });
+
+    console.info(
+     "WILDLANDS project metadata merged:",
+     projectBySite.size,
+     "sites"
+    );
+
+   }else{
+
+    console.warn(
+     "Project API unavailable; project dropdown will use only metadata present in data.json."
+    );
+
+   }
+
+  }catch(apiError){
+
+   console.warn(
+    "Could not load project metadata from API:",
+    apiError
+   );
+
+  }
+
+  /*
+   * 3. Satellite bridge remains separate from project metadata.
+   * satellite_data.json is generated by the GEE pipeline and lives beside
+   * analytics.html.
+   */
+  try{
+
+   const satelliteResponse=await fetch(
+    "satellite_data.json?cache="+Date.now()
+   );
+
+   if(satelliteResponse.ok){
+
+    const satelliteRaw=await satelliteResponse.json();
+
+    const satelliteRows=
+     Array.isArray(satelliteRaw)
+     ? satelliteRaw
+     : (
+        satelliteRaw.sites ||
+        satelliteRaw.monitoring_areas ||
+        satelliteRaw.records ||
+        satelliteRaw.data ||
+        []
+       );
+
+    const satelliteBySite=new Map();
+
+    satelliteRows.forEach(function(row){
+
+     const siteId=String(
+      get(
+       row,
+       ["site_id","siteId","id","SITE_ID","restoration_id"],
+       ""
+      )
+     ).trim();
+
+     if(siteId){
+      satelliteBySite.set(siteId,{
+       ...(satelliteBySite.get(siteId)||{}),
+       ...row
+      });
+     }
+
+    });
+
+    sites=sites.map(function(site){
+
+     const satellite=satelliteBySite.get(id(site));
+
+     return satellite
+      ? {...site,...satellite}
+      : site;
+
+    });
+
+    console.info(
+     "WILDLANDS satellite metadata merged:",
+     satelliteBySite.size,
+     "sites"
+    );
+
+   }
+
+  }catch(satelliteError){
+
+   console.warn(
+    "Satellite bridge could not be loaded:",
+    satelliteError
+   );
+
+  }
+
+  populate();
+
+ }catch(error){
+
+  console.error(
+   "WILDLANDS Analytics load failed:",
+   error
+  );
+
+  document.getElementById("rows").innerHTML=
+   '<tr><td colspan="7">Could not load WILDLANDS data.</td></tr>';
+
+ }
+}
+
+function populate(){
+
+ const ps=[
+  ...new Map(
+   sites.map(function(s){
+    return [pid(s),pname(s)];
+   })
+  ).entries()
+ ];
+
+ const p=document.getElementById("project");
+
+ p.innerHTML='<option value="">All Projects</option>';
+
+ ps
+  .sort(function(a,b){
+   return String(a[1]).localeCompare(String(b[1]));
+  })
+  .forEach(function(x){
+   p.add(new Option(x[1],x[0]));
+  });
+
+ p.onchange=updateAreaOptions;
+
+ updateAreaOptions();
+}
+function updateAreaOptions(){
+ const p=document.getElementById("project").value;
+ const areas=sites.filter(s=>!p||pid(s)===p);
+ const a=document.getElementById("area"); a.innerHTML='<option value="">All Monitoring Areas</option>';
+ areas.forEach(s=>a.add(new Option(id(s),id(s))));
+ a.onchange=render;
+ render();
+}
+document.getElementById("metric").onchange=render;
+
+function selected(){
+ const p=document.getElementById("project").value, a=document.getElementById("area").value;
+ return sites.filter(s=>(!p||pid(s)===p)&&(!a||id(s)===a));
+}
+
+function render(){
+ const data=selected();
+ const vals=data.map(ndvi).filter(v=>v!==null), changes=data.map(chg);
+ const mean=vals.length?vals.reduce((a,b)=>a+b,0)/vals.length:null;
+ const meanChange=changes.length?changes.reduce((a,b)=>a+b,0)/changes.length:0;
+ document.getElementById("areas").textContent=data.length;
+ document.getElementById("mean").textContent=mean===null?"—":mean.toFixed(2);
+ document.getElementById("improving").textContent=data.filter(s=>trend(s)==="improving").length;
+ document.getElementById("declining").textContent=data.filter(s=>trend(s)==="declining").length;
+ document.getElementById("change").textContent=(meanChange>=0?"+":"")+(meanChange*100).toFixed(1)+"%";
+ updateChart(data);
+ updateMap(data);
+ updateTables(data);
+ updatePriority(data);
+ updateInsights(data);
+ document.getElementById("updated").textContent="Updated "+new Date().toLocaleString();
+}
+
+function updateChart(data){
+ if(chart)chart.destroy();
+ const metric=document.getElementById("metric").value;
+ document.getElementById("chartTitle").textContent=metric==="ndvi"?"NDVI by Monitoring Area":"NDVI Change by Monitoring Area";
+ chart=new Chart(document.getElementById("ndviChart"),{
+  type:"bar",
+  data:{labels:data.map(id),datasets:[{label:metric==="ndvi"?"NDVI":"Change %",data:data.map(s=>metric==="ndvi"?ndvi(s):(chg(s)*100)),backgroundColor:data.map(s=>trend(s)==="declining"?"#ef533f":trend(s)==="improving"?"#73d13d":"#e4b51b"),borderWidth:0}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:"#a9bbb2"}}},scales:{x:{ticks:{color:"#8da39a"},grid:{color:"#163126"}},y:{ticks:{color:"#8da39a"},grid:{color:"#163126"}}}}
+ });
+}
+
+function updateMap(data){
+ markers.clearLayers();const bounds=[];
+ data.forEach(s=>{
+  const a=lat(s),o=lon(s);if(a===null||o===null)return;
+  const t=trend(s),c=t==="improving"?"#73d13d":t==="declining"?"#ef533f":"#e4b51b";
+  const m=L.circleMarker([a,o],{radius:8,fillColor:c,color:"#fff",weight:1,fillOpacity:.9});
+  m.bindPopup("<b>"+esc(id(s))+"</b><br>NDVI: "+(ndvi(s)??"—")+"<br>Change: "+(chg(s)*100).toFixed(1)+"%<br>Trend: "+t);
+  m.addTo(markers);bounds.push([a,o]);
+ });
+ if(bounds.length)map.fitBounds(bounds,{padding:[20,20]});
+}
+
+function status(t){return '<span class="status '+(t==="improving"?"good":t==="declining"?"bad":"warn")+'">'+t+"</span>"}
+function updateTables(data){
+ const sorted=[...data].sort((a,b)=>chg(a)-chg(b));
+
+ // The old Monitoring Area Analytics Register was removed from this page.
+ // Do not try to write into its removed #rows element.
+ const changeRows=document.getElementById("changeRows");
+
+ if(!changeRows) return;
+
+ changeRows.innerHTML=sorted.slice(0,8).map(s=>`
+   <tr>
+     <td>${esc(id(s))}</td>
+     <td>${ndvi(s)??"—"}</td>
+     <td class="${trend(s)==="declining"?"negative":"positive"}">
+       ${chg(s)>=0?"+":""}${(chg(s)*100).toFixed(1)}%
+     </td>
+     <td>${status(trend(s))}</td>
+   </tr>
+ `).join("");
+}
+
+function updatePriority(data){
+ const declining=[...data].filter(s=>trend(s)==="declining").sort((a,b)=>chg(a)-chg(b)).slice(0,5);
+ const box=document.getElementById("priorityList");
+ box.innerHTML=declining.length?declining.map(s=>`<div class="insight"><strong class="negative">${esc(id(s))} — review required</strong><p>NDVI change is ${(chg(s)*100).toFixed(1)}%. Validate with field observations before intervention.</p></div>`).join(""):`<div class="insight"><strong class="positive">No declining areas in this selection</strong><p>Current satellite trends are stable or improving.</p></div>`;
+}
+
+function updateInsights(data){
+ const vals=data.map(ndvi).filter(v=>v!==null);
+ const best=[...data].filter(s=>ndvi(s)!==null).sort((a,b)=>ndvi(b)-ndvi(a))[0];
+ const worst=[...data].filter(s=>ndvi(s)!==null).sort((a,b)=>ndvi(a)-ndvi(b))[0];
+ const box=document.getElementById("insightList");
+ box.innerHTML=`
+ <div class="insight"><strong class="positive">Strongest current vegetation</strong><p>${best?esc(id(best))+" has the highest current NDVI ("+ndvi(best).toFixed(2)+").":"No NDVI values available."}</p></div>
+ <div class="insight"><strong class="warning">Dataset coverage</strong><p>${vals.length} of ${data.length} selected monitoring areas have usable NDVI values.</p></div>
+ <div class="insight"><strong class="negative">Lowest current vegetation</strong><p>${worst?esc(id(worst))+" has the lowest current NDVI ("+ndvi(worst).toFixed(2)+").":"No NDVI values available."}</p></div>`;
+}
+
+function resetFilters(){
+ document.getElementById("project").value="";
+ updateAreaOptions();
+ document.getElementById("metric").value="ndvi";
+}
+function exportCSV(){
+ const data=selected();
+ const lines=[["Area","Project","NDVI","NDVI Change","Trend","Field Health","IAP Cover"],...data.map(s=>[id(s),pname(s),ndvi(s)??"",chg(s),trend(s),field(s)??"",iap(s)??""])];
+ const csv=lines.map(r=>r.map(v=>`"${String(v).replaceAll('"','""')}"`).join(",")).join("\n");
+ const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv"}));a.download="wildlands_analytics.csv";a.click();
+}
+loadData();
+
+
+/* ============================================================
+   WILDLANDS SPATIAL RISK MAP
+   Uses the same filtered site set as Analytics.
+   Classification is derived from the latest NDVI change:
+     > +1.5%  Improving
+     < -1.5%  Declining
+     otherwise Stable
+   Missing satellite values remain explicitly unavailable.
+   ============================================================ */
+let riskLayer = null;
+
+
+function riskEscapeHtml(value){
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+function riskClass(site){
+  const c = chg(site);
+  if(c === null || Number.isNaN(c)) return "unavailable";
+  if(c > 0.015) return "improving";
+  if(c < -0.015) return "declining";
+  return "stable";
+}
+
+function riskLabel(r){
+  return r === "improving" ? "Improving"
+       : r === "declining" ? "Declining"
+       : r === "stable" ? "Stable"
+       : "No satellite data";
+}
+
+function riskColor(r){
+  // Leaflet marker colors intentionally use the same semantic categories
+  // as the legend. These are UI colors, not data values.
+  return r === "improving" ? "#2e7d32"
+       : r === "declining" ? "#c62828"
+       : r === "stable" ? "#d4a72c"
+       : "#9aa0a6";
+}
+
+function riskLat(site){
+  return num(get(site,[
+    "latitude","lat","LATITUDE","y","Y"
+  ],null));
+}
+
+function riskLng(site){
+  return num(get(site,[
+    "longitude","lon","lng","LONGITUDE","x","X"
+  ],null));
+}
+
+function riskMapPopup(site){
+  const r = riskClass(site);
+  const n = ndvi(site);
+  const c = chg(site);
+
+  return `
+    <div class="risk-popup">
+      <h4>${riskEscapeHtml(id(site))}</h4>
+      <div class="risk-row">${riskEscapeHtml(pname(site))}</div>
+      <div class="risk-row">Status:
+        <span class="risk-value">${riskLabel(r)}</span>
+      </div>
+      <div class="risk-row">Latest NDVI:
+        <span class="risk-value">${n===null ? "—" : n.toFixed(3)}</span>
+      </div>
+      <div class="risk-row">NDVI change:
+        <span class="risk-value">${
+          c===null ? "—" : (c>=0?"+":"")+(c*100).toFixed(1)+"%"
+        }</span>
+      </div>
+      <div class="risk-row">Coordinates:
+        <span class="risk-value">${
+          riskLat(site)!==null && riskLng(site)!==null
+            ? riskLat(site).toFixed(5)+", "+riskLng(site).toFixed(5)
+            : "—"
+        }</span>
+      </div>
+    </div>
+  `;
+}
+
+function renderSpatialRiskMap(data){
+  if(typeof map === "undefined" || !map) return;
+
+  if(riskLayer){
+    riskLayer.clearLayers();
+  }else{
+    riskLayer = L.layerGroup().addTo(map);
+  }
+
+  const counts = {
+    improving:0,
+    stable:0,
+    declining:0,
+    unavailable:0
+  };
+
+  const bounds = [];
+
+  data.forEach(site=>{
+    const lat = riskLat(site);
+    const lng = riskLng(site);
+
+    if(lat===null || lng===null) return;
+    if(!Number.isFinite(lat) || !Number.isFinite(lng)) return;
+
+    const r = riskClass(site);
+    counts[r] = (counts[r]||0) + 1;
+
+    const marker = L.circleMarker([lat,lng],{
+      radius:8,
+      color:"#ffffff",
+      weight:2,
+      fillColor:riskColor(r),
+      fillOpacity:.92,
+      className:"leaflet-risk-marker"
+    });
+
+    marker.bindPopup(riskMapPopup(site));
+
+    marker.on("mouseover",function(){
+      this.setStyle({radius:10});
+    });
+
+    marker.on("mouseout",function(){
+      this.setStyle({radius:8});
+    });
+
+    marker.addTo(riskLayer);
+    bounds.push([lat,lng]);
+  });
+
+  const summary=document.getElementById("riskSummary");
+
+  if(summary){
+    summary.textContent =
+      `${data.length} areas · ${counts.declining} declining · `+
+      `${counts.stable} stable · ${counts.improving} improving`;
+  }
+
+  /*
+    Only fit the map when there are actual monitoring coordinates.
+    Do not constantly re-centre it when the user changes a filter with
+    no valid coordinates.
+  */
+  if(bounds.length && typeof map.getZoom==="function"){
+    map.fitBounds(bounds,{
+      padding:[24,24],
+      maxZoom:12
+    });
+  }
+}
+
+/*
+  Hook into the existing Analytics render pipeline.
+  The current dashboard already calculates the filtered `data` set in
+  render(); adding one call there keeps the map synchronized with:
+    Project → Area → Metric filters.
+*/
+const originalRenderForRisk = window.render;
+
+if(typeof originalRenderForRisk === "function"){
+  window.render = function(){
+    originalRenderForRisk.apply(this,arguments);
+
+    const projectValue=document.getElementById("project")?.value || "";
+    const areaValue=document.getElementById("area")?.value || "";
+
+    let filtered=sites.slice();
+
+    if(projectValue){
+      filtered=filtered.filter(s=>pid(s)===projectValue);
+    }
+
+    if(areaValue){
+      filtered=filtered.filter(s=>id(s)===areaValue);
+    }
+
+    renderSpatialRiskMap(filtered);
+  };
+}
+
+</script>
+</body>
+</html>

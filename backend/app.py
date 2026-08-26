@@ -1,5 +1,5 @@
-from datetime import datetime
 import os
+from contextlib import asynccontextmanager
 from typing import Optional
 
 import psycopg
@@ -7,15 +7,105 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
+
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
     "postgresql://wildlands:wildlands@localhost:5432/wildlands"
 )
 
+
+def db():
+    return psycopg.connect(DATABASE_URL)
+
+
+def init_db():
+    """Create the WILDLANDS database schema if it does not exist."""
+
+    with db() as conn:
+        with conn.cursor() as cur:
+
+            # Enable PostGIS
+            cur.execute(
+                "CREATE EXTENSION IF NOT EXISTS postgis"
+            )
+
+            # Main observations table
+            cur.execute(
+                """
+                CREATE TABLE IF NOT EXISTS field_observations (
+                    observation_id BIGSERIAL PRIMARY KEY,
+                    project_id TEXT NOT NULL,
+                    site_id TEXT NOT NULL,
+                    project_name TEXT,
+                    record_type TEXT NOT NULL,
+                    observer TEXT NOT NULL,
+                    observation_date DATE NOT NULL,
+                    latitude DOUBLE PRECISION,
+                    longitude DOUBLE PRECISION,
+                    notes TEXT,
+                    payload JSONB NOT NULL DEFAULT '{}'::jsonb,
+                    geom GEOMETRY(Point, 4326),
+                    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+                )
+                """
+            )
+
+            # Indexes
+            cur.execute(
+                """
+                CREATE INDEX IF NOT EXISTS idx_field_obs_site
+                ON field_observations(site_id)
+                """
+            )
+
+            cur.execute(
+                """
+                CREATE INDEX IF NOT EXISTS idx_field_obs_project
+                ON field_observations(project_id)
+                """
+            )
+
+            cur.execute(
+                """
+                CREATE INDEX IF NOT EXISTS idx_field_obs_date
+                ON field_observations(observation_date)
+                """
+            )
+
+            cur.execute(
+                """
+                CREATE INDEX IF NOT EXISTS idx_field_obs_geom
+                ON field_observations USING GIST(geom)
+                """
+            )
+
+            # Latest observation per site
+            cur.execute(
+                """
+                CREATE OR REPLACE VIEW latest_field_observation AS
+                SELECT DISTINCT ON (site_id)
+                    *
+                FROM field_observations
+                ORDER BY site_id, observation_date DESC, created_at DESC
+                """
+            )
+
+        conn.commit()
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Run database initialization when the API starts
+    init_db()
+    yield
+
+
 app = FastAPI(
     title="WILDLANDS Field Monitoring API",
-    version="1.0.0"
+    version="1.0.0",
+    lifespan=lifespan
 )
+
 
 app.add_middleware(
     CORSMiddleware,
@@ -37,10 +127,6 @@ class Observation(BaseModel):
     longitude: Optional[float] = None
     notes: Optional[str] = None
     payload: dict = Field(default_factory=dict)
-
-
-def db():
-    return psycopg.connect(DATABASE_URL)
 
 
 @app.get("/health")
@@ -123,7 +209,7 @@ def create_observation(obs: Observation):
                         obs.notes,
                         psycopg.types.json.Jsonb(obs.payload),
 
-                        # Geometry coordinates
+                        # Geometry
                         obs.longitude,
                         obs.latitude,
                         obs.longitude,
@@ -227,61 +313,6 @@ def list_observations(site_id: Optional[str] = None):
         )
 
 
-@app.delete("/api/observations/{observation_id}")
-def delete_observation(observation_id: int):
-    """
-    Permanently delete one field observation from PostgreSQL.
-
-    The observation_id is the primary identifier returned by
-    POST /api/observations and GET /api/observations.
-    """
-    try:
-        with db() as conn:
-            with conn.cursor() as cur:
-
-                cur.execute(
-                    """
-                    SELECT observation_id
-                    FROM field_observations
-                    WHERE observation_id = %s
-                    """,
-                    (observation_id,)
-                )
-
-                row = cur.fetchone()
-
-                if row is None:
-                    raise HTTPException(
-                        status_code=404,
-                        detail="Observation not found"
-                    )
-
-                cur.execute(
-                    """
-                    DELETE FROM field_observations
-                    WHERE observation_id = %s
-                    RETURNING observation_id
-                    """,
-                    (observation_id,)
-                )
-
-                deleted_id = cur.fetchone()[0]
-
-            conn.commit()
-
-        return {
-            "status": "deleted",
-            "observation_id": deleted_id
-        }
-
-    except HTTPException:
-        raise
-
-    except Exception as exc:
-        raise HTTPException(
-            status_code=500,
-            detail=str(exc)
-        )
 @app.delete("/api/observations/{observation_id}")
 def delete_observation(observation_id: int):
     try:

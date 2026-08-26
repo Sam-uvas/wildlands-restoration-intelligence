@@ -1,5 +1,7 @@
 import os
+import json
 from contextlib import asynccontextmanager
+from pathlib import Path
 from typing import Optional
 
 import psycopg
@@ -7,6 +9,10 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
+
+# ============================================================
+# DATABASE CONFIGURATION
+# ============================================================
 
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
@@ -17,6 +23,10 @@ DATABASE_URL = os.getenv(
 def db():
     return psycopg.connect(DATABASE_URL)
 
+
+# ============================================================
+# DATABASE INITIALIZATION
+# ============================================================
 
 def init_db():
     """Create the WILDLANDS database schema if it does not exist."""
@@ -29,7 +39,7 @@ def init_db():
                 "CREATE EXTENSION IF NOT EXISTS postgis"
             )
 
-            # Main observations table
+            # Main field observations table
             cur.execute(
                 """
                 CREATE TABLE IF NOT EXISTS field_observations (
@@ -93,12 +103,19 @@ def init_db():
         conn.commit()
 
 
+# ============================================================
+# APPLICATION LIFESPAN
+# ============================================================
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Run database initialization when the API starts
     init_db()
     yield
 
+
+# ============================================================
+# FASTAPI APPLICATION
+# ============================================================
 
 app = FastAPI(
     title="WILDLANDS Field Monitoring API",
@@ -106,6 +123,10 @@ app = FastAPI(
     lifespan=lifespan
 )
 
+
+# ============================================================
+# CORS
+# ============================================================
 
 app.add_middleware(
     CORSMiddleware,
@@ -115,6 +136,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
+# ============================================================
+# DATA MODELS
+# ============================================================
 
 class Observation(BaseModel):
     project_id: str
@@ -128,6 +153,10 @@ class Observation(BaseModel):
     notes: Optional[str] = None
     payload: dict = Field(default_factory=dict)
 
+
+# ============================================================
+# HEALTH CHECK
+# ============================================================
 
 @app.get("/health")
 def health():
@@ -148,9 +177,141 @@ def health():
         }
 
 
+# ============================================================
+# PROJECT REGISTRY
+# ============================================================
+
+@app.get("/api/projects")
+def list_projects():
+    """
+    Return the WILDLANDS project registry from dashboard/data.json.
+    Falls back to projects represented in field observations.
+    """
+
+    try:
+        data_path = (
+            Path(__file__).resolve().parent.parent
+            / "dashboard"
+            / "data.json"
+        )
+
+        projects = {}
+
+        # --------------------------------------------------------
+        # Primary source: dashboard/data.json
+        # --------------------------------------------------------
+
+        if data_path.exists():
+
+            raw = json.loads(
+                data_path.read_text(encoding="utf-8")
+            )
+
+            sites = (
+                raw
+                if isinstance(raw, list)
+                else raw.get("sites")
+                or raw.get("monitoring_areas")
+                or raw.get("data")
+                or []
+            )
+
+            if not isinstance(sites, list):
+                raise HTTPException(
+                    status_code=500,
+                    detail=(
+                        "dashboard/data.json does not contain "
+                        "a valid registry array"
+                    )
+                )
+
+            for site in sites:
+
+                if not isinstance(site, dict):
+                    continue
+
+                project_id = (
+                    site.get("project_id")
+                    or site.get("projectId")
+                    or site.get("PROJECT_ID")
+                    or site.get("project_code")
+                )
+
+                if not project_id:
+                    continue
+
+                project_id = str(project_id).strip()
+
+                project_name = str(
+                    site.get("project_name")
+                    or site.get("projectName")
+                    or site.get("project")
+                    or project_id
+                ).strip()
+
+                if project_id not in projects:
+                    projects[project_id] = {
+                        "project_id": project_id,
+                        "project_name": project_name,
+                        "status": str(
+                            site.get("status") or "active"
+                        ).lower()
+                    }
+
+        # --------------------------------------------------------
+        # Fallback: projects represented in observations
+        # --------------------------------------------------------
+
+        if not projects:
+
+            with db() as conn:
+                with conn.cursor() as cur:
+
+                    cur.execute(
+                        """
+                        SELECT DISTINCT
+                            project_id,
+                            project_name
+                        FROM field_observations
+                        WHERE project_id IS NOT NULL
+                        ORDER BY project_name, project_id
+                        """
+                    )
+
+                    for project_id, project_name in cur.fetchall():
+
+                        pid = str(project_id).strip()
+
+                        projects[pid] = {
+                            "project_id": pid,
+                            "project_name": project_name or pid,
+                            "status": "active"
+                        }
+
+        return sorted(
+            projects.values(),
+            key=lambda p: p["project_name"].lower()
+        )
+
+    except HTTPException:
+        raise
+
+    except Exception as exc:
+        raise HTTPException(
+            status_code=500,
+            detail=str(exc)
+        )
+
+
+# ============================================================
+# CREATE OBSERVATION
+# ============================================================
+
 @app.post("/api/observations")
 def create_observation(obs: Observation):
+
     try:
+
         with db() as conn:
             with conn.cursor() as cur:
 
@@ -209,7 +370,6 @@ def create_observation(obs: Observation):
                         obs.notes,
                         psycopg.types.json.Jsonb(obs.payload),
 
-                        # Geometry
                         obs.longitude,
                         obs.latitude,
                         obs.longitude,
@@ -228,19 +388,29 @@ def create_observation(obs: Observation):
         }
 
     except Exception as exc:
+
         raise HTTPException(
             status_code=500,
             detail=str(exc)
         )
 
 
+# ============================================================
+# LIST OBSERVATIONS
+# ============================================================
+
 @app.get("/api/observations")
-def list_observations(site_id: Optional[str] = None):
+def list_observations(
+    site_id: Optional[str] = None
+):
+
     try:
+
         with db() as conn:
             with conn.cursor() as cur:
 
                 if site_id:
+
                     cur.execute(
                         """
                         SELECT
@@ -258,12 +428,15 @@ def list_observations(site_id: Optional[str] = None):
                             created_at
                         FROM field_observations
                         WHERE site_id = %s
-                        ORDER BY observation_date DESC, created_at DESC
+                        ORDER BY
+                            observation_date DESC,
+                            created_at DESC
                         """,
                         (site_id,)
                     )
 
                 else:
+
                     cur.execute(
                         """
                         SELECT
@@ -280,7 +453,9 @@ def list_observations(site_id: Optional[str] = None):
                             payload,
                             created_at
                         FROM field_observations
-                        ORDER BY observation_date DESC, created_at DESC
+                        ORDER BY
+                            observation_date DESC,
+                            created_at DESC
                         """
                     )
 
@@ -307,15 +482,22 @@ def list_observations(site_id: Optional[str] = None):
         ]
 
     except Exception as exc:
+
         raise HTTPException(
             status_code=500,
             detail=str(exc)
         )
 
 
+# ============================================================
+# DELETE OBSERVATION
+# ============================================================
+
 @app.delete("/api/observations/{observation_id}")
 def delete_observation(observation_id: int):
+
     try:
+
         with db() as conn:
             with conn.cursor() as cur:
 
@@ -331,6 +513,7 @@ def delete_observation(observation_id: int):
                 row = cur.fetchone()
 
                 if row is None:
+
                     raise HTTPException(
                         status_code=404,
                         detail="Observation not found"
@@ -358,6 +541,7 @@ def delete_observation(observation_id: int):
         raise
 
     except Exception as exc:
+
         raise HTTPException(
             status_code=500,
             detail=str(exc)

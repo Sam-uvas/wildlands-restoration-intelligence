@@ -24,78 +24,97 @@
 </div>
 
 ---
+# Dashboard Preview
 
-#  About WILDLANDS
-
-**WILDLANDS Restoration Intelligence** is an end-to-end geospatial monitoring and decision-support platform for environmental restoration programmes.
-
-The platform brings together:
-
--  Geospatial project information
--  Monitoring sites
--  Field observations
--  Satellite-derived environmental data
--  Vegetation indicators such as NDVI
--  Environmental analytics
--  Restoration reporting
--  Automated geospatial processing
--  REST APIs
--  Structured data management
-
-The goal is to transform fragmented environmental and spatial datasets into a system that helps restoration teams understand:
-
-> **Where are restoration activities taking place?**
-
-> **What is happening at monitored sites?**
-
-> **How are environmental conditions changing?**
-
-> **Where should attention or intervention be directed?**
+<p align="center">
+<img src="assets/dashboard.png" width="90%">
+</p>
 
 ---
 
-#  The Problem
+# Features
 
-Restoration and conservation programmes generate data from multiple sources.
+- Interactive geospatial monitoring dashboard
+- Restoration project management
+- Monitoring site management
+- Structured field observation capture
+- GPS-based spatial evidence
+- Photographic field evidence
+- Satellite-derived NDVI monitoring
+- Google Earth Engine integration
+- Automated geospatial data pipeline
+- Environmental analytics
+- Restoration reporting
+- REST API
+- PostgreSQL database integration
+- Dockerised backend
+- Cloud deployment
+- Modern dark interface
 
-Field teams collect observations.
+---
 
-GIS teams maintain spatial datasets.
+# Technology Stack
 
-Satellite platforms provide environmental measurements.
+| Category | Technologies |
+|-----------|--------------|
+| Frontend | HTML5 • CSS3 • JavaScript |
+| Backend | Python • FastAPI |
+| Database | PostgreSQL |
+| GIS | QGIS • Spatial Data |
+| Earth Observation | Google Earth Engine • Satellite Data |
+| Remote Sensing | NDVI |
+| Data Engineering | Python • Automated Processing Pipelines |
+| API | REST API • FastAPI |
+| Deployment | Docker • Render |
+| Version Control | Git • GitHub |
 
-Analysts calculate trends.
+---
 
-Programme teams produce reports.
-
-When these workflows remain disconnected, valuable information becomes difficult to integrate and operationalise.
-
-WILDLANDS addresses this challenge by connecting these components into a single geospatial intelligence workflow.
+# Project Structure
 
 ```text
-                    RESTORATION PROGRAMME
-                            │
-             ┌──────────────┴──────────────┐
-             │                             │
-       FIELD OBSERVATIONS             GIS DATA
-             │                             │
-             └──────────────┬──────────────┘
-                            │
-                            ▼
-                   GEOSPATIAL PIPELINE
-                            │
-                            ▼
-                SATELLITE / NDVI DATA
-                            │
-                            ▼
-                      DATA INTEGRATION
-                            │
-                            ▼
-                       ANALYTICS
-                            │
-                            ▼
-                 RESTORATION INTELLIGENCE
-                            │
-             ┌──────────────┼──────────────┐
-             ▼              ▼              ▼
-         PROJECTS       MONITORING      REPORTS
+wildlands-restoration-intelligence/
+│
+├── assets/
+│   ├── banner.png
+│   └── dashboard.png
+│
+├── backend/
+│   ├── app.py
+│   ├── Dockerfile
+│   ├── requirements.txt
+│   └── schema.sql
+│
+├── dashboard/
+│   ├── frontend/
+│   │   ├── index.html
+│   │   ├── projects.html
+│   │   ├── monitoring.html
+│   │   ├── field-monitoring.html
+│   │   ├── analytics.html
+│   │   ├── reports.html
+│   │   └── data-management.html
+│   │
+│   ├── data.json
+│   └── field_data.json
+│
+├── data/
+│   ├── sites.gpkg
+│   ├── gee_ndvi_data.csv
+│   └── gee_trends.csv
+│
+├── reports/
+│   └── restoration_report.pdf
+│
+├── wildlands_pipeline/
+│   ├── config.py
+│   ├── sites_setup.py
+│   ├── fetch_gee_data.py
+│   ├── merge_data.py
+│   ├── qgis_report.py
+│   └── run_pipeline.py
+│
+├── Dockerfile
+├── docker-compose.yml
+├── requirements.txt
+└── README.md

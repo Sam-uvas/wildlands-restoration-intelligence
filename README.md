@@ -1,111 +1,101 @@
-# WILDLANDS Restoration Intelligence — automated pipeline
+<div align="center">
 
-Turns your manual `fetch_gee_data.py` + static dashboard into an
-end-to-end, schedulable pipeline: **sites (QGIS) → GEE → merge → QGIS
-report → dashboard**.
+# 🌍 WILDLANDS Restoration Intelligence
 
-```
-wildlands_pipeline/
-  config.py            all settings (GEE project, thresholds, paths)
-  sites_setup.py        stage 0 — authoritative site registry (GeoPackage)
-  fetch_gee_data.py     stage 1 — batched, fixed GEE fetch
-  merge_data.py          stage 2 — builds dashboard/data.json
-  qgis_report.py         stage 3 — PyQGIS symbology + PDF report
-  run_pipeline.py        orchestrator
-  dashboard/
-    index.html           your existing dashboard, unmodified
-    data.json            generated — dashboard reads this
-  data/
-    sites.gpkg            your site registry (edit in QGIS)
-    gee_ndvi_data.csv      raw monthly NDVI per site
-    gee_trends.csv         computed trend per site
-  reports/
-    restoration_report.pdf generated PDF map report
-```
+<img src="assets/banner.png" width="100%">
 
-## What changed vs. your original script
+### Geospatial Restoration Intelligence & Environmental Monitoring Platform
 
-- **Sites are no longer hardcoded.** They live in `data/sites.gpkg`,
-  which you maintain/digitize in QGIS. `sites_setup.py` auto-generates
-  50 demo sites the first time so everything is runnable immediately;
-  swap that file for your real one (same column schema) whenever ready.
-- **Extraction is batched, not looped.** The original called
-  `.getInfo()` once per site per month — 1,800 sequential calls for 50
-  sites x 36 months. `fetch_gee_data.py` now uses `reduceRegions()`
-  (one call per month across all sites) and pulls everything back with
-  a single `.getInfo()` at the end.
-- **`numpy` is actually imported** — the original crashed in
-  `calculate_trends()`.
-- **A merge stage** builds `dashboard/data.json` in the exact schema
-  `index.html` expects, blending satellite NDVI with (optional) field
-  survey data — so the dashboard, which already has a "load
-  `data.json`" path built in, just works.
-- **A QGIS automation stage** applies rule-based status symbology and
-  exports a print-ready PDF report — donor-facing output straight from
-  the same data, without manually styling anything in QGIS each time.
-- **An orchestrator + example GitHub Actions workflow** so the whole
-  thing can run unattended on a schedule.
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![QGIS](https://img.shields.io/badge/QGIS-589632?style=for-the-badge&logo=qgis&logoColor=white)
+![Google Earth Engine](https://img.shields.io/badge/Google%20Earth%20Engine-4285F4?style=for-the-badge&logo=googleearthengine&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
 
-## First-time setup
+---
 
-```bash
-pip install -r requirements.txt
-earthengine authenticate          # one-time, opens a browser
-export GEE_PROJECT="your-real-project-id"
-```
+**Turning geospatial data into restoration intelligence.**
 
-Run everything once, without GEE, to see it work end-to-end on demo data:
+*A geospatial platform designed to connect restoration projects, field observations, satellite-derived environmental indicators, analytics and reporting within a single operational workflow.*
 
-```bash
-python3 run_pipeline.py --skip-gee
-```
+</div>
 
-Open `dashboard/index.html` in a browser (or serve the folder,
-e.g. `python3 -m http.server` from inside `dashboard/`) — it will pick
-up the generated `data.json`.
+---
 
-Once your GEE project + real sites are ready:
+#  About WILDLANDS
 
-```bash
-python3 run_pipeline.py           # runs the real GEE fetch too
-```
+**WILDLANDS Restoration Intelligence** is an end-to-end geospatial monitoring and decision-support platform for environmental restoration programmes.
 
-## QGIS report stage
+The platform brings together:
 
-PyQGIS isn't pip-installable — it ships inside a QGIS install. Options:
+-  Geospatial project information
+-  Monitoring sites
+-  Field observations
+-  Satellite-derived environmental data
+-  Vegetation indicators such as NDVI
+-  Environmental analytics
+-  Restoration reporting
+-  Automated geospatial processing
+-  REST APIs
+-  Structured data management
 
-- **QGIS Desktop's own Python** (OSGeo4W shell on Windows, or the
-  system Python QGIS uses on Linux/macOS):
-  ```bash
-  QT_QPA_PLATFORM=offscreen python3 qgis_report.py
-  ```
-- **Docker** (best for CI/scheduled servers, no local QGIS needed):
-  ```bash
-  docker run --rm -v $(pwd):/work -w /work qgis/qgis:latest \
-      sh -c "QT_QPA_PLATFORM=offscreen python3 qgis_report.py"
-  ```
+The goal is to transform fragmented environmental and spatial datasets into a system that helps restoration teams understand:
 
-Or via the orchestrator: `python3 run_pipeline.py --with-qgis` (only
-works where PyQGIS is importable).
+> **Where are restoration activities taking place?**
 
-## Scheduling options
+> **What is happening at monitored sites?**
 
-- **Cron** (Linux server): `0 3 * * 1  cd /path/to/pipeline && python3 run_pipeline.py >> pipeline.log 2>&1`
-- **Windows Task Scheduler**: point at `python.exe run_pipeline.py`.
-- **GitHub Actions**: see `.github/workflows/pipeline.yml` — needs a
-  GEE *service account* (not personal OAuth) stored as a repo secret
-  for unattended auth. The QGIS stage needs its own job/runner with
-  the `qgis/qgis` Docker image since standard GitHub runners don't
-  have QGIS.
+> **How are environmental conditions changing?**
 
-## Where to go next
+> **Where should attention or intervention be directed?**
 
-- **Field data**: point `config.FIELD_SURVEY_CSV` at your real field
-  team export (one row per `site_id`, column `vegetation_health`) —
-  right now it's simulated if the file is missing.
-- **QGIS Server**: publish `data/sites.gpkg` as WMS/WFS so the Leaflet
-  dashboard (or field staff in QGIS Desktop) can pull a live layer
-  instead of only `data.json`.
-- **NDVI rasters, not just point buffers**: export monthly NDVI images
-  from GEE (`ee.batch.Export.image`) and add them as a raster layer in
-  `qgis_report.py` for a much richer PDF report.
+---
+
+#  The Problem
+
+Restoration and conservation programmes generate data from multiple sources.
+
+Field teams collect observations.
+
+GIS teams maintain spatial datasets.
+
+Satellite platforms provide environmental measurements.
+
+Analysts calculate trends.
+
+Programme teams produce reports.
+
+When these workflows remain disconnected, valuable information becomes difficult to integrate and operationalise.
+
+WILDLANDS addresses this challenge by connecting these components into a single geospatial intelligence workflow.
+
+```text
+                    RESTORATION PROGRAMME
+                            │
+             ┌──────────────┴──────────────┐
+             │                             │
+       FIELD OBSERVATIONS             GIS DATA
+             │                             │
+             └──────────────┬──────────────┘
+                            │
+                            ▼
+                   GEOSPATIAL PIPELINE
+                            │
+                            ▼
+                SATELLITE / NDVI DATA
+                            │
+                            ▼
+                      DATA INTEGRATION
+                            │
+                            ▼
+                       ANALYTICS
+                            │
+                            ▼
+                 RESTORATION INTELLIGENCE
+                            │
+             ┌──────────────┼──────────────┐
+             ▼              ▼              ▼
+         PROJECTS       MONITORING      REPORTS

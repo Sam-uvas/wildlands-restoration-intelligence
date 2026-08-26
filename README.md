@@ -2,7 +2,7 @@
 
 # 🌍 WILDLANDS Restoration Intelligence
 
-<img src="assets/banner.png" width="100%">
+<img src="assets/banner wildlands.png" width="100%">
 
 ### Geospatial Restoration Intelligence & Environmental Monitoring Platform
 

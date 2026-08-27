@@ -126,7 +126,22 @@ function change(s){
   v=num(val(s,["change_percent","changePercentage","CHANGE_PERCENT"],null));
   return v===null?null:v/100;
 }
-function status(s){const c=change(s);if(c===null)return"unavailable";if(c>.015)return"improving";if(c<-.015)return"declining";return"stable"}
+function status(s){
+  const trend = String(
+    val(s, ["trend", "Trend", "status"], "")
+  ).trim().toLowerCase();
+
+  if(trend === "improving") return "improving";
+  if(trend === "declining") return "declining";
+  if(trend === "stable") return "stable";
+
+  const c = change(s);
+  if(c === null) return "unavailable";
+
+  if(c >= 0.10) return "improving";
+  if(c <= -0.10) return "declining";
+  return "stable";
+}
 function dateValue(v){if(!v)return null;const d=new Date(v);return Number.isNaN(d.getTime())?String(v):d}
 function dateText(v){const d=dateValue(v);if(!d)return"—";if(typeof d==="string")return d;return d.toLocaleDateString(undefined,{day:"2-digit",month:"short",year:"numeric"})}
 function lastSatellite(s){

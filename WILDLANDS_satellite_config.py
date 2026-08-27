@@ -20,7 +20,7 @@ GEE_TRENDS_CSV = DATA_DIR / "gee_trends.csv"
 SATELLITE_JSON = FRONTEND_DIR / "satellite_data.json"
 
 GEE_PROJECT = os.environ.get("GEE_PROJECT", "ee-sambanele860")
-START_DATE = os.environ.get("GEE_START_DATE", "2023-01-01")
+START_DATE = os.environ.get("GEE_START_DATE", "2025-01-01")
 END_DATE = os.environ.get("GEE_END_DATE", date.today().isoformat())
 
 MAX_CLOUD_PCT = float(os.environ.get("GEE_MAX_CLOUD_PCT", 20))
@@ -28,6 +28,10 @@ BUFFER_METERS = float(os.environ.get("GEE_BUFFER_M", 500))
 SCALE_METERS = float(os.environ.get("GEE_SCALE_M", 10))
 
 # Trend classification used by the dashboard.
+# Overall change is the primary classification signal.
+TREND_CHANGE_THRESHOLD = 10.0
+
+# Retained for reporting/supporting evidence.
 IMPROVING_RATE = 0.60
 STABLE_RATE = 0.40
 

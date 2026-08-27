@@ -137,8 +137,8 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Segoe UI,
   <div class="head"><div><strong>Interpretation</strong><span>How to read the analytics</span></div></div>
   <div class="insights">
    <div class="insight"><strong class="positive">Higher NDVI</strong><p>Generally indicates stronger green vegetation presence. Compare areas over time rather than treating one value as a standalone ecological conclusion.</p></div>
-   <div class="insight"><strong class="warning">Stable</strong><p>Small changes around the current value are classified as stable by the dashboard's trend threshold.</p></div>
-   <div class="insight"><strong class="negative">Declining</strong><p>A negative recent NDVI change flags an area for further investigation. Satellite indicators should be combined with field observations before intervention decisions.</p></div>
+   <div class="insight"><strong class="warning">Stable</strong><p>Vegetation conditions show a relatively balanced temporal pattern, with neither improving nor declining behaviour dominating the available weekly NDVI observations.</p></div>
+   <div class="insight"><strong class="negative">Declining</strong><p>The available weekly NDVI observations indicate a predominantly negative vegetation trend. The area should be reviewed alongside field observations before restoration intervention decisions are made.</p></div>
   </div>
  </div>
 </section>
@@ -249,7 +249,16 @@ function lat(s){return num(get(s,["latitude","lat","LATITUDE","y"],null))}
 function lon(s){return num(get(s,["longitude","lon","lng","LONGITUDE","x"],null))}
 function field(s){return num(get(s,["field_health","fieldHealth","FIELD_HEALTH"],null))}
 function iap(s){return num(get(s,["iap_cover","iapCover","IAP_COVER"],null))}
-function trend(s){return chg(s)>.015?"improving":chg(s)<-.015?"declining":"stable"}
+function trend(s){
+  const value=get(s,["trend","Trend"],null);
+  if(value===null) return "insufficient data";
+  const normalized=String(value).trim().toLowerCase();
+  if(normalized.includes("improv")) return "improving";
+  if(normalized.includes("declin")) return "declining";
+  if(normalized.includes("stable")) return "stable";
+  if(normalized.includes("insufficient")) return "insufficient data";
+  return "insufficient data";
+}
 function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 
 async function loadData(){
@@ -650,11 +659,11 @@ function riskEscapeHtml(value){
 }
 
 function riskClass(site){
-  const c = chg(site);
-  if(c === null || Number.isNaN(c)) return "unavailable";
-  if(c > 0.015) return "improving";
-  if(c < -0.015) return "declining";
-  return "stable";
+  const t=trend(site);
+  if(t==="improving") return "improving";
+  if(t==="declining") return "declining";
+  if(t==="stable") return "stable";
+  return "unavailable";
 }
 
 function riskLabel(r){

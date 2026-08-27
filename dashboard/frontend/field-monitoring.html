@@ -600,11 +600,6 @@ td{
 }
 
 /* =========================================================
-   PHOTO ACTIONS / VIEWER
-========================================================= */
-.photo-action{border:1px solid #31553e;background:#0d1b16;color:#bfe8c9;border-radius:5px;padding:5px 8px;font-size:10px;margin-right:5px}.photo-action:hover{border-color:var(--green);color:#fff}.photo-modal{display:none;position:fixed;inset:0;z-index:5000;background:rgba(0,0,0,.82);align-items:center;justify-content:center;padding:24px}.photo-modal.open{display:flex}.photo-modal-content{max-width:min(1100px,94vw);max-height:92vh;position:relative;background:#0d1915;border:1px solid #31553e;border-radius:10px;padding:14px;box-shadow:0 20px 60px rgba(0,0,0,.5)}.photo-modal-content img{display:block;max-width:100%;max-height:78vh;object-fit:contain;border-radius:6px}.photo-modal-title{margin:0 34px 10px 0;color:#e8f2ec;font-size:13px;font-weight:800}.photo-modal-close{position:absolute;top:10px;right:10px;width:28px;height:28px;border:1px solid #31553e;background:#091611;color:#fff;border-radius:5px;cursor:pointer}.photo-modal-close:hover{border-color:var(--green)}
-
-/* =========================================================
    LOADING / ERROR
 ========================================================= */
 
@@ -1304,8 +1299,6 @@ td{
 
 </div>
 
-<!-- PHOTO VIEWER -->
-<div class="photo-modal" id="photoModal" onclick="closePhotoViewer(event)"><div class="photo-modal-content" onclick="event.stopPropagation()"><button type="button" class="photo-modal-close" onclick="closePhotoViewer()">×</button><div class="photo-modal-title" id="photoModalTitle">Field Evidence</div><img id="photoModalImage" alt="Field observation evidence"></div></div>
 
 <script>
 
@@ -2837,17 +2830,9 @@ function renderObservationRecords(){
         .slice(0,100)
         .map(record => {
 
-            const payload = record.payload && typeof record.payload === "object" ? record.payload : {};
-
             const condition =
                 record.condition ||
-                payload.condition ||
                 "Not recorded";
-
-            const photo =
-                payload.photo ||
-                record.photo ||
-                null;
 
 
             let badge =
@@ -2921,13 +2906,10 @@ function renderObservationRecords(){
 
                     <td>
 
-                        ${photo ? `
-                            <button type="button" class="photo-action" onclick="viewObservationPhoto('${record.observation_id}')">
-                                📷 View Photo
-                            </button>
-                        ` : `<span class="muted">No photo</span>`}
-
-                        <button type="button" class="delete-btn" onclick="deleteObservation('${record.observation_id}')">
+                        <button
+                            class="delete-btn"
+                            onclick="deleteObservation('${record.observation_id}')"
+                        >
                             Delete
                         </button>
 
@@ -2942,26 +2924,6 @@ function renderObservationRecords(){
 
 }
 
-
-/* =========================================================
-   PHOTO VIEWER
-========================================================= */
-function viewObservationPhoto(id){
-    const record=getObservations().find(item=>String(item.observation_id)===String(id));
-    if(!record){setStatus("Observation could not be found.","error");return;}
-    const payload=record.payload && typeof record.payload === "object" ? record.payload : {};
-    const photo=payload.photo || record.photo || null;
-    if(!photo){setStatus("No photo is attached to this observation.","error");return;}
-    document.getElementById("photoModalImage").src=photo;
-    document.getElementById("photoModalTitle").textContent=`Field Evidence — ${record.area_name || record.site_id || "Observation"}`;
-    document.getElementById("photoModal").classList.add("open");
-}
-function closePhotoViewer(event){
-    if(event && event.target !== event.currentTarget)return;
-    document.getElementById("photoModal").classList.remove("open");
-    document.getElementById("photoModalImage").src="";
-}
-document.addEventListener("keydown",event=>{if(event.key==="Escape")closePhotoViewer();});
 
 /* =========================================================
    DELETE OBSERVATION

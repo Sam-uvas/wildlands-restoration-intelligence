@@ -1,11 +1,15 @@
 """
-STAGE 1 — GEE NDVI extraction + latest Sentinel-2 NDVI image.
+STAGE 1 — GEE NDVI extraction + latest Sentinel-2 NDVI imagery.
 
-This version:
-- Authenticates Earth Engine using the GitHub Actions service-account JSON.
-- Keeps the existing monthly site-level NDVI pipeline.
-- Creates a programme-wide latest NDVI PNG.
-- Creates one current NDVI PNG for every authoritative WILDLANDS site.
+GitHub Actions compatible:
+- Uses a Google Earth Engine service account.
+- Does NOT use ee.Authenticate().
+- Does NOT require an interactive login.
+- Uses GOOGLE_APPLICATION_CREDENTIALS /
+  GOOGLE_APPLICATION_CREDENTIALS as provided by GitHub Actions.
+- Produces monthly site-level NDVI.
+- Produces programme-wide latest NDVI PNG.
+- Produces current NDVI PNG for each WILDLANDS site.
 """
 
 from datetime import date, timedelta
@@ -22,10 +26,20 @@ import config
 from sites_setup import ensure_sites
 
 
+# ============================================================
+# EARTH ENGINE INITIALIZATION
+# ============================================================
+
 def init_ee():
     """
     Initialize Google Earth Engine non-interactively using
-    the GitHub Actions service-account credentials.
+    a Google service-account JSON key.
+
+    IMPORTANT:
+    This function deliberately does NOT call:
+        ee.Authenticate()
+
+    GitHub Actions cannot perform interactive authentication.
     """
 
     credentials_path = os.environ.get(
@@ -35,6 +49,10 @@ def init_ee():
     project = os.environ.get(
         "GEE_PROJECT"
     )
+
+    # --------------------------------------------------------
+    # Validate environment
+    # --------------------------------------------------------
 
     if not credentials_path:
         raise RuntimeError(
@@ -48,27 +66,31 @@ def init_ee():
 
     if not os.path.isfile(credentials_path):
         raise RuntimeError(
-            f"Earth Engine credentials file does not exist: "
+            "Earth Engine credentials file does not exist: "
             f"{credentials_path}"
         )
 
     # --------------------------------------------------------
-    # Validate service-account JSON
+    # Read service-account JSON
     # --------------------------------------------------------
 
     try:
         with open(
             credentials_path,
             "r",
-            encoding="utf-8"
+            encoding="utf-8",
         ) as f:
             key_data = json.load(f)
 
     except Exception as exc:
         raise RuntimeError(
-            "Unable to read the Earth Engine service-account "
-            "JSON credentials."
+            "Unable to read Earth Engine service-account "
+            "credentials JSON."
         ) from exc
+
+    # --------------------------------------------------------
+    # Validate required fields
+    # --------------------------------------------------------
 
     required_fields = [
         "type",
@@ -86,11 +108,18 @@ def init_ee():
     if missing:
         raise RuntimeError(
             "Invalid Earth Engine service-account JSON. "
-            f"Missing fields: {', '.join(missing)}"
+            "Missing fields: "
+            + ", ".join(missing)
+        )
+
+    if key_data.get("type") != "service_account":
+        raise RuntimeError(
+            "The supplied GEE credentials are not a "
+            "service-account JSON key."
         )
 
     # --------------------------------------------------------
-    # NON-INTERACTIVE SERVICE ACCOUNT AUTHENTICATION
+    # Authenticate with Google service-account credentials
     # --------------------------------------------------------
 
     try:
@@ -106,64 +135,161 @@ def init_ee():
             )
         )
 
+    except Exception as exc:
+        raise RuntimeError(
+            "Could not create Google service-account "
+            "credentials."
+        ) from exc
+
+    # --------------------------------------------------------
+    # Initialize Earth Engine
+    # --------------------------------------------------------
+
+    try:
         ee.Initialize(
             credentials=credentials,
             project=project,
         )
 
-        # Force an actual request to Earth Engine.
-        ee.Number(1).getInfo()
-
     except Exception as exc:
         raise RuntimeError(
-            "Earth Engine service-account authentication failed. "
+            "Earth Engine initialization failed. "
             f"Project: {project}. "
-            f"Service account: {key_data.get('client_email')}. "
+            f"Service account: "
+            f"{key_data.get('client_email')}. "
             f"Error: {exc}"
         ) from exc
 
-    print("Earth Engine initialized successfully.")
-    print(f"Earth Engine project: {project}")
+    # --------------------------------------------------------
+    # Force an actual Earth Engine API request
+    # --------------------------------------------------------
+
+    try:
+        test_value = ee.Number(1).getInfo()
+
+    except Exception as exc:
+        raise RuntimeError(
+            "Earth Engine authentication succeeded locally, "
+            "but the service account cannot access the "
+            "Earth Engine API. "
+            f"Project: {project}. "
+            f"Service account: "
+            f"{key_data.get('client_email')}. "
+            f"Error: {exc}"
+        ) from exc
+
+    # --------------------------------------------------------
+    # Success
+    # --------------------------------------------------------
+
     print(
-        f"Service account: {key_data['client_email']}"
+        "Earth Engine initialized successfully."
     )
-    print("Earth Engine API access: OK")
-    
+
+    print(
+        f"Earth Engine project: {project}"
+    )
+
+    print(
+        "Service account: "
+        f"{key_data['client_email']}"
+    )
+
+    print(
+        f"Earth Engine API test result: {test_value}"
+    )
+
+    print(
+        "Earth Engine authentication: OK"
+    )
+
+
 # ============================================================
 # SITE GEOMETRY
 # ============================================================
 
 def sites_to_buffers(
-    gdf: gpd.GeoDataFrame
+    gdf: gpd.GeoDataFrame,
 ) -> ee.FeatureCollection:
 
     features = []
 
     for _, row in gdf.iterrows():
 
-        pt = ee.Geometry.Point(
-            [
-                row.geometry.x,
-                row.geometry.y
-            ]
-        )
+        geometry = row.geometry
 
-        features.append(
-            ee.Feature(
-                pt,
+        if geometry is None or geometry.is_empty:
+            continue
+
+        # ----------------------------------------------------
+        # Convert geometry to point
+        # ----------------------------------------------------
+
+        if geometry.geom_type == "Point":
+
+            coordinates = [
+                geometry.x,
+                geometry.y,
+            ]
+
+            point = ee.Geometry.Point(
+                coordinates
+            )
+
+            feature = ee.Feature(
+                point,
                 {
-                    "site_id": row["site_id"],
-                    "site_name": row["site_name"],
+                    "site_id": str(
+                        row["site_id"]
+                    ),
+                    "site_name": str(
+                        row["site_name"]
+                    ),
                 },
             )
+
+            features.append(feature)
+
+        else:
+
+            # For polygon geometries use the geometry
+            # directly.
+
+            geometry_json = (
+                gpd.GeoSeries(
+                    [geometry],
+                    crs=gdf.crs,
+                )
+                .__geo_interface__["features"][0]["geometry"]
+            )
+
+            feature = ee.Feature(
+                ee.Geometry(geometry_json),
+                {
+                    "site_id": str(
+                        row["site_id"]
+                    ),
+                    "site_name": str(
+                        row["site_name"]
+                    ),
+                },
+            )
+
+            features.append(feature)
+
+    if not features:
+        raise RuntimeError(
+            "No valid site geometries were found."
         )
 
-    fc = ee.FeatureCollection(features)
+    fc = ee.FeatureCollection(
+        features
+    )
 
     return fc.map(
-        lambda f: f.buffer(
+        lambda feature: feature.buffer(
             config.BUFFER_METERS
-        ).copyProperties(f)
+        ).copyProperties(feature)
     )
 
 
@@ -175,7 +301,9 @@ def add_ndvi(image):
 
     ndvi = (
         image
-        .normalizedDifference(["B8", "B4"])
+        .normalizedDifference(
+            ["B8", "B4"]
+        )
         .rename("NDVI")
     )
 
@@ -183,58 +311,86 @@ def add_ndvi(image):
 
 
 # ============================================================
-# MONTHLY COMPOSITES
+# SENTINEL-2 COLLECTION
 # ============================================================
 
-def build_monthly_composites(buffers):
+def get_sentinel_collection(
+    geometry,
+):
 
-    sentinel2 = (
+    return (
         ee.ImageCollection(
             "COPERNICUS/S2_SR_HARMONIZED"
         )
-        .filterBounds(buffers)
+        .filterBounds(geometry)
         .filterDate(
             config.START_DATE,
-            config.END_DATE
+            config.END_DATE,
         )
         .filter(
             ee.Filter.lt(
                 "CLOUDY_PIXEL_PERCENTAGE",
-                config.MAX_CLOUD_PCT
+                config.MAX_CLOUD_PCT,
             )
+        )
+    )
+
+
+# ============================================================
+# MONTHLY COMPOSITES
+# ============================================================
+
+def build_monthly_composites(
+    buffers,
+):
+
+    sentinel2 = (
+        get_sentinel_collection(
+            buffers
         )
         .map(add_ndvi)
     )
 
-    start = ee.Date(config.START_DATE)
-    end = ee.Date(config.END_DATE)
+    start = ee.Date(
+        config.START_DATE
+    )
+
+    end = ee.Date(
+        config.END_DATE
+    )
 
     n_months = (
         end
-        .difference(start, "month")
+        .difference(
+            start,
+            "month",
+        )
         .round()
     )
 
     month_offsets = ee.List.sequence(
         0,
-        n_months.subtract(1)
+        n_months.subtract(1),
     )
 
-    def _composite(offset):
+    def composite(offset):
 
         month_start = start.advance(
             offset,
-            "month"
+            "month",
         )
 
         month_end = month_start.advance(
             1,
-            "month"
+            "month",
         )
 
-        monthly = sentinel2.filterDate(
-            month_start,
-            month_end
+        monthly = (
+            sentinel2
+            .filterDate(
+                month_start,
+                month_end,
+            )
         )
 
         return (
@@ -243,16 +399,17 @@ def build_monthly_composites(buffers):
             .median()
             .rename("NDVI")
             .set(
-                {
-                    "date": month_start.format(
-                        "YYYY-MM"
-                    )
-                }
+                "date",
+                month_start.format(
+                    "YYYY-MM"
+                ),
             )
         )
 
     return ee.ImageCollection(
-        month_offsets.map(_composite)
+        month_offsets.map(
+            composite
+        )
     )
 
 
@@ -262,14 +419,18 @@ def build_monthly_composites(buffers):
 
 def extract_ndvi_values(
     buffers,
-    monthly_images
+    monthly_images,
 ):
 
-    def _reduce_one_month(image):
+    def reduce_one_month(image):
 
-        image = ee.Image(image)
+        image = ee.Image(
+            image
+        )
 
-        date_value = image.get("date")
+        date_value = image.get(
+            "date"
+        )
 
         reduced = image.reduceRegions(
             collection=buffers,
@@ -278,16 +439,16 @@ def extract_ndvi_values(
         )
 
         return reduced.map(
-            lambda f: f.set(
+            lambda feature: feature.set(
                 "date",
-                date_value
+                date_value,
             )
         )
 
     flattened = (
         ee.FeatureCollection(
             monthly_images.map(
-                _reduce_one_month
+                reduce_one_month
             )
         )
         .flatten()
@@ -302,44 +463,56 @@ def extract_ndvi_values(
 
     rows = []
 
-    for feat in info["features"]:
+    for feature in info.get(
+        "features",
+        [],
+    ):
 
-        props = feat["properties"]
+        properties = feature.get(
+            "properties",
+            {},
+        )
 
-        ndvi = props.get("mean")
+        ndvi = properties.get(
+            "mean"
+        )
 
         if ndvi is None:
             continue
 
         rows.append(
             {
-                "site_id": props.get(
+                "site_id": properties.get(
                     "site_id"
                 ),
-                "date": props.get(
+                "date": properties.get(
                     "date"
                 ),
                 "NDVI": round(
                     float(ndvi),
-                    4
+                    4,
                 ),
             }
         )
 
-    return pd.DataFrame(rows)
+    return pd.DataFrame(
+        rows
+    )
 
 
 # ============================================================
 # LATEST NDVI IMAGE
 # ============================================================
 
-def export_latest_ndvi_image(buffers):
+def export_latest_ndvi_image(
+    buffers,
+):
 
     """
     Create:
+
     1. Programme-wide latest NDVI image.
-    2. Current NDVI image for every authoritative
-       WILDLANDS site.
+    2. Current NDVI image for every WILDLANDS site.
     """
 
     collection = (
@@ -349,27 +522,31 @@ def export_latest_ndvi_image(buffers):
         .filterBounds(buffers)
         .filterDate(
             config.START_DATE,
-            config.END_DATE
+            config.END_DATE,
         )
         .filter(
             ee.Filter.lt(
                 "CLOUDY_PIXEL_PERCENTAGE",
-                config.MAX_CLOUD_PCT
+                config.MAX_CLOUD_PCT,
             )
         )
         .sort(
             "system:time_start",
-            False
+            False,
         )
     )
 
-    count = collection.size().getInfo()
+    count = (
+        collection
+        .size()
+        .getInfo()
+    )
 
     if not count:
 
         print(
-            "WARNING: No Sentinel-2 scenes matched "
-            "the current filters."
+            "WARNING: No Sentinel-2 scenes "
+            "matched the current filters."
         )
 
         return None
@@ -384,7 +561,9 @@ def export_latest_ndvi_image(buffers):
                 "system:time_start"
             )
         )
-        .format("YYYY-MM-dd")
+        .format(
+            "YYYY-MM-dd"
+        )
         .getInfo()
     )
 
@@ -407,10 +586,14 @@ def export_latest_ndvi_image(buffers):
     ]
 
     # --------------------------------------------------------
-    # PROGRAMME-WIDE NDVI IMAGE
+    # PROGRAMME-WIDE IMAGE
     # --------------------------------------------------------
 
-    region = buffers.geometry().bounds()
+    region = (
+        buffers
+        .geometry()
+        .bounds()
+    )
 
     params = {
         "region": region,
@@ -421,24 +604,28 @@ def export_latest_ndvi_image(buffers):
         "palette": palette,
     }
 
-    url = ndvi.getThumbURL(params)
+    url = ndvi.getThumbURL(
+        params
+    )
 
     output = (
-        config.DATA_DIR /
-        "latest_ndvi.png"
+        config.DATA_DIR
+        / "latest_ndvi.png"
     )
 
     urllib.request.urlretrieve(
         url,
-        output
+        output,
     )
 
-    (
-        config.DATA_DIR /
-        "latest_ndvi_date.txt"
-    ).write_text(
+    date_file = (
+        config.DATA_DIR
+        / "latest_ndvi_date.txt"
+    )
+
+    date_file.write_text(
         str(latest_date),
-        encoding="utf-8"
+        encoding="utf-8",
     )
 
     # --------------------------------------------------------
@@ -468,26 +655,9 @@ def export_latest_ndvi_image(buffers):
     # PREPARE SITE GEOMETRIES
     # --------------------------------------------------------
 
-    for idx, row in site_gdf.iterrows():
-
-        geom = row.geometry
-
-        if geom is None or geom.is_empty:
-            continue
-
-        if geom.geom_type == "Point":
-
-            site_gdf.at[
-                idx,
-                "geometry"
-            ] = geom.buffer(
-                config.BUFFER_METERS /
-                111320.0
-            )
-
     config.NDVI_IMAGES_DIR.mkdir(
         parents=True,
-        exist_ok=True
+        exist_ok=True,
     )
 
     date_rows = []
@@ -502,9 +672,12 @@ def export_latest_ndvi_image(buffers):
             row["site_id"]
         )
 
-        geom = row.geometry
+        geometry = row.geometry
 
-        if geom is None or geom.is_empty:
+        if (
+            geometry is None
+            or geometry.is_empty
+        ):
 
             print(
                 f"{site_id}: EMPTY GEOMETRY — skipped"
@@ -512,17 +685,25 @@ def export_latest_ndvi_image(buffers):
 
             continue
 
-        geom_json = (
+        # ----------------------------------------------------
+        # Convert geometry to GeoJSON
+        # ----------------------------------------------------
+
+        geometry_json = (
             gpd.GeoSeries(
-                [geom],
-                crs="EPSG:4326"
+                [geometry],
+                crs=site_gdf.crs,
             )
             .__geo_interface__["features"][0]["geometry"]
         )
 
         site_geometry = ee.Geometry(
-            geom_json
+            geometry_json
         )
+
+        # ----------------------------------------------------
+        # Site Sentinel-2 collection
+        # ----------------------------------------------------
 
         site_collection = (
             ee.ImageCollection(
@@ -533,17 +714,17 @@ def export_latest_ndvi_image(buffers):
             )
             .filterDate(
                 config.START_DATE,
-                config.END_DATE
+                config.END_DATE,
             )
             .filter(
                 ee.Filter.lt(
                     "CLOUDY_PIXEL_PERCENTAGE",
-                    config.MAX_CLOUD_PCT
+                    config.MAX_CLOUD_PCT,
                 )
             )
             .sort(
                 "system:time_start",
-                False
+                False,
             )
         )
 
@@ -562,6 +743,10 @@ def export_latest_ndvi_image(buffers):
 
             continue
 
+        # ----------------------------------------------------
+        # Latest site image
+        # ----------------------------------------------------
+
         site_latest = ee.Image(
             site_collection.first()
         )
@@ -572,9 +757,15 @@ def export_latest_ndvi_image(buffers):
                     "system:time_start"
                 )
             )
-            .format("YYYY-MM-dd")
+            .format(
+                "YYYY-MM-dd"
+            )
             .getInfo()
         )
+
+        # ----------------------------------------------------
+        # Site NDVI
+        # ----------------------------------------------------
 
         site_ndvi = (
             site_latest
@@ -602,13 +793,13 @@ def export_latest_ndvi_image(buffers):
         )
 
         site_output = (
-            config.NDVI_IMAGES_DIR /
-            f"{site_id}.png"
+            config.NDVI_IMAGES_DIR
+            / f"{site_id}.png"
         )
 
         urllib.request.urlretrieve(
             site_url,
-            site_output
+            site_output,
         )
 
         date_rows.append(
@@ -618,13 +809,13 @@ def export_latest_ndvi_image(buffers):
                 "ndvi_image_date": site_date,
                 "boundary_type": row.get(
                     "boundary_type",
-                    "Estimated monitoring area"
+                    "Estimated monitoring area",
                 ),
             }
         )
 
         print(
-            f"{site_id}: polygon NDVI saved | "
+            f"{site_id}: NDVI saved | "
             f"date={site_date} | "
             f"area={row.get('area_hectares', 'n/a')} ha"
         )
@@ -636,20 +827,20 @@ def export_latest_ndvi_image(buffers):
     pd.DataFrame(
         date_rows
     ).to_csv(
-        config.DATA_DIR /
-        "site_ndvi_dates.csv",
-        index=False
+        config.DATA_DIR
+        / "site_ndvi_dates.csv",
+        index=False,
     )
 
     print(
-        f"Saved latest Sentinel-2 NDVI image "
+        "Saved latest Sentinel-2 NDVI image "
         f"({latest_date}) to {output}"
     )
 
     print(
         f"Saved {len(date_rows)} "
-        f"polygon-specific site NDVI images "
-        f"to {config.NDVI_IMAGES_DIR}"
+        "site NDVI images to "
+        f"{config.NDVI_IMAGES_DIR}"
     )
 
     return latest_date
@@ -659,7 +850,9 @@ def export_latest_ndvi_image(buffers):
 # TREND CALCULATION
 # ============================================================
 
-def calculate_trends(df):
+def calculate_trends(
+    df,
+):
 
     trends = []
 
@@ -669,13 +862,20 @@ def calculate_trends(df):
 
         site_data = (
             site_data
-            .sort_values("date")
+            .sort_values(
+                "date"
+            )
         )
 
         values = (
             site_data["NDVI"]
+            .astype(float)
             .values
         )
+
+        # ----------------------------------------------------
+        # Insufficient data
+        # ----------------------------------------------------
 
         if len(values) < 3:
 
@@ -700,6 +900,10 @@ def calculate_trends(df):
 
             continue
 
+        # ----------------------------------------------------
+        # Month-to-month changes
+        # ----------------------------------------------------
+
         changes = np.diff(
             values
         )
@@ -708,9 +912,12 @@ def calculate_trends(df):
             float(
                 (changes > 0).sum()
             )
-            /
-            len(changes)
+            / len(changes)
         )
+
+        # ----------------------------------------------------
+        # First three vs last three
+        # ----------------------------------------------------
 
         first_avg = (
             values[:3].mean()
@@ -720,16 +927,26 @@ def calculate_trends(df):
             values[-3:].mean()
         )
 
-        change_percent = (
-            (
-                (last_avg - first_avg)
-                /
-                first_avg
+        if first_avg > 0:
+
+            change_percent = (
+                (
+                    (
+                        last_avg
+                        - first_avg
+                    )
+                    / first_avg
+                )
+                * 100
             )
-            * 100
-            if first_avg > 0
-            else 0
-        )
+
+        else:
+
+            change_percent = 0
+
+        # ----------------------------------------------------
+        # Classification
+        # ----------------------------------------------------
 
         if improvement_rate >= 0.6:
 
@@ -749,19 +966,19 @@ def calculate_trends(df):
                 "trend": trend,
                 "improvement_rate": round(
                     improvement_rate * 100,
-                    1
+                    1,
                 ),
                 "change_percent": round(
                     change_percent,
-                    1
+                    1,
                 ),
                 "latest_ndvi": round(
                     float(values[-1]),
-                    4
+                    4,
                 ),
                 "avg_ndvi": round(
                     float(values.mean()),
-                    4
+                    4,
                 ),
             }
         )
@@ -789,19 +1006,34 @@ def run():
 
     gdf = ensure_sites()
 
+    if gdf.empty:
+
+        raise RuntimeError(
+            "The WILDLANDS site registry is empty."
+        )
+
     buffers = sites_to_buffers(
         gdf
     )
 
+    site_count = (
+        buffers
+        .size()
+        .getInfo()
+    )
+
     print(
-        f"Loaded "
-        f"{buffers.size().getInfo()} "
-        f"sites with buffers"
+        f"Loaded {site_count} "
+        "sites with buffers"
     )
 
     # --------------------------------------------------------
     # MONTHLY NDVI
     # --------------------------------------------------------
+
+    print(
+        "--- Building monthly NDVI composites ---"
+    )
 
     monthly_images = (
         build_monthly_composites(
@@ -809,30 +1041,51 @@ def run():
         )
     )
 
-    print(
-        f"Generated "
-        f"{monthly_images.size().getInfo()} "
-        f"monthly composite periods"
+    monthly_count = (
+        monthly_images
+        .size()
+        .getInfo()
     )
+
+    print(
+        f"Generated {monthly_count} "
+        "monthly composite periods"
+    )
+
+    # --------------------------------------------------------
+    # EXTRACT NDVI
+    # --------------------------------------------------------
 
     ndvi_df = extract_ndvi_values(
         buffers,
-        monthly_images
+        monthly_images,
     )
+
+    if ndvi_df.empty:
+
+        raise RuntimeError(
+            "No NDVI records were returned "
+            "from Earth Engine."
+        )
 
     ndvi_df.to_csv(
         config.GEE_NDVI_CSV,
-        index=False
+        index=False,
     )
 
     print(
-        f"Saved {len(ndvi_df)} records to "
+        f"Saved {len(ndvi_df)} "
+        "NDVI records to "
         f"{config.GEE_NDVI_CSV}"
     )
 
     # --------------------------------------------------------
     # LATEST IMAGERY
     # --------------------------------------------------------
+
+    print(
+        "--- Exporting latest NDVI imagery ---"
+    )
 
     export_latest_ndvi_image(
         buffers
@@ -842,13 +1095,17 @@ def run():
     # TRENDS
     # --------------------------------------------------------
 
+    print(
+        "--- Calculating NDVI trends ---"
+    )
+
     trend_df = calculate_trends(
         ndvi_df
     )
 
     trend_df.to_csv(
         config.GEE_TRENDS_CSV,
-        index=False
+        index=False,
     )
 
     print(
@@ -857,8 +1114,20 @@ def run():
         f"{config.GEE_TRENDS_CSV}"
     )
 
-    return ndvi_df, trend_df
+    print(
+        "--- GEE STAGE COMPLETE ---"
+    )
 
+    return (
+        ndvi_df,
+        trend_df,
+    )
+
+
+# ============================================================
+# ENTRY POINT
+# ============================================================
 
 if __name__ == "__main__":
+
     run()

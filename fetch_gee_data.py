@@ -766,18 +766,18 @@ def export_latest_ndvi_image(
         # ----------------------------------------------------
         # Site NDVI
         # ----------------------------------------------------
-
         site_ndvi = (
             site_latest
             .normalizedDifference(
                 ["B8", "B4"]
             )
             .rename("NDVI")
-            .clip(site_geometry)
         )
 
+        # Use the site geometry only as the thumbnail region.
+        # Do NOT clip the image before getThumbURL().
         site_params = {
-            "region": site_geometry.bounds(),
+            "region": site_geometry.bounds(1),
             "dimensions": 900,
             "format": "png",
             "min": -0.2,
@@ -785,12 +785,7 @@ def export_latest_ndvi_image(
             "palette": palette,
         }
 
-        site_url = (
-            site_ndvi
-            .getThumbURL(
-                site_params
-            )
-        )
+        site_url = site_ndvi.getThumbURL(site_params)
 
         site_output = (
             config.NDVI_IMAGES_DIR

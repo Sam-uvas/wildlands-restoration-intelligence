@@ -29,40 +29,44 @@ from sites_setup import ensure_sites
 def init_ee():
     """
     Initialize Google Earth Engine using the service-account
-    credentials supplied by GitHub Actions.
+    credentials created by GitHub Actions.
     """
 
     credentials_path = os.environ.get(
         "GOOGLE_APPLICATION_CREDENTIALS",
-        "/tmp/gee_key.json"
+        "/tmp/gee_key.json",
     )
 
     project = os.environ.get(
         "GEE_PROJECT",
-        getattr(config, "GEE_PROJECT", None)
+        getattr(config, "GEE_PROJECT", None),
     )
 
     if not project:
         raise RuntimeError(
             "GEE_PROJECT is not configured. "
-            "Set the GitHub Actions secret GEE_PROJECT."
+            "Set the GEE_PROJECT GitHub Actions secret."
         )
 
-    if not os.path.exists(credentials_path):
+    if not os.path.isfile(credentials_path):
         raise RuntimeError(
-            f"Earth Engine credentials file not found: "
+            "Earth Engine credentials file not found: "
             f"{credentials_path}"
         )
 
-    # Validate that the credentials file contains actual JSON.
+    # --------------------------------------------------------
+    # Validate service-account JSON
+    # --------------------------------------------------------
+
     try:
         with open(credentials_path, "r", encoding="utf-8") as f:
             key_data = json.load(f)
+
     except json.JSONDecodeError as exc:
         raise RuntimeError(
             "GEE_SERVICE_ACCOUNT_KEY is not valid JSON. "
-            "The GitHub secret must contain the COMPLETE contents "
-            "of the Google service-account JSON file."
+            "The GitHub secret must contain the complete "
+            "Google service-account JSON."
         ) from exc
 
     required_fields = [
@@ -73,8 +77,9 @@ def init_ee():
     ]
 
     missing = [
-        field for field in required_fields
-        if field not in key_data
+        field
+        for field in required_fields
+        if not key_data.get(field)
     ]
 
     if missing:
@@ -83,15 +88,27 @@ def init_ee():
             f"Missing fields: {', '.join(missing)}"
         )
 
+    if key_data.get("type") != "service_account":
+        raise RuntimeError(
+            "Invalid Google credentials. "
+            'The JSON "type" must be "service_account".'
+        )
+
+    # --------------------------------------------------------
+    # Initialize Earth Engine
+    # --------------------------------------------------------
+
     try:
         from google.oauth2 import service_account
 
-        credentials = service_account.Credentials.from_service_account_file(
-            credentials_path,
-            scopes=[
-                "https://www.googleapis.com/auth/earthengine",
-                "https://www.googleapis.com/auth/cloud-platform",
-            ],
+        credentials = (
+            service_account.Credentials.from_service_account_file(
+                credentials_path,
+                scopes=[
+                    "https://www.googleapis.com/auth/earthengine",
+                    "https://www.googleapis.com/auth/cloud-platform",
+                ],
+            )
         )
 
         ee.Initialize(
@@ -99,20 +116,20 @@ def init_ee():
             project=project,
         )
 
-        # Force an actual API request to verify authentication.
+        # Force a real Earth Engine API request.
         ee.Number(1).getInfo()
 
     except Exception as exc:
         raise RuntimeError(
-            f"Earth Engine authentication/initialization failed: {exc}"
+            "Earth Engine authentication/initialization failed: "
+            f"{exc}"
         ) from exc
 
-    print(f"Earth Engine initialized successfully.")
+    print("Earth Engine initialized successfully.")
     print(f"Earth Engine project: {project}")
     print(f"Service account: {key_data['client_email']}")
     print("Earth Engine API access: OK")
-
-
+    
 # ============================================================
 # SITE GEOMETRY
 # ============================================================

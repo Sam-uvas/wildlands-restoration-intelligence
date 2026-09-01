@@ -1,18 +1,17 @@
 """
 STAGE 1 — GEE NDVI extraction + latest Sentinel-2 NDVI imagery.
 
-GitHub Actions compatible:
+GitHub Actions compatible.
+
 - Uses a Google Earth Engine service account.
 - Does NOT use ee.Authenticate().
 - Does NOT require an interactive login.
-- Uses GOOGLE_APPLICATION_CREDENTIALS /
-  GOOGLE_APPLICATION_CREDENTIALS as provided by GitHub Actions.
+- Uses GOOGLE_APPLICATION_CREDENTIALS.
 - Produces monthly site-level NDVI.
 - Produces programme-wide latest NDVI PNG.
 - Produces current NDVI PNG for each WILDLANDS site.
 """
 
-from datetime import date, timedelta
 import json
 import os
 import urllib.request
@@ -34,12 +33,6 @@ def init_ee():
     """
     Initialize Google Earth Engine non-interactively using
     a Google service-account JSON key.
-
-    IMPORTANT:
-    This function deliberately does NOT call:
-        ee.Authenticate()
-
-    GitHub Actions cannot perform interactive authentication.
     """
 
     credentials_path = os.environ.get(
@@ -49,10 +42,6 @@ def init_ee():
     project = os.environ.get(
         "GEE_PROJECT"
     )
-
-    # --------------------------------------------------------
-    # Validate environment
-    # --------------------------------------------------------
 
     if not credentials_path:
         raise RuntimeError(
@@ -89,7 +78,7 @@ def init_ee():
         ) from exc
 
     # --------------------------------------------------------
-    # Validate required fields
+    # Validate credentials
     # --------------------------------------------------------
 
     required_fields = [
@@ -119,14 +108,15 @@ def init_ee():
         )
 
     # --------------------------------------------------------
-    # Authenticate with Google service-account credentials
+    # Create credentials
     # --------------------------------------------------------
 
     try:
         from google.oauth2 import service_account
 
         credentials = (
-            service_account.Credentials.from_service_account_file(
+            service_account.Credentials
+            .from_service_account_file(
                 credentials_path,
                 scopes=[
                     "https://www.googleapis.com/auth/earthengine",
@@ -155,13 +145,12 @@ def init_ee():
         raise RuntimeError(
             "Earth Engine initialization failed. "
             f"Project: {project}. "
-            f"Service account: "
-            f"{key_data.get('client_email')}. "
+            f"Service account: {key_data.get('client_email')}. "
             f"Error: {exc}"
         ) from exc
 
     # --------------------------------------------------------
-    # Force an actual Earth Engine API request
+    # Force actual API request
     # --------------------------------------------------------
 
     try:
@@ -173,35 +162,20 @@ def init_ee():
             "but the service account cannot access the "
             "Earth Engine API. "
             f"Project: {project}. "
-            f"Service account: "
-            f"{key_data.get('client_email')}. "
+            f"Service account: {key_data.get('client_email')}. "
             f"Error: {exc}"
         ) from exc
 
-    # --------------------------------------------------------
-    # Success
-    # --------------------------------------------------------
-
-    print(
-        "Earth Engine initialized successfully."
-    )
-
-    print(
-        f"Earth Engine project: {project}"
-    )
-
+    print("Earth Engine initialized successfully.")
+    print(f"Earth Engine project: {project}")
     print(
         "Service account: "
         f"{key_data['client_email']}"
     )
-
     print(
         f"Earth Engine API test result: {test_value}"
     )
-
-    print(
-        "Earth Engine authentication: OK"
-    )
+    print("Earth Engine authentication: OK")
 
 
 # ============================================================
@@ -222,7 +196,7 @@ def sites_to_buffers(
             continue
 
         # ----------------------------------------------------
-        # Convert geometry to point
+        # Point geometry
         # ----------------------------------------------------
 
         if geometry.geom_type == "Point":
@@ -252,8 +226,9 @@ def sites_to_buffers(
 
         else:
 
-            # For polygon geometries use the geometry
-            # directly.
+            # ------------------------------------------------
+            # Polygon / MultiPolygon geometry
+            # ------------------------------------------------
 
             geometry_json = (
                 gpd.GeoSeries(
@@ -264,7 +239,9 @@ def sites_to_buffers(
             )
 
             feature = ee.Feature(
-                ee.Geometry(geometry_json),
+                ee.Geometry(
+                    geometry_json
+                ),
                 {
                     "site_id": str(
                         row["site_id"]
@@ -322,7 +299,9 @@ def get_sentinel_collection(
         ee.ImageCollection(
             "COPERNICUS/S2_SR_HARMONIZED"
         )
-        .filterBounds(geometry)
+        .filterBounds(
+            geometry
+        )
         .filterDate(
             config.START_DATE,
             config.END_DATE,
@@ -501,6 +480,69 @@ def extract_ndvi_values(
 
 
 # ============================================================
+# THUMBNAIL HELPERS
+# ============================================================
+
+def geometry_to_thumbnail_region(
+    geometry,
+):
+    """
+    Create a stable GeoJSON region for getThumbURL().
+
+    The important part is that the Earth Engine geometry is
+    explicitly constructed with a non-zero error margin.
+
+    This avoids the:
+        Image.clipToBoundsAndScale:
+        Can't apply reprojection with edge subdivision
+        with a zero error margin.
+    error encountered by thumbnail generation.
+    """
+
+    return geometry.getInfo()
+
+
+def create_ndvi_thumbnail(
+    ndvi_image,
+    geometry,
+    dimensions,
+):
+    """
+    Generate an NDVI thumbnail using an explicit geometry,
+    CRS and scale.
+
+    The geometry is supplied as GeoJSON rather than relying on
+    Earth Engine's internal bounds/reprojection operation.
+    """
+
+    region = geometry_to_thumbnail_region(
+        geometry
+    )
+
+    params = {
+        "region": region,
+        "dimensions": dimensions,
+        "format": "png",
+        "min": -0.2,
+        "max": 0.8,
+        "palette": [
+            "#8c510a",
+            "#d8b365",
+            "#f6e8c3",
+            "#f5f5f5",
+            "#c7eae5",
+            "#5ab4ac",
+            "#01665e",
+        ],
+        "crs": "EPSG:4326",
+    }
+
+    return ndvi_image.getThumbURL(
+        params
+    )
+
+
+# ============================================================
 # LATEST NDVI IMAGE
 # ============================================================
 
@@ -519,7 +561,9 @@ def export_latest_ndvi_image(
         ee.ImageCollection(
             "COPERNICUS/S2_SR_HARMONIZED"
         )
-        .filterBounds(buffers)
+        .filterBounds(
+            buffers
+        )
         .filterDate(
             config.START_DATE,
             config.END_DATE,
@@ -575,21 +619,12 @@ def export_latest_ndvi_image(
         .rename("NDVI")
     )
 
-    palette = [
-        "#8c510a",
-        "#d8b365",
-        "#f6e8c3",
-        "#f5f5f5",
-        "#c7eae5",
-        "#5ab4ac",
-        "#01665e",
-    ]
-
     # --------------------------------------------------------
     # PROGRAMME-WIDE IMAGE
     # --------------------------------------------------------
 
     try:
+<<<<<<< HEAD
         # Get bounds using getBounds which handles geometry properly
         bounds = buffers.geometry().getBounds()
         
@@ -616,15 +651,84 @@ def export_latest_ndvi_image(
             output,
         )
 
+=======
+
+        # Instead of:
+        #
+        # buffers.geometry().bounds()
+        #
+        # use the actual geometry and convert it to a
+        # concrete GeoJSON object.
+
+        programme_geometry = (
+            buffers
+            .geometry()
+            .dissolve(
+                maxError=100
+            )
+        )
+
+        programme_region = (
+            programme_geometry
+            .getInfo()
+        )
+
+        params = {
+            "region": programme_region,
+            "dimensions": 1600,
+            "format": "png",
+            "min": -0.2,
+            "max": 0.8,
+            "palette": [
+                "#8c510a",
+                "#d8b365",
+                "#f6e8c3",
+                "#f5f5f5",
+                "#c7eae5",
+                "#5ab4ac",
+                "#01665e",
+            ],
+            "crs": "EPSG:4326",
+        }
+
+        url = ndvi.getThumbURL(
+            params
+        )
+
+        output = (
+            config.DATA_DIR
+            / "latest_ndvi.png"
+        )
+
+        urllib.request.urlretrieve(
+            url,
+            output,
+        )
+
+>>>>>>> e3a56fa (Fix GEE NDVI thumbnail generation)
         print(
             "Saved latest Sentinel-2 NDVI image "
             f"({latest_date}) to {output}"
         )
 
+<<<<<<< HEAD
     except Exception as e:
         print(
             f"WARNING: Could not generate programme-wide NDVI image: {e}"
         )
+=======
+    except Exception as exc:
+
+        print(
+            "WARNING: Could not generate "
+            "programme-wide NDVI image: "
+            f"{exc}"
+        )
+
+    # --------------------------------------------------------
+    # SAVE IMAGE DATE
+    # --------------------------------------------------------
+>>>>>>> e3a56fa (Fix GEE NDVI thumbnail generation)
 
     date_file = (
         config.DATA_DIR
@@ -660,7 +764,7 @@ def export_latest_ndvi_image(
         )
 
     # --------------------------------------------------------
-    # PREPARE SITE GEOMETRIES
+    # PREPARE OUTPUT DIRECTORY
     # --------------------------------------------------------
 
     config.NDVI_IMAGES_DIR.mkdir(
@@ -688,13 +792,14 @@ def export_latest_ndvi_image(
         ):
 
             print(
-                f"{site_id}: EMPTY GEOMETRY — skipped"
+                f"{site_id}: "
+                "EMPTY GEOMETRY — skipped"
             )
 
             continue
 
         # ----------------------------------------------------
-        # Convert geometry to GeoJSON
+        # Convert geometry to Earth Engine geometry
         # ----------------------------------------------------
 
         geometry_json = (
@@ -774,6 +879,7 @@ def export_latest_ndvi_image(
         # ----------------------------------------------------
         # Site NDVI
         # ----------------------------------------------------
+
         site_ndvi = (
             site_latest
             .normalizedDifference(
@@ -782,6 +888,7 @@ def export_latest_ndvi_image(
             .rename("NDVI")
         )
 
+<<<<<<< HEAD
         # Use getBounds instead of bounds() to avoid reprojection errors
         try:
             site_bounds = site_geometry.getBounds()
@@ -797,6 +904,56 @@ def export_latest_ndvi_image(
 
             site_url = site_ndvi.getThumbURL(site_params)
 
+=======
+        # ----------------------------------------------------
+        # Generate site thumbnail
+        # ----------------------------------------------------
+
+        try:
+
+            # IMPORTANT:
+            #
+            # Do NOT use:
+            #
+            # site_geometry.bounds(1)
+            #
+            # or:
+            #
+            # site_geometry.bounds(0)
+            #
+            # Instead, get the actual geometry as GeoJSON.
+
+            site_region = (
+                site_geometry
+                .getInfo()
+            )
+
+            site_params = {
+                "region": site_region,
+                "dimensions": 900,
+                "format": "png",
+                "min": -0.2,
+                "max": 0.8,
+                "palette": [
+                    "#8c510a",
+                    "#d8b365",
+                    "#f6e8c3",
+                    "#f5f5f5",
+                    "#c7eae5",
+                    "#5ab4ac",
+                    "#01665e",
+                ],
+                "crs": "EPSG:4326",
+            }
+
+            site_url = (
+                site_ndvi
+                .getThumbURL(
+                    site_params
+                )
+            )
+
+>>>>>>> e3a56fa (Fix GEE NDVI thumbnail generation)
             site_output = (
                 config.NDVI_IMAGES_DIR
                 / f"{site_id}.png"
@@ -813,10 +970,21 @@ def export_latest_ndvi_image(
                 f"area={row.get('area_hectares', 'n/a')} ha"
             )
 
+<<<<<<< HEAD
         except Exception as e:
             print(
                 f"{site_id}: WARNING - Could not generate NDVI image: {e}"
             )
+=======
+        except Exception as exc:
+
+            print(
+                f"{site_id}: WARNING - "
+                "Could not generate NDVI image: "
+                f"{exc}"
+            )
+
+>>>>>>> e3a56fa (Fix GEE NDVI thumbnail generation)
             continue
 
         date_rows.append(
@@ -1135,5 +1303,9 @@ def run():
 # ============================================================
 
 if __name__ == "__main__":
+<<<<<<< HEAD
 
     run()
+=======
+    run()
+>>>>>>> e3a56fa (Fix GEE NDVI thumbnail generation)

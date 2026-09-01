@@ -2,15 +2,9 @@ name: restoration-pipeline
 
 on:
   schedule:
-    - cron: "0 3 * * 1" # Every Monday at 03:00 UTC
-  workflow_dispatch: {} # Allows manual "Run workflow"
+    - cron: "0 3 * * 1"
+  workflow_dispatch:
 
-# Prevent two pipeline runs from modifying main at the same time.
-concurrency:
-  group: restoration-pipeline
-  cancel-in-progress: false
-
-# Required so the workflow can commit and push updated files.
 permissions:
   contents: write
 
@@ -44,96 +38,62 @@ jobs:
           pip install -r requirements.txt
 
       # ------------------------------------------------------------
-      # 4. Create Earth Engine service-account key
-      # ------------------------------------------------------------
-      # The secret contains the complete JSON service-account key.
-      # We write it using Python so multiline JSON/private-key
-      # formatting is preserved correctly.
-      # ------------------------------------------------------------
-      - name: Prepare Earth Engine credentials
-        env:
-          GEE_SERVICE_ACCOUNT_KEY: ${{ secrets.GEE_SERVICE_ACCOUNT_KEY }}
-        run: |
-          python - <<'PY'
-          import json
-          import os
-          from pathlib import Path
-
-          key = os.environ.get("GEE_SERVICE_ACCOUNT_KEY")
-
-          if not key:
-              raise RuntimeError(
-                  "GEE_SERVICE_ACCOUNT_KEY is missing or empty."
-              )
-
-          key_path = Path("/tmp/gee_key.json")
-          key_path.write_text(key, encoding="utf-8")
-
-          # Validate the JSON structure without exposing secrets.
-          with key_path.open("r", encoding="utf-8") as f:
-              data = json.load(f)
-
-          required_fields = [
-              "type",
-              "project_id",
-              "private_key",
-              "client_email",
-          ]
-
-          missing = [
-              field for field in required_fields
-              if not data.get(field)
-          ]
-
-          if missing:
-              raise RuntimeError(
-                  f"Earth Engine service-account JSON is missing: {missing}"
-              )
-
-          if data.get("type") != "service_account":
-              raise RuntimeError(
-                  "GEE_SERVICE_ACCOUNT_KEY is not a service-account JSON key."
-              )
-
-          print("Earth Engine credential JSON: VALID")
-          print("Service account type: VALID")
-          print("Project ID: PRESENT")
-          print("Client email: PRESENT")
-          print("Private key: PRESENT")
-          PY
-
-      # ------------------------------------------------------------
-      # 5. Authenticate / test Earth Engine
+      # 4. Authenticate to Google Earth Engine
       # ------------------------------------------------------------
       - name: Authenticate to Earth Engine
         env:
+          GEE_SERVICE_ACCOUNT_KEY: ${{ secrets.GEE_SERVICE_ACCOUNT_KEY }}
           GEE_PROJECT: ${{ secrets.GEE_PROJECT }}
-          GOOGLE_APPLICATION_CREDENTIALS: /tmp/gee_key.json
         run: |
-          python - <<'PY'
+          echo "Checking Earth Engine configuration..."
+
+          if [ -z "$GEE_SERVICE_ACCOUNT_KEY" ]; then
+            echo "ERROR: GEE_SERVICE_ACCOUNT_KEY is empty or unavailable."
+            exit 1
+          fi
+
+          if [ -z "$GEE_PROJECT" ]; then
+            echo "ERROR: GEE_PROJECT is empty or unavailable."
+            exit 1
+          fi
+
+          printf '%s' "$GEE_SERVICE_ACCOUNT_KEY" > /tmp/gee_key.json
+
+          echo "Validating service account JSON..."
+
+          python3 - <<'PY'
+          import json
           import os
           import ee
 
-          project = os.environ.get("GEE_PROJECT")
+          key_file = "/tmp/gee_key.json"
+          project = os.environ["GEE_PROJECT"]
 
-          if not project:
-              raise RuntimeError("GEE_PROJECT secret is missing or empty.")
+          with open(key_file, "r", encoding="utf-8") as f:
+              key_data = json.load(f)
 
-          credentials_file = os.environ.get(
-              "GOOGLE_APPLICATION_CREDENTIALS"
-          )
+          client_email = key_data.get("client_email")
+
+          if not client_email:
+              raise RuntimeError(
+                  "The service account JSON does not contain client_email."
+              )
+
+          print("Service account JSON: OK")
+          print(f"Service account: {client_email}")
+          print(f"GEE project: {project}")
 
           credentials = ee.ServiceAccountCredentials(
-              None,
-              credentials_file
+              client_email,
+              key_file
           )
 
           ee.Initialize(
-              credentials,
+              credentials=credentials,
               project=project
           )
 
-          # Lightweight request to verify that authentication actually works.
+          # Lightweight API request to confirm access.
           ee.Number(1).getInfo()
 
           print("GEE authentication: OK")
@@ -141,9 +101,9 @@ jobs:
           PY
 
       # ------------------------------------------------------------
-      # 6. Run restoration pipeline
+      # 5. Run restoration pipeline
       # ------------------------------------------------------------
-      - name: Run pipeline
+      - name: Run restoration pipeline
         env:
           GEE_PROJECT: ${{ secrets.GEE_PROJECT }}
           GOOGLE_APPLICATION_CREDENTIALS: /tmp/gee_key.json
@@ -151,7 +111,7 @@ jobs:
           python3 run_pipeline.py
 
       # ------------------------------------------------------------
-      # 7. Show generated data status
+      # 6. Verify generated outputs
       # ------------------------------------------------------------
       - name: Verify generated outputs
         run: |
@@ -167,24 +127,22 @@ jobs:
             data/gee_ndvi_data.csv \
             data/gee_trends.csv
 
-        # ------------------------------------------------------------
-        # 8. Commit and push updated data
-        # ------------------------------------------------------------
-        - name: Commit updated dashboard data
-          run: |
-            git config user.name "restoration-bot"
-            git config user.email "bot@users.noreply.github.com"
+      # ------------------------------------------------------------
+      # 7. Commit and push updated data
+      # ------------------------------------------------------------
+      - name: Commit updated dashboard data
+        run: |
+          git config user.name "restoration-bot"
+          git config user.email "bot@users.noreply.github.com"
 
-            # Make sure we are up to date before committing.
-            git pull --rebase origin main
+          git add \
+            dashboard/data.json \
+            data/gee_ndvi_data.csv \
+            data/gee_trends.csv
 
-            git add dashboard/data.json \
-              data/gee_ndvi_data.csv \
-              data/gee_trends.csv
-
-            if git diff --cached --quiet; then
-              echo "No data changes detected."
-            else
-              git commit -m "Automated data refresh"
-              git push origin main
-            fi
+          if git diff --cached --quiet; then
+            echo "No data changes detected."
+          else
+            git commit -m "Automated data refresh"
+            git push origin main
+          fi

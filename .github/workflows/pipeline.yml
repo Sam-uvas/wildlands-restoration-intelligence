@@ -3,6 +3,7 @@ name: restoration-pipeline
 on:
   schedule:
     - cron: "0 3 * * 1"
+
   workflow_dispatch:
 
 permissions:
@@ -10,9 +11,11 @@ permissions:
 
 jobs:
   fetch-and-merge:
+
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
@@ -50,18 +53,15 @@ jobs:
         env:
           GEE_SERVICE_ACCOUNT_KEY: ${{ secrets.GEE_SERVICE_ACCOUNT_KEY }}
         run: |
+          printf '%s' "$GEE_SERVICE_ACCOUNT_KEY" > /tmp/gee_key.json
+
           python - <<'PY'
           import json
-          import os
 
-          key = os.environ["GEE_SERVICE_ACCOUNT_KEY"]
+          path = "/tmp/gee_key.json"
 
-          try:
-              data = json.loads(key)
-          except json.JSONDecodeError as e:
-              raise SystemExit(
-                  f"Invalid GEE_SERVICE_ACCOUNT_KEY JSON: {e}"
-              )
+          with open(path, "r", encoding="utf-8") as f:
+              data = json.load(f)
 
           required = [
               "type",
@@ -70,7 +70,10 @@ jobs:
               "client_email"
           ]
 
-          missing = [field for field in required if field not in data]
+          missing = [
+              key for key in required
+              if key not in data
+          ]
 
           if missing:
               raise SystemExit(
@@ -78,16 +81,14 @@ jobs:
                   + ", ".join(missing)
               )
 
-          with open("/tmp/gee_key.json", "w") as f:
-              json.dump(data, f)
-
           print("Earth Engine service-account JSON: OK")
           print("Service account JSON structure: OK")
           PY
 
-      - name: Authenticate to Earth Engine
+      - name: Test Earth Engine authentication
         env:
           GEE_PROJECT: ${{ secrets.GEE_PROJECT }}
+          GOOGLE_APPLICATION_CREDENTIALS: /tmp/gee_key.json
         run: |
           python - <<'PY'
           import os
@@ -95,18 +96,25 @@ jobs:
           from google.oauth2 import service_account
 
           project = os.environ["GEE_PROJECT"]
+          credentials_path = os.environ[
+              "GOOGLE_APPLICATION_CREDENTIALS"
+          ]
 
-          credentials = service_account.Credentials.from_service_account_file(
-              "/tmp/gee_key.json",
-              scopes=[
-                  "https://www.googleapis.com/auth/earthengine",
-                  "https://www.googleapis.com/auth/cloud-platform"
-              ]
+          credentials = (
+              service_account
+              .Credentials
+              .from_service_account_file(
+                  credentials_path,
+                  scopes=[
+                      "https://www.googleapis.com/auth/earthengine",
+                      "https://www.googleapis.com/auth/cloud-platform",
+                  ],
+              )
           )
 
           ee.Initialize(
               credentials=credentials,
-              project=project
+              project=project,
           )
 
           ee.Number(1).getInfo()

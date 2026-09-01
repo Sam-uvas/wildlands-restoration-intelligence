@@ -13,7 +13,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
@@ -51,13 +50,18 @@ jobs:
         env:
           GEE_SERVICE_ACCOUNT_KEY: ${{ secrets.GEE_SERVICE_ACCOUNT_KEY }}
         run: |
-          printf '%s' "$GEE_SERVICE_ACCOUNT_KEY" > /tmp/gee_key.json
-
           python - <<'PY'
           import json
+          import os
 
-          with open("/tmp/gee_key.json", "r") as f:
-              data = json.load(f)
+          key = os.environ["GEE_SERVICE_ACCOUNT_KEY"]
+
+          try:
+              data = json.loads(key)
+          except json.JSONDecodeError as e:
+              raise SystemExit(
+                  f"Invalid GEE_SERVICE_ACCOUNT_KEY JSON: {e}"
+              )
 
           required = [
               "type",
@@ -66,13 +70,16 @@ jobs:
               "client_email"
           ]
 
-          missing = [x for x in required if x not in data]
+          missing = [field for field in required if field not in data]
 
           if missing:
               raise SystemExit(
                   "Invalid service account JSON. Missing: "
                   + ", ".join(missing)
               )
+
+          with open("/tmp/gee_key.json", "w") as f:
+              json.dump(data, f)
 
           print("Earth Engine service-account JSON: OK")
           print("Service account JSON structure: OK")
@@ -83,10 +90,11 @@ jobs:
           GEE_PROJECT: ${{ secrets.GEE_PROJECT }}
         run: |
           python - <<'PY'
+          import os
           import ee
           from google.oauth2 import service_account
 
-          project = "${GEE_PROJECT}"
+          project = os.environ["GEE_PROJECT"]
 
           credentials = service_account.Credentials.from_service_account_file(
               "/tmp/gee_key.json",
@@ -143,4 +151,4 @@ jobs:
           else
             git commit -m "Automated data refresh"
             git push origin HEAD:main
-
+          fi

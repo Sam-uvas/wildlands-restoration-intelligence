@@ -143,4 +143,4 @@ jobs:
           else
             git commit -m "Automated data refresh"
             git push origin HEAD:main
-          fi
+

@@ -167,29 +167,24 @@ jobs:
             data/gee_ndvi_data.csv \
             data/gee_trends.csv
 
-      # ------------------------------------------------------------
-      # 8. Commit and push updated data
-      # ------------------------------------------------------------
-      - name: Commit updated dashboard data
-        run: |
-          git config user.name "restoration-bot"
-          git config user.email "bot@users.noreply.github.com"
+        # ------------------------------------------------------------
+        # 8. Commit and push updated data
+        # ------------------------------------------------------------
+        - name: Commit updated dashboard data
+          run: |
+            git config user.name "restoration-bot"
+            git config user.email "bot@users.noreply.github.com"
 
-          # Make sure we are up to date before committing.
-          git pull --rebase origin main
+            # Make sure we are up to date before committing.
+            git pull --rebase origin main
 
-          git add \
-            dashboard/data.json \
-            data/gee_ndvi_data.csv \
-            data/gee_trends.csv
+            git add dashboard/data.json \
+              data/gee_ndvi_data.csv \
+              data/gee_trends.csv
 
-          if git diff --cached --quiet; then
-            echo "No data changes detected."
-          else
-            git commit -m "Automated data refresh"
-            git push origin main
-<<<<<<< HEAD
-          fi
-=======
-          fi
->>>>>>> 5613d90 (Fix Earth Engine authentication)
+            if git diff --cached --quiet; then
+              echo "No data changes detected."
+            else
+              git commit -m "Automated data refresh"
+              git push origin main
+            fi

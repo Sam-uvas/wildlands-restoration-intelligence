@@ -22,35 +22,33 @@ import config
 from sites_setup import ensure_sites
 
 
-# ============================================================
-# EARTH ENGINE AUTHENTICATION
-# ============================================================
-
 def init_ee():
     """
-    Initialize Google Earth Engine using the service-account
-    credentials created by GitHub Actions.
+    Initialize Google Earth Engine non-interactively using
+    the GitHub Actions service-account credentials.
     """
 
     credentials_path = os.environ.get(
-        "GOOGLE_APPLICATION_CREDENTIALS",
-        "/tmp/gee_key.json",
+        "GOOGLE_APPLICATION_CREDENTIALS"
     )
 
     project = os.environ.get(
-        "GEE_PROJECT",
-        getattr(config, "GEE_PROJECT", None),
+        "GEE_PROJECT"
     )
+
+    if not credentials_path:
+        raise RuntimeError(
+            "GOOGLE_APPLICATION_CREDENTIALS is not set."
+        )
 
     if not project:
         raise RuntimeError(
-            "GEE_PROJECT is not configured. "
-            "Set the GEE_PROJECT GitHub Actions secret."
+            "GEE_PROJECT is not set."
         )
 
     if not os.path.isfile(credentials_path):
         raise RuntimeError(
-            "Earth Engine credentials file not found: "
+            f"Earth Engine credentials file does not exist: "
             f"{credentials_path}"
         )
 
@@ -59,14 +57,17 @@ def init_ee():
     # --------------------------------------------------------
 
     try:
-        with open(credentials_path, "r", encoding="utf-8") as f:
+        with open(
+            credentials_path,
+            "r",
+            encoding="utf-8"
+        ) as f:
             key_data = json.load(f)
 
-    except json.JSONDecodeError as exc:
+    except Exception as exc:
         raise RuntimeError(
-            "GEE_SERVICE_ACCOUNT_KEY is not valid JSON. "
-            "The GitHub secret must contain the complete "
-            "Google service-account JSON."
+            "Unable to read the Earth Engine service-account "
+            "JSON credentials."
         ) from exc
 
     required_fields = [
@@ -84,18 +85,12 @@ def init_ee():
 
     if missing:
         raise RuntimeError(
-            "Invalid Google service-account JSON. "
+            "Invalid Earth Engine service-account JSON. "
             f"Missing fields: {', '.join(missing)}"
         )
 
-    if key_data.get("type") != "service_account":
-        raise RuntimeError(
-            "Invalid Google credentials. "
-            'The JSON "type" must be "service_account".'
-        )
-
     # --------------------------------------------------------
-    # Initialize Earth Engine
+    # NON-INTERACTIVE SERVICE ACCOUNT AUTHENTICATION
     # --------------------------------------------------------
 
     try:
@@ -116,18 +111,22 @@ def init_ee():
             project=project,
         )
 
-        # Force a real Earth Engine API request.
+        # Force an actual request to Earth Engine.
         ee.Number(1).getInfo()
 
     except Exception as exc:
         raise RuntimeError(
-            "Earth Engine authentication/initialization failed: "
-            f"{exc}"
+            "Earth Engine service-account authentication failed. "
+            f"Project: {project}. "
+            f"Service account: {key_data.get('client_email')}. "
+            f"Error: {exc}"
         ) from exc
 
     print("Earth Engine initialized successfully.")
     print(f"Earth Engine project: {project}")
-    print(f"Service account: {key_data['client_email']}")
+    print(
+        f"Service account: {key_data['client_email']}"
+    )
     print("Earth Engine API access: OK")
     
 # ============================================================

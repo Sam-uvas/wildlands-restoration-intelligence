@@ -589,11 +589,10 @@ def export_latest_ndvi_image(
     # PROGRAMME-WIDE IMAGE
     # --------------------------------------------------------
 
-    region = (
-        buffers
-        .geometry()
-        .bounds(100)
-    )
+    region = buffers.geometry()
+
+    # Clip NDVI to region to avoid reprojection issues
+    clipped_ndvi = ndvi.clip(region)
 
     params = {
         "region": region,
@@ -604,7 +603,7 @@ def export_latest_ndvi_image(
         "palette": palette,
     }
 
-    url = ndvi.getThumbURL(
+    url = clipped_ndvi.getThumbURL(
         params
     )
 
@@ -774,10 +773,11 @@ def export_latest_ndvi_image(
             .rename("NDVI")
         )
 
-        # Use the site geometry only as the thumbnail region.
-        # Do NOT clip the image before getThumbURL().
+        # Clip NDVI to site geometry to avoid reprojection issues
+        clipped_site_ndvi = site_ndvi.clip(site_geometry)
+
         site_params = {
-            "region": site_geometry.bounds(100),
+            "region": site_geometry,
             "dimensions": 900,
             "format": "png",
             "min": -0.2,
@@ -785,7 +785,7 @@ def export_latest_ndvi_image(
             "palette": palette,
         }
 
-        site_url = site_ndvi.getThumbURL(site_params)
+        site_url = clipped_site_ndvi.getThumbURL(site_params)
 
         site_output = (
             config.NDVI_IMAGES_DIR

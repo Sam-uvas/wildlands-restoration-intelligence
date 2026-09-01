@@ -1,53 +1,191 @@
-# Example scheduled run — adjust the cron and secrets to your setup.
-#
-# Requires a GEE service account (not your personal OAuth login) for
-# unattended auth: create one in Google Cloud Console, download its
-# JSON key, and store it as the GEE_SERVICE_ACCOUNT_KEY repo secret.
-#
-# The QGIS report stage is commented out below because standard GitHub
-# runners don't have QGIS installed — run that stage in the qgis/qgis
-# Docker image instead (see README.md), either as a separate job here
-# or on your own scheduled machine.
-
 name: restoration-pipeline
 
 on:
   schedule:
-    - cron: "0 3 * * 1"   # every Monday 03:00 UTC
-  workflow_dispatch: {}     # allows manual "Run workflow" button too
+    - cron: "0 3 * * 1" # Every Monday at 03:00 UTC
+  workflow_dispatch: {} # Allows manual "Run workflow"
+
+# Prevent two pipeline runs from modifying main at the same time.
+concurrency:
+  group: restoration-pipeline
+  cancel-in-progress: false
+
+# Required so the workflow can commit and push updated files.
+permissions:
+  contents: write
 
 jobs:
   fetch-and-merge:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+    steps:
+      # ------------------------------------------------------------
+      # 1. Checkout repository
+      # ------------------------------------------------------------
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # ------------------------------------------------------------
+      # 2. Set up Python
+      # ------------------------------------------------------------
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
+      # ------------------------------------------------------------
+      # 3. Install dependencies
+      # ------------------------------------------------------------
       - name: Install dependencies
-        run: pip install -r requirements.txt
-
-      - name: Authenticate to Earth Engine
         run: |
-          echo '${{ secrets.GEE_SERVICE_ACCOUNT_KEY }}' > /tmp/gee_key.json
-          python3 -c "
-          import ee
-          creds = ee.ServiceAccountCredentials(None, '/tmp/gee_key.json')
-          ee.Initialize(creds, project='${{ secrets.GEE_PROJECT }}')
-          print('GEE auth OK')
-          "
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
+      # ------------------------------------------------------------
+      # 4. Create Earth Engine service-account key
+      # ------------------------------------------------------------
+      # The secret contains the complete JSON service-account key.
+      # We write it using Python so multiline JSON/private-key
+      # formatting is preserved correctly.
+      # ------------------------------------------------------------
+      - name: Prepare Earth Engine credentials
+        env:
+          GEE_SERVICE_ACCOUNT_KEY: ${{ secrets.GEE_SERVICE_ACCOUNT_KEY }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          key = os.environ.get("GEE_SERVICE_ACCOUNT_KEY")
+
+          if not key:
+              raise RuntimeError(
+                  "GEE_SERVICE_ACCOUNT_KEY is missing or empty."
+              )
+
+          key_path = Path("/tmp/gee_key.json")
+          key_path.write_text(key, encoding="utf-8")
+
+          # Validate the JSON structure without exposing secrets.
+          with key_path.open("r", encoding="utf-8") as f:
+              data = json.load(f)
+
+          required_fields = [
+              "type",
+              "project_id",
+              "private_key",
+              "client_email",
+          ]
+
+          missing = [
+              field for field in required_fields
+              if not data.get(field)
+          ]
+
+          if missing:
+              raise RuntimeError(
+                  f"Earth Engine service-account JSON is missing: {missing}"
+              )
+
+          if data.get("type") != "service_account":
+              raise RuntimeError(
+                  "GEE_SERVICE_ACCOUNT_KEY is not a service-account JSON key."
+              )
+
+          print("Earth Engine credential JSON: VALID")
+          print("Service account type: VALID")
+          print("Project ID: PRESENT")
+          print("Client email: PRESENT")
+          print("Private key: PRESENT")
+          PY
+
+      # ------------------------------------------------------------
+      # 5. Authenticate / test Earth Engine
+      # ------------------------------------------------------------
+      - name: Authenticate to Earth Engine
+        env:
+          GEE_PROJECT: ${{ secrets.GEE_PROJECT }}
+          GOOGLE_APPLICATION_CREDENTIALS: /tmp/gee_key.json
+        run: |
+          python - <<'PY'
+          import os
+          import ee
+
+          project = os.environ.get("GEE_PROJECT")
+
+          if not project:
+              raise RuntimeError("GEE_PROJECT secret is missing or empty.")
+
+          credentials_file = os.environ.get(
+              "GOOGLE_APPLICATION_CREDENTIALS"
+          )
+
+          credentials = ee.ServiceAccountCredentials(
+              None,
+              credentials_file
+          )
+
+          ee.Initialize(
+              credentials,
+              project=project
+          )
+
+          # Lightweight request to verify that authentication actually works.
+          ee.Number(1).getInfo()
+
+          print("GEE authentication: OK")
+          print("Earth Engine API access: OK")
+          PY
+
+      # ------------------------------------------------------------
+      # 6. Run restoration pipeline
+      # ------------------------------------------------------------
       - name: Run pipeline
         env:
           GEE_PROJECT: ${{ secrets.GEE_PROJECT }}
-        run: python3 run_pipeline.py
+          GOOGLE_APPLICATION_CREDENTIALS: /tmp/gee_key.json
+        run: |
+          python3 run_pipeline.py
 
+      # ------------------------------------------------------------
+      # 7. Show generated data status
+      # ------------------------------------------------------------
+      - name: Verify generated outputs
+        run: |
+          echo "Checking generated files..."
+
+          test -f dashboard/data.json
+          test -f data/gee_ndvi_data.csv
+          test -f data/gee_trends.csv
+
+          echo "Generated files:"
+          ls -lh \
+            dashboard/data.json \
+            data/gee_ndvi_data.csv \
+            data/gee_trends.csv
+
+      # ------------------------------------------------------------
+      # 8. Commit and push updated data
+      # ------------------------------------------------------------
       - name: Commit updated dashboard data
         run: |
           git config user.name "restoration-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add dashboard/data.json data/gee_ndvi_data.csv data/gee_trends.csv
-          git commit -m "Automated data refresh" || echo "No changes"
-          git push
+
+          # Make sure we are up to date before committing.
+          git pull --rebase origin main
+
+          git add \
+            dashboard/data.json \
+            data/gee_ndvi_data.csv \
+            data/gee_trends.csv
+
+          if git diff --cached --quiet; then
+            echo "No data changes detected."
+          else
+            git commit -m "Automated data refresh"
+            git push origin main
+          fi

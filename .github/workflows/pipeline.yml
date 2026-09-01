@@ -188,4 +188,8 @@ jobs:
           else
             git commit -m "Automated data refresh"
             git push origin main
+<<<<<<< HEAD
           fi
+=======
+          fi
+>>>>>>> 5613d90 (Fix Earth Engine authentication)

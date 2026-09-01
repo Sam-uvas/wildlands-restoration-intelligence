@@ -592,7 +592,7 @@ def export_latest_ndvi_image(
     region = (
         buffers
         .geometry()
-        .bounds(1)
+        .bounds(100)
     )
 
     params = {
@@ -777,7 +777,7 @@ def export_latest_ndvi_image(
         # Use the site geometry only as the thumbnail region.
         # Do NOT clip the image before getThumbURL().
         site_params = {
-            "region": site_geometry.bounds(1),
+            "region": site_geometry.bounds(100),
             "dimensions": 900,
             "format": "png",
             "min": -0.2,

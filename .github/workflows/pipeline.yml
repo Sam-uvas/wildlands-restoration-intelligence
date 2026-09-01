@@ -13,33 +13,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # --------------------------------------------------
-      # 1. Checkout repository
-      # --------------------------------------------------
+
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      # --------------------------------------------------
-      # 2. Set up Python
-      # --------------------------------------------------
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      # --------------------------------------------------
-      # 3. Install dependencies
-      # --------------------------------------------------
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # --------------------------------------------------
-      # 4. Check required GitHub secrets
-      # --------------------------------------------------
       - name: Check GitHub secrets
         env:
           GEE_SERVICE_ACCOUNT_KEY: ${{ secrets.GEE_SERVICE_ACCOUNT_KEY }}
@@ -47,86 +36,77 @@ jobs:
         run: |
           if [ -z "$GEE_SERVICE_ACCOUNT_KEY" ]; then
             echo "ERROR: GEE_SERVICE_ACCOUNT_KEY is missing."
-            echo "Go to GitHub repository Settings > Secrets and variables > Actions."
             exit 1
           fi
 
           if [ -z "$GEE_PROJECT" ]; then
             echo "ERROR: GEE_PROJECT is missing."
-            echo "Go to GitHub repository Settings > Secrets and variables > Actions."
             exit 1
           fi
 
           echo "GEE_SERVICE_ACCOUNT_KEY is available."
           echo "GEE_PROJECT is available."
 
-      # --------------------------------------------------
-      # 5. Authenticate to Google Earth Engine
-      # --------------------------------------------------
-      - name: Authenticate to Earth Engine
+      - name: Create Earth Engine credentials
         env:
           GEE_SERVICE_ACCOUNT_KEY: ${{ secrets.GEE_SERVICE_ACCOUNT_KEY }}
-          GEE_PROJECT: ${{ secrets.GEE_PROJECT }}
         run: |
+          printf '%s' "$GEE_SERVICE_ACCOUNT_KEY" > /tmp/gee_key.json
+
           python - <<'PY'
           import json
-          import os
-          import ee
-          from google.oauth2 import service_account
 
-          key_text = os.environ["GEE_SERVICE_ACCOUNT_KEY"]
-          project = os.environ["GEE_PROJECT"]
+          with open("/tmp/gee_key.json", "r") as f:
+              data = json.load(f)
 
-          # Validate that the secret is actually valid JSON
-          try:
-              key_data = json.loads(key_text)
-          except json.JSONDecodeError as e:
-              raise SystemExit(
-                  f"GEE_SERVICE_ACCOUNT_KEY is not valid JSON: {e}"
-              )
-
-          # Validate required service-account fields
-          required_fields = [
+          required = [
               "type",
               "project_id",
               "private_key",
-              "client_email",
+              "client_email"
           ]
 
-          missing = [
-              field for field in required_fields
-              if field not in key_data
-          ]
+          missing = [x for x in required if x not in data]
 
           if missing:
               raise SystemExit(
-                  "GEE_SERVICE_ACCOUNT_KEY is missing fields: "
+                  "Invalid service account JSON. Missing: "
                   + ", ".join(missing)
               )
 
-          credentials = service_account.Credentials.from_service_account_info(
-              key_data,
+          print("Earth Engine service-account JSON: OK")
+          print("Service account JSON structure: OK")
+          PY
+
+      - name: Authenticate to Earth Engine
+        env:
+          GEE_PROJECT: ${{ secrets.GEE_PROJECT }}
+        run: |
+          python - <<'PY'
+          import ee
+          from google.oauth2 import service_account
+
+          project = "${GEE_PROJECT}"
+
+          credentials = service_account.Credentials.from_service_account_file(
+              "/tmp/gee_key.json",
               scopes=[
                   "https://www.googleapis.com/auth/earthengine",
-                  "https://www.googleapis.com/auth/cloud-platform",
-              ],
+                  "https://www.googleapis.com/auth/cloud-platform"
+              ]
           )
 
           ee.Initialize(
               credentials=credentials,
-              project=project,
+              project=project
           )
 
-          # Lightweight API request to verify access
           ee.Number(1).getInfo()
 
           print("GEE authentication: OK")
           print("Earth Engine API access: OK")
           PY
 
-      # --------------------------------------------------
-      # 6. Run restoration pipeline
-      # --------------------------------------------------
       - name: Run pipeline
         env:
           GEE_PROJECT: ${{ secrets.GEE_PROJECT }}
@@ -134,9 +114,6 @@ jobs:
         run: |
           python3 run_pipeline.py
 
-      # --------------------------------------------------
-      # 7. Verify generated outputs
-      # --------------------------------------------------
       - name: Verify generated outputs
         run: |
           echo "Checking generated files..."
@@ -145,17 +122,13 @@ jobs:
           test -f data/gee_ndvi_data.csv
           test -f data/gee_trends.csv
 
-          echo ""
           echo "Generated files:"
           ls -lh \
             dashboard/data.json \
             data/gee_ndvi_data.csv \
             data/gee_trends.csv
 
-      # --------------------------------------------------
-      # 8. Commit and push updated data
-      # --------------------------------------------------
-      - name: Commit and push updated data
+      - name: Commit and push updated dashboard data
         run: |
           git config user.name "restoration-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

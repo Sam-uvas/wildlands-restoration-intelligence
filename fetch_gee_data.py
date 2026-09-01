@@ -592,7 +592,7 @@ def export_latest_ndvi_image(
     region = (
         buffers
         .geometry()
-        .bounds()
+        .bounds(1)
     )
 
     params = {

@@ -589,33 +589,42 @@ def export_latest_ndvi_image(
     # PROGRAMME-WIDE IMAGE
     # --------------------------------------------------------
 
-    region = buffers.geometry()
+    try:
+        # Get bounds using getBounds which handles geometry properly
+        bounds = buffers.geometry().getBounds()
+        
+        params = {
+            "region": bounds,
+            "dimensions": 1600,
+            "format": "png",
+            "min": -0.2,
+            "max": 0.8,
+            "palette": palette,
+        }
 
-    # Clip NDVI to region to avoid reprojection issues
-    clipped_ndvi = ndvi.clip(region)
+        url = ndvi.getThumbURL(
+            params
+        )
 
-    params = {
-        "region": region,
-        "dimensions": 1600,
-        "format": "png",
-        "min": -0.2,
-        "max": 0.8,
-        "palette": palette,
-    }
+        output = (
+            config.DATA_DIR
+            / "latest_ndvi.png"
+        )
 
-    url = clipped_ndvi.getThumbURL(
-        params
-    )
+        urllib.request.urlretrieve(
+            url,
+            output,
+        )
 
-    output = (
-        config.DATA_DIR
-        / "latest_ndvi.png"
-    )
+        print(
+            "Saved latest Sentinel-2 NDVI image "
+            f"({latest_date}) to {output}"
+        )
 
-    urllib.request.urlretrieve(
-        url,
-        output,
-    )
+    except Exception as e:
+        print(
+            f"WARNING: Could not generate programme-wide NDVI image: {e}"
+        )
 
     date_file = (
         config.DATA_DIR
@@ -773,29 +782,42 @@ def export_latest_ndvi_image(
             .rename("NDVI")
         )
 
-        # Clip NDVI to site geometry to avoid reprojection issues
-        clipped_site_ndvi = site_ndvi.clip(site_geometry)
+        # Use getBounds instead of bounds() to avoid reprojection errors
+        try:
+            site_bounds = site_geometry.getBounds()
 
-        site_params = {
-            "region": site_geometry,
-            "dimensions": 900,
-            "format": "png",
-            "min": -0.2,
-            "max": 0.8,
-            "palette": palette,
-        }
+            site_params = {
+                "region": site_bounds,
+                "dimensions": 900,
+                "format": "png",
+                "min": -0.2,
+                "max": 0.8,
+                "palette": palette,
+            }
 
-        site_url = clipped_site_ndvi.getThumbURL(site_params)
+            site_url = site_ndvi.getThumbURL(site_params)
 
-        site_output = (
-            config.NDVI_IMAGES_DIR
-            / f"{site_id}.png"
-        )
+            site_output = (
+                config.NDVI_IMAGES_DIR
+                / f"{site_id}.png"
+            )
 
-        urllib.request.urlretrieve(
-            site_url,
-            site_output,
-        )
+            urllib.request.urlretrieve(
+                site_url,
+                site_output,
+            )
+
+            print(
+                f"{site_id}: NDVI saved | "
+                f"date={site_date} | "
+                f"area={row.get('area_hectares', 'n/a')} ha"
+            )
+
+        except Exception as e:
+            print(
+                f"{site_id}: WARNING - Could not generate NDVI image: {e}"
+            )
+            continue
 
         date_rows.append(
             {
@@ -809,12 +831,6 @@ def export_latest_ndvi_image(
             }
         )
 
-        print(
-            f"{site_id}: NDVI saved | "
-            f"date={site_date} | "
-            f"area={row.get('area_hectares', 'n/a')} ha"
-        )
-
     # --------------------------------------------------------
     # SAVE SITE NDVI DATES
     # --------------------------------------------------------
@@ -825,11 +841,6 @@ def export_latest_ndvi_image(
         config.DATA_DIR
         / "site_ndvi_dates.csv",
         index=False,
-    )
-
-    print(
-        "Saved latest Sentinel-2 NDVI image "
-        f"({latest_date}) to {output}"
     )
 
     print(

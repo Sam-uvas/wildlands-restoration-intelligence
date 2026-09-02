@@ -1,11 +1,6 @@
 {
-<<<<<<< Updated upstream
-  "last_updated_utc": "2026-09-02T09:19:03.619498+00:00",
-  "last_updated_human": "2026-09-02 09:19 UTC",
-=======
-  "last_updated_utc": "2026-09-02T10:07:48.068982+00:00",
-  "last_updated_human": "2026-09-02 10:07 UTC",
->>>>>>> Stashed changes
+  "last_updated_utc": "2026-09-02T11:14:54.487716+00:00",
+  "last_updated_human": "2026-09-02 11:14 UTC",
   "total_sites": 50,
   "data_source": "Field monitoring + Sentinel-2 satellite (GEE)",
   "sites": [
@@ -15,13 +10,8 @@
       "latitude": -29.65336,
       "longitude": 30.98736,
       "vegetation_health": 91.0,
-<<<<<<< Updated upstream
-      "satellite_health": 56.3,
-      "combined_health": 73.7,
-=======
       "satellite_health": 56.5,
       "combined_health": 73.8,
->>>>>>> Stashed changes
       "area_hectares": 12.5,
       "restoration_type": "Forest",
       "invasive_species_cover": null,
@@ -82,11 +72,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.4037
-=======
           "ndvi": 0.4183
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-BUF-01.png",
@@ -99,13 +85,8 @@
       "latitude": -29.61779,
       "longitude": 30.96655,
       "vegetation_health": 68.0,
-<<<<<<< Updated upstream
-      "satellite_health": 72.0,
-      "combined_health": 70.0,
-=======
       "satellite_health": 72.2,
       "combined_health": 70.1,
->>>>>>> Stashed changes
       "area_hectares": 27.7,
       "restoration_type": "Forest",
       "invasive_species_cover": null,
@@ -166,11 +147,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.4255
-=======
           "ndvi": 0.4423
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-BUF-02.png",
@@ -183,13 +160,8 @@
       "latitude": -29.65026,
       "longitude": 31.0,
       "vegetation_health": 72.0,
-<<<<<<< Updated upstream
-      "satellite_health": 42.5,
-      "combined_health": 57.2,
-=======
       "satellite_health": 42.7,
       "combined_health": 57.4,
->>>>>>> Stashed changes
       "area_hectares": 18.0,
       "restoration_type": "Forest",
       "invasive_species_cover": null,
@@ -250,11 +222,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.3574
-=======
           "ndvi": 0.3746
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-BUF-03.png",
@@ -267,13 +235,8 @@
       "latitude": -29.64368,
       "longitude": 30.95688,
       "vegetation_health": 87.0,
-<<<<<<< Updated upstream
-      "satellite_health": 62.2,
-      "combined_health": 74.6,
-=======
       "satellite_health": 62.4,
       "combined_health": 74.7,
->>>>>>> Stashed changes
       "area_hectares": 21.2,
       "restoration_type": "Forest",
       "invasive_species_cover": null,
@@ -409,11 +372,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.3439
-=======
           "ndvi": 0.3548
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-BUF-05.png",
@@ -426,13 +385,8 @@
       "latitude": -29.64359,
       "longitude": 30.98264,
       "vegetation_health": 79.0,
-<<<<<<< Updated upstream
-      "satellite_health": 53.8,
-      "combined_health": 66.4,
-=======
       "satellite_health": 54.0,
       "combined_health": 66.5,
->>>>>>> Stashed changes
       "area_hectares": 24.4,
       "restoration_type": "Forest",
       "invasive_species_cover": null,
@@ -493,11 +447,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.3893
-=======
           "ndvi": 0.4043
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-BUF-06.png",
@@ -510,13 +460,8 @@
       "latitude": -29.65429,
       "longitude": 30.99586,
       "vegetation_health": 83.0,
-<<<<<<< Updated upstream
-      "satellite_health": 54.8,
-      "combined_health": 68.9,
-=======
       "satellite_health": 55.1,
       "combined_health": 69.0,
->>>>>>> Stashed changes
       "area_hectares": 32.6,
       "restoration_type": "Forest",
       "invasive_species_cover": null,
@@ -577,11 +522,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.411
-=======
           "ndvi": 0.4338
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-BUF-07.png",
@@ -594,11 +535,7 @@
       "latitude": -29.6376,
       "longitude": 30.9903,
       "vegetation_health": 40.0,
-<<<<<<< Updated upstream
-      "satellite_health": 75.7,
-=======
       "satellite_health": 75.8,
->>>>>>> Stashed changes
       "combined_health": 57.9,
       "area_hectares": 7.9,
       "restoration_type": "Forest",
@@ -660,11 +597,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.4864
-=======
           "ndvi": 0.4988
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-BUF-08.png",
@@ -677,13 +610,8 @@
       "latitude": -29.32817,
       "longitude": 30.30286,
       "vegetation_health": 28.0,
-<<<<<<< Updated upstream
-      "satellite_health": 73.9,
-      "combined_health": 51.0,
-=======
       "satellite_health": 74.2,
       "combined_health": 51.1,
->>>>>>> Stashed changes
       "area_hectares": 5.5,
       "restoration_type": "Wetland",
       "invasive_species_cover": null,
@@ -744,11 +672,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.4799
-=======
           "ndvi": 0.501
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-DAR-01.png",
@@ -761,11 +685,7 @@
       "latitude": -29.30263,
       "longitude": 30.25984,
       "vegetation_health": 46.0,
-<<<<<<< Updated upstream
-      "satellite_health": 56.7,
-=======
       "satellite_health": 56.8,
->>>>>>> Stashed changes
       "combined_health": 51.4,
       "area_hectares": 24.9,
       "restoration_type": "Wetland",
@@ -827,11 +747,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.3732
-=======
           "ndvi": 0.3838
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-DAR-02.png",
@@ -906,11 +822,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.7651
-=======
           "ndvi": 0.7844
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-DAR-03.png",
@@ -923,13 +835,8 @@
       "latitude": -29.32607,
       "longitude": 30.30366,
       "vegetation_health": 86.0,
-<<<<<<< Updated upstream
-      "satellite_health": 67.5,
-      "combined_health": 76.8,
-=======
       "satellite_health": 67.8,
       "combined_health": 76.9,
->>>>>>> Stashed changes
       "area_hectares": 23.0,
       "restoration_type": "Wetland",
       "invasive_species_cover": null,
@@ -990,11 +897,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.3904
-=======
           "ndvi": 0.4163
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-DAR-04.png",
@@ -1069,11 +972,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.7387
-=======
           "ndvi": 0.7521
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-DAR-05.png",
@@ -1086,13 +985,8 @@
       "latitude": -29.30977,
       "longitude": 30.28387,
       "vegetation_health": 25.0,
-<<<<<<< Updated upstream
-      "satellite_health": 97.2,
-      "combined_health": 61.1,
-=======
       "satellite_health": 97.5,
       "combined_health": 61.2,
->>>>>>> Stashed changes
       "area_hectares": 3.7,
       "restoration_type": "Wetland",
       "invasive_species_cover": null,
@@ -1153,11 +1047,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.6931
-=======
           "ndvi": 0.7194
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-DAR-06.png",
@@ -1232,11 +1122,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.2741
-=======
           "ndvi": 0.2725
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-01.png",
@@ -1249,13 +1135,8 @@
       "latitude": -28.76995,
       "longitude": 29.38664,
       "vegetation_health": 82.0,
-<<<<<<< Updated upstream
-      "satellite_health": 49.1,
-      "combined_health": 65.5,
-=======
       "satellite_health": 48.7,
       "combined_health": 65.3,
->>>>>>> Stashed changes
       "area_hectares": 12.6,
       "restoration_type": "Grassland",
       "invasive_species_cover": null,
@@ -1316,11 +1197,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.3156
-=======
           "ndvi": 0.2905
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-02.png",
@@ -1333,11 +1210,7 @@
       "latitude": -28.75676,
       "longitude": 29.40678,
       "vegetation_health": 34.0,
-<<<<<<< Updated upstream
-      "satellite_health": 54.1,
-=======
       "satellite_health": 54.0,
->>>>>>> Stashed changes
       "combined_health": 44.0,
       "area_hectares": 16.1,
       "restoration_type": "Grassland",
@@ -1399,11 +1272,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.2848
-=======
           "ndvi": 0.2749
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-03.png",
@@ -1478,11 +1347,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.2801
-=======
           "ndvi": 0.2767
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-04.png",
@@ -1495,13 +1360,8 @@
       "latitude": -28.74454,
       "longitude": 29.4074,
       "vegetation_health": 33.0,
-<<<<<<< Updated upstream
-      "satellite_health": 38.7,
-      "combined_health": 35.9,
-=======
       "satellite_health": 38.6,
       "combined_health": 35.8,
->>>>>>> Stashed changes
       "area_hectares": 8.5,
       "restoration_type": "Grassland",
       "invasive_species_cover": null,
@@ -1562,11 +1422,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.2279
-=======
           "ndvi": 0.2216
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-05.png",
@@ -1579,13 +1435,8 @@
       "latitude": -28.76683,
       "longitude": 29.41146,
       "vegetation_health": 57.0,
-<<<<<<< Updated upstream
-      "satellite_health": 52.2,
-      "combined_health": 54.6,
-=======
       "satellite_health": 52.1,
       "combined_health": 54.5,
->>>>>>> Stashed changes
       "area_hectares": 16.4,
       "restoration_type": "Grassland",
       "invasive_species_cover": null,
@@ -1646,11 +1497,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.2676
-=======
           "ndvi": 0.2574
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-06.png",
@@ -1725,11 +1572,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.3025
-=======
           "ndvi": 0.3017
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-07.png",
@@ -1742,11 +1585,7 @@
       "latitude": -28.73286,
       "longitude": 29.40923,
       "vegetation_health": 46.0,
-<<<<<<< Updated upstream
-      "satellite_health": 41.1,
-=======
       "satellite_health": 41.0,
->>>>>>> Stashed changes
       "combined_health": 43.5,
       "area_hectares": 31.5,
       "restoration_type": "Grassland",
@@ -1808,11 +1647,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.2279
-=======
           "ndvi": 0.2189
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-08.png",
@@ -1825,13 +1660,8 @@
       "latitude": -28.77339,
       "longitude": 29.38645,
       "vegetation_health": 48.0,
-<<<<<<< Updated upstream
-      "satellite_health": 45.8,
-      "combined_health": 46.9,
-=======
       "satellite_health": 45.5,
       "combined_health": 46.8,
->>>>>>> Stashed changes
       "area_hectares": 14.0,
       "restoration_type": "Grassland",
       "invasive_species_cover": null,
@@ -1892,11 +1722,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.2885
-=======
           "ndvi": 0.2598
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-09.png",
@@ -1909,13 +1735,8 @@
       "latitude": -28.76445,
       "longitude": 29.38839,
       "vegetation_health": 44.0,
-<<<<<<< Updated upstream
-      "satellite_health": 49.3,
-      "combined_health": 46.6,
-=======
       "satellite_health": 49.1,
       "combined_health": 46.5,
->>>>>>> Stashed changes
       "area_hectares": 37.8,
       "restoration_type": "Grassland",
       "invasive_species_cover": null,
@@ -1976,11 +1797,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.3141
-=======
           "ndvi": 0.292
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-10.png",
@@ -1993,11 +1810,7 @@
       "latitude": -27.62927,
       "longitude": 32.05882,
       "vegetation_health": 75.0,
-<<<<<<< Updated upstream
-      "satellite_health": 72.3,
-=======
       "satellite_health": 72.4,
->>>>>>> Stashed changes
       "combined_health": 73.7,
       "area_hectares": 26.9,
       "restoration_type": "Forest",
@@ -2059,11 +1872,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.5576
-=======
           "ndvi": 0.563
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-MKU-01.png",
@@ -2138,11 +1947,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.5793
-=======
           "ndvi": 0.5817
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-MKU-02.png",
@@ -2155,8 +1960,8 @@
       "latitude": -27.63267,
       "longitude": 32.02824,
       "vegetation_health": 94.0,
-      "satellite_health": 67.8,
-      "combined_health": 80.9,
+      "satellite_health": 67.6,
+      "combined_health": 80.8,
       "area_hectares": 23.3,
       "restoration_type": "Forest",
       "invasive_species_cover": null,
@@ -2217,11 +2022,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.4525
-=======
           "ndvi": 0.443
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-MKU-03.png",
@@ -2296,11 +2097,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.4509
-=======
           "ndvi": 0.4475
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-MKU-04.png",
@@ -2313,13 +2110,8 @@
       "latitude": -27.63403,
       "longitude": 32.03497,
       "vegetation_health": 58.0,
-<<<<<<< Updated upstream
-      "satellite_health": 55.9,
-      "combined_health": 57.0,
-=======
       "satellite_health": 55.8,
       "combined_health": 56.9,
->>>>>>> Stashed changes
       "area_hectares": 39.9,
       "restoration_type": "Forest",
       "invasive_species_cover": null,
@@ -2380,11 +2172,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.3498
-=======
           "ndvi": 0.3378
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-MKU-05.png",
@@ -2397,13 +2185,8 @@
       "latitude": -27.64045,
       "longitude": 32.04048,
       "vegetation_health": 60.0,
-<<<<<<< Updated upstream
-      "satellite_health": 54.9,
-      "combined_health": 57.5,
-=======
       "satellite_health": 54.7,
       "combined_health": 57.4,
->>>>>>> Stashed changes
       "area_hectares": 3.8,
       "restoration_type": "Forest",
       "invasive_species_cover": null,
@@ -2464,11 +2247,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.4164
-=======
           "ndvi": 0.4008
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-MKU-06.png",
@@ -2481,11 +2260,7 @@
       "latitude": -27.66363,
       "longitude": 31.53048,
       "vegetation_health": 65.0,
-<<<<<<< Updated upstream
-      "satellite_health": 61.1,
-=======
       "satellite_health": 61.0,
->>>>>>> Stashed changes
       "combined_health": 63.0,
       "area_hectares": 32.1,
       "restoration_type": "Savanna",
@@ -2547,11 +2322,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.3579
-=======
           "ndvi": 0.3513
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-SOM-01.png",
@@ -2564,13 +2335,8 @@
       "latitude": -27.69182,
       "longitude": 31.54611,
       "vegetation_health": 63.0,
-<<<<<<< Updated upstream
-      "satellite_health": 49.8,
-      "combined_health": 56.4,
-=======
       "satellite_health": 49.6,
       "combined_health": 56.3,
->>>>>>> Stashed changes
       "area_hectares": 16.5,
       "restoration_type": "Savanna",
       "invasive_species_cover": null,
@@ -2631,11 +2397,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.3509
-=======
           "ndvi": 0.3403
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-SOM-02.png",
@@ -2710,11 +2472,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.3331
-=======
           "ndvi": 0.3294
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-SOM-03.png",
@@ -2727,11 +2485,7 @@
       "latitude": -27.69443,
       "longitude": 31.56804,
       "vegetation_health": 94.0,
-<<<<<<< Updated upstream
-      "satellite_health": 55.7,
-=======
       "satellite_health": 55.6,
->>>>>>> Stashed changes
       "combined_health": 74.8,
       "area_hectares": 29.4,
       "restoration_type": "Savanna",
@@ -2793,11 +2547,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.3716
-=======
           "ndvi": 0.3676
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-SOM-04.png",
@@ -2810,13 +2560,8 @@
       "latitude": -27.66815,
       "longitude": 31.55909,
       "vegetation_health": 81.0,
-<<<<<<< Updated upstream
-      "satellite_health": 59.9,
-      "combined_health": 70.5,
-=======
       "satellite_health": 59.8,
       "combined_health": 70.4,
->>>>>>> Stashed changes
       "area_hectares": 12.1,
       "restoration_type": "Savanna",
       "invasive_species_cover": null,
@@ -2877,11 +2622,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.3588
-=======
           "ndvi": 0.3537
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-SOM-05.png",
@@ -2956,11 +2697,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.4515
-=======
           "ndvi": 0.4475
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-SOM-06.png",
@@ -2973,11 +2710,7 @@
       "latitude": -26.92731,
       "longitude": 32.67769,
       "vegetation_health": 74.0,
-<<<<<<< Updated upstream
-      "satellite_health": 96.5,
-=======
       "satellite_health": 96.4,
->>>>>>> Stashed changes
       "combined_health": 85.2,
       "area_hectares": 35.3,
       "restoration_type": "Forest",
@@ -3039,11 +2772,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.7961
-=======
           "ndvi": 0.7941
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-BHE-01.png",
@@ -3118,11 +2847,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.7991
-=======
           "ndvi": 0.7972
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-BHE-02.png",
@@ -3197,11 +2922,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.5419
-=======
           "ndvi": 0.5391
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-BHE-03.png",
@@ -3276,11 +2997,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.5781
-=======
           "ndvi": 0.5754
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-BHE-04.png",
@@ -3293,13 +3010,8 @@
       "latitude": -26.94803,
       "longitude": 32.69313,
       "vegetation_health": 57.0,
-<<<<<<< Updated upstream
-      "satellite_health": 76.5,
-      "combined_health": 66.8,
-=======
       "satellite_health": 76.4,
       "combined_health": 66.7,
->>>>>>> Stashed changes
       "area_hectares": 31.6,
       "restoration_type": "Forest",
       "invasive_species_cover": null,
@@ -3360,11 +3072,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.568
-=======
           "ndvi": 0.5655
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-BHE-05.png",
@@ -3439,11 +3147,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.5481
-=======
           "ndvi": 0.5404
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-FER-01.png",
@@ -3518,11 +3222,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.5083
-=======
           "ndvi": 0.5104
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-FER-02.png",
@@ -3535,11 +3235,7 @@
       "latitude": -29.55962,
       "longitude": 30.38658,
       "vegetation_health": 36.0,
-<<<<<<< Updated upstream
-      "satellite_health": 30.0,
-=======
       "satellite_health": 29.9,
->>>>>>> Stashed changes
       "combined_health": 33.0,
       "area_hectares": 4.2,
       "restoration_type": "Forest",
@@ -3601,11 +3297,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.3084
-=======
           "ndvi": 0.3063
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-FER-03.png",
@@ -3618,13 +3310,8 @@
       "latitude": -29.52765,
       "longitude": 30.3889,
       "vegetation_health": 85.0,
-<<<<<<< Updated upstream
-      "satellite_health": 61.8,
-      "combined_health": 73.4,
-=======
       "satellite_health": 61.7,
       "combined_health": 73.3,
->>>>>>> Stashed changes
       "area_hectares": 5.3,
       "restoration_type": "Forest",
       "invasive_species_cover": null,
@@ -3685,11 +3372,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.4184
-=======
           "ndvi": 0.4129
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-FER-04.png",
@@ -3702,13 +3385,8 @@
       "latitude": -29.57154,
       "longitude": 30.3693,
       "vegetation_health": 67.0,
-<<<<<<< Updated upstream
-      "satellite_health": 88.5,
-      "combined_health": 77.8,
-=======
       "satellite_health": 88.2,
       "combined_health": 77.6,
->>>>>>> Stashed changes
       "area_hectares": 30.9,
       "restoration_type": "Forest",
       "invasive_species_cover": null,
@@ -3769,11 +3447,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.65
-=======
           "ndvi": 0.6254
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-FER-05.png",
@@ -3848,11 +3522,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.4042
-=======
           "ndvi": 0.4016
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-SON-01.png",
@@ -3927,11 +3597,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.396
-=======
           "ndvi": 0.3957
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-SON-02.png",
@@ -3944,13 +3610,8 @@
       "latitude": -28.26441,
       "longitude": 31.87616,
       "vegetation_health": 56.0,
-<<<<<<< Updated upstream
-      "satellite_health": 67.9,
-      "combined_health": 62.0,
-=======
       "satellite_health": 67.8,
       "combined_health": 61.9,
->>>>>>> Stashed changes
       "area_hectares": 22.5,
       "restoration_type": "Savanna",
       "invasive_species_cover": null,
@@ -4011,11 +3672,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.3877
-=======
           "ndvi": 0.3801
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-SON-03.png",
@@ -4028,13 +3685,8 @@
       "latitude": -28.26494,
       "longitude": 31.8915,
       "vegetation_health": 27.0,
-<<<<<<< Updated upstream
-      "satellite_health": 74.2,
-      "combined_health": 50.6,
-=======
       "satellite_health": 74.1,
       "combined_health": 50.5,
->>>>>>> Stashed changes
       "area_hectares": 13.8,
       "restoration_type": "Savanna",
       "invasive_species_cover": null,
@@ -4095,11 +3747,7 @@
         },
         {
           "date": "2026-08",
-<<<<<<< Updated upstream
-          "ndvi": 0.4145
-=======
           "ndvi": 0.411
->>>>>>> Stashed changes
         }
       ],
       "ndvi_image_url": "ndvi/WL-SON-04.png",

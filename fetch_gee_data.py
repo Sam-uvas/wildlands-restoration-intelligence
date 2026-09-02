@@ -10,6 +10,7 @@ GitHub Actions compatible.
 - Produces monthly site-level NDVI.
 - Produces programme-wide latest NDVI PNG.
 - Produces current NDVI PNG for each WILDLANDS site.
+- Uses square monitoring polygons around site locations.
 """
 
 import json
@@ -21,8 +22,25 @@ import geopandas as gpd
 import numpy as np
 import pandas as pd
 
+from shapely.geometry import box
+
 import config
 from sites_setup import ensure_sites
+
+
+# ============================================================
+# CONSTANTS
+# ============================================================
+
+NDVI_PALETTE = [
+    "#8c510a",
+    "#d8b365",
+    "#f6e8c3",
+    "#f5f5f5",
+    "#c7eae5",
+    "#5ab4ac",
+    "#01665e",
+]
 
 
 # ============================================================
@@ -145,7 +163,8 @@ def init_ee():
         raise RuntimeError(
             "Earth Engine initialization failed. "
             f"Project: {project}. "
-            f"Service account: {key_data.get('client_email')}. "
+            f"Service account: "
+            f"{key_data.get('client_email')}. "
             f"Error: {exc}"
         ) from exc
 
@@ -162,33 +181,109 @@ def init_ee():
             "but the service account cannot access the "
             "Earth Engine API. "
             f"Project: {project}. "
-            f"Service account: {key_data.get('client_email')}. "
+            f"Service account: "
+            f"{key_data.get('client_email')}. "
             f"Error: {exc}"
         ) from exc
 
-    print("Earth Engine initialized successfully.")
-    print(f"Earth Engine project: {project}")
+    print(
+        "Earth Engine initialized successfully."
+    )
+
+    print(
+        f"Earth Engine project: {project}"
+    )
+
     print(
         "Service account: "
         f"{key_data['client_email']}"
     )
+
     print(
         f"Earth Engine API test result: {test_value}"
     )
-    print("Earth Engine authentication: OK")
+
+    print(
+        "Earth Engine authentication: OK"
+    )
 
 
 # ============================================================
-# SITE GEOMETRY
+# GEOJSON CONVERSION
+# ============================================================
+
+def shapely_to_geojson_geometry(
+    geometry,
+):
+    """
+    Convert a Shapely geometry to a plain GeoJSON geometry
+    dictionary.
+
+    The resulting dictionary contains only the geometry
+    itself and no CRS or Earth Engine-specific arguments.
+    """
+
+    if geometry is None or geometry.is_empty:
+        raise RuntimeError(
+            "Cannot convert an empty geometry to GeoJSON."
+        )
+
+    geojson = (
+        gpd.GeoSeries(
+            [geometry],
+            crs="EPSG:4326",
+        )
+        .__geo_interface__["features"][0]["geometry"]
+    )
+
+    return geojson
+
+
+# ============================================================
+# SQUARE MONITORING GEOMETRIES
 # ============================================================
 
 def sites_to_buffers(
     gdf: gpd.GeoDataFrame,
 ) -> ee.FeatureCollection:
+    """
+    Convert WILDLANDS site locations into square monitoring
+    polygons and return them as an Earth Engine
+    FeatureCollection.
+
+    The configured BUFFER_METERS value is treated as the
+    half-width of the square.
+
+    Example:
+
+        BUFFER_METERS = 500
+
+    produces a square approximately:
+
+        1000 m × 1000 m
+
+    around each site location.
+    """
+
+    if gdf.crs is None:
+        raise RuntimeError(
+            "Site GeoDataFrame has no CRS."
+        )
+
+    # --------------------------------------------------------
+    # Work in a projected coordinate system measured in metres.
+    #
+    # EPSG:3857 is sufficient for creating the local square
+    # monitoring footprints used by this pipeline.
+    # --------------------------------------------------------
+
+    projected = gdf.to_crs(
+        "EPSG:3857"
+    )
 
     features = []
 
-    for _, row in gdf.iterrows():
+    for _, row in projected.iterrows():
 
         geometry = row.geometry
 
@@ -196,63 +291,90 @@ def sites_to_buffers(
             continue
 
         # ----------------------------------------------------
-        # Point geometry
+        # Use the site centroid as the centre of the monitoring
+        # square.
         # ----------------------------------------------------
 
-        if geometry.geom_type == "Point":
+        centre = geometry.centroid
 
-            coordinates = [
-                geometry.x,
-                geometry.y,
-            ]
+        x = centre.x
+        y = centre.y
 
-            point = ee.Geometry.Point(
-                coordinates
+        half_size = float(
+            config.BUFFER_METERS
+        )
+
+        # ----------------------------------------------------
+        # Create an actual square polygon.
+        # ----------------------------------------------------
+
+        square = box(
+            x - half_size,
+            y - half_size,
+            x + half_size,
+            y + half_size,
+        )
+
+        # ----------------------------------------------------
+        # Convert square back to geographic coordinates.
+        # ----------------------------------------------------
+
+        square_gdf = gpd.GeoDataFrame(
+            {
+                "site_id": [
+                    str(row["site_id"])
+                ],
+                "site_name": [
+                    str(row["site_name"])
+                ],
+            },
+            geometry=[square],
+            crs="EPSG:3857",
+        )
+
+        square_wgs84 = (
+            square_gdf
+            .to_crs("EPSG:4326")
+            .geometry
+            .iloc[0]
+        )
+
+        geometry_json = (
+            gpd.GeoSeries(
+                [square_wgs84],
+                crs="EPSG:4326",
             )
+            .__geo_interface__["features"][0]["geometry"]
+        )
 
-            feature = ee.Feature(
-                point,
-                {
-                    "site_id": str(
-                        row["site_id"]
-                    ),
-                    "site_name": str(
-                        row["site_name"]
-                    ),
-                },
-            )
+        # ----------------------------------------------------
+        # IMPORTANT:
+        #
+        # This is now a Polygon, NOT a Point.
+        #
+        # No "geodesic" argument is passed to the constructor.
+        # ----------------------------------------------------
 
-            features.append(feature)
+        ee_geometry = ee.Geometry(
+            geometry_json
+        )
 
-        else:
-
-            # ------------------------------------------------
-            # Polygon / MultiPolygon geometry
-            # ------------------------------------------------
-
-            geometry_json = (
-                gpd.GeoSeries(
-                    [geometry],
-                    crs=gdf.crs,
-                )
-                .__geo_interface__["features"][0]["geometry"]
-            )
-
-            feature = ee.Feature(
-                ee.Geometry(
-                    geometry_json
+        feature = ee.Feature(
+            ee_geometry,
+            {
+                "site_id": str(
+                    row["site_id"]
                 ),
-                {
-                    "site_id": str(
-                        row["site_id"]
-                    ),
-                    "site_name": str(
-                        row["site_name"]
-                    ),
-                },
-            )
+                "site_name": str(
+                    row["site_name"]
+                ),
+                "boundary_type": "Square monitoring area",
+            },
+        )
 
-            features.append(feature)
+        features.append(
+            feature
+        )
 
     if not features:
         raise RuntimeError(
@@ -263,28 +385,33 @@ def sites_to_buffers(
         features
     )
 
-    return fc.map(
-        lambda feature: feature.buffer(
-            config.BUFFER_METERS
-        ).copyProperties(feature)
-    )
+    return fc
 
 
 # ============================================================
 # NDVI
 # ============================================================
 
-def add_ndvi(image):
+def add_ndvi(
+    image,
+):
+    """
+    Add an NDVI band to a Sentinel-2 image.
+    """
 
     ndvi = (
         image
         .normalizedDifference(
             ["B8", "B4"]
         )
-        .rename("NDVI")
+        .rename(
+            "NDVI"
+        )
     )
 
-    return image.addBands(ndvi)
+    return image.addBands(
+        ndvi
+    )
 
 
 # ============================================================
@@ -294,6 +421,10 @@ def add_ndvi(image):
 def get_sentinel_collection(
     geometry,
 ):
+    """
+    Return the filtered Sentinel-2 Surface Reflectance
+    collection for the configured date range and cloud limit.
+    """
 
     return (
         ee.ImageCollection(
@@ -322,12 +453,18 @@ def get_sentinel_collection(
 def build_monthly_composites(
     buffers,
 ):
+    """
+    Build one median NDVI composite for each month in the
+    configured analysis period.
+    """
 
     sentinel2 = (
         get_sentinel_collection(
             buffers
         )
-        .map(add_ndvi)
+        .map(
+            add_ndvi
+        )
     )
 
     start = ee.Date(
@@ -352,16 +489,22 @@ def build_monthly_composites(
         n_months.subtract(1),
     )
 
-    def composite(offset):
+    def composite(
+        offset,
+    ):
 
-        month_start = start.advance(
-            offset,
-            "month",
+        month_start = (
+            start.advance(
+                offset,
+                "month",
+            )
         )
 
-        month_end = month_start.advance(
-            1,
-            "month",
+        month_end = (
+            month_start.advance(
+                1,
+                "month",
+            )
         )
 
         monthly = (
@@ -374,9 +517,13 @@ def build_monthly_composites(
 
         return (
             monthly
-            .select("NDVI")
+            .select(
+                "NDVI"
+            )
             .median()
-            .rename("NDVI")
+            .rename(
+                "NDVI"
+            )
             .set(
                 "date",
                 month_start.format(
@@ -400,8 +547,13 @@ def extract_ndvi_values(
     buffers,
     monthly_images,
 ):
+    """
+    Extract mean NDVI for every site and month.
+    """
 
-    def reduce_one_month(image):
+    def reduce_one_month(
+        image,
+    ):
 
         image = ee.Image(
             image
@@ -418,9 +570,11 @@ def extract_ndvi_values(
         )
 
         return reduced.map(
-            lambda feature: feature.set(
-                "date",
-                date_value,
+            lambda feature: (
+                feature.set(
+                    "date",
+                    date_value,
+                )
             )
         )
 
@@ -487,19 +641,20 @@ def geometry_to_thumbnail_region(
     geometry,
 ):
     """
-    Create a stable GeoJSON region for getThumbURL().
+    Convert an Earth Engine polygon geometry into a concrete
+    GeoJSON object for getThumbURL().
 
-    The important part is that the Earth Engine geometry is
-    explicitly constructed with a non-zero error margin.
-
-    This avoids the:
-        Image.clipToBoundsAndScale:
-        Can't apply reprojection with edge subdivision
-        with a zero error margin.
-    error encountered by thumbnail generation.
+    Only the actual geometry is returned.
     """
 
-    return geometry.getInfo()
+    geometry_info = geometry.getInfo()
+
+    if not geometry_info:
+        raise RuntimeError(
+            "Earth Engine geometry returned no information."
+        )
+
+    return geometry_info
 
 
 def create_ndvi_thumbnail(
@@ -508,11 +663,7 @@ def create_ndvi_thumbnail(
     dimensions,
 ):
     """
-    Generate an NDVI thumbnail using an explicit geometry,
-    CRS and scale.
-
-    The geometry is supplied as GeoJSON rather than relying on
-    Earth Engine's internal bounds/reprojection operation.
+    Generate an NDVI thumbnail using explicit GeoJSON geometry.
     """
 
     region = geometry_to_thumbnail_region(
@@ -525,15 +676,7 @@ def create_ndvi_thumbnail(
         "format": "png",
         "min": -0.2,
         "max": 0.8,
-        "palette": [
-            "#8c510a",
-            "#d8b365",
-            "#f6e8c3",
-            "#f5f5f5",
-            "#c7eae5",
-            "#5ab4ac",
-            "#01665e",
-        ],
+        "palette": NDVI_PALETTE,
         "crs": "EPSG:4326",
     }
 
@@ -549,7 +692,6 @@ def create_ndvi_thumbnail(
 def export_latest_ndvi_image(
     buffers,
 ):
-
     """
     Create:
 
@@ -616,61 +758,28 @@ def export_latest_ndvi_image(
         .normalizedDifference(
             ["B8", "B4"]
         )
-        .rename("NDVI")
+        .rename(
+            "NDVI"
+        )
     )
 
-    # --------------------------------------------------------
+    # ========================================================
     # PROGRAMME-WIDE IMAGE
-    # --------------------------------------------------------
+    # ========================================================
 
     try:
-<<<<<<< HEAD
-        # Get bounds using getBounds which handles geometry properly
-        bounds = buffers.geometry().getBounds()
-        
-        params = {
-            "region": bounds,
-            "dimensions": 1600,
-            "format": "png",
-            "min": -0.2,
-            "max": 0.8,
-            "palette": palette,
-        }
-
-        url = ndvi.getThumbURL(
-            params
-        )
-
-        output = (
-            config.DATA_DIR
-            / "latest_ndvi.png"
-        )
-
-        urllib.request.urlretrieve(
-            url,
-            output,
-        )
-
-=======
-
-        # Instead of:
-        #
-        # buffers.geometry().bounds()
-        #
-        # use the actual geometry and convert it to a
-        # concrete GeoJSON object.
 
         programme_geometry = (
             buffers
-            .geometry()
-            .dissolve(
+            .geometry(
                 maxError=100
             )
         )
 
         programme_region = (
-            programme_geometry
-            .getInfo()
+            geometry_to_thumbnail_region(
+                programme_geometry
+            )
         )
 
         params = {
@@ -679,15 +788,7 @@ def export_latest_ndvi_image(
             "format": "png",
             "min": -0.2,
             "max": 0.8,
-            "palette": [
-                "#8c510a",
-                "#d8b365",
-                "#f6e8c3",
-                "#f5f5f5",
-                "#c7eae5",
-                "#5ab4ac",
-                "#01665e",
-            ],
+            "palette": NDVI_PALETTE,
             "crs": "EPSG:4326",
         }
 
@@ -705,18 +806,11 @@ def export_latest_ndvi_image(
             output,
         )
 
->>>>>>> e3a56fa (Fix GEE NDVI thumbnail generation)
         print(
             "Saved latest Sentinel-2 NDVI image "
             f"({latest_date}) to {output}"
         )
 
-<<<<<<< HEAD
-    except Exception as e:
-        print(
-            f"WARNING: Could not generate programme-wide NDVI image: {e}"
-        )
-=======
     except Exception as exc:
 
         print(
@@ -725,10 +819,9 @@ def export_latest_ndvi_image(
             f"{exc}"
         )
 
-    # --------------------------------------------------------
+    # ========================================================
     # SAVE IMAGE DATE
-    # --------------------------------------------------------
->>>>>>> e3a56fa (Fix GEE NDVI thumbnail generation)
+    # ========================================================
 
     date_file = (
         config.DATA_DIR
@@ -740,15 +833,17 @@ def export_latest_ndvi_image(
         encoding="utf-8",
     )
 
-    # --------------------------------------------------------
+    # ========================================================
     # AUTHORITATIVE SITE REGISTRY
-    # --------------------------------------------------------
+    # ========================================================
 
     site_gdf = (
         gpd.read_file(
             config.SITES_GPKG
         )
-        .to_crs("EPSG:4326")
+        .to_crs(
+            "EPSG:4326"
+        )
     )
 
     print(
@@ -763,9 +858,9 @@ def export_latest_ndvi_image(
             f"{config.SITES_GPKG}"
         )
 
-    # --------------------------------------------------------
+    # ========================================================
     # PREPARE OUTPUT DIRECTORY
-    # --------------------------------------------------------
+    # ========================================================
 
     config.NDVI_IMAGES_DIR.mkdir(
         parents=True,
@@ -774,9 +869,9 @@ def export_latest_ndvi_image(
 
     date_rows = []
 
-    # --------------------------------------------------------
+    # ========================================================
     # SITE-BY-SITE NDVI
-    # --------------------------------------------------------
+    # ========================================================
 
     for _, row in site_gdf.iterrows():
 
@@ -799,20 +894,73 @@ def export_latest_ndvi_image(
             continue
 
         # ----------------------------------------------------
-        # Convert geometry to Earth Engine geometry
+        # Create a square monitoring polygon around the site.
+        #
+        # This is done in EPSG:3857 so BUFFER_METERS is
+        # interpreted as metres.
         # ----------------------------------------------------
 
-        geometry_json = (
-            gpd.GeoSeries(
-                [geometry],
-                crs=site_gdf.crs,
-            )
-            .__geo_interface__["features"][0]["geometry"]
-        )
+        try:
 
-        site_geometry = ee.Geometry(
-            geometry_json
-        )
+            projected_site = (
+                gpd.GeoSeries(
+                    [geometry],
+                    crs=site_gdf.crs,
+                )
+                .to_crs(
+                    "EPSG:3857"
+                )
+            )
+
+            centre = (
+                projected_site
+                .iloc[0]
+                .centroid
+            )
+
+            half_size = float(
+                config.BUFFER_METERS
+            )
+
+            square = box(
+                centre.x - half_size,
+                centre.y - half_size,
+                centre.x + half_size,
+                centre.y + half_size,
+            )
+
+            square_wgs84 = (
+                gpd.GeoSeries(
+                    [square],
+                    crs="EPSG:3857",
+                )
+                .to_crs(
+                    "EPSG:4326"
+                )
+                .iloc[0]
+            )
+
+            square_geojson = (
+                gpd.GeoSeries(
+                    [square_wgs84],
+                    crs="EPSG:4326",
+                )
+                .__geo_interface__["features"][0]["geometry"]
+            )
+
+            site_geometry = ee.Geometry(
+                square_geojson
+            )
+
+        except Exception as exc:
+
+            print(
+                f"{site_id}: WARNING - "
+                "Could not create square monitoring "
+                f"geometry: {exc}"
+            )
+
+            continue
 
         # ----------------------------------------------------
         # Site Sentinel-2 collection
@@ -877,6 +1025,26 @@ def export_latest_ndvi_image(
         )
 
         # ----------------------------------------------------
+        # IMPORTANT:
+        #
+        # Record the site date BEFORE attempting the image
+        # download.
+        #
+        # This means a thumbnail failure will not create an
+        # empty site_ndvi_dates.csv.
+        # ----------------------------------------------------
+
+        date_rows.append(
+            {
+                "site_id": site_id,
+                "date": site_date,
+                "ndvi_image_date": site_date,
+                "boundary_type": "Square monitoring area",
+                "image_status": "pending",
+            }
+        )
+
+        # ----------------------------------------------------
         # Site NDVI
         # ----------------------------------------------------
 
@@ -885,47 +1053,21 @@ def export_latest_ndvi_image(
             .normalizedDifference(
                 ["B8", "B4"]
             )
-            .rename("NDVI")
+            .rename(
+                "NDVI"
+            )
         )
 
-<<<<<<< HEAD
-        # Use getBounds instead of bounds() to avoid reprojection errors
-        try:
-            site_bounds = site_geometry.getBounds()
-
-            site_params = {
-                "region": site_bounds,
-                "dimensions": 900,
-                "format": "png",
-                "min": -0.2,
-                "max": 0.8,
-                "palette": palette,
-            }
-
-            site_url = site_ndvi.getThumbURL(site_params)
-
-=======
-        # ----------------------------------------------------
-        # Generate site thumbnail
-        # ----------------------------------------------------
+        # ====================================================
+        # GENERATE SITE THUMBNAIL
+        # ====================================================
 
         try:
-
-            # IMPORTANT:
-            #
-            # Do NOT use:
-            #
-            # site_geometry.bounds(1)
-            #
-            # or:
-            #
-            # site_geometry.bounds(0)
-            #
-            # Instead, get the actual geometry as GeoJSON.
 
             site_region = (
-                site_geometry
-                .getInfo()
+                geometry_to_thumbnail_region(
+                    site_geometry
+                )
             )
 
             site_params = {
@@ -934,15 +1076,7 @@ def export_latest_ndvi_image(
                 "format": "png",
                 "min": -0.2,
                 "max": 0.8,
-                "palette": [
-                    "#8c510a",
-                    "#d8b365",
-                    "#f6e8c3",
-                    "#f5f5f5",
-                    "#c7eae5",
-                    "#5ab4ac",
-                    "#01665e",
-                ],
+                "palette": NDVI_PALETTE,
                 "crs": "EPSG:4326",
             }
 
@@ -953,7 +1087,6 @@ def export_latest_ndvi_image(
                 )
             )
 
->>>>>>> e3a56fa (Fix GEE NDVI thumbnail generation)
             site_output = (
                 config.NDVI_IMAGES_DIR
                 / f"{site_id}.png"
@@ -967,15 +1100,13 @@ def export_latest_ndvi_image(
             print(
                 f"{site_id}: NDVI saved | "
                 f"date={site_date} | "
-                f"area={row.get('area_hectares', 'n/a')} ha"
+                f"area="
+                f"{row.get('area_hectares', 'n/a')} ha"
             )
 
-<<<<<<< HEAD
-        except Exception as e:
-            print(
-                f"{site_id}: WARNING - Could not generate NDVI image: {e}"
-            )
-=======
+            # Update status to successful.
+            date_rows[-1]["image_status"] = "success"
+
         except Exception as exc:
 
             print(
@@ -984,28 +1115,27 @@ def export_latest_ndvi_image(
                 f"{exc}"
             )
 
->>>>>>> e3a56fa (Fix GEE NDVI thumbnail generation)
+            # Keep the site record but mark image failure.
+            date_rows[-1]["image_status"] = "failed"
+
             continue
 
-        date_rows.append(
-            {
-                "site_id": site_id,
-                "date": site_date,
-                "ndvi_image_date": site_date,
-                "boundary_type": row.get(
-                    "boundary_type",
-                    "Estimated monitoring area",
-                ),
-            }
-        )
-
-    # --------------------------------------------------------
+    # ========================================================
     # SAVE SITE NDVI DATES
-    # --------------------------------------------------------
+    # ========================================================
 
-    pd.DataFrame(
-        date_rows
-    ).to_csv(
+    dates_df = pd.DataFrame(
+        date_rows,
+        columns=[
+            "site_id",
+            "date",
+            "ndvi_image_date",
+            "boundary_type",
+            "image_status",
+        ],
+    )
+
+    dates_df.to_csv(
         config.DATA_DIR
         / "site_ndvi_dates.csv",
         index=False,
@@ -1013,8 +1143,20 @@ def export_latest_ndvi_image(
 
     print(
         f"Saved {len(date_rows)} "
-        "site NDVI images to "
-        f"{config.NDVI_IMAGES_DIR}"
+        "site NDVI records to "
+        f"{config.DATA_DIR / 'site_ndvi_dates.csv'}"
+    )
+
+    successful_images = sum(
+        1
+        for row in date_rows
+        if row.get("image_status") == "success"
+    )
+
+    print(
+        f"Successfully generated "
+        f"{successful_images} site NDVI images "
+        f"out of {len(date_rows)} sites."
     )
 
     return latest_date
@@ -1027,6 +1169,9 @@ def export_latest_ndvi_image(
 def calculate_trends(
     df,
 ):
+    """
+    Calculate site-level NDVI trend indicators.
+    """
 
     trends = []
 
@@ -1186,6 +1331,14 @@ def run():
             "The WILDLANDS site registry is empty."
         )
 
+    # ========================================================
+    # CREATE SQUARE MONITORING AREAS
+    # ========================================================
+
+    print(
+        "--- Creating square monitoring areas ---"
+    )
+
     buffers = sites_to_buffers(
         gdf
     )
@@ -1198,12 +1351,12 @@ def run():
 
     print(
         f"Loaded {site_count} "
-        "sites with buffers"
+        "sites with square monitoring areas"
     )
 
-    # --------------------------------------------------------
+    # ========================================================
     # MONTHLY NDVI
-    # --------------------------------------------------------
+    # ========================================================
 
     print(
         "--- Building monthly NDVI composites ---"
@@ -1226,9 +1379,9 @@ def run():
         "monthly composite periods"
     )
 
-    # --------------------------------------------------------
+    # ========================================================
     # EXTRACT NDVI
-    # --------------------------------------------------------
+    # ========================================================
 
     ndvi_df = extract_ndvi_values(
         buffers,
@@ -1253,9 +1406,9 @@ def run():
         f"{config.GEE_NDVI_CSV}"
     )
 
-    # --------------------------------------------------------
+    # ========================================================
     # LATEST IMAGERY
-    # --------------------------------------------------------
+    # ========================================================
 
     print(
         "--- Exporting latest NDVI imagery ---"
@@ -1265,9 +1418,9 @@ def run():
         buffers
     )
 
-    # --------------------------------------------------------
+    # ========================================================
     # TRENDS
-    # --------------------------------------------------------
+    # ========================================================
 
     print(
         "--- Calculating NDVI trends ---"
@@ -1303,9 +1456,4 @@ def run():
 # ============================================================
 
 if __name__ == "__main__":
-<<<<<<< HEAD
-
     run()
-=======
-    run()
->>>>>>> e3a56fa (Fix GEE NDVI thumbnail generation)

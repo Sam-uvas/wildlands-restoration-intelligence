@@ -1,51 +1,51 @@
-site_id,date,ndvi_image_date,boundary_type
-WL-BUF-01,2026-08-15,2026-08-15,Estimated demonstration monitoring area
-WL-BUF-02,2026-08-15,2026-08-15,Estimated demonstration monitoring area
-WL-BUF-03,2026-08-15,2026-08-15,Estimated demonstration monitoring area
-WL-BUF-04,2026-08-15,2026-08-15,Estimated demonstration monitoring area
-WL-BUF-05,2026-08-15,2026-08-15,Estimated demonstration monitoring area
-WL-BUF-06,2026-08-15,2026-08-15,Estimated demonstration monitoring area
-WL-BUF-07,2026-08-15,2026-08-15,Estimated demonstration monitoring area
-WL-BUF-08,2026-08-15,2026-08-15,Estimated demonstration monitoring area
-WL-DAR-01,2026-08-05,2026-08-05,Estimated demonstration monitoring area
-WL-DAR-02,2026-08-05,2026-08-05,Estimated demonstration monitoring area
-WL-DAR-03,2026-08-05,2026-08-05,Estimated demonstration monitoring area
-WL-DAR-04,2026-08-05,2026-08-05,Estimated demonstration monitoring area
-WL-DAR-05,2026-08-05,2026-08-05,Estimated demonstration monitoring area
-WL-DAR-06,2026-08-05,2026-08-05,Estimated demonstration monitoring area
-WL-UTH-01,2026-08-18,2026-08-18,Estimated demonstration monitoring area
-WL-UTH-02,2026-08-18,2026-08-18,Estimated demonstration monitoring area
-WL-UTH-03,2026-08-18,2026-08-18,Estimated demonstration monitoring area
-WL-UTH-04,2026-08-18,2026-08-18,Estimated demonstration monitoring area
-WL-UTH-05,2026-08-18,2026-08-18,Estimated demonstration monitoring area
-WL-UTH-06,2026-08-18,2026-08-18,Estimated demonstration monitoring area
-WL-UTH-07,2026-08-18,2026-08-18,Estimated demonstration monitoring area
-WL-UTH-08,2026-08-18,2026-08-18,Estimated demonstration monitoring area
-WL-UTH-09,2026-08-18,2026-08-18,Estimated demonstration monitoring area
-WL-UTH-10,2026-08-18,2026-08-18,Estimated demonstration monitoring area
-WL-MKU-01,2026-08-22,2026-08-22,Estimated demonstration monitoring area
-WL-MKU-02,2026-08-20,2026-08-20,Estimated demonstration monitoring area
-WL-MKU-03,2026-08-20,2026-08-20,Estimated demonstration monitoring area
-WL-MKU-04,2026-08-20,2026-08-20,Estimated demonstration monitoring area
-WL-MKU-05,2026-08-20,2026-08-20,Estimated demonstration monitoring area
-WL-MKU-06,2026-08-20,2026-08-20,Estimated demonstration monitoring area
-WL-SOM-01,2026-08-20,2026-08-20,Estimated demonstration monitoring area
-WL-SOM-02,2026-08-20,2026-08-20,Estimated demonstration monitoring area
-WL-SOM-03,2026-08-20,2026-08-20,Estimated demonstration monitoring area
-WL-SOM-04,2026-08-20,2026-08-20,Estimated demonstration monitoring area
-WL-SOM-05,2026-08-20,2026-08-20,Estimated demonstration monitoring area
-WL-SOM-06,2026-08-20,2026-08-20,Estimated demonstration monitoring area
-WL-BHE-01,2026-08-20,2026-08-20,Estimated demonstration monitoring area
-WL-BHE-02,2026-08-20,2026-08-20,Estimated demonstration monitoring area
-WL-BHE-03,2026-08-20,2026-08-20,Estimated demonstration monitoring area
-WL-BHE-04,2026-08-20,2026-08-20,Estimated demonstration monitoring area
-WL-BHE-05,2026-08-20,2026-08-20,Estimated demonstration monitoring area
-WL-FER-01,2026-08-05,2026-08-05,Estimated demonstration monitoring area
-WL-FER-02,2026-08-05,2026-08-05,Estimated demonstration monitoring area
-WL-FER-03,2026-08-05,2026-08-05,Estimated demonstration monitoring area
-WL-FER-04,2026-08-05,2026-08-05,Estimated demonstration monitoring area
-WL-FER-05,2026-08-05,2026-08-05,Estimated demonstration monitoring area
-WL-SON-01,2026-08-22,2026-08-22,Estimated demonstration monitoring area
-WL-SON-02,2026-08-22,2026-08-22,Estimated demonstration monitoring area
-WL-SON-03,2026-08-20,2026-08-20,Estimated demonstration monitoring area
-WL-SON-04,2026-08-22,2026-08-22,Estimated demonstration monitoring area
+site_id,date,ndvi_image_date,boundary_type,image_status
+WL-BUF-01,2026-08-25,2026-08-25,Square monitoring area,success
+WL-BUF-02,2026-08-25,2026-08-25,Square monitoring area,success
+WL-BUF-03,2026-08-25,2026-08-25,Square monitoring area,success
+WL-BUF-04,2026-08-25,2026-08-25,Square monitoring area,success
+WL-BUF-05,2026-08-25,2026-08-25,Square monitoring area,success
+WL-BUF-06,2026-08-25,2026-08-25,Square monitoring area,success
+WL-BUF-07,2026-08-25,2026-08-25,Square monitoring area,success
+WL-BUF-08,2026-08-25,2026-08-25,Square monitoring area,success
+WL-DAR-01,2026-08-25,2026-08-25,Square monitoring area,success
+WL-DAR-02,2026-08-25,2026-08-25,Square monitoring area,success
+WL-DAR-03,2026-08-25,2026-08-25,Square monitoring area,success
+WL-DAR-04,2026-08-25,2026-08-25,Square monitoring area,success
+WL-DAR-05,2026-08-25,2026-08-25,Square monitoring area,success
+WL-DAR-06,2026-08-25,2026-08-25,Square monitoring area,success
+WL-UTH-01,2026-08-28,2026-08-28,Square monitoring area,success
+WL-UTH-02,2026-08-28,2026-08-28,Square monitoring area,success
+WL-UTH-03,2026-08-28,2026-08-28,Square monitoring area,success
+WL-UTH-04,2026-08-28,2026-08-28,Square monitoring area,success
+WL-UTH-05,2026-08-28,2026-08-28,Square monitoring area,success
+WL-UTH-06,2026-08-28,2026-08-28,Square monitoring area,success
+WL-UTH-07,2026-08-28,2026-08-28,Square monitoring area,success
+WL-UTH-08,2026-08-28,2026-08-28,Square monitoring area,success
+WL-UTH-09,2026-08-28,2026-08-28,Square monitoring area,success
+WL-UTH-10,2026-08-28,2026-08-28,Square monitoring area,success
+WL-MKU-01,2026-08-25,2026-08-25,Square monitoring area,success
+WL-MKU-02,2026-08-25,2026-08-25,Square monitoring area,success
+WL-MKU-03,2026-08-25,2026-08-25,Square monitoring area,success
+WL-MKU-04,2026-08-25,2026-08-25,Square monitoring area,success
+WL-MKU-05,2026-08-25,2026-08-25,Square monitoring area,success
+WL-MKU-06,2026-08-25,2026-08-25,Square monitoring area,success
+WL-SOM-01,2026-08-25,2026-08-25,Square monitoring area,success
+WL-SOM-02,2026-08-25,2026-08-25,Square monitoring area,success
+WL-SOM-03,2026-08-25,2026-08-25,Square monitoring area,success
+WL-SOM-04,2026-08-25,2026-08-25,Square monitoring area,success
+WL-SOM-05,2026-08-25,2026-08-25,Square monitoring area,success
+WL-SOM-06,2026-08-25,2026-08-25,Square monitoring area,success
+WL-BHE-01,2026-08-30,2026-08-30,Square monitoring area,success
+WL-BHE-02,2026-08-30,2026-08-30,Square monitoring area,success
+WL-BHE-03,2026-08-30,2026-08-30,Square monitoring area,success
+WL-BHE-04,2026-08-30,2026-08-30,Square monitoring area,success
+WL-BHE-05,2026-08-30,2026-08-30,Square monitoring area,success
+WL-FER-01,2026-08-25,2026-08-25,Square monitoring area,success
+WL-FER-02,2026-08-25,2026-08-25,Square monitoring area,success
+WL-FER-03,2026-08-25,2026-08-25,Square monitoring area,success
+WL-FER-04,2026-08-25,2026-08-25,Square monitoring area,success
+WL-FER-05,2026-08-25,2026-08-25,Square monitoring area,success
+WL-SON-01,2026-08-25,2026-08-25,Square monitoring area,success
+WL-SON-02,2026-08-25,2026-08-25,Square monitoring area,success
+WL-SON-03,2026-08-25,2026-08-25,Square monitoring area,success
+WL-SON-04,2026-08-25,2026-08-25,Square monitoring area,success

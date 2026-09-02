@@ -3,6 +3,7 @@ name: restoration-pipeline
 on:
   schedule:
     - cron: "0 3 * * 1"
+
   workflow_dispatch:
 
 permissions:
@@ -17,6 +18,7 @@ jobs:
       # --------------------------------------------------------
       # CHECKOUT
       # --------------------------------------------------------
+
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
@@ -25,6 +27,7 @@ jobs:
       # --------------------------------------------------------
       # PYTHON
       # --------------------------------------------------------
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -33,6 +36,7 @@ jobs:
       # --------------------------------------------------------
       # DEPENDENCIES
       # --------------------------------------------------------
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -41,10 +45,12 @@ jobs:
       # --------------------------------------------------------
       # CHECK SECRETS
       # --------------------------------------------------------
+
       - name: Check GitHub secrets
         env:
           GEE_SERVICE_ACCOUNT_KEY: ${{ secrets.GEE_SERVICE_ACCOUNT_KEY }}
           GEE_PROJECT: ${{ secrets.GEE_PROJECT }}
+
         run: |
           if [ -z "$GEE_SERVICE_ACCOUNT_KEY" ]; then
             echo "ERROR: GEE_SERVICE_ACCOUNT_KEY is missing."
@@ -62,9 +68,11 @@ jobs:
       # --------------------------------------------------------
       # CREATE SERVICE ACCOUNT KEY
       # --------------------------------------------------------
+
       - name: Create Earth Engine credentials
         env:
           GEE_SERVICE_ACCOUNT_KEY: ${{ secrets.GEE_SERVICE_ACCOUNT_KEY }}
+
         run: |
           printf '%s' "$GEE_SERVICE_ACCOUNT_KEY" > "$RUNNER_TEMP/gee-key.json"
 
@@ -104,11 +112,13 @@ jobs:
           PY
 
       # --------------------------------------------------------
-      # EXPORT CREDENTIAL PATH FOR ALL FOLLOWING STEPS
+      # CONFIGURE EARTH ENGINE ENVIRONMENT
       # --------------------------------------------------------
+
       - name: Configure Earth Engine environment
         env:
           GEE_PROJECT: ${{ secrets.GEE_PROJECT }}
+
         run: |
           echo "GOOGLE_APPLICATION_CREDENTIALS=$RUNNER_TEMP/gee-key.json" >> "$GITHUB_ENV"
           echo "GEE_PROJECT=$GEE_PROJECT" >> "$GITHUB_ENV"
@@ -120,6 +130,7 @@ jobs:
       # --------------------------------------------------------
       # TEST EARTH ENGINE
       # --------------------------------------------------------
+
       - name: Test Earth Engine authentication
         run: |
           python3 - <<'PY'
@@ -154,7 +165,6 @@ jobs:
               project=project,
           )
 
-          # Force a real Earth Engine request.
           result = ee.Number(1).getInfo()
 
           print("Earth Engine authentication: OK")
@@ -165,6 +175,7 @@ jobs:
       # --------------------------------------------------------
       # RUN PIPELINE
       # --------------------------------------------------------
+
       - name: Run pipeline
         run: |
           python3 run_pipeline.py
@@ -172,6 +183,7 @@ jobs:
       # --------------------------------------------------------
       # VERIFY OUTPUTS
       # --------------------------------------------------------
+
       - name: Verify generated outputs
         run: |
           echo "Checking generated files..."
@@ -187,9 +199,38 @@ jobs:
             data/gee_trends.csv
 
       # --------------------------------------------------------
-      # COMMIT AND PUSH
+      # VALIDATE JSON
       # --------------------------------------------------------
-      - name: Commit and push updated dashboard data
+
+      - name: Validate dashboard JSON
+        run: |
+          echo "Validating dashboard/data.json..."
+
+          python3 -m json.tool dashboard/data.json > /dev/null
+
+          echo "Checking for Git conflict markers..."
+
+          if grep -nE '^(<<<<<<<|=======|>>>>>>>)' dashboard/data.json; then
+            echo "ERROR: Git conflict markers detected in dashboard/data.json."
+            exit 1
+          fi
+
+          echo "dashboard/data.json is valid."
+
+      # --------------------------------------------------------
+      # SHOW CURRENT DATA DATE
+      # --------------------------------------------------------
+
+      - name: Report latest imagery date
+        run: |
+          echo "Latest imagery date:"
+          cat data/latest_ndvi_date.txt
+
+      # --------------------------------------------------------
+      # COMMIT GENERATED DATA
+      # --------------------------------------------------------
+
+      - name: Commit generated data
         run: |
           git config user.name "restoration-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -197,11 +238,29 @@ jobs:
           git add \
             dashboard/data.json \
             data/gee_ndvi_data.csv \
-            data/gee_trends.csv
+            data/gee_trends.csv \
+            data/latest_ndvi_date.txt
 
           if git diff --cached --quiet; then
             echo "No data changes detected."
           else
             git commit -m "Automated data refresh"
-            git push origin HEAD:main
           fi
+
+      # --------------------------------------------------------
+      # SYNCHRONIZE WITH REMOTE
+      # --------------------------------------------------------
+
+      - name: Synchronize with main
+        run: |
+          git fetch origin main
+
+          git rebase origin/main
+
+      # --------------------------------------------------------
+      # PUSH
+      # --------------------------------------------------------
+
+      - name: Push updated data
+        run: |
+          git push origin HEAD:main

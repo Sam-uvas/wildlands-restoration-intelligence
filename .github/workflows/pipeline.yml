@@ -1,28 +1,52 @@
 name: restoration-pipeline
 
+# ============================================================
+# TRIGGERS
+# ============================================================
+
 on:
+  # Every Monday at 03:00 UTC
   schedule:
     - cron: "0 3 * * 1"
 
+  # Allows manual execution from GitHub Actions
   workflow_dispatch:
+
+
+# ============================================================
+# PERMISSIONS
+# ============================================================
 
 permissions:
   contents: write
 
-# Prevent two pipeline runs from modifying main simultaneously
+
+# ============================================================
+# CONCURRENCY
+# Prevent two copies of the pipeline from modifying main
+# simultaneously.
+# ============================================================
+
 concurrency:
   group: restoration-pipeline-main
   cancel-in-progress: false
 
+
+# ============================================================
+# JOB
+# ============================================================
+
 jobs:
+
   fetch-and-merge:
+
     runs-on: ubuntu-latest
 
     steps:
 
-      # --------------------------------------------------------
-      # CHECKOUT
-      # --------------------------------------------------------
+      # ======================================================
+      # 1. CHECKOUT REPOSITORY
+      # ======================================================
 
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -30,40 +54,59 @@ jobs:
           fetch-depth: 0
           ref: main
 
-      # --------------------------------------------------------
-      # SYNCHRONIZE WITH MAIN
-      # --------------------------------------------------------
+
+      # ======================================================
+      # 2. SYNCHRONIZE WITH MAIN
+      # ======================================================
 
       - name: Synchronize with main
         run: |
+          set -e
+
+          echo "========================================"
+          echo "SYNCHRONIZING WITH ORIGIN/MAIN"
+          echo "========================================"
+
           git fetch origin main
+
           git checkout main
+
           git reset --hard origin/main
 
+          echo ""
           echo "Repository synchronized with origin/main."
+
+          echo ""
+          echo "Git status:"
           git status --short
 
-      # --------------------------------------------------------
-      # PYTHON
-      # --------------------------------------------------------
+
+      # ======================================================
+      # 3. SET UP PYTHON
+      # ======================================================
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      # --------------------------------------------------------
-      # DEPENDENCIES
-      # --------------------------------------------------------
+
+      # ======================================================
+      # 4. INSTALL DEPENDENCIES
+      # ======================================================
 
       - name: Install dependencies
         run: |
+          set -e
+
           python -m pip install --upgrade pip
+
           pip install -r requirements.txt
 
-      # --------------------------------------------------------
-      # CHECK SECRETS
-      # --------------------------------------------------------
+
+      # ======================================================
+      # 5. CHECK GITHUB SECRETS
+      # ======================================================
 
       - name: Check GitHub secrets
         env:
@@ -71,6 +114,12 @@ jobs:
           GEE_PROJECT: ${{ secrets.GEE_PROJECT }}
 
         run: |
+          set -e
+
+          echo "========================================"
+          echo "CHECKING GITHUB SECRETS"
+          echo "========================================"
+
           if [ -z "$GEE_SERVICE_ACCOUNT_KEY" ]; then
             echo "ERROR: GEE_SERVICE_ACCOUNT_KEY is missing."
             exit 1
@@ -84,16 +133,24 @@ jobs:
           echo "GEE_SERVICE_ACCOUNT_KEY is available."
           echo "GEE_PROJECT is available."
 
-      # --------------------------------------------------------
-      # CREATE SERVICE ACCOUNT KEY
-      # --------------------------------------------------------
+
+      # ======================================================
+      # 6. CREATE EARTH ENGINE CREDENTIALS
+      # ======================================================
 
       - name: Create Earth Engine credentials
         env:
           GEE_SERVICE_ACCOUNT_KEY: ${{ secrets.GEE_SERVICE_ACCOUNT_KEY }}
 
         run: |
-          printf '%s' "$GEE_SERVICE_ACCOUNT_KEY" > "$RUNNER_TEMP/gee-key.json"
+          set -e
+
+          echo "========================================"
+          echo "CREATING EARTH ENGINE CREDENTIALS"
+          echo "========================================"
+
+          printf '%s' "$GEE_SERVICE_ACCOUNT_KEY" \
+            > "$RUNNER_TEMP/gee-key.json"
 
           python3 - <<'PY'
           import json
@@ -111,11 +168,12 @@ jobs:
               "type",
               "project_id",
               "private_key",
-              "client_email"
+              "client_email",
           ]
 
           missing = [
-              key for key in required
+              key
+              for key in required
               if not data.get(key)
           ]
 
@@ -130,33 +188,58 @@ jobs:
           print("Project in key:", data["project_id"])
           PY
 
-      # --------------------------------------------------------
-      # CONFIGURE EARTH ENGINE ENVIRONMENT
-      # --------------------------------------------------------
+
+      # ======================================================
+      # 7. CONFIGURE EARTH ENGINE ENVIRONMENT
+      # ======================================================
 
       - name: Configure Earth Engine environment
         env:
           GEE_PROJECT: ${{ secrets.GEE_PROJECT }}
 
         run: |
-          echo "GOOGLE_APPLICATION_CREDENTIALS=$RUNNER_TEMP/gee-key.json" >> "$GITHUB_ENV"
-          echo "GEE_PROJECT=$GEE_PROJECT" >> "$GITHUB_ENV"
+          set -e
+
+          echo "GOOGLE_APPLICATION_CREDENTIALS=$RUNNER_TEMP/gee-key.json" \
+            >> "$GITHUB_ENV"
+
+          echo "GEE_PROJECT=$GEE_PROJECT" \
+            >> "$GITHUB_ENV"
 
           echo "Earth Engine environment configured."
 
-      # --------------------------------------------------------
-      # TEST EARTH ENGINE
-      # --------------------------------------------------------
+
+      # ======================================================
+      # 8. TEST EARTH ENGINE AUTHENTICATION
+      # ======================================================
 
       - name: Test Earth Engine authentication
         run: |
+          set -e
+
+          echo "========================================"
+          echo "TESTING EARTH ENGINE"
+          echo "========================================"
+
           python3 - <<'PY'
           import os
           import ee
+
           from google.oauth2 import service_account
 
           project = os.environ["GEE_PROJECT"]
-          credentials_path = os.environ["GOOGLE_APPLICATION_CREDENTIALS"]
+
+          credentials_path = os.environ[
+              "GOOGLE_APPLICATION_CREDENTIALS"
+          ]
+
+          print("Project:", project)
+          print("Credentials file:", credentials_path)
+
+          if not os.path.isfile(credentials_path):
+              raise SystemExit(
+                  "ERROR: Earth Engine credentials file does not exist."
+              )
 
           credentials = (
               service_account.Credentials
@@ -176,118 +259,314 @@ jobs:
 
           result = ee.Number(1).getInfo()
 
+          print("")
           print("Earth Engine authentication: OK")
           print("Earth Engine API access: OK")
           print("Test result:", result)
           PY
 
-      # --------------------------------------------------------
-      # RUN PIPELINE
-      # --------------------------------------------------------
+
+      # ======================================================
+      # 9. RUN PIPELINE
+      # ======================================================
 
       - name: Run pipeline
         run: |
+          set -e
+
+          echo "========================================"
+          echo "RUNNING RESTORATION PIPELINE"
+          echo "========================================"
+
           python3 run_pipeline.py
 
-      # --------------------------------------------------------
-      # VERIFY OUTPUTS
-      # --------------------------------------------------------
+          echo ""
+          echo "Pipeline execution completed."
+
+
+      # ======================================================
+      # 10. VERIFY REQUIRED OUTPUTS
+      # ======================================================
 
       - name: Verify generated outputs
         run: |
-          echo "Checking generated files..."
+          set -e
 
-          test -f dashboard/data.json
-          test -f data/gee_ndvi_data.csv
-          test -f data/gee_trends.csv
-          test -f data/latest_ndvi_date.txt
+          echo "========================================"
+          echo "VERIFYING GENERATED OUTPUTS"
+          echo "========================================"
 
-          echo "Generated files:"
-          ls -lh \
-            dashboard/data.json \
-            data/gee_ndvi_data.csv \
-            data/gee_trends.csv \
-            data/latest_ndvi_date.txt
+          required_files=(
+            "dashboard/data.json"
+            "data/gee_ndvi_data.csv"
+            "data/gee_trends.csv"
+            "data/latest_ndvi_date.txt"
+          )
 
-      # --------------------------------------------------------
-      # VALIDATE JSON
-      # --------------------------------------------------------
+          for file in "${required_files[@]}"; do
+            if [ ! -f "$file" ]; then
+              echo "ERROR: Missing required file: $file"
+              exit 1
+            fi
+
+            echo "OK: $file"
+          done
+
+          if [ ! -d "dashboard/ndvi" ]; then
+            echo "ERROR: dashboard/ndvi directory does not exist."
+            exit 1
+          fi
+
+          if ! find dashboard/ndvi -type f -name "*.png" | grep -q .; then
+            echo "ERROR: No NDVI PNG files were generated."
+            exit 1
+          fi
+
+          if [ ! -f "data/latest_ndvi.png" ]; then
+            echo "ERROR: data/latest_ndvi.png was not generated."
+            exit 1
+          fi
+
+          if [ ! -f "data/site_ndvi_dates.csv" ]; then
+            echo "ERROR: data/site_ndvi_dates.csv was not generated."
+            exit 1
+          fi
+
+          echo ""
+          echo "Generated outputs verified successfully."
+
+
+      # ======================================================
+      # 11. VALIDATE DASHBOARD JSON
+      # ======================================================
 
       - name: Validate dashboard JSON
         run: |
-          echo "Validating dashboard/data.json..."
+          set -e
 
-          python3 -m json.tool dashboard/data.json > /dev/null
+          echo "========================================"
+          echo "VALIDATING DASHBOARD JSON"
+          echo "========================================"
 
-          if grep -nE '^(<<<<<<<|=======|>>>>>>>)' dashboard/data.json; then
+          python3 -m json.tool \
+            dashboard/data.json \
+            > /dev/null
+
+          echo "JSON syntax: OK"
+
+          echo ""
+          echo "Checking for Git conflict markers..."
+
+          if grep -nE \
+            '^(<<<<<<<|=======|>>>>>>>)' \
+            dashboard/data.json; then
+
             echo "ERROR: Git conflict markers detected."
             exit 1
           fi
 
+          echo "No Git conflict markers found."
           echo "dashboard/data.json is valid."
 
-      # --------------------------------------------------------
-      # SHOW CURRENT DATA DATE
-      # --------------------------------------------------------
+
+      # ======================================================
+      # 12. REPORT LATEST IMAGERY DATE
+      # ======================================================
 
       - name: Report latest imagery date
         run: |
-          echo "Latest imagery date:"
+          set -e
+
+          echo "========================================"
+          echo "LATEST IMAGERY DATE"
+          echo "========================================"
+
           cat data/latest_ndvi_date.txt
 
-      # --------------------------------------------------------
-      # SHOW GIT CHANGES
-      # --------------------------------------------------------
+
+      # ======================================================
+      # 13. INSPECT GENERATED CHANGES
+      # ======================================================
 
       - name: Inspect generated changes
         run: |
-          echo "=== Git status ==="
+          set -e
+
+          echo "========================================"
+          echo "GENERATED GIT CHANGES"
+          echo "========================================"
+
           git status --short
 
-          echo "=== Changed files ==="
+          echo ""
+          echo "Changed files:"
           git diff --name-only
 
-      # --------------------------------------------------------
-      # COMMIT GENERATED DATA
-      # --------------------------------------------------------
+          echo ""
+          echo "Untracked files:"
+          git ls-files --others --exclude-standard
+
+
+      # ======================================================
+      # 14. COMMIT ALL PIPELINE OUTPUTS
+      # ======================================================
 
       - name: Commit generated data
         run: |
-          git config user.name "restoration-bot"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          set -e
 
-          git add \
+          echo "========================================"
+          echo "STAGING GENERATED DATA"
+          echo "========================================"
+
+          git config user.name "restoration-bot"
+
+          git config user.email \
+            "41898282+github-actions[bot]@users.noreply.github.com"
+
+
+          # --------------------------------------------------
+          # Stage ONLY files/directories produced by the
+          # restoration pipeline.
+          # --------------------------------------------------
+
+          git add -A \
             dashboard/data.json \
+            dashboard/ndvi/ \
             data/gee_ndvi_data.csv \
             data/gee_trends.csv \
-            data/latest_ndvi_date.txt
+            data/latest_ndvi_date.txt \
+            data/latest_ndvi.png \
+            data/site_ndvi_dates.csv
 
-          if git diff --cached --quiet; then
-            echo "No data changes detected."
+
+          echo ""
+          echo "========================================"
+          echo "STAGED CHANGES"
+          echo "========================================"
+
+          git status --short
+
+
+          # --------------------------------------------------
+          # Make sure generated NDVI files were actually staged
+          # --------------------------------------------------
+
+          echo ""
+          echo "Checking staged NDVI outputs..."
+
+          if git diff --cached --name-only \
+            | grep -q "^dashboard/ndvi/"; then
+
+            echo "NDVI image changes are staged."
+
           else
-            git commit -m "Automated data refresh"
+
+            echo "No NDVI image changes detected."
+
           fi
 
-      # --------------------------------------------------------
-      # VERIFY WORKING TREE
-      # --------------------------------------------------------
+
+          # --------------------------------------------------
+          # Commit if there are changes
+          # --------------------------------------------------
+
+          if git diff --cached --quiet; then
+
+            echo ""
+            echo "No generated data changes detected."
+
+          else
+
+            echo ""
+            echo "Committing generated data..."
+
+            git commit \
+              -m "Automated data refresh"
+
+            echo ""
+            echo "Generated data committed successfully."
+
+          fi
+
+
+      # ======================================================
+      # 15. VERIFY CLEAN WORKING TREE
+      # ======================================================
 
       - name: Verify clean working tree
         run: |
-          echo "Final Git status:"
+          set -e
+
+          echo "========================================"
+          echo "FINAL GIT STATUS"
+          echo "========================================"
+
           git status --short
 
+          echo ""
+          echo "Checking for unexpected changes..."
+
           if [ -n "$(git status --porcelain)" ]; then
+
+            echo ""
             echo "ERROR: Working tree contains unexpected changes."
+            echo ""
+            echo "Remaining changes:"
+            git status --short
+
+            echo ""
+            echo "Tracked modifications:"
+            git diff --name-only
+
+            echo ""
+            echo "Untracked files:"
+            git ls-files --others --exclude-standard
+
             exit 1
           fi
 
+          echo ""
           echo "Working tree is clean."
 
-      # --------------------------------------------------------
-      # PUSH
-      # --------------------------------------------------------
+
+      # ======================================================
+      # 16. SYNCHRONIZE BEFORE PUSH
+      # ======================================================
+
+      - name: Synchronize before push
+        run: |
+          set -e
+
+          echo "========================================"
+          echo "SYNCHRONIZING BEFORE PUSH"
+          echo "========================================"
+
+          git fetch origin main
+
+          git rebase origin/main
+
+          echo ""
+          echo "Rebase completed successfully."
+
+          echo ""
+          echo "Git status:"
+          git status --short
+
+
+      # ======================================================
+      # 17. PUSH
+      # ======================================================
 
       - name: Push updated data
         run: |
+          set -e
+
+          echo "========================================"
+          echo "PUSHING GENERATED DATA"
+          echo "========================================"
+
           git push origin HEAD:main
+
+          echo ""
+          echo "Generated data pushed successfully."

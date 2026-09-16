@@ -1,6 +1,6 @@
 {
-  "last_updated_utc": "2026-09-02T16:41:37.276636+00:00",
-  "last_updated_human": "2026-09-02 16:41 UTC",
+  "last_updated_utc": "2026-09-16T20:24:49.593792+00:00",
+  "last_updated_human": "2026-09-16 20:24 UTC",
   "total_sites": 50,
   "data_source": "Field monitoring + Sentinel-2 satellite (GEE)",
   "sites": [
@@ -10,8 +10,8 @@
       "latitude": -29.65336,
       "longitude": 30.98736,
       "vegetation_health": 91.0,
-      "satellite_health": 56.5,
-      "combined_health": 73.8,
+      "satellite_health": 56.0,
+      "combined_health": 73.5,
       "area_hectares": 12.5,
       "restoration_type": "Forest",
       "invasive_species_cover": null,
@@ -19,7 +19,7 @@
       "funding_status": "Demonstration dataset",
       "status": "good",
       "trend": "Stable",
-      "improvement_rate": 50.0,
+      "improvement_rate": 53.8,
       "prediction": "Monitor closely",
       "ndvi_history": [
         {
@@ -73,10 +73,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.4183
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.503
         }
       ],
       "ndvi_image_url": "ndvi/WL-BUF-01.png",
-      "ndvi_image_date": "2026-08-25",
+      "ndvi_image_date": "2026-09-09",
       "report_url": "../reports/sites/WL-BUF-01_report.pdf"
     },
     {
@@ -85,17 +89,17 @@
       "latitude": -29.61779,
       "longitude": 30.96655,
       "vegetation_health": 68.0,
-      "satellite_health": 72.2,
-      "combined_health": 70.1,
+      "satellite_health": 71.1,
+      "combined_health": 69.5,
       "area_hectares": 27.7,
       "restoration_type": "Forest",
       "invasive_species_cover": null,
       "community_engagement": "Not specified",
       "funding_status": "Demonstration dataset",
       "status": "good",
-      "trend": "Stable",
-      "improvement_rate": 58.3,
-      "prediction": "Monitor closely",
+      "trend": "Improving",
+      "improvement_rate": 61.5,
+      "prediction": "On track",
       "ndvi_history": [
         {
           "date": "2025-08",
@@ -148,10 +152,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.4423
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.5446
         }
       ],
       "ndvi_image_url": "ndvi/WL-BUF-02.png",
-      "ndvi_image_date": "2026-08-25",
+      "ndvi_image_date": "2026-09-09",
       "report_url": "../reports/sites/WL-BUF-02_report.pdf"
     },
     {
@@ -160,8 +168,8 @@
       "latitude": -29.65026,
       "longitude": 31.0,
       "vegetation_health": 72.0,
-      "satellite_health": 42.7,
-      "combined_health": 57.4,
+      "satellite_health": 42.6,
+      "combined_health": 57.3,
       "area_hectares": 18.0,
       "restoration_type": "Forest",
       "invasive_species_cover": null,
@@ -169,7 +177,7 @@
       "funding_status": "Demonstration dataset",
       "status": "warning",
       "trend": "Stable",
-      "improvement_rate": 41.7,
+      "improvement_rate": 46.2,
       "prediction": "Monitor closely",
       "ndvi_history": [
         {
@@ -223,10 +231,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.3746
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.4473
         }
       ],
       "ndvi_image_url": "ndvi/WL-BUF-03.png",
-      "ndvi_image_date": "2026-08-25",
+      "ndvi_image_date": "2026-09-09",
       "report_url": "../reports/sites/WL-BUF-03_report.pdf"
     },
     {
@@ -235,8 +247,8 @@
       "latitude": -29.64368,
       "longitude": 30.95688,
       "vegetation_health": 87.0,
-      "satellite_health": 62.4,
-      "combined_health": 74.7,
+      "satellite_health": 61.1,
+      "combined_health": 74.0,
       "area_hectares": 21.2,
       "restoration_type": "Forest",
       "invasive_species_cover": null,
@@ -244,7 +256,7 @@
       "funding_status": "Demonstration dataset",
       "status": "good",
       "trend": "Improving",
-      "improvement_rate": 66.7,
+      "improvement_rate": 69.2,
       "prediction": "On track",
       "ndvi_history": [
         {
@@ -298,10 +310,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.3715
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.4658
         }
       ],
       "ndvi_image_url": "ndvi/WL-BUF-04.png",
-      "ndvi_image_date": "2026-08-25",
+      "ndvi_image_date": "2026-09-09",
       "report_url": "../reports/sites/WL-BUF-04_report.pdf"
     },
     {
@@ -310,8 +326,8 @@
       "latitude": -29.64467,
       "longitude": 30.95672,
       "vegetation_health": 65.0,
-      "satellite_health": 57.1,
-      "combined_health": 61.0,
+      "satellite_health": 55.8,
+      "combined_health": 60.4,
       "area_hectares": 26.7,
       "restoration_type": "Forest",
       "invasive_species_cover": null,
@@ -319,7 +335,7 @@
       "funding_status": "Demonstration dataset",
       "status": "good",
       "trend": "Stable",
-      "improvement_rate": 50.0,
+      "improvement_rate": 53.8,
       "prediction": "Monitor closely",
       "ndvi_history": [
         {
@@ -373,10 +389,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.3548
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.4341
         }
       ],
       "ndvi_image_url": "ndvi/WL-BUF-05.png",
-      "ndvi_image_date": "2026-08-25",
+      "ndvi_image_date": "2026-09-09",
       "report_url": "../reports/sites/WL-BUF-05_report.pdf"
     },
     {
@@ -394,7 +414,7 @@
       "funding_status": "Demonstration dataset",
       "status": "good",
       "trend": "Stable",
-      "improvement_rate": 50.0,
+      "improvement_rate": 53.8,
       "prediction": "Monitor closely",
       "ndvi_history": [
         {
@@ -448,10 +468,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.4043
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.5219
         }
       ],
       "ndvi_image_url": "ndvi/WL-BUF-06.png",
-      "ndvi_image_date": "2026-08-25",
+      "ndvi_image_date": "2026-09-09",
       "report_url": "../reports/sites/WL-BUF-06_report.pdf"
     },
     {
@@ -460,7 +484,7 @@
       "latitude": -29.65429,
       "longitude": 30.99586,
       "vegetation_health": 83.0,
-      "satellite_health": 55.1,
+      "satellite_health": 55.0,
       "combined_health": 69.0,
       "area_hectares": 32.6,
       "restoration_type": "Forest",
@@ -469,7 +493,7 @@
       "funding_status": "Demonstration dataset",
       "status": "good",
       "trend": "Stable",
-      "improvement_rate": 41.7,
+      "improvement_rate": 46.2,
       "prediction": "Monitor closely",
       "ndvi_history": [
         {
@@ -523,10 +547,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.4338
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.5233
         }
       ],
       "ndvi_image_url": "ndvi/WL-BUF-07.png",
-      "ndvi_image_date": "2026-08-25",
+      "ndvi_image_date": "2026-09-09",
       "report_url": "../reports/sites/WL-BUF-07_report.pdf"
     },
     {
@@ -535,7 +563,7 @@
       "latitude": -29.6376,
       "longitude": 30.9903,
       "vegetation_health": 40.0,
-      "satellite_health": 75.8,
+      "satellite_health": 75.7,
       "combined_health": 57.9,
       "area_hectares": 7.9,
       "restoration_type": "Forest",
@@ -544,7 +572,7 @@
       "funding_status": "Demonstration dataset",
       "status": "warning",
       "trend": "Stable",
-      "improvement_rate": 50.0,
+      "improvement_rate": 53.8,
       "prediction": "Monitor closely",
       "ndvi_history": [
         {
@@ -598,10 +626,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.4988
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.643
         }
       ],
       "ndvi_image_url": "ndvi/WL-BUF-08.png",
-      "ndvi_image_date": "2026-08-25",
+      "ndvi_image_date": "2026-09-09",
       "report_url": "../reports/sites/WL-BUF-08_report.pdf"
     },
     {
@@ -610,8 +642,8 @@
       "latitude": -29.32817,
       "longitude": 30.30286,
       "vegetation_health": 28.0,
-      "satellite_health": 74.2,
-      "combined_health": 51.1,
+      "satellite_health": 73.3,
+      "combined_health": 50.6,
       "area_hectares": 5.5,
       "restoration_type": "Wetland",
       "invasive_species_cover": null,
@@ -619,7 +651,7 @@
       "funding_status": "Demonstration dataset",
       "status": "warning",
       "trend": "Stable",
-      "improvement_rate": 50.0,
+      "improvement_rate": 53.8,
       "prediction": "Monitor closely",
       "ndvi_history": [
         {
@@ -673,10 +705,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.501
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.5752
         }
       ],
       "ndvi_image_url": "ndvi/WL-DAR-01.png",
-      "ndvi_image_date": "2026-08-25",
+      "ndvi_image_date": "2026-09-09",
       "report_url": "../reports/sites/WL-DAR-01_report.pdf"
     },
     {
@@ -685,8 +721,8 @@
       "latitude": -29.30263,
       "longitude": 30.25984,
       "vegetation_health": 46.0,
-      "satellite_health": 56.8,
-      "combined_health": 51.4,
+      "satellite_health": 55.0,
+      "combined_health": 50.5,
       "area_hectares": 24.9,
       "restoration_type": "Wetland",
       "invasive_species_cover": null,
@@ -694,7 +730,7 @@
       "funding_status": "Demonstration dataset",
       "status": "warning",
       "trend": "Stable",
-      "improvement_rate": 41.7,
+      "improvement_rate": 46.2,
       "prediction": "Monitor closely",
       "ndvi_history": [
         {
@@ -748,10 +784,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.3838
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.3902
         }
       ],
       "ndvi_image_url": "ndvi/WL-DAR-02.png",
-      "ndvi_image_date": "2026-08-25",
+      "ndvi_image_date": "2026-09-09",
       "report_url": "../reports/sites/WL-DAR-02_report.pdf"
     },
     {
@@ -769,7 +809,7 @@
       "funding_status": "Demonstration dataset",
       "status": "good",
       "trend": "Stable",
-      "improvement_rate": 50.0,
+      "improvement_rate": 46.2,
       "prediction": "Monitor closely",
       "ndvi_history": [
         {
@@ -823,10 +863,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.7844
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.6478
         }
       ],
       "ndvi_image_url": "ndvi/WL-DAR-03.png",
-      "ndvi_image_date": "2026-08-25",
+      "ndvi_image_date": "2026-09-09",
       "report_url": "../reports/sites/WL-DAR-03_report.pdf"
     },
     {
@@ -835,8 +879,8 @@
       "latitude": -29.32607,
       "longitude": 30.30366,
       "vegetation_health": 86.0,
-      "satellite_health": 67.8,
-      "combined_health": 76.9,
+      "satellite_health": 66.8,
+      "combined_health": 76.4,
       "area_hectares": 23.0,
       "restoration_type": "Wetland",
       "invasive_species_cover": null,
@@ -844,7 +888,7 @@
       "funding_status": "Demonstration dataset",
       "status": "good",
       "trend": "Stable",
-      "improvement_rate": 50.0,
+      "improvement_rate": 53.8,
       "prediction": "Monitor closely",
       "ndvi_history": [
         {
@@ -898,10 +942,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.4163
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.5253
         }
       ],
       "ndvi_image_url": "ndvi/WL-DAR-04.png",
-      "ndvi_image_date": "2026-08-25",
+      "ndvi_image_date": "2026-09-09",
       "report_url": "../reports/sites/WL-DAR-04_report.pdf"
     },
     {
@@ -919,7 +967,7 @@
       "funding_status": "Demonstration dataset",
       "status": "good",
       "trend": "Stable",
-      "improvement_rate": 50.0,
+      "improvement_rate": 53.8,
       "prediction": "Monitor closely",
       "ndvi_history": [
         {
@@ -973,10 +1021,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.7521
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.7596
         }
       ],
       "ndvi_image_url": "ndvi/WL-DAR-05.png",
-      "ndvi_image_date": "2026-08-25",
+      "ndvi_image_date": "2026-09-09",
       "report_url": "../reports/sites/WL-DAR-05_report.pdf"
     },
     {
@@ -985,16 +1037,16 @@
       "latitude": -29.30977,
       "longitude": 30.28387,
       "vegetation_health": 25.0,
-      "satellite_health": 97.5,
-      "combined_health": 61.2,
+      "satellite_health": 94.3,
+      "combined_health": 59.6,
       "area_hectares": 3.7,
       "restoration_type": "Wetland",
       "invasive_species_cover": null,
       "community_engagement": "Not specified",
       "funding_status": "Demonstration dataset",
-      "status": "good",
+      "status": "warning",
       "trend": "Improving",
-      "improvement_rate": 66.7,
+      "improvement_rate": 61.5,
       "prediction": "On track",
       "ndvi_history": [
         {
@@ -1048,10 +1100,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.7194
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.5174
         }
       ],
       "ndvi_image_url": "ndvi/WL-DAR-06.png",
-      "ndvi_image_date": "2026-08-25",
+      "ndvi_image_date": "2026-09-09",
       "report_url": "../reports/sites/WL-DAR-06_report.pdf"
     },
     {
@@ -1060,8 +1116,8 @@
       "latitude": -28.76053,
       "longitude": 29.38639,
       "vegetation_health": 59.0,
-      "satellite_health": 48.6,
-      "combined_health": 53.8,
+      "satellite_health": 46.9,
+      "combined_health": 53.0,
       "area_hectares": 5.0,
       "restoration_type": "Grassland",
       "invasive_species_cover": null,
@@ -1069,7 +1125,7 @@
       "funding_status": "Demonstration dataset",
       "status": "warning",
       "trend": "Stable",
-      "improvement_rate": 50.0,
+      "improvement_rate": 53.8,
       "prediction": "Monitor closely",
       "ndvi_history": [
         {
@@ -1123,10 +1179,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.2725
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.3462
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-01.png",
-      "ndvi_image_date": "2026-08-28",
+      "ndvi_image_date": "2026-09-12",
       "report_url": "../reports/sites/WL-UTH-01_report.pdf"
     },
     {
@@ -1135,8 +1195,8 @@
       "latitude": -28.76995,
       "longitude": 29.38664,
       "vegetation_health": 82.0,
-      "satellite_health": 48.7,
-      "combined_health": 65.3,
+      "satellite_health": 46.9,
+      "combined_health": 64.5,
       "area_hectares": 12.6,
       "restoration_type": "Grassland",
       "invasive_species_cover": null,
@@ -1144,7 +1204,7 @@
       "funding_status": "Demonstration dataset",
       "status": "good",
       "trend": "Stable",
-      "improvement_rate": 50.0,
+      "improvement_rate": 53.8,
       "prediction": "Monitor closely",
       "ndvi_history": [
         {
@@ -1198,10 +1258,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.2905
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.3369
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-02.png",
-      "ndvi_image_date": "2026-08-28",
+      "ndvi_image_date": "2026-09-12",
       "report_url": "../reports/sites/WL-UTH-02_report.pdf"
     },
     {
@@ -1210,8 +1274,8 @@
       "latitude": -28.75676,
       "longitude": 29.40678,
       "vegetation_health": 34.0,
-      "satellite_health": 54.0,
-      "combined_health": 44.0,
+      "satellite_health": 51.4,
+      "combined_health": 42.7,
       "area_hectares": 16.1,
       "restoration_type": "Grassland",
       "invasive_species_cover": null,
@@ -1219,7 +1283,7 @@
       "funding_status": "Demonstration dataset",
       "status": "warning",
       "trend": "Stable",
-      "improvement_rate": 41.7,
+      "improvement_rate": 46.2,
       "prediction": "Monitor closely",
       "ndvi_history": [
         {
@@ -1273,10 +1337,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.2749
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.3068
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-03.png",
-      "ndvi_image_date": "2026-08-28",
+      "ndvi_image_date": "2026-09-12",
       "report_url": "../reports/sites/WL-UTH-03_report.pdf"
     },
     {
@@ -1285,8 +1353,8 @@
       "latitude": -28.76165,
       "longitude": 29.38548,
       "vegetation_health": 80.0,
-      "satellite_health": 48.7,
-      "combined_health": 64.3,
+      "satellite_health": 46.9,
+      "combined_health": 63.5,
       "area_hectares": 37.6,
       "restoration_type": "Grassland",
       "invasive_species_cover": null,
@@ -1294,7 +1362,7 @@
       "funding_status": "Demonstration dataset",
       "status": "good",
       "trend": "Stable",
-      "improvement_rate": 50.0,
+      "improvement_rate": 53.8,
       "prediction": "Monitor closely",
       "ndvi_history": [
         {
@@ -1348,10 +1416,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.2767
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.3438
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-04.png",
-      "ndvi_image_date": "2026-08-28",
+      "ndvi_image_date": "2026-09-12",
       "report_url": "../reports/sites/WL-UTH-04_report.pdf"
     },
     {
@@ -1360,16 +1432,16 @@
       "latitude": -28.74454,
       "longitude": 29.4074,
       "vegetation_health": 33.0,
-      "satellite_health": 38.6,
-      "combined_health": 35.8,
+      "satellite_health": 36.2,
+      "combined_health": 34.6,
       "area_hectares": 8.5,
       "restoration_type": "Grassland",
       "invasive_species_cover": null,
       "community_engagement": "Not specified",
       "funding_status": "Demonstration dataset",
-      "status": "warning",
+      "status": "critical",
       "trend": "Stable",
-      "improvement_rate": 50.0,
+      "improvement_rate": 53.8,
       "prediction": "Monitor closely",
       "ndvi_history": [
         {
@@ -1423,10 +1495,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.2216
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.2254
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-05.png",
-      "ndvi_image_date": "2026-08-28",
+      "ndvi_image_date": "2026-09-12",
       "report_url": "../reports/sites/WL-UTH-05_report.pdf"
     },
     {
@@ -1435,8 +1511,8 @@
       "latitude": -28.76683,
       "longitude": 29.41146,
       "vegetation_health": 57.0,
-      "satellite_health": 52.1,
-      "combined_health": 54.5,
+      "satellite_health": 49.8,
+      "combined_health": 53.4,
       "area_hectares": 16.4,
       "restoration_type": "Grassland",
       "invasive_species_cover": null,
@@ -1444,7 +1520,7 @@
       "funding_status": "Demonstration dataset",
       "status": "warning",
       "trend": "Stable",
-      "improvement_rate": 41.7,
+      "improvement_rate": 46.2,
       "prediction": "Monitor closely",
       "ndvi_history": [
         {
@@ -1498,10 +1574,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.2574
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.3159
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-06.png",
-      "ndvi_image_date": "2026-08-28",
+      "ndvi_image_date": "2026-09-12",
       "report_url": "../reports/sites/WL-UTH-06_report.pdf"
     },
     {
@@ -1510,8 +1590,8 @@
       "latitude": -28.743,
       "longitude": 29.42448,
       "vegetation_health": 82.0,
-      "satellite_health": 45.3,
-      "combined_health": 63.6,
+      "satellite_health": 44.1,
+      "combined_health": 63.0,
       "area_hectares": 23.2,
       "restoration_type": "Grassland",
       "invasive_species_cover": null,
@@ -1519,7 +1599,7 @@
       "funding_status": "Demonstration dataset",
       "status": "good",
       "trend": "Stable",
-      "improvement_rate": 41.7,
+      "improvement_rate": 46.2,
       "prediction": "Monitor closely",
       "ndvi_history": [
         {
@@ -1573,10 +1653,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.3017
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.3683
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-07.png",
-      "ndvi_image_date": "2026-08-28",
+      "ndvi_image_date": "2026-09-12",
       "report_url": "../reports/sites/WL-UTH-07_report.pdf"
     },
     {
@@ -1585,8 +1669,8 @@
       "latitude": -28.73286,
       "longitude": 29.40923,
       "vegetation_health": 46.0,
-      "satellite_health": 41.0,
-      "combined_health": 43.5,
+      "satellite_health": 38.5,
+      "combined_health": 42.2,
       "area_hectares": 31.5,
       "restoration_type": "Grassland",
       "invasive_species_cover": null,
@@ -1594,7 +1678,7 @@
       "funding_status": "Demonstration dataset",
       "status": "warning",
       "trend": "Stable",
-      "improvement_rate": 41.7,
+      "improvement_rate": 46.2,
       "prediction": "Monitor closely",
       "ndvi_history": [
         {
@@ -1648,10 +1732,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.2189
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.2362
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-08.png",
-      "ndvi_image_date": "2026-08-28",
+      "ndvi_image_date": "2026-09-12",
       "report_url": "../reports/sites/WL-UTH-08_report.pdf"
     },
     {
@@ -1660,8 +1748,8 @@
       "latitude": -28.77339,
       "longitude": 29.38645,
       "vegetation_health": 48.0,
-      "satellite_health": 45.5,
-      "combined_health": 46.8,
+      "satellite_health": 43.2,
+      "combined_health": 45.6,
       "area_hectares": 14.0,
       "restoration_type": "Grassland",
       "invasive_species_cover": null,
@@ -1669,7 +1757,7 @@
       "funding_status": "Demonstration dataset",
       "status": "warning",
       "trend": "Stable",
-      "improvement_rate": 50.0,
+      "improvement_rate": 53.8,
       "prediction": "Monitor closely",
       "ndvi_history": [
         {
@@ -1723,10 +1811,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.2598
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.278
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-09.png",
-      "ndvi_image_date": "2026-08-28",
+      "ndvi_image_date": "2026-09-12",
       "report_url": "../reports/sites/WL-UTH-09_report.pdf"
     },
     {
@@ -1735,8 +1827,8 @@
       "latitude": -28.76445,
       "longitude": 29.38839,
       "vegetation_health": 44.0,
-      "satellite_health": 49.1,
-      "combined_health": 46.5,
+      "satellite_health": 47.4,
+      "combined_health": 45.7,
       "area_hectares": 37.8,
       "restoration_type": "Grassland",
       "invasive_species_cover": null,
@@ -1744,7 +1836,7 @@
       "funding_status": "Demonstration dataset",
       "status": "warning",
       "trend": "Stable",
-      "improvement_rate": 41.7,
+      "improvement_rate": 46.2,
       "prediction": "Monitor closely",
       "ndvi_history": [
         {
@@ -1798,10 +1890,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.292
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.3551
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-10.png",
-      "ndvi_image_date": "2026-08-28",
+      "ndvi_image_date": "2026-09-12",
       "report_url": "../reports/sites/WL-UTH-10_report.pdf"
     },
     {
@@ -1810,8 +1906,8 @@
       "latitude": -27.62927,
       "longitude": 32.05882,
       "vegetation_health": 75.0,
-      "satellite_health": 72.4,
-      "combined_health": 73.7,
+      "satellite_health": 71.6,
+      "combined_health": 73.3,
       "area_hectares": 26.9,
       "restoration_type": "Forest",
       "invasive_species_cover": null,
@@ -1819,7 +1915,7 @@
       "funding_status": "Demonstration dataset",
       "status": "good",
       "trend": "Improving",
-      "improvement_rate": 66.7,
+      "improvement_rate": 69.2,
       "prediction": "On track",
       "ndvi_history": [
         {
@@ -1873,10 +1969,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.563
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.5725
         }
       ],
       "ndvi_image_url": "ndvi/WL-MKU-01.png",
-      "ndvi_image_date": "2026-08-25",
+      "ndvi_image_date": "2026-09-16",
       "report_url": "../reports/sites/WL-MKU-01_report.pdf"
     },
     {
@@ -1885,17 +1985,17 @@
       "latitude": -27.59927,
       "longitude": 32.03478,
       "vegetation_health": 42.0,
-      "satellite_health": 77.4,
-      "combined_health": 59.7,
+      "satellite_health": 76.3,
+      "combined_health": 59.1,
       "area_hectares": 19.4,
       "restoration_type": "Forest",
       "invasive_species_cover": null,
       "community_engagement": "Not specified",
       "funding_status": "Demonstration dataset",
       "status": "warning",
-      "trend": "Stable",
-      "improvement_rate": 41.7,
-      "prediction": "Monitor closely",
+      "trend": "Declining",
+      "improvement_rate": 38.5,
+      "prediction": "Needs intervention",
       "ndvi_history": [
         {
           "date": "2025-08",
@@ -1948,10 +2048,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.5817
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.5673
         }
       ],
       "ndvi_image_url": "ndvi/WL-MKU-02.png",
-      "ndvi_image_date": "2026-08-25",
+      "ndvi_image_date": "2026-09-01",
       "report_url": "../reports/sites/WL-MKU-02_report.pdf"
     },
     {
@@ -1960,17 +2064,17 @@
       "latitude": -27.63267,
       "longitude": 32.02824,
       "vegetation_health": 94.0,
-      "satellite_health": 67.6,
-      "combined_health": 80.8,
+      "satellite_health": 64.5,
+      "combined_health": 79.2,
       "area_hectares": 23.3,
       "restoration_type": "Forest",
       "invasive_species_cover": null,
       "community_engagement": "Not specified",
       "funding_status": "Demonstration dataset",
       "status": "good",
-      "trend": "Stable",
-      "improvement_rate": 41.7,
-      "prediction": "Monitor closely",
+      "trend": "Declining",
+      "improvement_rate": 38.5,
+      "prediction": "Needs intervention",
       "ndvi_history": [
         {
           "date": "2025-08",
@@ -2023,10 +2127,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.443
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.3468
         }
       ],
       "ndvi_image_url": "ndvi/WL-MKU-03.png",
-      "ndvi_image_date": "2026-08-25",
+      "ndvi_image_date": "2026-09-01",
       "report_url": "../reports/sites/WL-MKU-03_report.pdf"
     },
     {
@@ -2035,8 +2143,8 @@
       "latitude": -27.61577,
       "longitude": 32.02814,
       "vegetation_health": 56.0,
-      "satellite_health": 60.6,
-      "combined_health": 58.3,
+      "satellite_health": 58.8,
+      "combined_health": 57.4,
       "area_hectares": 36.1,
       "restoration_type": "Forest",
       "invasive_species_cover": null,
@@ -2044,7 +2152,7 @@
       "funding_status": "Demonstration dataset",
       "status": "warning",
       "trend": "Stable",
-      "improvement_rate": 50.0,
+      "improvement_rate": 46.2,
       "prediction": "Monitor closely",
       "ndvi_history": [
         {
@@ -2098,10 +2206,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.4475
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.4117
         }
       ],
       "ndvi_image_url": "ndvi/WL-MKU-04.png",
-      "ndvi_image_date": "2026-08-25",
+      "ndvi_image_date": "2026-09-01",
       "report_url": "../reports/sites/WL-MKU-04_report.pdf"
     },
     {
@@ -2110,8 +2222,8 @@
       "latitude": -27.63403,
       "longitude": 32.03497,
       "vegetation_health": 58.0,
-      "satellite_health": 55.8,
-      "combined_health": 56.9,
+      "satellite_health": 52.5,
+      "combined_health": 55.2,
       "area_hectares": 39.9,
       "restoration_type": "Forest",
       "invasive_species_cover": null,
@@ -2119,7 +2231,7 @@
       "funding_status": "Demonstration dataset",
       "status": "warning",
       "trend": "Declining",
-      "improvement_rate": 33.3,
+      "improvement_rate": 30.8,
       "prediction": "Needs intervention",
       "ndvi_history": [
         {
@@ -2173,10 +2285,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.3378
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.2616
         }
       ],
       "ndvi_image_url": "ndvi/WL-MKU-05.png",
-      "ndvi_image_date": "2026-08-25",
+      "ndvi_image_date": "2026-09-16",
       "report_url": "../reports/sites/WL-MKU-05_report.pdf"
     },
     {
@@ -2185,8 +2301,8 @@
       "latitude": -27.64045,
       "longitude": 32.04048,
       "vegetation_health": 60.0,
-      "satellite_health": 54.7,
-      "combined_health": 57.4,
+      "satellite_health": 52.1,
+      "combined_health": 56.0,
       "area_hectares": 3.8,
       "restoration_type": "Forest",
       "invasive_species_cover": null,
@@ -2194,7 +2310,7 @@
       "funding_status": "Demonstration dataset",
       "status": "warning",
       "trend": "Stable",
-      "improvement_rate": 50.0,
+      "improvement_rate": 46.2,
       "prediction": "Monitor closely",
       "ndvi_history": [
         {
@@ -2248,10 +2364,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.4008
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.3086
         }
       ],
       "ndvi_image_url": "ndvi/WL-MKU-06.png",
-      "ndvi_image_date": "2026-08-25",
+      "ndvi_image_date": "2026-09-16",
       "report_url": "../reports/sites/WL-MKU-06_report.pdf"
     },
     {
@@ -2260,17 +2380,17 @@
       "latitude": -27.66363,
       "longitude": 31.53048,
       "vegetation_health": 65.0,
-      "satellite_health": 61.0,
-      "combined_health": 63.0,
+      "satellite_health": 57.7,
+      "combined_health": 61.4,
       "area_hectares": 32.1,
       "restoration_type": "Savanna",
       "invasive_species_cover": null,
       "community_engagement": "Not specified",
       "funding_status": "Demonstration dataset",
       "status": "good",
-      "trend": "Stable",
-      "improvement_rate": 41.7,
-      "prediction": "Monitor closely",
+      "trend": "Declining",
+      "improvement_rate": 38.5,
+      "prediction": "Needs intervention",
       "ndvi_history": [
         {
           "date": "2025-08",
@@ -2323,10 +2443,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.3513
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.2902
         }
       ],
       "ndvi_image_url": "ndvi/WL-SOM-01.png",
-      "ndvi_image_date": "2026-08-25",
+      "ndvi_image_date": "2026-09-01",
       "report_url": "../reports/sites/WL-SOM-01_report.pdf"
     },
     {
@@ -2335,8 +2459,8 @@
       "latitude": -27.69182,
       "longitude": 31.54611,
       "vegetation_health": 63.0,
-      "satellite_health": 49.6,
-      "combined_health": 56.3,
+      "satellite_health": 47.2,
+      "combined_health": 55.1,
       "area_hectares": 16.5,
       "restoration_type": "Savanna",
       "invasive_species_cover": null,
@@ -2344,7 +2468,7 @@
       "funding_status": "Demonstration dataset",
       "status": "warning",
       "trend": "Stable",
-      "improvement_rate": 50.0,
+      "improvement_rate": 46.2,
       "prediction": "Monitor closely",
       "ndvi_history": [
         {
@@ -2398,10 +2522,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.3403
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.295
         }
       ],
       "ndvi_image_url": "ndvi/WL-SOM-02.png",
-      "ndvi_image_date": "2026-08-25",
+      "ndvi_image_date": "2026-09-01",
       "report_url": "../reports/sites/WL-SOM-02_report.pdf"
     },
     {
@@ -2410,8 +2538,8 @@
       "latitude": -27.66854,
       "longitude": 31.57481,
       "vegetation_health": 60.0,
-      "satellite_health": 59.6,
-      "combined_health": 59.8,
+      "satellite_health": 56.4,
+      "combined_health": 58.2,
       "area_hectares": 38.9,
       "restoration_type": "Savanna",
       "invasive_species_cover": null,
@@ -2419,7 +2547,7 @@
       "funding_status": "Demonstration dataset",
       "status": "warning",
       "trend": "Declining",
-      "improvement_rate": 33.3,
+      "improvement_rate": 30.8,
       "prediction": "Needs intervention",
       "ndvi_history": [
         {
@@ -2473,10 +2601,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.3294
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.2877
         }
       ],
       "ndvi_image_url": "ndvi/WL-SOM-03.png",
-      "ndvi_image_date": "2026-08-25",
+      "ndvi_image_date": "2026-09-01",
       "report_url": "../reports/sites/WL-SOM-03_report.pdf"
     },
     {
@@ -2485,8 +2617,8 @@
       "latitude": -27.69443,
       "longitude": 31.56804,
       "vegetation_health": 94.0,
-      "satellite_health": 55.6,
-      "combined_health": 74.8,
+      "satellite_health": 53.1,
+      "combined_health": 73.5,
       "area_hectares": 29.4,
       "restoration_type": "Savanna",
       "invasive_species_cover": null,
@@ -2494,7 +2626,7 @@
       "funding_status": "Demonstration dataset",
       "status": "good",
       "trend": "Stable",
-      "improvement_rate": 50.0,
+      "improvement_rate": 46.2,
       "prediction": "Monitor closely",
       "ndvi_history": [
         {
@@ -2548,10 +2680,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.3676
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.3231
         }
       ],
       "ndvi_image_url": "ndvi/WL-SOM-04.png",
-      "ndvi_image_date": "2026-08-25",
+      "ndvi_image_date": "2026-09-01",
       "report_url": "../reports/sites/WL-SOM-04_report.pdf"
     },
     {
@@ -2560,17 +2696,17 @@
       "latitude": -27.66815,
       "longitude": 31.55909,
       "vegetation_health": 81.0,
-      "satellite_health": 59.8,
-      "combined_health": 70.4,
+      "satellite_health": 56.8,
+      "combined_health": 68.9,
       "area_hectares": 12.1,
       "restoration_type": "Savanna",
       "invasive_species_cover": null,
       "community_engagement": "Not specified",
       "funding_status": "Demonstration dataset",
       "status": "good",
-      "trend": "Stable",
-      "improvement_rate": 41.7,
-      "prediction": "Monitor closely",
+      "trend": "Declining",
+      "improvement_rate": 38.5,
+      "prediction": "Needs intervention",
       "ndvi_history": [
         {
           "date": "2025-08",
@@ -2623,10 +2759,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.3537
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.3103
         }
       ],
       "ndvi_image_url": "ndvi/WL-SOM-05.png",
-      "ndvi_image_date": "2026-08-25",
+      "ndvi_image_date": "2026-09-01",
       "report_url": "../reports/sites/WL-SOM-05_report.pdf"
     },
     {
@@ -2635,8 +2775,8 @@
       "latitude": -27.68942,
       "longitude": 31.55705,
       "vegetation_health": 80.0,
-      "satellite_health": 66.3,
-      "combined_health": 73.2,
+      "satellite_health": 63.9,
+      "combined_health": 72.0,
       "area_hectares": 18.5,
       "restoration_type": "Savanna",
       "invasive_species_cover": null,
@@ -2644,7 +2784,7 @@
       "funding_status": "Demonstration dataset",
       "status": "good",
       "trend": "Stable",
-      "improvement_rate": 50.0,
+      "improvement_rate": 46.2,
       "prediction": "Monitor closely",
       "ndvi_history": [
         {
@@ -2698,10 +2838,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.4475
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.3952
         }
       ],
       "ndvi_image_url": "ndvi/WL-SOM-06.png",
-      "ndvi_image_date": "2026-08-25",
+      "ndvi_image_date": "2026-09-01",
       "report_url": "../reports/sites/WL-SOM-06_report.pdf"
     },
     {
@@ -2710,8 +2854,8 @@
       "latitude": -26.92731,
       "longitude": 32.67769,
       "vegetation_health": 74.0,
-      "satellite_health": 96.4,
-      "combined_health": 85.2,
+      "satellite_health": 95.2,
+      "combined_health": 84.6,
       "area_hectares": 35.3,
       "restoration_type": "Forest",
       "invasive_species_cover": null,
@@ -2719,7 +2863,7 @@
       "funding_status": "Demonstration dataset",
       "status": "good",
       "trend": "Improving",
-      "improvement_rate": 75.0,
+      "improvement_rate": 69.2,
       "prediction": "On track",
       "ndvi_history": [
         {
@@ -2773,10 +2917,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.7941
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.6732
         }
       ],
       "ndvi_image_url": "ndvi/WL-BHE-01.png",
-      "ndvi_image_date": "2026-08-30",
+      "ndvi_image_date": "2026-09-16",
       "report_url": "../reports/sites/WL-BHE-01_report.pdf"
     },
     {
@@ -2785,8 +2933,8 @@
       "latitude": -26.94997,
       "longitude": 32.66817,
       "vegetation_health": 68.0,
-      "satellite_health": 96.0,
-      "combined_health": 82.0,
+      "satellite_health": 95.1,
+      "combined_health": 81.5,
       "area_hectares": 8.8,
       "restoration_type": "Forest",
       "invasive_species_cover": null,
@@ -2794,7 +2942,7 @@
       "funding_status": "Demonstration dataset",
       "status": "good",
       "trend": "Stable",
-      "improvement_rate": 58.3,
+      "improvement_rate": 53.8,
       "prediction": "Monitor closely",
       "ndvi_history": [
         {
@@ -2848,10 +2996,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.7972
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.6963
         }
       ],
       "ndvi_image_url": "ndvi/WL-BHE-02.png",
-      "ndvi_image_date": "2026-08-30",
+      "ndvi_image_date": "2026-09-16",
       "report_url": "../reports/sites/WL-BHE-02_report.pdf"
     },
     {
@@ -2860,8 +3012,8 @@
       "latitude": -26.93147,
       "longitude": 32.70063,
       "vegetation_health": 48.0,
-      "satellite_health": 71.6,
-      "combined_health": 59.8,
+      "satellite_health": 70.2,
+      "combined_health": 59.1,
       "area_hectares": 13.3,
       "restoration_type": "Forest",
       "invasive_species_cover": null,
@@ -2869,7 +3021,7 @@
       "funding_status": "Demonstration dataset",
       "status": "warning",
       "trend": "Stable",
-      "improvement_rate": 50.0,
+      "improvement_rate": 46.2,
       "prediction": "Monitor closely",
       "ndvi_history": [
         {
@@ -2923,10 +3075,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.5391
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.511
         }
       ],
       "ndvi_image_url": "ndvi/WL-BHE-03.png",
-      "ndvi_image_date": "2026-08-30",
+      "ndvi_image_date": "2026-09-16",
       "report_url": "../reports/sites/WL-BHE-03_report.pdf"
     },
     {
@@ -2935,8 +3091,8 @@
       "latitude": -26.94455,
       "longitude": 32.68695,
       "vegetation_health": 94.0,
-      "satellite_health": 80.2,
-      "combined_health": 87.1,
+      "satellite_health": 78.2,
+      "combined_health": 86.1,
       "area_hectares": 7.8,
       "restoration_type": "Forest",
       "invasive_species_cover": null,
@@ -2944,7 +3100,7 @@
       "funding_status": "Demonstration dataset",
       "status": "good",
       "trend": "Stable",
-      "improvement_rate": 50.0,
+      "improvement_rate": 46.2,
       "prediction": "Monitor closely",
       "ndvi_history": [
         {
@@ -2998,10 +3154,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.5754
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.5088
         }
       ],
       "ndvi_image_url": "ndvi/WL-BHE-04.png",
-      "ndvi_image_date": "2026-08-30",
+      "ndvi_image_date": "2026-09-16",
       "report_url": "../reports/sites/WL-BHE-04_report.pdf"
     },
     {
@@ -3010,8 +3170,8 @@
       "latitude": -26.94803,
       "longitude": 32.69313,
       "vegetation_health": 57.0,
-      "satellite_health": 76.4,
-      "combined_health": 66.7,
+      "satellite_health": 74.0,
+      "combined_health": 65.5,
       "area_hectares": 31.6,
       "restoration_type": "Forest",
       "invasive_species_cover": null,
@@ -3019,7 +3179,7 @@
       "funding_status": "Demonstration dataset",
       "status": "good",
       "trend": "Stable",
-      "improvement_rate": 50.0,
+      "improvement_rate": 46.2,
       "prediction": "Monitor closely",
       "ndvi_history": [
         {
@@ -3073,10 +3233,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.5655
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.4499
         }
       ],
       "ndvi_image_url": "ndvi/WL-BHE-05.png",
-      "ndvi_image_date": "2026-08-30",
+      "ndvi_image_date": "2026-09-16",
       "report_url": "../reports/sites/WL-BHE-05_report.pdf"
     },
     {
@@ -3085,8 +3249,8 @@
       "latitude": -29.57497,
       "longitude": 30.37152,
       "vegetation_health": 40.0,
-      "satellite_health": 72.8,
-      "combined_health": 56.4,
+      "satellite_health": 72.0,
+      "combined_health": 56.0,
       "area_hectares": 14.3,
       "restoration_type": "Forest",
       "invasive_species_cover": null,
@@ -3094,7 +3258,7 @@
       "funding_status": "Demonstration dataset",
       "status": "warning",
       "trend": "Stable",
-      "improvement_rate": 50.0,
+      "improvement_rate": 53.8,
       "prediction": "Monitor closely",
       "ndvi_history": [
         {
@@ -3148,10 +3312,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.5404
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.5652
         }
       ],
       "ndvi_image_url": "ndvi/WL-FER-01.png",
-      "ndvi_image_date": "2026-08-25",
+      "ndvi_image_date": "2026-09-09",
       "report_url": "../reports/sites/WL-FER-01_report.pdf"
     },
     {
@@ -3160,8 +3328,8 @@
       "latitude": -29.52855,
       "longitude": 30.34597,
       "vegetation_health": 84.0,
-      "satellite_health": 79.8,
-      "combined_health": 81.9,
+      "satellite_health": 78.4,
+      "combined_health": 81.2,
       "area_hectares": 35.4,
       "restoration_type": "Forest",
       "invasive_species_cover": null,
@@ -3169,7 +3337,7 @@
       "funding_status": "Demonstration dataset",
       "status": "good",
       "trend": "Stable",
-      "improvement_rate": 41.7,
+      "improvement_rate": 46.2,
       "prediction": "Monitor closely",
       "ndvi_history": [
         {
@@ -3223,10 +3391,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.5104
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.5624
         }
       ],
       "ndvi_image_url": "ndvi/WL-FER-02.png",
-      "ndvi_image_date": "2026-08-25",
+      "ndvi_image_date": "2026-09-09",
       "report_url": "../reports/sites/WL-FER-02_report.pdf"
     },
     {
@@ -3235,8 +3407,8 @@
       "latitude": -29.55962,
       "longitude": 30.38658,
       "vegetation_health": 36.0,
-      "satellite_health": 29.9,
-      "combined_health": 33.0,
+      "satellite_health": 29.3,
+      "combined_health": 32.6,
       "area_hectares": 4.2,
       "restoration_type": "Forest",
       "invasive_species_cover": null,
@@ -3244,7 +3416,7 @@
       "funding_status": "Demonstration dataset",
       "status": "critical",
       "trend": "Stable",
-      "improvement_rate": 50.0,
+      "improvement_rate": 53.8,
       "prediction": "Monitor closely",
       "ndvi_history": [
         {
@@ -3298,10 +3470,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.3063
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.3262
         }
       ],
       "ndvi_image_url": "ndvi/WL-FER-03.png",
-      "ndvi_image_date": "2026-08-25",
+      "ndvi_image_date": "2026-09-09",
       "report_url": "../reports/sites/WL-FER-03_report.pdf"
     },
     {
@@ -3310,8 +3486,8 @@
       "latitude": -29.52765,
       "longitude": 30.3889,
       "vegetation_health": 85.0,
-      "satellite_health": 61.7,
-      "combined_health": 73.3,
+      "satellite_health": 59.6,
+      "combined_health": 72.3,
       "area_hectares": 5.3,
       "restoration_type": "Forest",
       "invasive_species_cover": null,
@@ -3319,7 +3495,7 @@
       "funding_status": "Demonstration dataset",
       "status": "good",
       "trend": "Stable",
-      "improvement_rate": 50.0,
+      "improvement_rate": 46.2,
       "prediction": "Monitor closely",
       "ndvi_history": [
         {
@@ -3373,10 +3549,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.4129
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.3932
         }
       ],
       "ndvi_image_url": "ndvi/WL-FER-04.png",
-      "ndvi_image_date": "2026-08-25",
+      "ndvi_image_date": "2026-09-09",
       "report_url": "../reports/sites/WL-FER-04_report.pdf"
     },
     {
@@ -3385,8 +3565,8 @@
       "latitude": -29.57154,
       "longitude": 30.3693,
       "vegetation_health": 67.0,
-      "satellite_health": 88.2,
-      "combined_health": 77.6,
+      "satellite_health": 87.0,
+      "combined_health": 77.0,
       "area_hectares": 30.9,
       "restoration_type": "Forest",
       "invasive_species_cover": null,
@@ -3394,7 +3574,7 @@
       "funding_status": "Demonstration dataset",
       "status": "good",
       "trend": "Stable",
-      "improvement_rate": 50.0,
+      "improvement_rate": 53.8,
       "prediction": "Monitor closely",
       "ndvi_history": [
         {
@@ -3448,10 +3628,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.6254
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.6267
         }
       ],
       "ndvi_image_url": "ndvi/WL-FER-05.png",
-      "ndvi_image_date": "2026-08-25",
+      "ndvi_image_date": "2026-09-09",
       "report_url": "../reports/sites/WL-FER-05_report.pdf"
     },
     {
@@ -3460,17 +3644,17 @@
       "latitude": -28.26858,
       "longitude": 31.89329,
       "vegetation_health": 33.0,
-      "satellite_health": 71.8,
-      "combined_health": 52.4,
+      "satellite_health": 68.8,
+      "combined_health": 50.9,
       "area_hectares": 20.1,
       "restoration_type": "Savanna",
       "invasive_species_cover": null,
       "community_engagement": "Not specified",
       "funding_status": "Demonstration dataset",
       "status": "warning",
-      "trend": "Stable",
-      "improvement_rate": 41.7,
-      "prediction": "Monitor closely",
+      "trend": "Declining",
+      "improvement_rate": 38.5,
+      "prediction": "Needs intervention",
       "ndvi_history": [
         {
           "date": "2025-08",
@@ -3523,10 +3707,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.4016
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.3784
         }
       ],
       "ndvi_image_url": "ndvi/WL-SON-01.png",
-      "ndvi_image_date": "2026-08-25",
+      "ndvi_image_date": "2026-09-16",
       "report_url": "../reports/sites/WL-SON-01_report.pdf"
     },
     {
@@ -3535,8 +3723,8 @@
       "latitude": -28.26175,
       "longitude": 31.88249,
       "vegetation_health": 28.0,
-      "satellite_health": 71.9,
-      "combined_health": 50.0,
+      "satellite_health": 68.8,
+      "combined_health": 48.4,
       "area_hectares": 35.2,
       "restoration_type": "Savanna",
       "invasive_species_cover": null,
@@ -3544,7 +3732,7 @@
       "funding_status": "Demonstration dataset",
       "status": "warning",
       "trend": "Stable",
-      "improvement_rate": 50.0,
+      "improvement_rate": 46.2,
       "prediction": "Monitor closely",
       "ndvi_history": [
         {
@@ -3598,10 +3786,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.3957
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.363
         }
       ],
       "ndvi_image_url": "ndvi/WL-SON-02.png",
-      "ndvi_image_date": "2026-08-25",
+      "ndvi_image_date": "2026-09-16",
       "report_url": "../reports/sites/WL-SON-02_report.pdf"
     },
     {
@@ -3610,17 +3802,17 @@
       "latitude": -28.26441,
       "longitude": 31.87616,
       "vegetation_health": 56.0,
-      "satellite_health": 67.8,
-      "combined_health": 61.9,
+      "satellite_health": 64.6,
+      "combined_health": 60.3,
       "area_hectares": 22.5,
       "restoration_type": "Savanna",
       "invasive_species_cover": null,
       "community_engagement": "Not specified",
       "funding_status": "Demonstration dataset",
       "status": "good",
-      "trend": "Stable",
-      "improvement_rate": 41.7,
-      "prediction": "Monitor closely",
+      "trend": "Declining",
+      "improvement_rate": 38.5,
+      "prediction": "Needs intervention",
       "ndvi_history": [
         {
           "date": "2025-08",
@@ -3673,10 +3865,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.3801
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.3443
         }
       ],
       "ndvi_image_url": "ndvi/WL-SON-03.png",
-      "ndvi_image_date": "2026-08-25",
+      "ndvi_image_date": "2026-09-16",
       "report_url": "../reports/sites/WL-SON-03_report.pdf"
     },
     {
@@ -3685,17 +3881,17 @@
       "latitude": -28.26494,
       "longitude": 31.8915,
       "vegetation_health": 27.0,
-      "satellite_health": 74.1,
-      "combined_health": 50.5,
+      "satellite_health": 71.1,
+      "combined_health": 49.0,
       "area_hectares": 13.8,
       "restoration_type": "Savanna",
       "invasive_species_cover": null,
       "community_engagement": "Not specified",
       "funding_status": "Demonstration dataset",
       "status": "warning",
-      "trend": "Stable",
-      "improvement_rate": 41.7,
-      "prediction": "Monitor closely",
+      "trend": "Declining",
+      "improvement_rate": 38.5,
+      "prediction": "Needs intervention",
       "ndvi_history": [
         {
           "date": "2025-08",
@@ -3748,10 +3944,14 @@
         {
           "date": "2026-08",
           "ndvi": 0.411
+        },
+        {
+          "date": "2026-09",
+          "ndvi": 0.3884
         }
       ],
       "ndvi_image_url": "ndvi/WL-SON-04.png",
-      "ndvi_image_date": "2026-08-25",
+      "ndvi_image_date": "2026-09-16",
       "report_url": "../reports/sites/WL-SON-04_report.pdf"
     }
   ]

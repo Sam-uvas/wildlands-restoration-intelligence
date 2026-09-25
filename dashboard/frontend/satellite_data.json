@@ -1,8 +1,8 @@
 {
-  "generated_at_utc": "2026-09-23T15:45:11.233391+00:00",
+  "generated_at_utc": "2026-09-25T01:34:40.624975+00:00",
   "source": "Sentinel-2 SR Harmonized via Google Earth Engine",
   "start_date": "2025-01-01",
-  "end_date": "2026-09-23",
+  "end_date": "2026-09-25",
   "cloud_threshold_percent": 20.0,
   "scale_meters": 10.0,
   "sites": [
@@ -2273,12 +2273,12 @@
       "project_name": "Upper uThukela Project",
       "latitude": -28.760531,
       "longitude": 29.386395,
-      "latest_ndvi": 0.3578,
-      "avg_ndvi": 0.4981,
-      "change": -0.5920000000000001,
-      "change_percent": -59.2,
+      "latest_ndvi": 0.4312,
+      "avg_ndvi": 0.4966,
+      "change": -0.522,
+      "change_percent": -52.2,
       "trend": "Declining",
-      "improvement_rate": 33.3,
+      "improvement_rate": 34.9,
       "ndvi_history": [
         {
           "date": "2025-01-15",
@@ -2451,6 +2451,10 @@
         {
           "date": "2026-09-09",
           "ndvi": 0.3578
+        },
+        {
+          "date": "2026-09-23",
+          "ndvi": 0.4312
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-01.png",
@@ -2463,12 +2467,12 @@
       "project_name": "Upper uThukela Project",
       "latitude": -28.76995,
       "longitude": 29.38664,
-      "latest_ndvi": 0.3419,
-      "avg_ndvi": 0.493,
-      "change": -0.575,
-      "change_percent": -57.5,
+      "latest_ndvi": 0.2729,
+      "avg_ndvi": 0.488,
+      "change": -0.584,
+      "change_percent": -58.4,
       "trend": "Declining",
-      "improvement_rate": 42.9,
+      "improvement_rate": 41.9,
       "ndvi_history": [
         {
           "date": "2025-01-15",
@@ -2641,6 +2645,10 @@
         {
           "date": "2026-09-09",
           "ndvi": 0.3419
+        },
+        {
+          "date": "2026-09-23",
+          "ndvi": 0.2729
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-02.png",
@@ -2653,12 +2661,12 @@
       "project_name": "Upper uThukela Project",
       "latitude": -28.756758,
       "longitude": 29.406784,
-      "latest_ndvi": 0.3196,
-      "avg_ndvi": 0.5393,
-      "change": -0.612,
-      "change_percent": -61.2,
+      "latest_ndvi": 0.3282,
+      "avg_ndvi": 0.5345,
+      "change": -0.584,
+      "change_percent": -58.4,
       "trend": "Declining",
-      "improvement_rate": 38.1,
+      "improvement_rate": 39.5,
       "ndvi_history": [
         {
           "date": "2025-01-15",
@@ -2831,6 +2839,10 @@
         {
           "date": "2026-09-09",
           "ndvi": 0.3196
+        },
+        {
+          "date": "2026-09-23",
+          "ndvi": 0.3282
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-03.png",
@@ -2843,12 +2855,12 @@
       "project_name": "Upper uThukela Project",
       "latitude": -28.761651,
       "longitude": 29.385475,
-      "latest_ndvi": 0.3494,
-      "avg_ndvi": 0.4927,
-      "change": -0.585,
-      "change_percent": -58.5,
+      "latest_ndvi": 0.4174,
+      "avg_ndvi": 0.491,
+      "change": -0.519,
+      "change_percent": -51.9,
       "trend": "Declining",
-      "improvement_rate": 33.3,
+      "improvement_rate": 34.9,
       "ndvi_history": [
         {
           "date": "2025-01-15",
@@ -3021,6 +3033,10 @@
         {
           "date": "2026-09-09",
           "ndvi": 0.3494
+        },
+        {
+          "date": "2026-09-23",
+          "ndvi": 0.4174
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-04.png",
@@ -3033,12 +3049,12 @@
       "project_name": "Upper uThukela Project",
       "latitude": -28.744543,
       "longitude": 29.407402,
-      "latest_ndvi": 0.2209,
-      "avg_ndvi": 0.4373,
-      "change": -0.649,
-      "change_percent": -64.9,
+      "latest_ndvi": 0.3657,
+      "avg_ndvi": 0.4357,
+      "change": -0.5710000000000001,
+      "change_percent": -57.1,
       "trend": "Declining",
-      "improvement_rate": 31.0,
+      "improvement_rate": 32.6,
       "ndvi_history": [
         {
           "date": "2025-01-15",
@@ -3211,6 +3227,10 @@
         {
           "date": "2026-09-09",
           "ndvi": 0.2209
+        },
+        {
+          "date": "2026-09-23",
+          "ndvi": 0.3657
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-05.png",
@@ -3223,12 +3243,12 @@
       "project_name": "Upper uThukela Project",
       "latitude": -28.76683,
       "longitude": 29.411456,
-      "latest_ndvi": 0.3308,
-      "avg_ndvi": 0.5193,
-      "change": -0.602,
-      "change_percent": -60.2,
+      "latest_ndvi": 0.3984,
+      "avg_ndvi": 0.5165,
+      "change": -0.531,
+      "change_percent": -53.1,
       "trend": "Declining",
-      "improvement_rate": 38.1,
+      "improvement_rate": 39.5,
       "ndvi_history": [
         {
           "date": "2025-01-15",
@@ -3401,6 +3421,10 @@
         {
           "date": "2026-09-09",
           "ndvi": 0.3308
+        },
+        {
+          "date": "2026-09-23",
+          "ndvi": 0.3984
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-06.png",
@@ -3413,12 +3437,12 @@
       "project_name": "Upper uThukela Project",
       "latitude": -28.743,
       "longitude": 29.424476,
-      "latest_ndvi": 0.3682,
-      "avg_ndvi": 0.4776,
-      "change": -0.593,
-      "change_percent": -59.3,
+      "latest_ndvi": 0.4874,
+      "avg_ndvi": 0.4778,
+      "change": -0.479,
+      "change_percent": -47.9,
       "trend": "Declining",
-      "improvement_rate": 31.0,
+      "improvement_rate": 32.6,
       "ndvi_history": [
         {
           "date": "2025-01-15",
@@ -3591,6 +3615,10 @@
         {
           "date": "2026-09-09",
           "ndvi": 0.3682
+        },
+        {
+          "date": "2026-09-23",
+          "ndvi": 0.4874
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-07.png",
@@ -3603,12 +3631,12 @@
       "project_name": "Upper uThukela Project",
       "latitude": -28.732857,
       "longitude": 29.409231,
-      "latest_ndvi": 0.2429,
-      "avg_ndvi": 0.4628,
-      "change": -0.679,
-      "change_percent": -67.9,
+      "latest_ndvi": 0.3611,
+      "avg_ndvi": 0.4605,
+      "change": -0.607,
+      "change_percent": -60.7,
       "trend": "Declining",
-      "improvement_rate": 33.3,
+      "improvement_rate": 34.9,
       "ndvi_history": [
         {
           "date": "2025-01-15",
@@ -3781,6 +3809,10 @@
         {
           "date": "2026-09-09",
           "ndvi": 0.2429
+        },
+        {
+          "date": "2026-09-23",
+          "ndvi": 0.3611
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-08.png",
@@ -3793,12 +3825,12 @@
       "project_name": "Upper uThukela Project",
       "latitude": -28.773395,
       "longitude": 29.386452,
-      "latest_ndvi": 0.2867,
-      "avg_ndvi": 0.4744,
-      "change": -0.634,
-      "change_percent": -63.4,
+      "latest_ndvi": 0.2159,
+      "avg_ndvi": 0.4685,
+      "change": -0.652,
+      "change_percent": -65.2,
       "trend": "Declining",
-      "improvement_rate": 52.4,
+      "improvement_rate": 51.2,
       "ndvi_history": [
         {
           "date": "2025-01-15",
@@ -3971,6 +4003,10 @@
         {
           "date": "2026-09-09",
           "ndvi": 0.2867
+        },
+        {
+          "date": "2026-09-23",
+          "ndvi": 0.2159
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-09.png",
@@ -3983,12 +4019,12 @@
       "project_name": "Upper uThukela Project",
       "latitude": -28.764451,
       "longitude": 29.388387,
-      "latest_ndvi": 0.3664,
-      "avg_ndvi": 0.4958,
-      "change": -0.5710000000000001,
-      "change_percent": -57.1,
+      "latest_ndvi": 0.3772,
+      "avg_ndvi": 0.4931,
+      "change": -0.532,
+      "change_percent": -53.2,
       "trend": "Declining",
-      "improvement_rate": 38.1,
+      "improvement_rate": 39.5,
       "ndvi_history": [
         {
           "date": "2025-01-15",
@@ -4161,6 +4197,10 @@
         {
           "date": "2026-09-09",
           "ndvi": 0.3664
+        },
+        {
+          "date": "2026-09-23",
+          "ndvi": 0.3772
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-10.png",
@@ -6017,12 +6057,12 @@
       "project_name": "Bhekula Biodiversity, Stewardship & Sustainable Livelihoods Project",
       "latitude": -26.927309,
       "longitude": 32.677686,
-      "latest_ndvi": 0.6648,
-      "avg_ndvi": 0.7656,
-      "change": -0.03,
-      "change_percent": -3.0,
-      "trend": "Stable",
-      "improvement_rate": 47.4,
+      "latest_ndvi": 0.6346,
+      "avg_ndvi": 0.7623,
+      "change": -0.10800000000000001,
+      "change_percent": -10.8,
+      "trend": "Declining",
+      "improvement_rate": 46.2,
       "ndvi_history": [
         {
           "date": "2025-01-15",
@@ -6179,6 +6219,10 @@
         {
           "date": "2026-09-09",
           "ndvi": 0.6648
+        },
+        {
+          "date": "2026-09-23",
+          "ndvi": 0.6346
         }
       ],
       "ndvi_image_url": "ndvi/WL-BHE-01.png",
@@ -6191,12 +6235,12 @@
       "project_name": "Bhekula Biodiversity, Stewardship & Sustainable Livelihoods Project",
       "latitude": -26.949971,
       "longitude": 32.668169,
-      "latest_ndvi": 0.6709,
-      "avg_ndvi": 0.7485,
-      "change": 0.062,
-      "change_percent": 6.2,
+      "latest_ndvi": 0.5097,
+      "avg_ndvi": 0.7425,
+      "change": -0.081,
+      "change_percent": -8.1,
       "trend": "Stable",
-      "improvement_rate": 44.7,
+      "improvement_rate": 43.6,
       "ndvi_history": [
         {
           "date": "2025-01-15",
@@ -6353,6 +6397,10 @@
         {
           "date": "2026-09-09",
           "ndvi": 0.6709
+        },
+        {
+          "date": "2026-09-23",
+          "ndvi": 0.5097
         }
       ],
       "ndvi_image_url": "ndvi/WL-BHE-02.png",
@@ -6365,12 +6413,12 @@
       "project_name": "Bhekula Biodiversity, Stewardship & Sustainable Livelihoods Project",
       "latitude": -26.931474,
       "longitude": 32.700631,
-      "latest_ndvi": 0.4817,
-      "avg_ndvi": 0.612,
-      "change": -0.159,
-      "change_percent": -15.9,
+      "latest_ndvi": 0.2506,
+      "avg_ndvi": 0.603,
+      "change": -0.32,
+      "change_percent": -32.0,
       "trend": "Declining",
-      "improvement_rate": 28.9,
+      "improvement_rate": 28.2,
       "ndvi_history": [
         {
           "date": "2025-01-15",
@@ -6527,6 +6575,10 @@
         {
           "date": "2026-09-09",
           "ndvi": 0.4817
+        },
+        {
+          "date": "2026-09-23",
+          "ndvi": 0.2506
         }
       ],
       "ndvi_image_url": "ndvi/WL-BHE-03.png",
@@ -6539,12 +6591,12 @@
       "project_name": "Bhekula Biodiversity, Stewardship & Sustainable Livelihoods Project",
       "latitude": -26.944551,
       "longitude": 32.686947,
-      "latest_ndvi": 0.4916,
-      "avg_ndvi": 0.6511,
-      "change": -0.08199999999999999,
-      "change_percent": -8.2,
-      "trend": "Stable",
-      "improvement_rate": 39.5,
+      "latest_ndvi": 0.548,
+      "avg_ndvi": 0.6485,
+      "change": -0.10400000000000001,
+      "change_percent": -10.4,
+      "trend": "Declining",
+      "improvement_rate": 41.0,
       "ndvi_history": [
         {
           "date": "2025-01-15",
@@ -6701,6 +6753,10 @@
         {
           "date": "2026-09-09",
           "ndvi": 0.4916
+        },
+        {
+          "date": "2026-09-23",
+          "ndvi": 0.548
         }
       ],
       "ndvi_image_url": "ndvi/WL-BHE-04.png",
@@ -6713,12 +6769,12 @@
       "project_name": "Bhekula Biodiversity, Stewardship & Sustainable Livelihoods Project",
       "latitude": -26.948031,
       "longitude": 32.693126,
-      "latest_ndvi": 0.4664,
-      "avg_ndvi": 0.629,
-      "change": -0.192,
-      "change_percent": -19.2,
+      "latest_ndvi": 0.3359,
+      "avg_ndvi": 0.6217,
+      "change": -0.317,
+      "change_percent": -31.7,
       "trend": "Declining",
-      "improvement_rate": 36.8,
+      "improvement_rate": 35.9,
       "ndvi_history": [
         {
           "date": "2025-01-15",
@@ -6875,6 +6931,10 @@
         {
           "date": "2026-09-09",
           "ndvi": 0.4664
+        },
+        {
+          "date": "2026-09-23",
+          "ndvi": 0.3359
         }
       ],
       "ndvi_image_url": "ndvi/WL-BHE-05.png",

@@ -44,6 +44,10 @@ body{margin:0;background:var(--bg);color:var(--text);font:13px "Segoe UI",Arial,
 
 @media(max-width:1150px){.kpis{grid-template-columns:repeat(3,1fr)}.grid-main,.lower{grid-template-columns:1fr}}
 @media(max-width:750px){.app{display:block}.sidebar{width:100%;min-height:auto}.main{padding:17px}.top{display:block}.actions{margin-top:12px}.kpis{grid-template-columns:1fr 1fr}.metrics{grid-template-columns:1fr}.metric{border-right:0;border-bottom:1px solid var(--line)}.metric:last-child{border-bottom:0}}
+
+.seasonal-panel{margin-top:12px;border:1px solid var(--line);border-radius:8px;background:#07140f;padding:12px}.seasonal-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.seasonal-title{font-size:12px;font-weight:900}.seasonal-sub{font-size:9px;color:var(--muted);margin-top:3px}.seasonal-badge{padding:4px 8px;border-radius:14px;font-size:8px;font-weight:900;text-transform:uppercase;background:#123c20;color:#9be76e}.seasonal-badge.none{background:#1c2923;color:#a4b5ad}.seasonal-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:10px}.seasonal-stat{border:1px solid #173428;border-radius:6px;padding:8px}.seasonal-stat span{display:block;color:var(--muted);font-size:8px;text-transform:uppercase}.seasonal-stat b{display:block;margin-top:4px;font-size:12px}.seasonal-message{margin-top:9px;padding:8px;border-radius:6px;background:#0b2017;color:var(--soft);font-size:9px;line-height:1.4}.seasonal-chart{margin-top:10px}.seasonal-bars{height:118px;display:flex;align-items:flex-end;gap:4px;border-bottom:1px solid #214333;padding:0 2px}.seasonal-bar{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;min-width:0}.seasonal-bar .bar-value{font-size:7px;color:var(--muted);margin-bottom:2px}.seasonal-bar .bar-track{height:78px;width:100%;max-width:18px;display:flex;align-items:flex-end;background:#0a1c14;border-radius:3px 3px 0 0;overflow:hidden}.seasonal-bar .bar-fill{width:100%;background:#2d7541;border-radius:3px 3px 0 0}.seasonal-bar.current .bar-fill{background:var(--blue)}.seasonal-bar .bar-label{font-size:7px;color:var(--muted);margin-top:4px}.seasonal-bar.current .bar-label{color:var(--blue);font-weight:900}.seasonal-key{font-size:8px;color:var(--muted);margin-top:5px}.seasonal-key b{color:var(--blue)}
+@media(max-width:750px){.seasonal-stats{grid-template-columns:1fr 1fr}}
+
 </style>
 </head>
 <body>
@@ -107,7 +111,7 @@ body{margin:0;background:var(--bg);color:var(--text);font:13px "Segoe UI",Arial,
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-let sites=[], observations=[], map=null, markers=null, selected=null;
+let sites=[], observations=[], map=null, markers=null, selected=null, seasonalCache={};
 
 const API=(typeof API_BASE_URL!=="undefined"&&API_BASE_URL)?String(API_BASE_URL).replace(/\/$/,""):"http://localhost:8000";
 
@@ -161,6 +165,44 @@ function lastSatellite(s){
 }
 function fieldRecords(s){const id=siteId(s);return observations.filter(o=>String(val(o,["site_id","siteId","SITE_ID"],"")).trim()===id)}
 function lastField(s){const r=fieldRecords(s).sort((a,b)=>new Date(val(b,["observation_date","date","created_at","createdAt"],0))-new Date(val(a,["observation_date","date","created_at","createdAt"],0)));return r[0]||null}
+
+function seasonalProfile(s){
+  const history=Array.isArray(s?.ndvi_history)?s.ndvi_history:[];
+  if(history.length<6)return null;
+  const monthly={};
+  history.forEach(h=>{
+    const d=new Date(val(h,["date"],null)); const n=num(val(h,["ndvi","NDVI"],null));
+    if(Number.isNaN(d.getTime())||n===null)return;
+    const m=d.getMonth()+1; if(!monthly[m])monthly[m]=[]; monthly[m].push(n);
+  });
+  const means={}; Object.keys(monthly).forEach(m=>means[m]=monthly[m].reduce((a,b)=>a+b,0)/monthly[m].length);
+  const available=Object.keys(means).map(Number).sort((a,b)=>a-b);
+  if(available.length<6)return null;
+  const vals=available.map(m=>means[m]);
+  const min=Math.min(...vals),max=Math.max(...vals),range=max-min;
+  const peak=available.reduce((a,b)=>means[b]>means[a]?b:a,available[0]);
+  const low=available.reduce((a,b)=>means[b]<means[a]?b:a,available[0]);
+  const overall={}; available.forEach(m=>overall[m]=means[m]);
+  const monthNames=["","January","February","March","April","May","June","July","August","September","October","November","December"];
+  // Compare the site's monthly shape with the programme-wide monthly means already observed in the dashboard data.
+  const allSiteMonthly=[];
+  sites.forEach(site=>{const h=Array.isArray(site?.ndvi_history)?site.ndvi_history:[]; const mm={}; h.forEach(x=>{const d=new Date(x.date),n=num(x.ndvi); if(!Number.isNaN(d.getTime())&&n!==null){const m=d.getMonth()+1;(mm[m]??=[]).push(n)}}); const keys=Object.keys(mm).map(Number); if(keys.length>=6)allSiteMonthly.push(mm)});
+  const programme={}; for(let m=1;m<=12;m++){const a=[];allSiteMonthly.forEach(mm=>{if(mm[m])a.push(mm[m].reduce((x,y)=>x+y,0)/mm[m].length)}); if(a.length)programme[m]=a.reduce((x,y)=>x+y,0)/a.length;}
+  const common=available.filter(m=>programme[m]!==undefined); let corr=null;
+  if(common.length>=4){const a=common.map(m=>means[m]),b=common.map(m=>programme[m]); const ma=a.reduce((x,y)=>x+y,0)/a.length,mb=b.reduce((x,y)=>x+y,0)/b.length; const nume=a.reduce((x,y,i)=>x+(y-ma)*(b[i]-mb),0),den=Math.sqrt(a.reduce((x,y)=>x+(y-ma)**2,0)*b.reduce((x,y)=>x+(y-mb)**2,0)); corr=den?nume/den:null;}
+  return {means,range,peak,low,corr,monthNames};
+}
+function seasonalPanel(s){
+  const p=seasonalProfile(s); if(!p)return `<div class="seasonal-panel"><div class="seasonal-head"><div><div class="seasonal-title">Seasonal context</div><div class="seasonal-sub">Not enough historical NDVI observations to establish a monthly pattern.</div></div><span class="seasonal-badge none">Insufficient history</span></div></div>`;
+  const latest=latestNdvi(s), latestDate=lastSatellite(s), d=latestDate?dateValue(latestDate):null, month=d instanceof Date?d.getMonth()+1:null;
+  const expected=month&&p.means[month]!==undefined?p.means[month]:null;
+  const deviation=latest!==null&&expected!==null&&expected!==0?((latest-expected)/Math.abs(expected))*100:null;
+  const detected=p.corr!==null&&p.corr>=0.75&&p.range>=0.15;
+  let message='No clear recurring seasonal pattern detected in the available history.';
+  if(detected&&deviation!==null){if(Math.abs(deviation)<=10)message=`Current NDVI is within the site's observed seasonal range for ${p.monthNames[month]}.`;else if(deviation<0)message=`Current NDVI is ${Math.abs(deviation).toFixed(1)}% below the site's observed ${p.monthNames[month]} level.`;else message=`Current NDVI is ${deviation.toFixed(1)}% above the site's observed ${p.monthNames[month]} level.`;}
+  const bars=Array.from({length:12},(_,i)=>{const m=i+1,v=p.means[m];if(v===undefined)return `<div class="seasonal-bar"><div class="bar-track"></div><div class="bar-label">${p.monthNames[m].slice(0,3)}</div></div>`;const h=Math.max(6,Math.min(100,(v/Math.max(...Object.values(p.means)))*100));return `<div class="seasonal-bar ${m===month?'current':''}"><div class="bar-value">${v.toFixed(2)}</div><div class="bar-track"><div class="bar-fill" style="height:${h}%"></div></div><div class="bar-label">${p.monthNames[m].slice(0,3)}</div></div>`}).join('');
+  return `<div class="seasonal-panel"><div class="seasonal-head"><div><div class="seasonal-title">Seasonal context</div><div class="seasonal-sub">Observed monthly NDVI behaviour for this monitoring area.</div></div><span class="seasonal-badge ${detected?'':'none'}">${detected?'Pattern detected':'No clear pattern'}</span></div><div class="seasonal-stats"><div class="seasonal-stat"><span>Current month</span><b>${month?p.monthNames[month]:'—'}</b></div><div class="seasonal-stat"><span>Expected NDVI</span><b>${expected===null?'—':expected.toFixed(3)}</b></div><div class="seasonal-stat"><span>Current NDVI</span><b>${latest===null?'—':latest.toFixed(3)}</b></div><div class="seasonal-stat"><span>Deviation</span><b>${deviation===null?'—':(deviation>=0?'+':'')+deviation.toFixed(1)+'%'}</b></div></div><div class="seasonal-message">${esc(message)}</div><div class="seasonal-chart"><div class="seasonal-sub">Historical monthly NDVI • <b style="color:var(--blue)">blue = current month</b></div><div class="seasonal-bars">${bars}</div><div class="seasonal-key">Peak: <b>${p.monthNames[p.peak]}</b> &nbsp; Low: <b>${p.monthNames[p.low]}</b> &nbsp; Range: <b>${p.range.toFixed(3)}</b></div></div></div>`;
+}
 
 function initMap(){
   if(map)return;
@@ -309,6 +351,7 @@ function showSite(s){
       <div class="detail"><span>Latitude</span><b>${latitude(s)===null?"—":latitude(s).toFixed(6)}</b></div>
       <div class="detail"><span>Longitude</span><b>${longitude(s)===null?"—":longitude(s).toFixed(6)}</b></div>
     </div>
+    ${seasonalPanel(s)}
     <div class="site-actions">
       <button class="btn" onclick="openReport('${encodeURIComponent(siteId(s))}')">Area Report</button>
       <button class="btn primary" onclick="openField('${encodeURIComponent(siteId(s))}')">＋ Field Observation</button>

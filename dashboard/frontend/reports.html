@@ -183,6 +183,24 @@ td{font-size:11px}
 .observation-tag{border:1px solid #24513a;border-radius:5px;padding:3px 6px;color:#bcd0c5;font-size:9px}
 .observation-notes{color:#cbdad2;line-height:1.5;font-size:11px}
 .observation-empty{padding:20px;text-align:center;color:var(--muted);border:1px dashed #234335;border-radius:7px}
+
+.seasonal-report-card{margin:0 14px 14px;border:1px solid var(--line);border-radius:8px;background:#07130f;overflow:hidden}
+.seasonal-report-body{padding:13px}
+.seasonal-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:11px}
+.seasonal-status{padding:5px 8px;border-radius:15px;font-size:9px;font-weight:900;text-transform:uppercase;background:#143b1d;color:#7de34c}
+.seasonal-status.none{background:#1c2923;color:#a4b5ad}
+.seasonal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.seasonal-stat{border:1px solid #153226;border-radius:7px;padding:9px;background:#081711}
+.seasonal-stat span{display:block;color:var(--muted);font-size:9px;text-transform:uppercase}
+.seasonal-stat b{display:block;margin-top:4px;font-size:14px}
+.seasonal-interpretation{margin-top:10px;padding:10px;border-radius:7px;background:#0b2116;border-left:4px solid var(--green);color:#dbe9e1;line-height:1.5}
+.seasonal-interpretation.warning{background:#2b1511;border-left-color:var(--red);color:#ffe1dc}
+.seasonal-interpretation.neutral{background:#101c17;border-left-color:var(--yellow);color:#e7ddae}
+.seasonal-chart-wrap{height:230px;margin-top:12px}
+.seasonal-empty{padding:18px;text-align:center;color:var(--muted);border:1px dashed #234335;border-radius:7px}
+@media(max-width:700px){.seasonal-grid{grid-template-columns:1fr 1fr}}
+@media print{.seasonal-report-card{break-inside:avoid}.seasonal-chart-wrap{height:210px}}
+
 @media(max-width:700px){.observation-summary{grid-template-columns:1fr}}
 
 .footer{
@@ -370,6 +388,14 @@ td{font-size:11px}
     <div class="card-title">Field Observations &amp; Evidence</div>
     <div class="field-observations-body" id="fieldObservationsBody">
       <div class="observation-empty">Select a monitoring area or project to view field observations.</div>
+    </div>
+  </section>
+
+
+  <section class="seasonal-report-card">
+    <div class="card-title">Seasonal Vegetation Context</div>
+    <div class="seasonal-report-body" id="seasonalReportBody">
+      <div class="seasonal-empty">Select a monitoring area or project to view seasonal vegetation context.</div>
     </div>
   </section>
 
@@ -793,6 +819,271 @@ function clearFieldObservations(){
   if(body)body.innerHTML='<div class="observation-empty">Select a monitoring area or project to view field observations.</div>';
 }
 
+
+function seasonalProfile(data){
+  const monthly={};
+  data.forEach(site=>{
+    history(site).forEach(h=>{
+      const d=new Date(h.label);
+      if(Number.isNaN(d.getTime()))return;
+      const m=d.getMonth()+1;
+      if(!monthly[m])monthly[m]=[];
+      monthly[m].push(h.value);
+    });
+  });
+
+  const means={};
+  Object.keys(monthly).forEach(m=>{
+    const vals=monthly[m];
+    means[m]=vals.reduce((a,b)=>a+b,0)/vals.length;
+  });
+
+  const vals=Object.values(means);
+  if(vals.length<2)return null;
+
+  const peak=Number(Object.keys(means).sort((a,b)=>means[b]-means[a])[0]);
+  const low=Number(Object.keys(means).sort((a,b)=>means[a]-means[b])[0]);
+
+  return {
+    monthly:means,
+    peakMonth:peak,
+    lowMonth:low,
+    range:Math.max(...vals)-Math.min(...vals)
+  };
+}
+
+function seasonalSiteProfile(site){
+  return seasonalProfile([site]);
+}
+
+function monthName(month){
+  return new Date(2000,month-1,1).toLocaleString(undefined,{month:"long"});
+}
+
+function seasonalInterpretation(site){
+  const profile=seasonalSiteProfile(site);
+  if(!profile)return {profile:null,message:"Insufficient historical NDVI observations to calculate a seasonal pattern.",level:"neutral"};
+
+  const h=history(site);
+  if(!h.length)return {profile,message:"No historical NDVI series is available for seasonal comparison.",level:"neutral"};
+
+  const latest=h[h.length-1];
+  const d=new Date(latest.label);
+  if(Number.isNaN(d.getTime()))return {profile,message:"The latest satellite date could not be used for seasonal comparison.",level:"neutral"};
+
+  const month=d.getMonth()+1;
+  const expected=profile.monthly[month];
+
+  if(expected===undefined){
+    return {profile,message:`No historical ${monthName(month)} baseline is available for this monitoring area.`,level:"neutral"};
+  }
+
+  const deviation=expected!==0?((latest.value-expected)/Math.abs(expected))*100:0;
+
+  let message,level;
+  if(Math.abs(deviation)<=10){
+    message=`Current NDVI is within the site's observed ${monthName(month)} seasonal pattern. The latest value is ${deviation>=0?"+":""}${deviation.toFixed(1)}% from the historical monthly mean.`;
+    level="good";
+  }else if(deviation<0){
+    message=`Current NDVI is ${Math.abs(deviation).toFixed(1)}% below the site's historical ${monthName(month)} mean. This is below the expected seasonal level and warrants context alongside the long-term trend.`;
+    level="warning";
+  }else{
+    message=`Current NDVI is ${deviation.toFixed(1)}% above the site's historical ${monthName(month)} mean. The current signal is stronger than the site's typical seasonal level.`;
+    level="good";
+  }
+
+  return {
+    profile,
+    month,
+    current:latest.value,
+    expected,
+    deviation,
+    message,
+    level
+  };
+}
+
+function renderSeasonalArea(site){
+  const body=document.getElementById("seasonalReportBody");
+  if(!body)return;
+
+  const result=seasonalInterpretation(site);
+
+  if(!result.profile){
+    body.innerHTML=`<div class="seasonal-empty">${escapeHtml(result.message)}</div>`;
+    return;
+  }
+
+  const p=result.profile;
+  const currentMonth=result.month;
+  const status = p.range>=0.15 ? "Pattern detected" : "No clear pattern";
+  const statusClass = p.range>=0.15 ? "" : "none";
+
+  body.innerHTML=`
+    <div class="seasonal-head">
+      <div>
+        <strong>Observed monthly NDVI pattern</strong>
+        <div class="muted" style="margin-top:4px">
+          Seasonal context is shown separately from the existing long-term trend.
+        </div>
+      </div>
+      <span class="seasonal-status ${statusClass}">${status}</span>
+    </div>
+
+    <div class="seasonal-grid">
+      <div class="seasonal-stat"><span>Current Month</span><b>${monthName(currentMonth)}</b></div>
+      <div class="seasonal-stat"><span>Expected NDVI</span><b>${fmt(result.expected)}</b></div>
+      <div class="seasonal-stat"><span>Current NDVI</span><b>${fmt(result.current)}</b></div>
+      <div class="seasonal-stat"><span>Deviation</span><b>${result.deviation>=0?"+":""}${result.deviation.toFixed(1)}%</b></div>
+      <div class="seasonal-stat"><span>Peak Month</span><b>${monthName(p.peakMonth)}</b></div>
+      <div class="seasonal-stat"><span>Lowest Month</span><b>${monthName(p.lowMonth)}</b></div>
+      <div class="seasonal-stat"><span>Seasonal Range</span><b>${p.range.toFixed(3)}</b></div>
+      <div class="seasonal-stat"><span>Long-term Trend</span><b>${trend(site)}</b></div>
+    </div>
+
+    <div class="seasonal-interpretation ${result.level==="warning"?"warning":result.level==="neutral"?"neutral":""}">
+      <strong>Seasonal interpretation</strong><br>
+      ${escapeHtml(result.message)}
+    </div>
+
+    <div class="seasonal-chart-wrap">
+      <canvas id="seasonalAreaChart"></canvas>
+    </div>
+  `;
+
+  const labels=Array.from({length:12},(_,i)=>monthName(i+1).slice(0,3));
+  const values=labels.map((_,i)=>p.monthly[i+1]??null);
+  const pointRadii=labels.map((_,i)=>i+1===currentMonth?5:2);
+
+  if(window.seasonalAreaChart)window.seasonalAreaChart.destroy();
+
+  const canvas=document.getElementById("seasonalAreaChart");
+  if(!canvas)return;
+
+  window.seasonalAreaChart=new Chart(canvas,{
+    type:"line",
+    data:{
+      labels,
+      datasets:[{
+        label:"Monthly mean NDVI",
+        data:values,
+        borderColor:"#73d13d",
+        backgroundColor:"rgba(115,209,61,.10)",
+        pointRadius:pointRadii,
+        pointBackgroundColor:"#73d13d",
+        fill:true,
+        tension:.3,
+        spanGaps:true
+      }]
+    },
+    options:{
+      responsive:true,
+      maintainAspectRatio:false,
+      plugins:{
+        legend:{display:false},
+        tooltip:{callbacks:{
+          label:ctx=>`NDVI: ${ctx.parsed.y===null?"—":ctx.parsed.y.toFixed(3)}`
+        }}
+      },
+      scales:{
+        y:{min:0,max:1,grid:{color:"#203129"},ticks:{color:"#8da197"}},
+        x:{grid:{display:false},ticks:{color:"#8da197"}}
+      }
+    }
+  });
+}
+
+function renderSeasonalProject(data){
+  const body=document.getElementById("seasonalReportBody");
+  if(!body)return;
+
+  const profiles=data.map(seasonalSiteProfile).filter(Boolean);
+  if(!profiles.length){
+    body.innerHTML='<div class="seasonal-empty">Insufficient historical NDVI observations to calculate programme seasonality.</div>';
+    return;
+  }
+
+  const monthly={};
+  profiles.forEach(p=>{
+    Object.entries(p.monthly).forEach(([m,v])=>{
+      if(!monthly[m])monthly[m]=[];
+      monthly[m].push(v);
+    });
+  });
+
+  const means={};
+  Object.entries(monthly).forEach(([m,vals])=>{
+    means[m]=vals.reduce((a,b)=>a+b,0)/vals.length;
+  });
+
+  const vals=Object.values(means);
+  const peak=Number(Object.keys(means).sort((a,b)=>means[b]-means[a])[0]);
+  const low=Number(Object.keys(means).sort((a,b)=>means[a]-means[b])[0]);
+  const range=Math.max(...vals)-Math.min(...vals);
+  const detected=data.filter(site=>{
+    const p=seasonalSiteProfile(site);
+    return p && p.range>=0.15;
+  }).length;
+
+  body.innerHTML=`
+    <div class="seasonal-head">
+      <div>
+        <strong>Programme-level seasonal pattern</strong>
+        <div class="muted" style="margin-top:4px">
+          ${detected} of ${data.length} monitoring areas meet the current seasonal-pattern threshold.
+        </div>
+      </div>
+      <span class="seasonal-status ${detected?"":"none"}">${detected?Math.round(detected/data.length*100)+"% detected":"No clear pattern"}</span>
+    </div>
+
+    <div class="seasonal-grid">
+      <div class="seasonal-stat"><span>Sites Analysed</span><b>${data.length}</b></div>
+      <div class="seasonal-stat"><span>Pattern Detected</span><b>${detected}</b></div>
+      <div class="seasonal-stat"><span>Programme Peak</span><b>${monthName(peak)}</b></div>
+      <div class="seasonal-stat"><span>Programme Low</span><b>${monthName(low)}</b></div>
+      <div class="seasonal-stat"><span>Seasonal Range</span><b>${range.toFixed(3)}</b></div>
+      <div class="seasonal-stat"><span>No Clear Pattern</span><b>${data.length-detected}</b></div>
+    </div>
+
+    <div class="seasonal-interpretation neutral">
+      <strong>Interpretation</strong><br>
+      A recurring monthly NDVI pattern is visible across much of the selected monitoring portfolio. Seasonal context should be considered alongside the existing long-term trend rather than treated as a replacement for it.
+    </div>
+
+    <div class="seasonal-chart-wrap">
+      <canvas id="seasonalAreaChart"></canvas>
+    </div>
+  `;
+
+  if(window.seasonalAreaChart)window.seasonalAreaChart.destroy();
+
+  const labels=Array.from({length:12},(_,i)=>monthName(i+1).slice(0,3));
+  const values=labels.map((_,i)=>means[i+1]??null);
+
+  window.seasonalAreaChart=new Chart(document.getElementById("seasonalAreaChart"),{
+    type:"line",
+    data:{labels,datasets:[{
+      label:"Programme monthly mean NDVI",
+      data:values,
+      borderColor:"#73d13d",
+      backgroundColor:"rgba(115,209,61,.10)",
+      pointRadius:3,
+      fill:true,
+      tension:.3,
+      spanGaps:true
+    }]},
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false}},
+      scales:{
+        y:{min:0,max:1,grid:{color:"#203129"},ticks:{color:"#8da197"}},
+        x:{grid:{display:false},ticks:{color:"#8da197"}}
+      }
+    }
+  });
+}
+
+
 function generateSelected(){
   const type=document.getElementById("reportType").value;
   if(type==="project"){
@@ -831,6 +1122,7 @@ function generateArea(site){
   renderInfo(site);
   renderRecommendationsArea(site);
   renderFieldObservationsArea(site);
+  renderSeasonalArea(site);
 }
 
 function generateProject(pid){
@@ -871,6 +1163,7 @@ function generateProject(pid){
   `;
   renderRecommendationsProject(data,pid);
   renderFieldObservationsProject(data,pid);
+  renderSeasonalProject(data);
 }
 
 function renderHistory(site){

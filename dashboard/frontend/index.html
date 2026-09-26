@@ -3,12 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>WILDLANDS — Overview</title>
 
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
+
 <script src="config.js"></script>
 
 <style>
+
 :root{
   --bg:#030b08;
   --sidebar:#04100b;
@@ -26,9 +32,12 @@
   --gray:#89958f;
 }
 
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
-html,body{
+html,
+body{
   margin:0;
   min-height:100%;
   background:var(--bg);
@@ -36,14 +45,155 @@ html,body{
   font-family:Inter,Segoe UI,Arial,sans-serif;
 }
 
-body{overflow-x:hidden}
+body{
+  overflow-x:hidden;
+}
 
 .app{
   min-height:100vh;
   display:flex;
 }
 
-.sidebar{width:218px;flex:0 0 218px;background:#07130f;border-right:1px solid #173629;padding:22px 14px 16px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column}.brand{display:flex;gap:11px;align-items:center;padding:0 3px 25px}.brand-mark{width:40px;height:40px;border:3px solid var(--green);border-radius:50%;display:grid;place-items:center;color:var(--green)}.brand-title{font-size:20px;font-weight:800;letter-spacing:.6px}.brand-sub{font-size:7.5px;color:#72b94c;text-transform:uppercase;max-width:145px}.nav{display:flex;flex-direction:column;gap:3px}.nav a{display:flex;align-items:center;gap:9px;color:#b9c9c1;text-decoration:none;padding:11px 10px;border-radius:7px;font-size:12.5px}.nav a:hover{background:#0e2418;color:#fff}.nav a.active{background:#123b20;color:#fff;box-shadow:inset 2px 0 var(--green)}.nav-icon{width:18px;color:#9cb5a9;text-align:center}.nav a.active .nav-icon{color:var(--green)}.sidebar-spacer{flex:1}.nav-bottom{border-top:1px solid #132b20;padding-top:9px;margin-top:12px}.field-card{margin-top:12px;padding:13px;border:1px solid #214832;border-radius:9px;background:linear-gradient(145deg,#0d2418,#08150f)}.field-top{color:#77cf4b;font-size:9px;letter-spacing:.8px;font-weight:700}.field-card h4{margin:8px 0 5px;font-size:13px}.field-card p{margin:0 0 11px;color:#7f978c;font-size:10px;line-height:1.45}.field-card a{display:flex;justify-content:space-between;padding:8px 9px;border-radius:6px;background:#1b4825;color:#fff;text-decoration:none;font-size:10.5px;font-weight:700}
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar{
+  width:218px;
+  flex:0 0 218px;
+  background:#07130f;
+  border-right:1px solid #173629;
+  padding:22px 14px 16px;
+  position:sticky;
+  top:0;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+.brand{
+  display:flex;
+  gap:11px;
+  align-items:center;
+  padding:0 3px 25px;
+}
+
+.brand-mark{
+  width:40px;
+  height:40px;
+  border:3px solid var(--green);
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  color:var(--green);
+}
+
+.brand-title{
+  font-size:20px;
+  font-weight:800;
+  letter-spacing:.6px;
+}
+
+.brand-sub{
+  font-size:7.5px;
+  color:#72b94c;
+  text-transform:uppercase;
+  max-width:145px;
+}
+
+.nav{
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+}
+
+.nav a{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  color:#b9c9c1;
+  text-decoration:none;
+  padding:11px 10px;
+  border-radius:7px;
+  font-size:12.5px;
+}
+
+.nav a:hover{
+  background:#0e2418;
+  color:#fff;
+}
+
+.nav a.active{
+  background:#123b20;
+  color:#fff;
+  box-shadow:inset 2px 0 var(--green);
+}
+
+.nav-icon{
+  width:18px;
+  color:#9cb5a9;
+  text-align:center;
+}
+
+.nav a.active .nav-icon{
+  color:var(--green);
+}
+
+.sidebar-spacer{
+  flex:1;
+}
+
+.nav-bottom{
+  border-top:1px solid #132b20;
+  padding-top:9px;
+  margin-top:12px;
+}
+
+.field-card{
+  margin-top:12px;
+  padding:13px;
+  border:1px solid #214832;
+  border-radius:9px;
+  background:linear-gradient(145deg,#0d2418,#08150f);
+}
+
+.field-top{
+  color:#77cf4b;
+  font-size:9px;
+  letter-spacing:.8px;
+  font-weight:700;
+}
+
+.field-card h4{
+  margin:8px 0 5px;
+  font-size:13px;
+}
+
+.field-card p{
+  margin:0 0 11px;
+  color:#7f978c;
+  font-size:10px;
+  line-height:1.45;
+}
+
+.field-card a{
+  display:flex;
+  justify-content:space-between;
+  padding:8px 9px;
+  border-radius:6px;
+  background:#1b4825;
+  color:#fff;
+  text-decoration:none;
+  font-size:10.5px;
+  font-weight:700;
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
 .main{
   flex:1;
   min-width:0;
@@ -100,9 +250,22 @@ h1{
   font-size:11px;
 }
 
-.select{cursor:pointer}
-.btn{cursor:pointer}
-.btn:hover{filter:brightness(1.12)}
+.select{
+  cursor:pointer;
+}
+
+.btn{
+  cursor:pointer;
+}
+
+.btn:hover{
+  filter:brightness(1.12);
+}
+
+
+/* =========================================================
+   KPI CARDS
+========================================================= */
 
 .kpis{
   display:grid;
@@ -162,10 +325,26 @@ h1{
   font-weight:700;
 }
 
-.red{color:var(--red)}
-.green{color:var(--green)}
-.blue{color:var(--blue)}
-.yellow{color:var(--yellow)}
+.red{
+  color:var(--red);
+}
+
+.green{
+  color:var(--green);
+}
+
+.blue{
+  color:var(--blue);
+}
+
+.yellow{
+  color:var(--yellow);
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
 
 .content-grid{
   display:grid;
@@ -207,6 +386,11 @@ h1{
   text-decoration:none;
   font-weight:800;
 }
+
+
+/* =========================================================
+   MAP
+========================================================= */
 
 .map-wrap{
   height:425px;
@@ -251,6 +435,7 @@ h1{
   height:10px;
   border-radius:50%;
   border:1px solid rgba(255,255,255,.7);
+  flex-shrink:0;
 }
 
 .map-controls{
@@ -271,7 +456,14 @@ h1{
   border-radius:7px;
   padding:8px 9px;
   cursor:pointer;
+  min-width:38px;
+  min-height:38px;
 }
+
+
+/* =========================================================
+   SIDE STACK
+========================================================= */
 
 .side-stack{
   display:flex;
@@ -292,7 +484,9 @@ h1{
   border-bottom:1px solid var(--line-soft);
 }
 
-.activity-row:last-child{border-bottom:0}
+.activity-row:last-child{
+  border-bottom:0;
+}
 
 .activity-icon{
   width:31px;
@@ -304,9 +498,16 @@ h1{
   color:var(--green);
 }
 
+.activity-main{
+  min-width:0;
+}
+
 .activity-main b{
   display:block;
   font-size:11px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
 
 .activity-main span{
@@ -314,6 +515,9 @@ h1{
   color:var(--muted);
   font-size:9px;
   margin-top:3px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
 
 .activity-time{
@@ -342,17 +546,51 @@ h1{
   border-bottom:1px solid var(--line-soft);
 }
 
-.system-row:last-child{border-bottom:0}
-
-.system-icon{font-size:17px;color:#b9c6c0}
-.system-main b{display:block;font-size:11px}
-.system-main span{display:block;color:var(--muted);font-size:9px;margin-top:3px}
-.check{
-  width:21px;height:21px;border-radius:50%;
-  background:#7fd84b;color:#07130d;
-  display:grid;place-items:center;font-weight:900;
-  font-size:12px;
+.system-row:last-child{
+  border-bottom:0;
 }
+
+.system-icon{
+  font-size:17px;
+  color:#b9c6c0;
+}
+
+.system-main{
+  min-width:0;
+}
+
+.system-main b{
+  display:block;
+  font-size:11px;
+}
+
+.system-main span{
+  display:block;
+  color:var(--muted);
+  font-size:9px;
+  margin-top:3px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.check{
+  width:21px;
+  height:21px;
+  border-radius:50%;
+  background:#7fd84b;
+  color:#07130d;
+  display:grid;
+  place-items:center;
+  font-weight:900;
+  font-size:12px;
+  flex-shrink:0;
+}
+
+
+/* =========================================================
+   BOTTOM GRID
+========================================================= */
 
 .bottom-grid{
   display:grid;
@@ -403,15 +641,20 @@ h1{
 }
 
 
+/* =========================================================
+   SATELLITE
+========================================================= */
 
 .satellite-card{
   min-width:0;
 }
+
 .satellite-latest{
   margin-top:17px;
   padding:0 0 13px;
   border-bottom:1px solid var(--line-soft);
 }
+
 .satellite-date-label{
   color:#71877b;
   font-size:8px;
@@ -419,6 +662,7 @@ h1{
   letter-spacing:1px;
   margin-bottom:5px;
 }
+
 .satellite-date{
   color:#f4f7f5;
   font-size:24px;
@@ -426,11 +670,13 @@ h1{
   font-weight:800;
   letter-spacing:-.25px;
 }
+
 .satellite-stats{
   display:flex;
   flex-direction:column;
   margin-top:4px;
 }
+
 .satellite-stat{
   min-height:36px;
   display:grid;
@@ -439,14 +685,17 @@ h1{
   column-gap:14px;
   border-bottom:1px solid var(--line-soft);
 }
+
 .satellite-stat:last-child{
   border-bottom:0;
 }
+
 .satellite-stat span{
   color:#8da39a;
   font-size:10px;
   line-height:1.25;
 }
+
 .satellite-stat b{
   color:#dbe7e1;
   font-size:10px;
@@ -454,6 +703,12 @@ h1{
   text-align:right;
   white-space:nowrap;
 }
+
+
+/* =========================================================
+   QUALITY
+========================================================= */
+
 .quality{
   display:flex;
   align-items:center;
@@ -463,11 +718,17 @@ h1{
 }
 
 .quality-ring{
-  width:92px;height:92px;border-radius:50%;
-  background:conic-gradient(var(--green) 0 98%,#173125 98% 100%);
+  width:92px;
+  height:92px;
+  border-radius:50%;
+  background:conic-gradient(
+    var(--green) 0 98%,
+    #173125 98% 100%
+  );
   position:relative;
   display:grid;
   place-items:center;
+  flex-shrink:0;
 }
 
 .quality-ring::after{
@@ -486,8 +747,21 @@ h1{
   color:var(--green);
 }
 
-.quality-copy b{font-size:11px}
-.quality-copy span{display:block;color:var(--muted);font-size:9px;margin-top:4px}
+.quality-copy b{
+  font-size:11px;
+}
+
+.quality-copy span{
+  display:block;
+  color:var(--muted);
+  font-size:9px;
+  margin-top:4px;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
 
 .status-bar{
   margin:13px 0;
@@ -501,13 +775,25 @@ h1{
 
 .status-dot{
   display:inline-block;
-  width:8px;height:8px;border-radius:50%;
+  width:8px;
+  height:8px;
+  border-radius:50%;
   background:var(--yellow);
   margin-right:7px;
 }
 
-.status-dot.ok{background:var(--green)}
-.status-dot.bad{background:var(--red)}
+.status-dot.ok{
+  background:var(--green);
+}
+
+.status-dot.bad{
+  background:var(--red);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
 
 .footer{
   border-top:1px solid var(--line-soft);
@@ -519,289 +805,1475 @@ h1{
   font-size:9px;
 }
 
-.leaflet-container{background:#0a1712}
+
+/* =========================================================
+   LEAFLET
+========================================================= */
+
+.leaflet-container{
+  background:#0a1712;
+}
+
 .leaflet-control-layers{
   background:#07150f!important;
   color:#fff!important;
   border:1px solid #244735!important;
 }
-.leaflet-control-layers label{color:#dbe5df}
+
+.leaflet-control-layers label{
+  color:#dbe5df;
+}
+
 .leaflet-bar a{
   background:#07150f!important;
   color:#fff!important;
   border-color:#244735!important;
 }
 
-@media(max-width:1250px){
-  .sidebar{width:215px;flex-basis:215px}
-  .kpis{grid-template-columns:repeat(3,1fr)}
-  .content-grid{grid-template-columns:1fr}
-  .side-stack{display:grid;grid-template-columns:1fr 1fr}
-  .bottom-grid{grid-template-columns:1fr 1fr}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width:1250px){
+
+  .sidebar{
+    width:215px;
+    flex-basis:215px;
+  }
+
+  .kpis{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .content-grid{
+    grid-template-columns:1fr;
+  }
+
+  .side-stack{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+  }
+
+  .bottom-grid{
+    grid-template-columns:1fr 1fr;
+  }
 }
 
-@media(max-width:850px){
-  .app{display:block}
-  .sidebar{width:100%;min-height:auto}
-  .sidebar-spacer{display:none}
-  .main{padding:18px}
-  .page-head{display:block}
-  .head-controls{margin-top:12px}
-  .kpis{grid-template-columns:repeat(2,1fr)}
-  .side-stack,.bottom-grid{grid-template-columns:1fr}
+
+/* =========================================================
+   TABLET / LARGE PHONE
+========================================================= */
+
+@media (max-width:850px){
+
+  html,
+  body{
+    width:100%;
+    overflow-x:hidden;
+  }
+
+  .app{
+    display:block;
+    width:100%;
+  }
+
+  /* Turn sidebar into mobile top navigation */
+
+  .sidebar{
+    width:100%;
+    height:auto;
+    min-height:auto;
+    position:relative;
+    top:auto;
+    padding:12px 14px;
+    border-right:0;
+    border-bottom:1px solid #173629;
+  }
+
+  .brand{
+    padding:0;
+    margin-bottom:11px;
+  }
+
+  .brand-mark{
+    width:35px;
+    height:35px;
+  }
+
+  .brand-title{
+    font-size:18px;
+  }
+
+  .brand-sub{
+    font-size:7px;
+  }
+
+  .nav{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:4px;
+  }
+
+  .nav a{
+    justify-content:center;
+    flex-direction:column;
+    gap:3px;
+    padding:8px 4px;
+    font-size:10px;
+    text-align:center;
+  }
+
+  .nav-icon{
+    width:auto;
+    font-size:15px;
+  }
+
+  .sidebar-spacer{
+    display:none;
+  }
+
+  .field-card{
+    display:none;
+  }
+
+  .main{
+    width:100%;
+    padding:18px 14px 20px;
+  }
+
+  .page-head{
+    display:block;
+    margin-bottom:15px;
+  }
+
+  h1{
+    font-size:30px;
+  }
+
+  .page-sub{
+    font-size:12px;
+    line-height:1.45;
+  }
+
+  .head-controls{
+    width:100%;
+    margin-top:13px;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:8px;
+  }
+
+  .updated{
+    margin:0;
+  }
+
+  .select{
+    width:100%;
+    min-height:42px;
+  }
+
+  .kpis{
+    grid-template-columns:repeat(2,1fr);
+    gap:8px;
+  }
+
+  .kpi{
+    min-height:135px;
+    padding:13px;
+  }
+
+  .kpi-value{
+    font-size:25px;
+  }
+
+  .kpi-label{
+    font-size:8px;
+  }
+
+  .kpi-note{
+    font-size:8px;
+    line-height:1.35;
+  }
+
+  .kpi-trend{
+    font-size:8px;
+    margin-top:10px;
+  }
+
+  .content-grid{
+    grid-template-columns:1fr;
+  }
+
+  .side-stack{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:10px;
+  }
+
+  .map-wrap{
+    height:380px;
+  }
+
+  .legend{
+    width:175px;
+    top:9px;
+    left:9px;
+    padding:9px;
+  }
+
+  .legend-title{
+    font-size:10px;
+  }
+
+  .legend-row{
+    font-size:8px;
+    margin:5px 0;
+  }
+
+  .map-controls{
+    right:9px;
+  }
+
+  .bottom-grid{
+    grid-template-columns:1fr;
+    gap:10px;
+  }
+
+  .metric-panel{
+    min-height:150px;
+  }
+
+  .footer{
+    flex-direction:column;
+    gap:6px;
+    line-height:1.4;
+  }
 }
 
-@media(max-width:560px){
-  .kpis{grid-template-columns:1fr}
-  .head-controls{flex-wrap:wrap}
-  .map-wrap{height:330px}
+
+/* =========================================================
+   PHONE
+========================================================= */
+
+@media (max-width:560px){
+
+  .sidebar{
+    padding:11px 10px;
+  }
+
+  .brand{
+    gap:8px;
+  }
+
+  .brand-mark{
+    width:32px;
+    height:32px;
+    border-width:2px;
+  }
+
+  .brand-title{
+    font-size:17px;
+  }
+
+  .brand-sub{
+    max-width:none;
+    font-size:6.5px;
+  }
+
+  .nav{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .nav a{
+    min-height:53px;
+    padding:7px 3px;
+    font-size:9px;
+  }
+
+  .nav-icon{
+    font-size:14px;
+  }
+
+  .main{
+    padding:15px 10px 18px;
+  }
+
+  .eyebrow{
+    font-size:8px;
+    letter-spacing:1.2px;
+  }
+
+  h1{
+    font-size:27px;
+    margin-top:6px;
+  }
+
+  .page-sub{
+    font-size:11px;
+  }
+
+  .status-bar{
+    margin:10px 0;
+    padding:9px 10px;
+    font-size:9px;
+    line-height:1.4;
+  }
+
+  .kpis{
+    grid-template-columns:1fr 1fr;
+    gap:7px;
+  }
+
+  .kpi{
+    min-height:128px;
+    padding:11px;
+    border-radius:8px;
+  }
+
+  .kpi-icon{
+    font-size:18px;
+    margin-bottom:5px;
+  }
+
+  .kpi-label{
+    font-size:7px;
+    letter-spacing:.5px;
+  }
+
+  .kpi-value{
+    font-size:22px;
+    margin:7px 0 2px;
+  }
+
+  .kpi-note{
+    font-size:7.5px;
+  }
+
+  .kpi-trend{
+    font-size:7.5px;
+    margin-top:8px;
+  }
+
+  .card{
+    border-radius:8px;
+  }
+
+  .card-head{
+    padding:12px;
+    gap:7px;
+  }
+
+  .card-title{
+    font-size:11px;
+  }
+
+  .card-sub{
+    font-size:8px;
+    line-height:1.35;
+  }
+
+  .card-link{
+    font-size:8px;
+    white-space:nowrap;
+  }
+
+  .map-wrap{
+    height:320px;
+  }
+
+  .legend{
+    width:145px;
+    padding:8px;
+  }
+
+  .legend-title{
+    font-size:9px;
+    margin-bottom:6px;
+  }
+
+  .legend-row{
+    font-size:7.5px;
+    gap:6px;
+    margin:4px 0;
+  }
+
+  .legend-dot{
+    width:8px;
+    height:8px;
+  }
+
+  .map-controls{
+    gap:4px;
+  }
+
+  .map-btn{
+    min-width:34px;
+    min-height:34px;
+    padding:5px 7px;
+    font-size:16px;
+  }
+
+  .activity-row{
+    grid-template-columns:29px minmax(0,1fr) auto;
+    gap:8px;
+    padding:10px 11px;
+  }
+
+  .activity-icon{
+    width:29px;
+    height:29px;
+    font-size:12px;
+  }
+
+  .activity-main b{
+    font-size:9px;
+  }
+
+  .activity-main span{
+    font-size:8px;
+  }
+
+  .activity-time{
+    font-size:7.5px;
+  }
+
+  .activity-person{
+    font-size:7.5px;
+  }
+
+  .system{
+    padding:3px 11px 8px;
+  }
+
+  .system-row{
+    grid-template-columns:24px minmax(0,1fr) 21px;
+    gap:8px;
+    padding:10px 0;
+  }
+
+  .system-icon{
+    font-size:14px;
+  }
+
+  .system-main b{
+    font-size:9px;
+  }
+
+  .system-main span{
+    font-size:7.5px;
+  }
+
+  .check{
+    width:20px;
+    height:20px;
+    font-size:10px;
+  }
+
+  .metric-panel{
+    padding:13px;
+    min-height:145px;
+  }
+
+  .metric-head{
+    font-size:10px;
+  }
+
+  .metric-sub{
+    font-size:8px;
+    line-height:1.35;
+  }
+
+  .metric-large{
+    font-size:24px;
+    margin-top:15px;
+  }
+
+  .metric-change{
+    font-size:8px;
+  }
+
+  .spark{
+    width:52%;
+    height:55px;
+    margin-top:-48px;
+  }
+
+  .satellite-date{
+    font-size:21px;
+  }
+
+  .satellite-stat{
+    min-height:34px;
+  }
+
+  .satellite-stat span,
+  .satellite-stat b{
+    font-size:8px;
+  }
+
+  .quality{
+    height:95px;
+    gap:15px;
+  }
+
+  .quality-ring{
+    width:78px;
+    height:78px;
+  }
+
+  .quality-ring::after{
+    inset:10px;
+  }
+
+  .quality-value{
+    font-size:16px;
+  }
+
+  .quality-copy b{
+    font-size:9px;
+  }
+
+  .quality-copy span{
+    font-size:7.5px;
+    line-height:1.35;
+  }
+
+  .footer{
+    font-size:7.5px;
+  }
 }
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width:380px){
+
+  .nav a{
+    font-size:8px;
+  }
+
+  .kpis{
+    grid-template-columns:1fr;
+  }
+
+  .kpi{
+    min-height:115px;
+  }
+
+  .map-wrap{
+    height:290px;
+  }
+
+  .legend{
+    width:135px;
+  }
+
+  .activity-row{
+    grid-template-columns:28px minmax(0,1fr);
+  }
+
+  .activity-time{
+    grid-column:2;
+    text-align:left;
+    margin-top:-4px;
+  }
+
+  .system-row{
+    grid-template-columns:22px minmax(0,1fr) 20px;
+  }
+}
+
 </style>
 </head>
 
+
 <body>
+
 <div class="app">
 
+
+<!-- =======================================================
+     SIDEBAR / MOBILE NAV
+======================================================= -->
+
 <aside class="sidebar">
- <div class="brand"><div class="brand-mark">◯</div><div><div class="brand-title">WILDLANDS</div><div class="brand-sub">Restoring nature. Transforming lives.</div></div></div>
- <nav class="nav">
-  <a class="active" href="index.html"><span class="nav-icon">⌂</span>Overview</a>
-  <a href="projects.html"><span class="nav-icon">▤</span>Projects</a>
-  <a href="monitoring.html"><span class="nav-icon">◉</span>Monitoring</a>
-  <a href="analytics.html"><span class="nav-icon">◫</span>Analytics</a>
-  <a href="reports.html"><span class="nav-icon">▥</span>Reports</a>
-  <a href="data-management.html"><span class="nav-icon">⊞</span>Data Management</a>
- </nav>
- <div class="sidebar-spacer"></div>
- <div class="field-card"><div class="field-top">● FIELD OPERATIONS</div><h4>New Observation</h4><p>Capture a field observation and sync it to the WILDLANDS database.</p><a href="field-monitoring.html">Open Field Form <span>→</span></a></div>
+
+  <div class="brand">
+
+    <div class="brand-mark">
+      ◯
+    </div>
+
+    <div>
+      <div class="brand-title">
+        WILDLANDS
+      </div>
+
+      <div class="brand-sub">
+        Restoring nature. Transforming lives.
+      </div>
+    </div>
+
+  </div>
+
+
+  <nav class="nav">
+
+    <a class="active" href="index.html">
+      <span class="nav-icon">⌂</span>
+      Overview
+    </a>
+
+    <a href="projects.html">
+      <span class="nav-icon">▤</span>
+      Projects
+    </a>
+
+    <a href="monitoring.html">
+      <span class="nav-icon">◉</span>
+      Monitoring
+    </a>
+
+    <a href="analytics.html">
+      <span class="nav-icon">◫</span>
+      Analytics
+    </a>
+
+    <a href="reports.html">
+      <span class="nav-icon">▥</span>
+      Reports
+    </a>
+
+    <a href="data-management.html">
+      <span class="nav-icon">⊞</span>
+      Data Management
+    </a>
+
+  </nav>
+
+
+  <div class="sidebar-spacer"></div>
+
+
+  <div class="field-card">
+
+    <div class="field-top">
+      ● FIELD OPERATIONS
+    </div>
+
+    <h4>
+      New Observation
+    </h4>
+
+    <p>
+      Capture a field observation and sync it to the WILDLANDS database.
+    </p>
+
+    <a href="field-monitoring.html">
+      Open Field Form
+      <span>→</span>
+    </a>
+
+  </div>
+
 </aside>
+
+
+<!-- =======================================================
+     MAIN
+======================================================= -->
 
 <main class="main">
 
-  <header class="page-head">
-    <div>
-      <div class="eyebrow">RESTORATION INTELLIGENCE PLATFORM</div>
-      <h1>OVERVIEW</h1>
-      <div class="page-sub">Executive summary of the restoration monitoring programme <span id="periodLabel" style="color:#7bd83b;font-weight:600">• All available data</span></div>
+
+<header class="page-head">
+
+  <div>
+
+    <div class="eyebrow">
+      RESTORATION MONITORING PLATFORM
     </div>
 
-    <div class="head-controls">
-      <span class="updated">◷ <span id="updatedText">Loading latest update…</span></span>
-      <select id="period" class="select">
-        <option selected>All Available</option>
-        <option>This Month</option>
-        <option>Last 3 Months</option>
-        <option>This Year</option>
-      </select>
-    </div>
-  </header>
+    <h1>
+      OVERVIEW
+    </h1>
 
-  <div class="status-bar">
-    <span id="statusDot" class="status-dot"></span>
-    <span id="statusText">Synchronising programme data…</span>
+    <div class="page-sub">
+
+      Executive summary of the restoration monitoring programme
+
+      <span
+        id="periodLabel"
+        style="color:#7bd83b;font-weight:600"
+      >
+        • All available data
+      </span>
+
+    </div>
+
   </div>
 
-  <section class="kpis">
 
-    <div class="kpi">
-      <div class="kpi-icon green">▱</div>
-      <div class="kpi-label">PROJECTS</div>
-      <div class="kpi-value" id="projectsCount">—</div>
-      <div class="kpi-note">Projects in the programme registry</div>
-      <div class="kpi-trend">↗ Programme portfolio</div>
-    </div>
+  <div class="head-controls">
 
-    <div class="kpi">
-      <div class="kpi-icon green">◒</div>
-      <div class="kpi-label">MONITORING AREAS</div>
-      <div class="kpi-value" id="areasCount">—</div>
-      <div class="kpi-note">Across the monitoring register</div>
-      <div class="kpi-trend">↗ Spatial coverage</div>
-    </div>
+    <span class="updated">
 
-    <div class="kpi">
-      <div class="kpi-icon blue">◈</div>
-      <div class="kpi-label">SATELLITE COVERAGE</div>
-      <div class="kpi-value blue" id="satCoverage">—</div>
-      <div class="kpi-note">Latest Sentinel-2 availability</div>
-      <div class="kpi-trend">● Current dataset</div>
-    </div>
+      ◷
 
-    <div class="kpi">
-      <div class="kpi-icon yellow">▣</div>
-      <div class="kpi-label">FIELD OBSERVATIONS</div>
-      <div class="kpi-value" id="fieldCount">—</div>
-      <div class="kpi-note">Records received by the system</div>
-      <div class="kpi-trend">↗ Field evidence</div>
-    </div>
+      <span id="updatedText">
+        Loading latest update…
+      </span>
 
-    <div class="kpi">
-      <div class="kpi-icon red">▲</div>
-      <div class="kpi-label">AREAS OF CONCERN</div>
-      <div class="kpi-value red" id="concernCount">—</div>
-      <div class="kpi-note">Declining satellite signal</div>
-      <div class="kpi-trend red" id="concernTrend">Requires review</div>
-    </div>
+    </span>
 
-    <div class="kpi">
-      <div class="kpi-icon green">⌁</div>
-      <div class="kpi-label">AVG NDVI TREND</div>
-      <div class="kpi-value green" id="avgChange">—</div>
-      <div class="kpi-note">Programme-wide latest movement</div>
-      <div class="kpi-trend" id="avgTrend">Waiting for data</div>
-    </div>
+    <select id="period" class="select">
 
-  </section>
+      <option selected>
+        All Available
+      </option>
 
-  <section class="content-grid">
+      <option>
+        This Month
+      </option>
 
-    <div class="card">
-      <div class="card-head">
-        <div>
-          <div class="card-title">PROGRAMME MAP</div>
-          <span class="card-sub">Monitoring areas coloured by current vegetation condition</span>
-        </div>
-        <a class="card-link" href="map.html">FULL MAP ↗</a>
+      <option>
+        Last 3 Months
+      </option>
+
+      <option>
+        This Year
+      </option>
+
+    </select>
+
+  </div>
+
+</header>
+
+
+<!-- =======================================================
+     STATUS
+======================================================= -->
+
+<div class="status-bar">
+
+  <span
+    id="statusDot"
+    class="status-dot"
+  ></span>
+
+  <span id="statusText">
+    Synchronising programme data…
+  </span>
+
+</div>
+
+
+<!-- =======================================================
+     KPIs
+======================================================= -->
+
+<section class="kpis">
+
+
+<div class="kpi">
+
+  <div class="kpi-icon green">
+    ▱
+  </div>
+
+  <div class="kpi-label">
+    PROJECTS
+  </div>
+
+  <div
+    class="kpi-value"
+    id="projectsCount"
+  >
+    —
+  </div>
+
+  <div class="kpi-note">
+    Projects in the programme registry
+  </div>
+
+  <div class="kpi-trend">
+    ↗ Programme portfolio
+  </div>
+
+</div>
+
+
+<div class="kpi">
+
+  <div class="kpi-icon green">
+    ◒
+  </div>
+
+  <div class="kpi-label">
+    MONITORING AREAS
+  </div>
+
+  <div
+    class="kpi-value"
+    id="areasCount"
+  >
+    —
+  </div>
+
+  <div class="kpi-note">
+    Across the monitoring register
+  </div>
+
+  <div class="kpi-trend">
+    ↗ Spatial coverage
+  </div>
+
+</div>
+
+
+<div class="kpi">
+
+  <div class="kpi-icon blue">
+    ◈
+  </div>
+
+  <div class="kpi-label">
+    SATELLITE COVERAGE
+  </div>
+
+  <div
+    class="kpi-value blue"
+    id="satCoverage"
+  >
+    —
+  </div>
+
+  <div class="kpi-note">
+    Latest Sentinel-2 availability
+  </div>
+
+  <div class="kpi-trend">
+    ● Current dataset
+  </div>
+
+</div>
+
+
+<div class="kpi">
+
+  <div class="kpi-icon yellow">
+    ▣
+  </div>
+
+  <div class="kpi-label">
+    FIELD OBSERVATIONS
+  </div>
+
+  <div
+    class="kpi-value"
+    id="fieldCount"
+  >
+    —
+  </div>
+
+  <div class="kpi-note">
+    Records received by the system
+  </div>
+
+  <div class="kpi-trend">
+    ↗ Field evidence
+  </div>
+
+</div>
+
+
+<div class="kpi">
+
+  <div class="kpi-icon red">
+    ▲
+  </div>
+
+  <div class="kpi-label">
+    AREAS OF CONCERN
+  </div>
+
+  <div
+    class="kpi-value red"
+    id="concernCount"
+  >
+    —
+  </div>
+
+  <div class="kpi-note">
+    Declining satellite signal
+  </div>
+
+  <div
+    class="kpi-trend red"
+    id="concernTrend"
+  >
+    Requires review
+  </div>
+
+</div>
+
+
+<div class="kpi">
+
+  <div class="kpi-icon green">
+    ⌁
+  </div>
+
+  <div class="kpi-label">
+    AVG NDVI TREND
+  </div>
+
+  <div
+    class="kpi-value green"
+    id="avgChange"
+  >
+    —
+  </div>
+
+  <div class="kpi-note">
+    Programme-wide latest movement
+  </div>
+
+  <div
+    class="kpi-trend"
+    id="avgTrend"
+  >
+    Waiting for data
+  </div>
+
+</div>
+
+
+</section>
+
+
+<!-- =======================================================
+     CONTENT GRID
+======================================================= -->
+
+<section class="content-grid">
+
+
+<!-- MAP -->
+
+<div class="card">
+
+  <div class="card-head">
+
+    <div>
+
+      <div class="card-title">
+        PROGRAMME MAP
       </div>
 
-      <div class="map-wrap">
-        <div id="map"></div>
-
-        <div class="legend">
-          <div class="legend-title">Vegetation condition</div>
-          <div class="legend-row"><span class="legend-dot" style="background:#7bd83b"></span>Good / improving</div>
-          <div class="legend-row"><span class="legend-dot" style="background:#f0b82d"></span>Stable</div>
-          <div class="legend-row"><span class="legend-dot" style="background:#f15b4b"></span>Needs attention</div>
-          <div class="legend-row"><span class="legend-dot" style="background:#89958f"></span>No recent data</div>
-        </div>
-
-        <div class="map-controls">
-          <button class="map-btn" onclick="map.zoomIn()">+</button>
-          <button class="map-btn" onclick="map.zoomOut()">−</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="side-stack">
-
-      <div class="card activity">
-        <div class="card-head">
-          <div>
-            <div class="card-title">RECENT FIELD ACTIVITY</div>
-            <span class="card-sub">Latest observations received</span>
-          </div>
-          <a class="card-link" href="monitoring.html">VIEW ALL</a>
-        </div>
-        <div id="activityList"></div>
-      </div>
-
-      <div class="card">
-        <div class="card-head">
-          <div>
-            <div class="card-title">SYSTEM STATUS</div>
-            <span class="card-sub">Operational readiness of core data services</span>
-          </div>
-          <span class="green" style="font-size:10px;font-weight:800" id="systemSummary">Checking…</span>
-        </div>
-
-        <div class="system">
-          <div class="system-row">
-            <div class="system-icon">▤</div>
-            <div class="system-main"><b>API & Database</b><span id="apiStatus">Checking connection</span></div>
-            <div class="check" id="apiCheck">•</div>
-          </div>
-          <div class="system-row">
-            <div class="system-icon">◈</div>
-            <div class="system-main"><b>Satellite Data (Sentinel-2)</b><span id="satStatus">Checking dataset</span></div>
-            <div class="check" id="satCheck">•</div>
-          </div>
-          <div class="system-row">
-            <div class="system-icon">☁</div>
-            <div class="system-main"><b>Field Data Sync</b><span id="fieldStatus">Checking records</span></div>
-            <div class="check" id="fieldCheck">•</div>
-          </div>
-          <div class="system-row">
-            <div class="system-icon">▧</div>
-            <div class="system-main"><b>Spatial Coordinates</b><span id="coordStatus">Checking locations</span></div>
-            <div class="check" id="coordCheck">•</div>
-          </div>
-        </div>
-      </div>
+      <span class="card-sub">
+        Monitoring areas coloured by current vegetation condition
+      </span>
 
     </div>
-  </section>
 
-  <section class="bottom-grid">
+    <a
+      class="card-link"
+      href="map.html"
+    >
+      FULL MAP ↗
+    </a>
 
-    <div class="card metric-panel">
-      <div class="metric-head">VEGETATION HEALTH (NDVI)</div>
-      <div class="metric-sub">Programme latest average</div>
-      <div class="metric-large green" id="avgNdvi">—</div>
-      <div class="metric-change" id="ndviChangeText">—</div>
+  </div>
 
-      <div class="spark">
-        <svg viewBox="0 0 250 70" preserveAspectRatio="none">
-          <polyline id="sparkLine" points=""
-            fill="none" stroke="#7bd83b" stroke-width="3"/>
-          <polyline id="sparkArea" points=""
-            fill="rgba(123,216,59,.08)" stroke="none"/>
-        </svg>
+
+  <div class="map-wrap">
+
+    <div id="map"></div>
+
+
+    <div class="legend">
+
+      <div class="legend-title">
+        Vegetation condition
       </div>
+
+      <div class="legend-row">
+
+        <span
+          class="legend-dot"
+          style="background:#7bd83b"
+        ></span>
+
+        Good / improving
+
+      </div>
+
+      <div class="legend-row">
+
+        <span
+          class="legend-dot"
+          style="background:#f0b82d"
+        ></span>
+
+        Stable
+
+      </div>
+
+      <div class="legend-row">
+
+        <span
+          class="legend-dot"
+          style="background:#f15b4b"
+        ></span>
+
+        Needs attention
+
+      </div>
+
+      <div class="legend-row">
+
+        <span
+          class="legend-dot"
+          style="background:#89958f"
+        ></span>
+
+        No recent data
+
+      </div>
+
     </div>
 
-    <div class="card metric-panel satellite-card">
-      <div class="metric-head">SATELLITE COVERAGE</div>
-      <div class="metric-sub">Sentinel-2 availability across the monitoring register</div>
 
-      <div class="satellite-latest">
-        <div class="satellite-date-label">LATEST OBSERVATION</div>
-        <div class="satellite-date" id="satLatestDate">—</div>
-      </div>
+    <div class="map-controls">
 
-      <div class="satellite-stats">
-        <div class="satellite-stat">
-          <span>Areas with satellite data</span>
-          <b id="satAreas">—</b>
-        </div>
-        <div class="satellite-stat">
-          <span>Latest coverage</span>
-          <b id="satCoverageDetail">—</b>
-        </div>
-        <div class="satellite-stat">
-          <span>NDVI history</span>
-          <b id="satPeriod">—</b>
-        </div>
-      </div>
+      <button
+        class="map-btn"
+        onclick="map.zoomIn()"
+      >
+        +
+      </button>
+
+      <button
+        class="map-btn"
+        onclick="map.zoomOut()"
+      >
+        −
+      </button>
+
     </div>
 
-    <div class="card metric-panel">
-      <div class="metric-head">DATA QUALITY</div>
-      <div class="metric-sub">Observations with valid coordinates</div>
+  </div>
 
-      <div class="quality">
-        <div class="quality-ring">
-          <div class="quality-value" id="qualityValue">—</div>
-        </div>
-        <div class="quality-copy">
-          <b>Spatial confidence</b>
-          <span id="qualityCopy">Checking monitoring locations</span>
-        </div>
+</div>
+
+
+<!-- SIDE STACK -->
+
+<div class="side-stack">
+
+
+<!-- FIELD ACTIVITY -->
+
+<div class="card activity">
+
+  <div class="card-head">
+
+    <div>
+
+      <div class="card-title">
+        RECENT FIELD ACTIVITY
       </div>
+
+      <span class="card-sub">
+        Latest observations received
+      </span>
+
     </div>
 
-  </section>
+    <a
+      class="card-link"
+      href="monitoring.html"
+    >
+      VIEW ALL
+    </a>
 
-  <footer class="footer">
-    <span>© 2026 WILDLANDS Restoration Intelligence Platform</span>
-    <span id="footerUpdated"></span>
-  </footer>
+  </div>
+
+  <div id="activityList"></div>
+
+</div>
+
+
+<!-- SYSTEM STATUS -->
+
+<div class="card">
+
+  <div class="card-head">
+
+    <div>
+
+      <div class="card-title">
+        SYSTEM STATUS
+      </div>
+
+      <span class="card-sub">
+        Operational readiness of core data services
+      </span>
+
+    </div>
+
+    <span
+      class="green"
+      style="font-size:10px;font-weight:800"
+      id="systemSummary"
+    >
+      Checking…
+    </span>
+
+  </div>
+
+
+  <div class="system">
+
+
+    <div class="system-row">
+
+      <div class="system-icon">
+        ▤
+      </div>
+
+      <div class="system-main">
+
+        <b>
+          API & Database
+        </b>
+
+        <span id="apiStatus">
+          Checking connection
+        </span>
+
+      </div>
+
+      <div
+        class="check"
+        id="apiCheck"
+      >
+        •
+      </div>
+
+    </div>
+
+
+    <div class="system-row">
+
+      <div class="system-icon">
+        ◈
+      </div>
+
+      <div class="system-main">
+
+        <b>
+          Satellite Data (Sentinel-2)
+        </b>
+
+        <span id="satStatus">
+          Checking dataset
+        </span>
+
+      </div>
+
+      <div
+        class="check"
+        id="satCheck"
+      >
+        •
+      </div>
+
+    </div>
+
+
+    <div class="system-row">
+
+      <div class="system-icon">
+        ☁
+      </div>
+
+      <div class="system-main">
+
+        <b>
+          Field Data Sync
+        </b>
+
+        <span id="fieldStatus">
+          Checking records
+        </span>
+
+      </div>
+
+      <div
+        class="check"
+        id="fieldCheck"
+      >
+        •
+      </div>
+
+    </div>
+
+
+    <div class="system-row">
+
+      <div class="system-icon">
+        ▧
+      </div>
+
+      <div class="system-main">
+
+        <b>
+          Spatial Coordinates
+        </b>
+
+        <span id="coordStatus">
+          Checking locations
+        </span>
+
+      </div>
+
+      <div
+        class="check"
+        id="coordCheck"
+      >
+        •
+      </div>
+
+    </div>
+
+
+  </div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     BOTTOM METRICS
+======================================================= -->
+
+<section class="bottom-grid">
+
+
+<!-- NDVI -->
+
+<div class="card metric-panel">
+
+  <div class="metric-head">
+    VEGETATION HEALTH (NDVI)
+  </div>
+
+  <div class="metric-sub">
+    Programme latest average
+  </div>
+
+  <div
+    class="metric-large green"
+    id="avgNdvi"
+  >
+    —
+  </div>
+
+  <div
+    class="metric-change"
+    id="ndviChangeText"
+  >
+    —
+  </div>
+
+
+  <div class="spark">
+
+    <svg
+      viewBox="0 0 250 70"
+      preserveAspectRatio="none"
+    >
+
+      <polyline
+        id="sparkLine"
+        points=""
+        fill="none"
+        stroke="#7bd83b"
+        stroke-width="3"
+      />
+
+      <polyline
+        id="sparkArea"
+        points=""
+        fill="rgba(123,216,59,.08)"
+        stroke="none"
+      />
+
+    </svg>
+
+  </div>
+
+</div>
+
+
+<!-- SATELLITE -->
+
+<div class="card metric-panel satellite-card">
+
+  <div class="metric-head">
+    SATELLITE COVERAGE
+  </div>
+
+  <div class="metric-sub">
+    Sentinel-2 availability across the monitoring register
+  </div>
+
+
+  <div class="satellite-latest">
+
+    <div class="satellite-date-label">
+      LATEST OBSERVATION
+    </div>
+
+    <div
+      class="satellite-date"
+      id="satLatestDate"
+    >
+      —
+    </div>
+
+  </div>
+
+
+  <div class="satellite-stats">
+
+
+    <div class="satellite-stat">
+
+      <span>
+        Areas with satellite data
+      </span>
+
+      <b id="satAreas">
+        —
+      </b>
+
+    </div>
+
+
+    <div class="satellite-stat">
+
+      <span>
+        Latest coverage
+      </span>
+
+      <b id="satCoverageDetail">
+        —
+      </b>
+
+    </div>
+
+
+    <div class="satellite-stat">
+
+      <span>
+        NDVI history
+      </span>
+
+      <b id="satPeriod">
+        —
+      </b>
+
+    </div>
+
+
+  </div>
+
+</div>
+
+
+<!-- DATA QUALITY -->
+
+<div class="card metric-panel">
+
+  <div class="metric-head">
+    DATA QUALITY
+  </div>
+
+  <div class="metric-sub">
+    Observations with valid coordinates
+  </div>
+
+
+  <div class="quality">
+
+    <div class="quality-ring">
+
+      <div
+        class="quality-value"
+        id="qualityValue"
+      >
+        —
+      </div>
+
+    </div>
+
+
+    <div class="quality-copy">
+
+      <b>
+        Spatial confidence
+      </b>
+
+      <span id="qualityCopy">
+        Checking monitoring locations
+      </span>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+</section>
+
+
+<!-- =======================================================
+     FOOTER
+======================================================= -->
+
+<footer class="footer">
+
+  <span>
+    © 2026 WILDLANDS Restoration Intelligence Platform
+  </span>
+
+  <span id="footerUpdated"></span>
+
+</footer>
+
 
 </main>
+
 </div>
+
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
+
 <script>
+
 let sites=[];
 let observations=[];
 let allSites=[];
@@ -812,170 +2284,508 @@ let markers;
 let selectedPeriod='All Available';
 let projectRegistry=[];
 
-const API = (typeof API_BASE_URL !== "undefined" && API_BASE_URL)
+
+const API =
+  (typeof API_BASE_URL !== "undefined" && API_BASE_URL)
   ? String(API_BASE_URL).replace(/\/$/,"")
   : "http://localhost:8000";
 
+
 const val=(o,keys,d=null)=>{
   for(const k of keys){
-    if(o && o[k]!==undefined && o[k]!==null && o[k]!=="") return o[k];
+    if(
+      o &&
+      o[k]!==undefined &&
+      o[k]!==null &&
+      o[k]!==""
+    ){
+      return o[k];
+    }
   }
+
   return d;
 };
+
 
 const num=v=>{
   const n=Number(v);
   return Number.isFinite(n)?n:null;
 };
 
-const siteId=s=>String(val(s,["site_id","siteId","id","SITE_ID","restoration_id"],"UNKNOWN"));
-const projectId=s=>String(val(s,["project_id","projectId","PROJECT_ID","project_code"],"UNASSIGNED"));
-const projectName=s=>String(val(s,["project_name","projectName","PROJECT","project","name"],projectId(s)));
-const latitude=s=>num(val(s,["latitude","lat","LATITUDE","y"],null));
-const longitude=s=>num(val(s,["longitude","lon","lng","LONGITUDE","x"],null));
 
-const ndvi=s=>num(val(s,[
-  "latest_ndvi","latestNdvi","ndvi","NDVI","current_ndvi"
-],null));
+const siteId=s =>
+  String(
+    val(
+      s,
+      ["site_id","siteId","id","SITE_ID","restoration_id"],
+      "UNKNOWN"
+    )
+  );
+
+
+const projectId=s =>
+  String(
+    val(
+      s,
+      ["project_id","projectId","PROJECT_ID","project_code"],
+      "UNASSIGNED"
+    )
+  );
+
+
+const projectName=s =>
+  String(
+    val(
+      s,
+      ["project_name","projectName","PROJECT","project","name"],
+      projectId(s)
+    )
+  );
+
+
+const latitude=s =>
+  num(
+    val(
+      s,
+      ["latitude","lat","LATITUDE","y"],
+      null
+    )
+  );
+
+
+const longitude=s =>
+  num(
+    val(
+      s,
+      ["longitude","lon","lng","LONGITUDE","x"],
+      null
+    )
+  );
+
+
+const ndvi=s =>
+  num(
+    val(
+      s,
+      [
+        "latest_ndvi",
+        "latestNdvi",
+        "ndvi",
+        "NDVI",
+        "current_ndvi"
+      ],
+      null
+    )
+  );
+
 
 function changeValue(s){
-  let v=num(val(s,["change","ndvi_change","ndviChange"],null));
-  if(v!==null) return Math.abs(v)>1 ? v/100 : v;
 
-  v=num(val(s,["change_percent","changePercentage","CHANGE_PERCENT"],null));
+  let v=num(
+    val(
+      s,
+      ["change","ndvi_change","ndviChange"],
+      null
+    )
+  );
+
+  if(v!==null){
+    return Math.abs(v)>1 ? v/100 : v;
+  }
+
+  v=num(
+    val(
+      s,
+      [
+        "change_percent",
+        "changePercentage",
+        "CHANGE_PERCENT"
+      ],
+      null
+    )
+  );
+
   return v===null ? null : v/100;
 }
 
+
 function trend(s){
+
   const c=changeValue(s);
-  if(c===null) return "no-data";
-  if(c>0.015) return "improving";
-  if(c<-0.015) return "declining";
+
+  if(c===null){
+    return "no-data";
+  }
+
+  if(c>0.015){
+    return "improving";
+  }
+
+  if(c<-0.015){
+    return "declining";
+  }
+
   return "stable";
 }
 
+
 function periodBounds(label){
+
   const now=new Date();
-  now.setHours(23,59,59,999);
 
-  if(label==="All Available") return {start:null,end:now};
+  now.setHours(
+    23,
+    59,
+    59,
+    999
+  );
 
-  if(label==="This Month"){
+  if(label==="All Available"){
     return {
-      start:new Date(now.getFullYear(),now.getMonth(),1,0,0,0,0),
+      start:null,
       end:now
     };
+  }
+
+  if(label==="This Month"){
+
+    return {
+      start:new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        1,
+        0,
+        0,
+        0,
+        0
+      ),
+      end:now
+    };
+
   }
 
   if(label==="Last 3 Months"){
+
     return {
-      start:new Date(now.getFullYear(),now.getMonth()-2,1,0,0,0,0),
+      start:new Date(
+        now.getFullYear(),
+        now.getMonth()-2,
+        1,
+        0,
+        0,
+        0,
+        0
+      ),
       end:now
     };
+
   }
 
   if(label==="This Year"){
+
     return {
-      start:new Date(now.getFullYear(),0,1,0,0,0,0),
+      start:new Date(
+        now.getFullYear(),
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ),
       end:now
     };
+
   }
 
-  return {start:null,end:now};
+  return {
+    start:null,
+    end:now
+  };
 }
 
+
 function inSelectedPeriod(date){
-  if(!date || Number.isNaN(date.getTime())) return false;
-  const {start,end}=periodBounds(selectedPeriod);
-  if(start && date<start) return false;
-  if(end && date>end) return false;
+
+  if(
+    !date ||
+    Number.isNaN(date.getTime())
+  ){
+    return false;
+  }
+
+  const {
+    start,
+    end
+  }=periodBounds(selectedPeriod);
+
+  if(start && date<start){
+    return false;
+  }
+
+  if(end && date>end){
+    return false;
+  }
+
   return true;
 }
 
+
 function siteHistoryForPeriod(site){
-  return historyValues(site).filter(p=>inSelectedPeriod(p.date));
+
+  return historyValues(site)
+    .filter(
+      p=>inSelectedPeriod(p.date)
+    );
+
 }
+
 
 function siteHasSatelliteInPeriod(site){
+
   return siteHistoryForPeriod(site).length>0;
+
 }
+
 
 function observationDate(o){
-  const raw=val(o,["observation_date","date","created_at","createdAt"],null);
-  if(!raw) return null;
+
+  const raw=val(
+    o,
+    [
+      "observation_date",
+      "date",
+      "created_at",
+      "createdAt"
+    ],
+    null
+  );
+
+  if(!raw){
+    return null;
+  }
+
   const d=new Date(raw);
-  return Number.isNaN(d.getTime())?null:d;
+
+  return Number.isNaN(d.getTime())
+    ? null
+    : d;
 }
 
+
 function applyPeriodFilter(){
+
   sites=[...allSites];
 
   if(selectedPeriod==="All Available"){
-    observations=[...allObservations];
+
+    observations=[
+      ...allObservations
+    ];
+
     return;
   }
 
-  observations=allObservations.filter(o=>{
-    const d=observationDate(o);
-    return d ? inSelectedPeriod(d) : false;
-  });
+  observations=
+    allObservations.filter(o=>{
+
+      const d=observationDate(o);
+
+      return d
+        ? inSelectedPeriod(d)
+        : false;
+
+    });
+
 }
+
 
 function historyValues(s){
-  const h=Array.isArray(s?.ndvi_history)?s.ndvi_history:[];
-  return h.map(x=>{
-    const d=new Date(val(x,["date","observation_date","timestamp"],""));
-    const v=num(val(x,["ndvi","NDVI","value","mean_ndvi","meanNdvi"],null));
-    return (!Number.isNaN(d.getTime()) && v!==null) ? {date:d,value:v} : null;
-  }).filter(Boolean);
+
+  const h=
+    Array.isArray(s?.ndvi_history)
+      ? s.ndvi_history
+      : [];
+
+  return h
+    .map(x=>{
+
+      const d=new Date(
+        val(
+          x,
+          [
+            "date",
+            "observation_date",
+            "timestamp"
+          ],
+          ""
+        )
+      );
+
+      const v=num(
+        val(
+          x,
+          [
+            "ndvi",
+            "NDVI",
+            "value",
+            "mean_ndvi",
+            "meanNdvi"
+          ],
+          null
+        )
+      );
+
+      return (
+        !Number.isNaN(d.getTime()) &&
+        v!==null
+      )
+        ? {
+            date:d,
+            value:v
+          }
+        : null;
+
+    })
+    .filter(Boolean);
+
 }
 
+
 function programmeHistory(){
+
   const buckets=new Map();
 
   sites.forEach(s=>{
-    siteHistoryForPeriod(s).forEach(p=>{
-      const key=p.date.toISOString().slice(0,10);
 
-      if(!buckets.has(key)){
-        buckets.set(key,[]);
-      }
+    siteHistoryForPeriod(s)
+      .forEach(p=>{
 
-      buckets.get(key).push(p.value);
-    });
+        const key=
+          p.date
+            .toISOString()
+            .slice(0,10);
+
+        if(!buckets.has(key)){
+          buckets.set(
+            key,
+            []
+          );
+        }
+
+        buckets
+          .get(key)
+          .push(p.value);
+
+      });
+
   });
 
-  return [...buckets.entries()]
-    .map(([date,values])=>({
-      date:new Date(date+"T00:00:00"),
-      value:values.reduce((sum,value)=>sum+value,0)/values.length
-    }))
-    .sort((a,b)=>a.date-b.date);
+  return [
+    ...buckets.entries()
+  ]
+    .map(
+      ([date,values])=>({
+
+        date:new Date(
+          date+"T00:00:00"
+        ),
+
+        value:
+          values.reduce(
+            (sum,value)=>
+              sum+value,
+            0
+          )/values.length
+
+      })
+    )
+    .sort(
+      (a,b)=>
+        a.date-b.date
+    );
+
 }
 
+
 function renderSparkline(history){
-  const line=document.getElementById("sparkLine");
-  const area=document.getElementById("sparkArea");
+
+  const line=
+    document.getElementById(
+      "sparkLine"
+    );
+
+  const area=
+    document.getElementById(
+      "sparkArea"
+    );
 
   if(!history.length){
-    line.setAttribute("points","");
-    area.setAttribute("points","");
+
+    line.setAttribute(
+      "points",
+      ""
+    );
+
+    area.setAttribute(
+      "points",
+      ""
+    );
+
     return;
   }
 
-  const width=250,height=65,pad=5;
-  const values=history.map(x=>x.value);
+  const width=250;
+  const height=65;
+  const pad=5;
+
+  const values=
+    history.map(
+      x=>x.value
+    );
+
   const min=Math.min(...values);
   const max=Math.max(...values);
-  const range=(max-min)||1;
 
-  const points=history.map((p,i)=>{
-    const x=pad+(i/Math.max(history.length-1,1))*(width-pad*2);
-    const y=height-pad-((p.value-min)/range)*(height-pad*2);
-    return `${x.toFixed(1)},${y.toFixed(1)}`;
-  });
+  const range=
+    (max-min)||1;
 
-  line.setAttribute("points",points.join(" "));
+  const points=
+    history.map(
+      (p,i)=>{
+
+        const x=
+          pad+
+          (
+            i/
+            Math.max(
+              history.length-1,
+              1
+            )
+          )*
+          (
+            width-pad*2
+          );
+
+        const y=
+          height-pad-
+          (
+            (p.value-min)/
+            range
+          )*
+          (
+            height-pad*2
+          );
+
+        return `${x.toFixed(1)},${y.toFixed(1)}`;
+
+      }
+    );
+
+  line.setAttribute(
+    "points",
+    points.join(" ")
+  );
 
   const areaPoints=[
     `${pad},${height-pad}`,
@@ -983,475 +2793,1569 @@ function renderSparkline(history){
     `${width-pad},${height-pad}`
   ];
 
-  area.setAttribute("points",areaPoints.join(" "));
+  area.setAttribute(
+    "points",
+    areaPoints.join(" ")
+  );
+
 }
+
 
 function latestSatelliteDate(s){
-  const h=Array.isArray(s?.ndvi_history)?s.ndvi_history:[];
-  const dates=h
-    .map(x=>new Date(val(x,["date","observation_date","timestamp"],"")))
-    .filter(d=>!Number.isNaN(d.getTime()));
+
+  const h=
+    Array.isArray(s?.ndvi_history)
+      ? s.ndvi_history
+      : [];
+
+  const dates=
+    h
+      .map(
+        x=>new Date(
+          val(
+            x,
+            [
+              "date",
+              "observation_date",
+              "timestamp"
+            ],
+            ""
+          )
+        )
+      )
+      .filter(
+        d=>!Number.isNaN(
+          d.getTime()
+        )
+      );
 
   if(dates.length){
-    return new Date(Math.max(...dates.map(d=>d.getTime())));
+
+    return new Date(
+      Math.max(
+        ...dates.map(
+          d=>d.getTime()
+        )
+      )
+    );
+
   }
 
-  const raw=val(s,["latest_date","latestDate","satellite_date","satelliteDate"],null);
-  if(!raw) return null;
+  const raw=val(
+    s,
+    [
+      "latest_date",
+      "latestDate",
+      "satellite_date",
+      "satelliteDate"
+    ],
+    null
+  );
+
+  if(!raw){
+    return null;
+  }
 
   const d=new Date(raw);
-  return Number.isNaN(d.getTime())?null:d;
+
+  return Number.isNaN(d.getTime())
+    ? null
+    : d;
+
 }
+
 
 function fmtDate(v){
-  if(!v) return "—";
-  const d=v instanceof Date?v:new Date(v);
-  if(Number.isNaN(d.getTime())) return "—";
-  return d.toLocaleDateString(undefined,{day:"2-digit",month:"short",year:"numeric"});
+
+  if(!v){
+    return "—";
+  }
+
+  const d=
+    v instanceof Date
+      ? v
+      : new Date(v);
+
+  if(Number.isNaN(d.getTime())){
+    return "—";
+  }
+
+  return d.toLocaleDateString(
+    undefined,
+    {
+      day:"2-digit",
+      month:"short",
+      year:"numeric"
+    }
+  );
+
 }
+
 
 function fieldFor(s){
+
   const id=siteId(s);
-  return observations.filter(o=>String(val(o,["site_id","siteId","SITE_ID"],"")).trim()===id);
+
+  return observations.filter(
+    o=>
+      String(
+        val(
+          o,
+          [
+            "site_id",
+            "siteId",
+            "SITE_ID"
+          ],
+          ""
+        )
+      ).trim()===id
+  );
+
 }
 
+
+/* =========================================================
+   MAP
+========================================================= */
+
 function initMap(){
-  map=L.map("map",{zoomControl:false}).setView([-29.0,30.8],7);
+
+  map=L.map(
+    "map",
+    {
+      zoomControl:false
+    }
+  ).setView(
+    [-29.0,30.8],
+    7
+  );
+
 
   const osm=L.tileLayer(
     "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-    {attribution:"© OpenStreetMap contributors"}
+    {
+      attribution:
+        "© OpenStreetMap contributors"
+    }
   ).addTo(map);
+
 
   const satellite=L.tileLayer(
     "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
-    {attribution:"Esri World Imagery"}
+    {
+      attribution:
+        "Esri World Imagery"
+    }
   );
 
-  L.control.layers({
-    "OpenStreetMap":osm,
-    "Satellite":satellite
-  },null,{position:"topright"}).addTo(map);
 
-  markers=L.layerGroup().addTo(map);
+  L.control.layers(
+    {
+      "OpenStreetMap":osm,
+      "Satellite":satellite
+    },
+    null,
+    {
+      position:"topright"
+    }
+  ).addTo(map);
+
+
+  markers=
+    L.layerGroup()
+      .addTo(map);
+
 }
 
+
 function renderMap(){
+
   markers.clearLayers();
+
   const bounds=[];
 
+
   sites.forEach(s=>{
+
     const lat=latitude(s);
     const lon=longitude(s);
 
-    if(lat===null || lon===null) return;
+    if(
+      lat===null ||
+      lon===null
+    ){
+      return;
+    }
+
 
     const t=trend(s);
 
-    const colour=
-      t==="improving" ? "#7bd83b" :
-      t==="declining" ? "#f15b4b" :
-      t==="stable" ? "#f0b82d" :
-      "#89958f";
 
-    const marker=L.circleMarker([lat,lon],{
-      radius:7,
-      color:"#f5fff9",
-      weight:1.5,
-      fillColor:colour,
-      fillOpacity:.95
-    });
+    const colour=
+      t==="improving"
+        ? "#7bd83b"
+        : t==="declining"
+        ? "#f15b4b"
+        : t==="stable"
+        ? "#f0b82d"
+        : "#89958f";
+
+
+    const marker=
+      L.circleMarker(
+        [lat,lon],
+        {
+          radius:7,
+          color:"#f5fff9",
+          weight:1.5,
+          fillColor:colour,
+          fillOpacity:.95
+        }
+      );
+
 
     marker.bindPopup(`
-      <strong>${escapeHtml(siteId(s))}</strong><br>
-      ${escapeHtml(projectName(s))}<br>
-      Status: ${escapeHtml(t)}<br>
-      NDVI: ${ndvi(s)===null?"—":ndvi(s).toFixed(3)}<br>
-      Satellite: ${fmtDate(latestSatelliteDate(s))}
+      <strong>
+        ${escapeHtml(siteId(s))}
+      </strong>
+      <br>
+      ${escapeHtml(projectName(s))}
+      <br>
+      Status: ${escapeHtml(t)}
+      <br>
+      NDVI:
+      ${
+        ndvi(s)===null
+          ? "—"
+          : ndvi(s).toFixed(3)
+      }
+      <br>
+      Satellite:
+      ${fmtDate(latestSatelliteDate(s))}
     `);
 
+
     marker.addTo(markers);
-    bounds.push([lat,lon]);
+
+    bounds.push([
+      lat,
+      lon
+    ]);
+
   });
 
+
   if(bounds.length){
-    map.fitBounds(bounds,{padding:[25,25]});
+
+    map.fitBounds(
+      bounds,
+      {
+        padding:[25,25]
+      }
+    );
+
   }
+
 }
+
+
+/* =========================================================
+   FIELD ACTIVITY
+========================================================= */
 
 function renderActivities(){
-  const list=[...observations]
-    .sort((a,b)=>{
-      const da=new Date(val(a,["observation_date","date","created_at","createdAt"],0));
-      const db=new Date(val(b,["observation_date","date","created_at","createdAt"],0));
-      return db-da;
-    })
+
+  const list=[
+    ...observations
+  ]
+    .sort(
+      (a,b)=>{
+
+        const da=
+          new Date(
+            val(
+              a,
+              [
+                "observation_date",
+                "date",
+                "created_at",
+                "createdAt"
+              ],
+              0
+            )
+          );
+
+        const db=
+          new Date(
+            val(
+              b,
+              [
+                "observation_date",
+                "date",
+                "created_at",
+                "createdAt"
+              ],
+              0
+            )
+          );
+
+        return db-da;
+
+      }
+    )
     .slice(0,4);
 
-  const el=document.getElementById("activityList");
+
+  const el=
+    document.getElementById(
+      "activityList"
+    );
+
 
   if(!list.length){
-    el.innerHTML='<div style="padding:35px;text-align:center;color:#8da39a;font-size:10px">No field observations have been received.</div>';
-    return;
-  }
 
-  el.innerHTML=list.map(o=>{
-    const id=val(o,["site_id","siteId","SITE_ID"],"Unknown site");
-    const type=val(o,["observation_type","type","category"],"Field observation");
-    const date=val(o,["observation_date","date","created_at","createdAt"],null);
-    const person=val(o,["observer","observer_name","created_by","createdBy"],"Field team");
-
-    return `
-      <div class="activity-row">
-        <div class="activity-icon">♧</div>
-        <div class="activity-main">
-          <b>${escapeHtml(id)}</b>
-          <span>${escapeHtml(type)}</span>
-        </div>
-        <div class="activity-time">
-          ${fmtDate(date)}
-          <span class="activity-person">${escapeHtml(person)}</span>
-        </div>
+    el.innerHTML=`
+      <div
+        style="
+          padding:35px;
+          text-align:center;
+          color:#8da39a;
+          font-size:10px
+        "
+      >
+        No field observations have been received.
       </div>
     `;
-  }).join("");
+
+    return;
+
+  }
+
+
+  el.innerHTML=
+    list
+      .map(o=>{
+
+        const id=
+          val(
+            o,
+            [
+              "site_id",
+              "siteId",
+              "SITE_ID"
+            ],
+            "Unknown site"
+          );
+
+        const type=
+          val(
+            o,
+            [
+              "observation_type",
+              "type",
+              "category"
+            ],
+            "Field observation"
+          );
+
+        const date=
+          val(
+            o,
+            [
+              "observation_date",
+              "date",
+              "created_at",
+              "createdAt"
+            ],
+            null
+          );
+
+        const person=
+          val(
+            o,
+            [
+              "observer",
+              "observer_name",
+              "created_by",
+              "createdBy"
+            ],
+            "Field team"
+          );
+
+
+        return `
+          <div class="activity-row">
+
+            <div class="activity-icon">
+              ♧
+            </div>
+
+            <div class="activity-main">
+
+              <b>
+                ${escapeHtml(id)}
+              </b>
+
+              <span>
+                ${escapeHtml(type)}
+              </span>
+
+            </div>
+
+            <div class="activity-time">
+
+              ${fmtDate(date)}
+
+              <span class="activity-person">
+                ${escapeHtml(person)}
+              </span>
+
+            </div>
+
+          </div>
+        `;
+
+      })
+      .join("");
+
 }
+
 
 function escapeHtml(value){
-  return String(value??"").replace(/[&<>"']/g,c=>({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-  }[c]));
+
+  return String(
+    value ?? ""
+  ).replace(
+    /[&<>"']/g,
+    c=>({
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#039;"
+    }[c])
+  );
+
 }
 
-function setCheck(id,good,text){
-  const check=document.getElementById(id+"Check");
-  const status=document.getElementById(id+"Status");
 
-  check.textContent=good?"✓":"!";
-  check.style.background=good?"#7fd84b":"#f0b82d";
-  check.style.color="#07130d";
+/* =========================================================
+   SYSTEM CHECKS
+========================================================= */
+
+function setCheck(
+  id,
+  good,
+  text
+){
+
+  const check=
+    document.getElementById(
+      id+"Check"
+    );
+
+  const status=
+    document.getElementById(
+      id+"Status"
+    );
+
+
+  check.textContent=
+    good
+      ? "✓"
+      : "!";
+
+
+  check.style.background=
+    good
+      ? "#7fd84b"
+      : "#f0b82d";
+
+
+  check.style.color=
+    "#07130d";
+
+
   status.textContent=text;
+
 }
 
-function renderDashboard(satelliteRows){
-  // Canonical programme counts come from data.json (the project/area registry).
-  // Field observations remain a separate operational dataset from the API.
-  const fallbackProjectCount=new Set(allSites.map(projectId).filter(id=>id && id!=="UNASSIGNED")).size;
-  const projectCount=projectRegistry.length || fallbackProjectCount;
-  const areaCount=allSites.length;
-  const fieldCount=observations.length;
 
-  const declining=sites.filter(s=>trend(s)==="declining");
-  const located=sites.filter(s=>latitude(s)!==null&&longitude(s)!==null).length;
+/* =========================================================
+   DASHBOARD
+========================================================= */
 
-  const latestDates=sites.map(latestSatelliteDate).filter(Boolean);
-  const latestSatellite=latestDates.length
-    ? new Date(Math.max(...latestDates.map(d=>d.getTime())))
-    : null;
+function renderDashboard(
+  satelliteRows
+){
 
-  const periodHistory=sites.flatMap(s=>siteHistoryForPeriod(s));
+  const fallbackProjectCount=
+    new Set(
+      allSites
+        .map(projectId)
+        .filter(
+          id=>
+            id &&
+            id!=="UNASSIGNED"
+        )
+    ).size;
 
-  /*
-   * NDVI KPI logic:
-   * - "Programme latest average" = latest available NDVI for each area,
-   *   averaged across the monitoring register.
-   * - "Latest movement" = latest vs previous NDVI for each area that has
-   *   both observations, then averaged across those comparable areas.
-   *
-   * This avoids comparing unrelated observations from different areas.
-   */
-  const siteNdviPairs=sites.map(site=>{
-    const history=siteHistoryForPeriod(site)
-      .filter(p=>p.value!==null)
-      .sort((a,b)=>a.date-b.date);
 
-    if(history.length>=2){
-      return {
-        latest:history[history.length-1].value,
-        previous:history[history.length-2].value
-      };
-    }
+  const projectCount=
+    projectRegistry.length ||
+    fallbackProjectCount;
 
-    return null;
-  }).filter(Boolean);
 
-  const latestNdviValues=sites.map(site=>{
-    const history=siteHistoryForPeriod(site)
-      .filter(p=>p.value!==null)
-      .sort((a,b)=>a.date-b.date);
+  const areaCount=
+    allSites.length;
 
-    if(history.length){
-      return history[history.length-1].value;
-    }
 
-    if(selectedPeriod==="All Available"){
-      return ndvi(site);
-    }
+  const fieldCount=
+    observations.length;
 
-    return null;
-  }).filter(v=>v!==null && Number.isFinite(v));
 
-  const meanNdvi=latestNdviValues.length
-    ? latestNdviValues.reduce((sum,value)=>sum+value,0)/latestNdviValues.length
-    : null;
+  const declining=
+    sites.filter(
+      s=>
+        trend(s)==="declining"
+    );
+
+
+  const located=
+    sites.filter(
+      s=>
+        latitude(s)!==null &&
+        longitude(s)!==null
+    ).length;
+
+
+  const latestDates=
+    sites
+      .map(latestSatelliteDate)
+      .filter(Boolean);
+
+
+  const latestSatellite=
+    latestDates.length
+      ? new Date(
+          Math.max(
+            ...latestDates.map(
+              d=>d.getTime()
+            )
+          )
+        )
+      : null;
+
+
+  const periodHistory=
+    sites.flatMap(
+      s=>
+        siteHistoryForPeriod(s)
+    );
+
+
+  const siteNdviPairs=
+    sites
+      .map(site=>{
+
+        const history=
+          siteHistoryForPeriod(site)
+            .filter(
+              p=>p.value!==null
+            )
+            .sort(
+              (a,b)=>
+                a.date-b.date
+            );
+
+
+        if(history.length>=2){
+
+          return {
+            latest:
+              history[
+                history.length-1
+              ].value,
+
+            previous:
+              history[
+                history.length-2
+              ].value
+          };
+
+        }
+
+        return null;
+
+      })
+      .filter(Boolean);
+
+
+  const latestNdviValues=
+    sites
+      .map(site=>{
+
+        const history=
+          siteHistoryForPeriod(site)
+            .filter(
+              p=>p.value!==null
+            )
+            .sort(
+              (a,b)=>
+                a.date-b.date
+            );
+
+
+        if(history.length){
+
+          return history[
+            history.length-1
+          ].value;
+
+        }
+
+
+        if(
+          selectedPeriod===
+          "All Available"
+        ){
+
+          return ndvi(site);
+
+        }
+
+
+        return null;
+
+      })
+      .filter(
+        v=>
+          v!==null &&
+          Number.isFinite(v)
+      );
+
+
+  const meanNdvi=
+    latestNdviValues.length
+      ? latestNdviValues.reduce(
+          (sum,value)=>
+            sum+value,
+          0
+        )/
+        latestNdviValues.length
+      : null;
+
 
   let meanChange=null;
 
+
   if(siteNdviPairs.length){
-    const comparableChanges=siteNdviPairs
-      .filter(pair=>pair.previous!==0)
-      .map(pair=>(pair.latest-pair.previous)/Math.abs(pair.previous))
-      .filter(v=>Number.isFinite(v));
+
+    const comparableChanges=
+      siteNdviPairs
+        .filter(
+          pair=>
+            pair.previous!==0
+        )
+        .map(
+          pair=>
+            (
+              pair.latest-
+              pair.previous
+            )/
+            Math.abs(
+              pair.previous
+            )
+        )
+        .filter(
+          v=>
+            Number.isFinite(v)
+        );
+
 
     if(comparableChanges.length){
+
       meanChange=
-        comparableChanges.reduce((sum,value)=>sum+value,0) /
+        comparableChanges.reduce(
+          (sum,value)=>
+            sum+value,
+          0
+        )/
         comparableChanges.length;
+
     }
+
   }
 
-  /*
-   * If there are not enough historical observations to calculate a true
-   * programme trend, use the supplied per-area change field only for
-   * All Available as a fallback.
-   */
-  if(meanChange===null && selectedPeriod==="All Available"){
-    const suppliedChanges=sites
-      .map(changeValue)
-      .filter(v=>v!==null && Number.isFinite(v));
+
+  if(
+    meanChange===null &&
+    selectedPeriod==="All Available"
+  ){
+
+    const suppliedChanges=
+      sites
+        .map(changeValue)
+        .filter(
+          v=>
+            v!==null &&
+            Number.isFinite(v)
+        );
+
 
     if(suppliedChanges.length){
+
       meanChange=
-        suppliedChanges.reduce((sum,value)=>sum+value,0) /
+        suppliedChanges.reduce(
+          (sum,value)=>
+            sum+value,
+          0
+        )/
         suppliedChanges.length;
+
     }
+
   }
 
-  const satelliteSites=sites.filter(siteHasSatelliteInPeriod);
-  const satelliteCoverage=areaCount
-    ? Math.round((satelliteSites.length/areaCount)*100)
-    : 0;
 
-  const quality=areaCount
-    ? Math.round((located/areaCount)*100)
-    : 0;
+  const satelliteSites=
+    sites.filter(
+      siteHasSatelliteInPeriod
+    );
 
-  document.getElementById("projectsCount").textContent=projectCount;
-  document.getElementById("areasCount").textContent=areaCount;
-  document.getElementById("satCoverage").textContent=satelliteCoverage+"%";
-  document.getElementById("fieldCount").textContent=fieldCount;
-  document.getElementById("concernCount").textContent=declining.length;
 
-  if(meanChange===null){
-    document.getElementById("avgChange").textContent="—";
-    document.getElementById("avgTrend").textContent="No trend available";
-  }else{
-    const cleanedChange=Math.abs(meanChange)<0.0005 ? 0 : meanChange;
-    const changePercent=cleanedChange*100;
+  const satelliteCoverage=
+    areaCount
+      ? Math.round(
+          (
+            satelliteSites.length/
+            areaCount
+          )*100
+        )
+      : 0;
 
-    document.getElementById("avgChange").textContent=
-      `${changePercent>=0?"+":""}${changePercent.toFixed(1)}%`;
 
-    document.getElementById("avgTrend").textContent=
-      cleanedChange>0.015 ? "● Positive trend" :
-      cleanedChange<-0.015 ? "● Negative trend" :
-      "● Stable trend";
-  }
+  const quality=
+    areaCount
+      ? Math.round(
+          (
+            located/
+            areaCount
+          )*100
+        )
+      : 0;
 
-  const satelliteDates=satelliteSites
-    .flatMap(s=>siteHistoryForPeriod(s).map(p=>p.date))
-    .filter(d=>d && d<=new Date());
 
-  const earliestSatellite=satelliteDates.length
-    ? new Date(Math.min(...satelliteDates.map(d=>d.getTime())))
-    : null;
+  document.getElementById(
+    "projectsCount"
+  ).textContent=
+    projectCount;
 
-  const latestValidSatellite=satelliteDates.length
-    ? new Date(Math.max(...satelliteDates.map(d=>d.getTime())))
-    : null;
 
-  document.getElementById("satLatestDate").textContent=
-    latestValidSatellite ? fmtDate(latestValidSatellite) : "No data";
+  document.getElementById(
+    "areasCount"
+  ).textContent=
+    areaCount;
 
-  document.getElementById("satAreas").textContent=
-    `${satelliteSites.length}/${areaCount}`;
 
-  document.getElementById("satCoverageDetail").textContent=
+  document.getElementById(
+    "satCoverage"
+  ).textContent=
     satelliteCoverage+"%";
 
-  document.getElementById("satPeriod").textContent=
-    earliestSatellite && latestValidSatellite
-      ? `${earliestSatellite.toLocaleDateString(undefined,{month:"short",year:"numeric"})} – ${latestValidSatellite.toLocaleDateString(undefined,{month:"short",year:"numeric"})}`
+
+  document.getElementById(
+    "fieldCount"
+  ).textContent=
+    fieldCount;
+
+
+  document.getElementById(
+    "concernCount"
+  ).textContent=
+    declining.length;
+
+
+  if(meanChange===null){
+
+    document.getElementById(
+      "avgChange"
+    ).textContent="—";
+
+
+    document.getElementById(
+      "avgTrend"
+    ).textContent=
+      "No trend available";
+
+  }
+  else{
+
+    const cleanedChange=
+      Math.abs(meanChange)<0.0005
+        ? 0
+        : meanChange;
+
+
+    const changePercent=
+      cleanedChange*100;
+
+
+    document.getElementById(
+      "avgChange"
+    ).textContent=
+      `${changePercent>=0?"+":""}${changePercent.toFixed(1)}%`;
+
+
+    document.getElementById(
+      "avgTrend"
+    ).textContent=
+      cleanedChange>0.015
+        ? "● Positive trend"
+        : cleanedChange<-0.015
+        ? "● Negative trend"
+        : "● Stable trend";
+
+  }
+
+
+  const satelliteDates=
+    satelliteSites
+      .flatMap(
+        s=>
+          siteHistoryForPeriod(s)
+            .map(
+              p=>p.date
+            )
+      )
+      .filter(
+        d=>
+          d &&
+          d<=new Date()
+      );
+
+
+  const earliestSatellite=
+    satelliteDates.length
+      ? new Date(
+          Math.min(
+            ...satelliteDates.map(
+              d=>d.getTime()
+            )
+          )
+        )
+      : null;
+
+
+  const latestValidSatellite=
+    satelliteDates.length
+      ? new Date(
+          Math.max(
+            ...satelliteDates.map(
+              d=>d.getTime()
+            )
+          )
+        )
+      : null;
+
+
+  document.getElementById(
+    "satLatestDate"
+  ).textContent=
+    latestValidSatellite
+      ? fmtDate(
+          latestValidSatellite
+        )
       : "No data";
 
-  document.getElementById("avgNdvi").textContent=meanNdvi===null?"—":meanNdvi.toFixed(2);
 
-  document.getElementById("ndviChangeText").textContent=
+  document.getElementById(
+    "satAreas"
+  ).textContent=
+    `${satelliteSites.length}/${areaCount}`;
+
+
+  document.getElementById(
+    "satCoverageDetail"
+  ).textContent=
+    satelliteCoverage+"%";
+
+
+  document.getElementById(
+    "satPeriod"
+  ).textContent=
+    earliestSatellite &&
+    latestValidSatellite
+
+      ? `${earliestSatellite.toLocaleDateString(
+          undefined,
+          {
+            month:"short",
+            year:"numeric"
+          }
+        )} – ${latestValidSatellite.toLocaleDateString(
+          undefined,
+          {
+            month:"short",
+            year:"numeric"
+          }
+        )}`
+
+      : "No data";
+
+
+  document.getElementById(
+    "avgNdvi"
+  ).textContent=
+    meanNdvi===null
+      ? "—"
+      : meanNdvi.toFixed(2);
+
+
+  document.getElementById(
+    "ndviChangeText"
+  ).textContent=
     meanChange===null
       ? "Change unavailable"
-      : `${meanChange>=0?"↗":"↘"} ${(Math.abs(meanChange)*100).toFixed(1)}% latest movement`;
+      : `${meanChange>=0?"↗":"↘"} ${
+          (
+            Math.abs(meanChange)*100
+          ).toFixed(1)
+        }% latest movement`;
 
 
-  document.getElementById("qualityValue").textContent=quality+"%";
-  document.getElementById("qualityCopy").textContent=
-    quality===100 ? "All monitoring areas located" :
-    `${located} of ${areaCount} areas have coordinates`;
+  document.getElementById(
+    "qualityValue"
+  ).textContent=
+    quality+"%";
 
-  setCheck("api",true,`${fieldCount} field records available`);
-  setCheck("sat",satelliteSites.length>0,latestValidSatellite?`Latest: ${fmtDate(latestValidSatellite)}`:"No satellite data in selected period");
-  setCheck("field",fieldCount>0,fieldCount?`${fieldCount} observations synchronised`:"No observations");
-  setCheck("coord",quality===100,`${located}/${areaCount} areas located`);
+
+  document.getElementById(
+    "qualityCopy"
+  ).textContent=
+    quality===100
+
+      ? "All monitoring areas located"
+
+      : `${located} of ${areaCount} areas have coordinates`;
+
+
+  setCheck(
+    "api",
+    true,
+    `${fieldCount} field records available`
+  );
+
+
+  setCheck(
+    "sat",
+    satelliteSites.length>0,
+    latestValidSatellite
+      ? `Latest: ${fmtDate(
+          latestValidSatellite
+        )}`
+      : "No satellite data in selected period"
+  );
+
+
+  setCheck(
+    "field",
+    fieldCount>0,
+    fieldCount
+      ? `${fieldCount} observations synchronised`
+      : "No observations"
+  );
+
+
+  setCheck(
+    "coord",
+    quality===100,
+    `${located}/${areaCount} areas located`
+  );
+
 
   const operational=
     satelliteRows.length>0 &&
     fieldCount>0 &&
     quality>0;
 
-  document.getElementById("systemSummary").textContent=
-    operational ? "All systems operational" : "Review data readiness";
 
-  renderSparkline(programmeHistory());
+  document.getElementById(
+    "systemSummary"
+  ).textContent=
+    operational
+      ? "All systems operational"
+      : "Review data readiness";
+
+
+  renderSparkline(
+    programmeHistory()
+  );
+
+
   renderMap();
+
+
   renderActivities();
+
 }
+
+
+/* =========================================================
+   LOAD DATA
+========================================================= */
 
 async function loadData(){
+
   try{
+
     initMap();
 
-    const [registryResponse,projectsResponse,apiResponse,satelliteResponse]=await Promise.all([
-      fetch("../data.json?cache="+Date.now()),
-      fetch(API+"/api/projects?cache="+Date.now()).catch(()=>null),
-      fetch(API+"/api/observations?cache="+Date.now()),
-      fetch("satellite_data.json?cache="+Date.now())
-    ]);
+
+    const [
+      registryResponse,
+      projectsResponse,
+      apiResponse,
+      satelliteResponse
+    ]=
+      await Promise.all([
+
+        fetch(
+          "../data.json?cache="+
+          Date.now()
+        ),
+
+        fetch(
+          API+
+          "/api/projects?cache="+
+          Date.now()
+        ).catch(
+          ()=>null
+        ),
+
+        fetch(
+          API+
+          "/api/observations?cache="+
+          Date.now()
+        ),
+
+        fetch(
+          "satellite_data.json?cache="+
+          Date.now()
+        )
+
+      ]);
+
 
     if(!registryResponse.ok){
-      throw new Error("Project/monitoring registry returned "+registryResponse.status);
+
+      throw new Error(
+        "Project/monitoring registry returned "+
+        registryResponse.status
+      );
+
     }
+
+
     if(!apiResponse.ok){
-      throw new Error("Observations API returned "+apiResponse.status);
+
+      throw new Error(
+        "Observations API returned "+
+        apiResponse.status
+      );
+
     }
 
-    const registryJson=await registryResponse.json();
-    const apiJson=await apiResponse.json();
-    const satelliteJson=satelliteResponse.ok ? await satelliteResponse.json() : [];
 
-    // data.json is the authoritative project + monitoring-area registry.
-    const registry=Array.isArray(registryJson)
-      ? registryJson
-      : (registryJson.sites || registryJson.monitoring_areas || registryJson.data || []);
+    const registryJson=
+      await registryResponse.json();
+
+
+    const apiJson=
+      await apiResponse.json();
+
+
+    const satelliteJson=
+      satelliteResponse.ok
+        ? await satelliteResponse.json()
+        : [];
+
+
+    const registry=
+      Array.isArray(registryJson)
+
+        ? registryJson
+
+        : (
+            registryJson.sites ||
+            registryJson.monitoring_areas ||
+            registryJson.data ||
+            []
+          );
+
 
     if(!Array.isArray(registry)){
-      throw new Error("data.json does not contain a valid monitoring registry");
+
+      throw new Error(
+        "data.json does not contain a valid monitoring registry"
+      );
+
     }
 
-    observations=Array.isArray(apiJson)
-      ? apiJson
-      : (apiJson.observations||apiJson.data||[]);
 
-    // The Projects page treats /api/projects as the authoritative project
-    // registry. Use it when available so projects without field observations
-    // are still counted on Overview.
-    if(projectsResponse && projectsResponse.ok){
-      const projectsJson=await projectsResponse.json();
-      const projects=Array.isArray(projectsJson)
-        ? projectsJson
-        : (projectsJson.projects||projectsJson.data||[]);
+    observations=
+      Array.isArray(apiJson)
+
+        ? apiJson
+
+        : (
+            apiJson.observations ||
+            apiJson.data ||
+            []
+          );
+
+
+    if(
+      projectsResponse &&
+      projectsResponse.ok
+    ){
+
+      const projectsJson=
+        await projectsResponse.json();
+
+
+      const projects=
+        Array.isArray(projectsJson)
+
+          ? projectsJson
+
+          : (
+              projectsJson.projects ||
+              projectsJson.data ||
+              []
+            );
+
+
       if(Array.isArray(projects)){
-        projectRegistry=projects.filter(p=>{
-          const id=val(p,["project_id","projectId","PROJECT_ID","id","code"],null);
-          return id!==null && String(id).trim()!=="";
-        });
+
+        projectRegistry=
+          projects.filter(p=>{
+
+            const id=
+              val(
+                p,
+                [
+                  "project_id",
+                  "projectId",
+                  "PROJECT_ID",
+                  "id",
+                  "code"
+                ],
+                null
+              );
+
+            return (
+              id!==null &&
+              String(id).trim()!==""
+            );
+
+          });
+
       }
+
     }
 
-    const loadedSatelliteRows=Array.isArray(satelliteJson)
-      ? satelliteJson
-      : (satelliteJson.sites||satelliteJson.data||[]);
 
-    satelliteRows=loadedSatelliteRows;
+    const loadedSatelliteRows=
+      Array.isArray(satelliteJson)
 
-    // Start with every registered monitoring area. Other datasets only enrich it.
-    const merged=new Map();
+        ? satelliteJson
+
+        : (
+            satelliteJson.sites ||
+            satelliteJson.data ||
+            []
+          );
+
+
+    satelliteRows=
+      loadedSatelliteRows;
+
+
+    const merged=
+      new Map();
+
+
     registry.forEach(s=>{
-      const id=siteId(s);
-      if(id!=="UNKNOWN") merged.set(id,{...s,site_id:id});
+
+      const id=
+        siteId(s);
+
+      if(id!=="UNKNOWN"){
+
+        merged.set(
+          id,
+          {
+            ...s,
+            site_id:id
+          }
+        );
+
+      }
+
     });
+
 
     satelliteRows.forEach(s=>{
-      const id=siteId(s);
-      if(id==="UNKNOWN") return;
-      const old=merged.get(id);
-      if(!old) return;
-      merged.set(id,{
-        ...old, ...s, site_id:id,
-        project_id:old.project_id ?? val(s,["project_id","projectId"],null),
-        project_name:old.project_name ?? val(s,["project_name","projectName"],null),
-        latitude:num(val(s,["latitude","lat"],null))??latitude(old),
-        longitude:num(val(s,["longitude","lon","lng"],null))??longitude(old)
-      });
+
+      const id=
+        siteId(s);
+
+      if(id==="UNKNOWN"){
+        return;
+      }
+
+
+      const old=
+        merged.get(id);
+
+
+      if(!old){
+        return;
+      }
+
+
+      merged.set(
+        id,
+        {
+          ...old,
+          ...s,
+
+          site_id:id,
+
+          project_id:
+            old.project_id ??
+            val(
+              s,
+              [
+                "project_id",
+                "projectId"
+              ],
+              null
+            ),
+
+          project_name:
+            old.project_name ??
+            val(
+              s,
+              [
+                "project_name",
+                "projectName"
+              ],
+              null
+            ),
+
+          latitude:
+            num(
+              val(
+                s,
+                [
+                  "latitude",
+                  "lat"
+                ],
+                null
+              )
+            ) ??
+            latitude(old),
+
+          longitude:
+            num(
+              val(
+                s,
+                [
+                  "longitude",
+                  "lon",
+                  "lng"
+                ],
+                null
+              )
+            ) ??
+            longitude(old)
+
+        }
+      );
+
     });
 
-    // Field observations enrich registered areas but cannot create phantom projects.
+
     observations.forEach(o=>{
-      const id=siteId(o);
-      const old=merged.get(id);
-      if(!old) return;
-      merged.set(id,{
-        ...old, ...o, site_id:id,
-        project_id:old.project_id ?? val(o,["project_id","projectId"],null),
-        project_name:old.project_name ?? val(o,["project_name","projectName"],null),
-        latitude:num(val(o,["latitude","lat"],null))??latitude(old),
-        longitude:num(val(o,["longitude","lon","lng"],null))??longitude(old)
-      });
+
+      const id=
+        siteId(o);
+
+
+      const old=
+        merged.get(id);
+
+
+      if(!old){
+        return;
+      }
+
+
+      merged.set(
+        id,
+        {
+          ...old,
+          ...o,
+
+          site_id:id,
+
+          project_id:
+            old.project_id ??
+            val(
+              o,
+              [
+                "project_id",
+                "projectId"
+              ],
+              null
+            ),
+
+          project_name:
+            old.project_name ??
+            val(
+              o,
+              [
+                "project_name",
+                "projectName"
+              ],
+              null
+            ),
+
+          latitude:
+            num(
+              val(
+                o,
+                [
+                  "latitude",
+                  "lat"
+                ],
+                null
+              )
+            ) ??
+            latitude(old),
+
+          longitude:
+            num(
+              val(
+                o,
+                [
+                  "longitude",
+                  "lon",
+                  "lng"
+                ],
+                null
+              )
+            ) ??
+            longitude(old)
+
+        }
+      );
+
     });
 
-    sites=[...merged.values()];
-    allSites=[...sites];
-    allObservations=[...observations];
-    applyPeriodFilter();
-    renderDashboard(satelliteRows);
 
-    const canonicalProjects=projectRegistry.length || new Set(allSites.map(projectId).filter(id=>id && id!=="UNASSIGNED")).size;
-    document.getElementById("statusDot").className="status-dot ok";
-    document.getElementById("statusText").textContent=
+    sites=[
+      ...merged.values()
+    ];
+
+
+    allSites=[
+      ...sites
+    ];
+
+
+    allObservations=[
+      ...observations
+    ];
+
+
+    applyPeriodFilter();
+
+
+    renderDashboard(
+      satelliteRows
+    );
+
+
+    const canonicalProjects=
+      projectRegistry.length ||
+      new Set(
+        allSites
+          .map(projectId)
+          .filter(
+            id=>
+              id &&
+              id!=="UNASSIGNED"
+          )
+      ).size;
+
+
+    document.getElementById(
+      "statusDot"
+    ).className=
+      "status-dot ok";
+
+
+    document.getElementById(
+      "statusText"
+    ).textContent=
       `${allSites.length} monitoring areas loaded • ${canonicalProjects} projects • ${observations.length} field observations`;
 
-    const now=new Date();
-    document.getElementById("updatedText").textContent="Last updated: "+now.toLocaleString();
-    document.getElementById("footerUpdated").textContent="Data refresh: "+now.toLocaleTimeString();
 
-  }catch(error){
-    console.error("WILDLANDS Overview:",error);
-    document.getElementById("statusDot").className="status-dot bad";
-    document.getElementById("statusText").textContent="Overview data unavailable: "+error.message;
-    setCheck("api",false,"Connection unavailable");
-    setCheck("sat",false,"Satellite dataset unavailable");
-    setCheck("field",false,"Field data unavailable");
-    setCheck("coord",false,"Location coverage unavailable");
+    const now=new Date();
+
+
+    document.getElementById(
+      "updatedText"
+    ).textContent=
+      "Last updated: "+
+      now.toLocaleString();
+
+
+    document.getElementById(
+      "footerUpdated"
+    ).textContent=
+      "Data refresh: "+
+      now.toLocaleTimeString();
+
+
   }
+  catch(error){
+
+    console.error(
+      "WILDLANDS Overview:",
+      error
+    );
+
+
+    document.getElementById(
+      "statusDot"
+    ).className=
+      "status-dot bad";
+
+
+    document.getElementById(
+      "statusText"
+    ).textContent=
+      "Overview data unavailable: "+
+      error.message;
+
+
+    setCheck(
+      "api",
+      false,
+      "Connection unavailable"
+    );
+
+
+    setCheck(
+      "sat",
+      false,
+      "Satellite dataset unavailable"
+    );
+
+
+    setCheck(
+      "field",
+      false,
+      "Field data unavailable"
+    );
+
+
+    setCheck(
+      "coord",
+      false,
+      "Location coverage unavailable"
+    );
+
+  }
+
 }
 
-document.getElementById("period").addEventListener("change", function(){
-  selectedPeriod=this.value;
-  applyPeriodFilter();
-  renderDashboard(satelliteRows);
 
-  const labels={
-    "This Month":"• This month",
-    "Last 3 Months":"• Last 3 months",
-    "This Year":"• This year",
-    "All Available":"• All available data"
-  };
+/* =========================================================
+   PERIOD SELECTOR
+========================================================= */
 
-  document.getElementById("periodLabel").textContent=labels[selectedPeriod]||"";
-  const canonicalProjects=projectRegistry.length || new Set(allSites.map(projectId).filter(id=>id && id!=="UNASSIGNED")).size;
-  document.getElementById("statusText").textContent=
-    `${allSites.length} monitoring areas loaded • ${canonicalProjects} projects • ${observations.length} field observations • ${selectedPeriod}`;
-});
+document
+  .getElementById("period")
+  .addEventListener(
+    "change",
+    function(){
+
+      selectedPeriod=
+        this.value;
+
+
+      applyPeriodFilter();
+
+
+      renderDashboard(
+        satelliteRows
+      );
+
+
+      const labels={
+
+        "This Month":
+          "• This month",
+
+        "Last 3 Months":
+          "• Last 3 months",
+
+        "This Year":
+          "• This year",
+
+        "All Available":
+          "• All available data"
+
+      };
+
+
+      document.getElementById(
+        "periodLabel"
+      ).textContent=
+        labels[selectedPeriod] ||
+        "";
+
+
+      const canonicalProjects=
+        projectRegistry.length ||
+        new Set(
+          allSites
+            .map(projectId)
+            .filter(
+              id=>
+                id &&
+                id!=="UNASSIGNED"
+            )
+        ).size;
+
+
+      document.getElementById(
+        "statusText"
+      ).textContent=
+        `${allSites.length} monitoring areas loaded • ${canonicalProjects} projects • ${observations.length} field observations • ${selectedPeriod}`;
+
+    }
+  );
+
 
 loadData();
+
 </script>
+
 </body>
 </html>

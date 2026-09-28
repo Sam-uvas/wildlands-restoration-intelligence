@@ -1,6 +1,6 @@
 {
-  "last_updated_utc": "2026-09-21T08:26:30.768738+00:00",
-  "last_updated_human": "2026-09-21 08:26 UTC",
+  "last_updated_utc": "2026-09-28T09:12:17.302768+00:00",
+  "last_updated_human": "2026-09-28 09:12 UTC",
   "total_sites": 50,
   "data_source": "Field monitoring + Sentinel-2 satellite (GEE)",
   "sites": [
@@ -1116,7 +1116,7 @@
       "latitude": -28.76053,
       "longitude": 29.38639,
       "vegetation_health": 59.0,
-      "satellite_health": 46.9,
+      "satellite_health": 47.0,
       "combined_health": 53.0,
       "area_hectares": 5.0,
       "restoration_type": "Grassland",
@@ -1182,11 +1182,11 @@
         },
         {
           "date": "2026-09",
-          "ndvi": 0.3462
+          "ndvi": 0.3577
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-01.png",
-      "ndvi_image_date": "2026-09-12",
+      "ndvi_image_date": "2026-09-24",
       "report_url": "../reports/sites/WL-UTH-01_report.pdf"
     },
     {
@@ -1195,8 +1195,8 @@
       "latitude": -28.76995,
       "longitude": 29.38664,
       "vegetation_health": 82.0,
-      "satellite_health": 46.9,
-      "combined_health": 64.5,
+      "satellite_health": 46.8,
+      "combined_health": 64.4,
       "area_hectares": 12.6,
       "restoration_type": "Grassland",
       "invasive_species_cover": null,
@@ -1261,11 +1261,11 @@
         },
         {
           "date": "2026-09",
-          "ndvi": 0.3369
+          "ndvi": 0.3327
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-02.png",
-      "ndvi_image_date": "2026-09-12",
+      "ndvi_image_date": "2026-09-24",
       "report_url": "../reports/sites/WL-UTH-02_report.pdf"
     },
     {
@@ -1274,8 +1274,8 @@
       "latitude": -28.75676,
       "longitude": 29.40678,
       "vegetation_health": 34.0,
-      "satellite_health": 51.4,
-      "combined_health": 42.7,
+      "satellite_health": 51.5,
+      "combined_health": 42.8,
       "area_hectares": 16.1,
       "restoration_type": "Grassland",
       "invasive_species_cover": null,
@@ -1340,11 +1340,11 @@
         },
         {
           "date": "2026-09",
-          "ndvi": 0.3068
+          "ndvi": 0.3147
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-03.png",
-      "ndvi_image_date": "2026-09-12",
+      "ndvi_image_date": "2026-09-24",
       "report_url": "../reports/sites/WL-UTH-03_report.pdf"
     },
     {
@@ -1353,7 +1353,7 @@
       "latitude": -28.76165,
       "longitude": 29.38548,
       "vegetation_health": 80.0,
-      "satellite_health": 46.9,
+      "satellite_health": 47.0,
       "combined_health": 63.5,
       "area_hectares": 37.6,
       "restoration_type": "Grassland",
@@ -1419,11 +1419,11 @@
         },
         {
           "date": "2026-09",
-          "ndvi": 0.3438
+          "ndvi": 0.3551
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-04.png",
-      "ndvi_image_date": "2026-09-12",
+      "ndvi_image_date": "2026-09-24",
       "report_url": "../reports/sites/WL-UTH-04_report.pdf"
     },
     {
@@ -1432,8 +1432,8 @@
       "latitude": -28.74454,
       "longitude": 29.4074,
       "vegetation_health": 33.0,
-      "satellite_health": 36.2,
-      "combined_health": 34.6,
+      "satellite_health": 36.4,
+      "combined_health": 34.7,
       "area_hectares": 8.5,
       "restoration_type": "Grassland",
       "invasive_species_cover": null,
@@ -1498,11 +1498,11 @@
         },
         {
           "date": "2026-09",
-          "ndvi": 0.2254
+          "ndvi": 0.2444
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-05.png",
-      "ndvi_image_date": "2026-09-12",
+      "ndvi_image_date": "2026-09-24",
       "report_url": "../reports/sites/WL-UTH-05_report.pdf"
     },
     {
@@ -1511,8 +1511,8 @@
       "latitude": -28.76683,
       "longitude": 29.41146,
       "vegetation_health": 57.0,
-      "satellite_health": 49.8,
-      "combined_health": 53.4,
+      "satellite_health": 49.9,
+      "combined_health": 53.5,
       "area_hectares": 16.4,
       "restoration_type": "Grassland",
       "invasive_species_cover": null,
@@ -1577,11 +1577,11 @@
         },
         {
           "date": "2026-09",
-          "ndvi": 0.3159
+          "ndvi": 0.3306
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-06.png",
-      "ndvi_image_date": "2026-09-12",
+      "ndvi_image_date": "2026-09-24",
       "report_url": "../reports/sites/WL-UTH-06_report.pdf"
     },
     {
@@ -1590,8 +1590,8 @@
       "latitude": -28.743,
       "longitude": 29.42448,
       "vegetation_health": 82.0,
-      "satellite_health": 44.1,
-      "combined_health": 63.0,
+      "satellite_health": 44.3,
+      "combined_health": 63.1,
       "area_hectares": 23.2,
       "restoration_type": "Grassland",
       "invasive_species_cover": null,
@@ -1656,11 +1656,11 @@
         },
         {
           "date": "2026-09",
-          "ndvi": 0.3683
+          "ndvi": 0.3893
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-07.png",
-      "ndvi_image_date": "2026-09-12",
+      "ndvi_image_date": "2026-09-24",
       "report_url": "../reports/sites/WL-UTH-07_report.pdf"
     },
     {
@@ -1669,8 +1669,8 @@
       "latitude": -28.73286,
       "longitude": 29.40923,
       "vegetation_health": 46.0,
-      "satellite_health": 38.5,
-      "combined_health": 42.2,
+      "satellite_health": 38.7,
+      "combined_health": 42.4,
       "area_hectares": 31.5,
       "restoration_type": "Grassland",
       "invasive_species_cover": null,
@@ -1735,11 +1735,11 @@
         },
         {
           "date": "2026-09",
-          "ndvi": 0.2362
+          "ndvi": 0.2537
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-08.png",
-      "ndvi_image_date": "2026-09-12",
+      "ndvi_image_date": "2026-09-24",
       "report_url": "../reports/sites/WL-UTH-08_report.pdf"
     },
     {
@@ -1748,8 +1748,8 @@
       "latitude": -28.77339,
       "longitude": 29.38645,
       "vegetation_health": 48.0,
-      "satellite_health": 43.2,
-      "combined_health": 45.6,
+      "satellite_health": 43.1,
+      "combined_health": 45.5,
       "area_hectares": 14.0,
       "restoration_type": "Grassland",
       "invasive_species_cover": null,
@@ -1814,11 +1814,11 @@
         },
         {
           "date": "2026-09",
-          "ndvi": 0.278
+          "ndvi": 0.2752
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-09.png",
-      "ndvi_image_date": "2026-09-12",
+      "ndvi_image_date": "2026-09-24",
       "report_url": "../reports/sites/WL-UTH-09_report.pdf"
     },
     {
@@ -1893,11 +1893,11 @@
         },
         {
           "date": "2026-09",
-          "ndvi": 0.3551
+          "ndvi": 0.3588
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-10.png",
-      "ndvi_image_date": "2026-09-12",
+      "ndvi_image_date": "2026-09-24",
       "report_url": "../reports/sites/WL-UTH-10_report.pdf"
     },
     {
@@ -2854,8 +2854,8 @@
       "latitude": -26.92731,
       "longitude": 32.67769,
       "vegetation_health": 74.0,
-      "satellite_health": 95.2,
-      "combined_health": 84.6,
+      "satellite_health": 95.1,
+      "combined_health": 84.5,
       "area_hectares": 35.3,
       "restoration_type": "Forest",
       "invasive_species_cover": null,
@@ -2920,11 +2920,11 @@
         },
         {
           "date": "2026-09",
-          "ndvi": 0.6732
+          "ndvi": 0.665
         }
       ],
       "ndvi_image_url": "ndvi/WL-BHE-01.png",
-      "ndvi_image_date": "2026-09-16",
+      "ndvi_image_date": "2026-09-24",
       "report_url": "../reports/sites/WL-BHE-01_report.pdf"
     },
     {
@@ -2933,8 +2933,8 @@
       "latitude": -26.94997,
       "longitude": 32.66817,
       "vegetation_health": 68.0,
-      "satellite_health": 95.1,
-      "combined_health": 81.5,
+      "satellite_health": 94.5,
+      "combined_health": 81.2,
       "area_hectares": 8.8,
       "restoration_type": "Forest",
       "invasive_species_cover": null,
@@ -2999,11 +2999,11 @@
         },
         {
           "date": "2026-09",
-          "ndvi": 0.6963
+          "ndvi": 0.6452
         }
       ],
       "ndvi_image_url": "ndvi/WL-BHE-02.png",
-      "ndvi_image_date": "2026-09-16",
+      "ndvi_image_date": "2026-09-24",
       "report_url": "../reports/sites/WL-BHE-02_report.pdf"
     },
     {
@@ -3012,8 +3012,8 @@
       "latitude": -26.93147,
       "longitude": 32.70063,
       "vegetation_health": 48.0,
-      "satellite_health": 70.2,
-      "combined_health": 59.1,
+      "satellite_health": 69.6,
+      "combined_health": 58.8,
       "area_hectares": 13.3,
       "restoration_type": "Forest",
       "invasive_species_cover": null,
@@ -3078,11 +3078,11 @@
         },
         {
           "date": "2026-09",
-          "ndvi": 0.511
+          "ndvi": 0.4651
         }
       ],
       "ndvi_image_url": "ndvi/WL-BHE-03.png",
-      "ndvi_image_date": "2026-09-16",
+      "ndvi_image_date": "2026-09-24",
       "report_url": "../reports/sites/WL-BHE-03_report.pdf"
     },
     {
@@ -3091,8 +3091,8 @@
       "latitude": -26.94455,
       "longitude": 32.68695,
       "vegetation_health": 94.0,
-      "satellite_health": 78.2,
-      "combined_health": 86.1,
+      "satellite_health": 78.4,
+      "combined_health": 86.2,
       "area_hectares": 7.8,
       "restoration_type": "Forest",
       "invasive_species_cover": null,
@@ -3157,11 +3157,11 @@
         },
         {
           "date": "2026-09",
-          "ndvi": 0.5088
+          "ndvi": 0.5264
         }
       ],
       "ndvi_image_url": "ndvi/WL-BHE-04.png",
-      "ndvi_image_date": "2026-09-16",
+      "ndvi_image_date": "2026-09-24",
       "report_url": "../reports/sites/WL-BHE-04_report.pdf"
     },
     {
@@ -3170,8 +3170,8 @@
       "latitude": -26.94803,
       "longitude": 32.69313,
       "vegetation_health": 57.0,
-      "satellite_health": 74.0,
-      "combined_health": 65.5,
+      "satellite_health": 73.7,
+      "combined_health": 65.3,
       "area_hectares": 31.6,
       "restoration_type": "Forest",
       "invasive_species_cover": null,
@@ -3236,11 +3236,11 @@
         },
         {
           "date": "2026-09",
-          "ndvi": 0.4499
+          "ndvi": 0.4258
         }
       ],
       "ndvi_image_url": "ndvi/WL-BHE-05.png",
-      "ndvi_image_date": "2026-09-16",
+      "ndvi_image_date": "2026-09-24",
       "report_url": "../reports/sites/WL-BHE-05_report.pdf"
     },
     {

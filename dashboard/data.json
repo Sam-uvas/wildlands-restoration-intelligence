@@ -1,6 +1,6 @@
 {
-  "last_updated_utc": "2026-09-28T09:12:17.302768+00:00",
-  "last_updated_human": "2026-09-28 09:12 UTC",
+  "last_updated_utc": "2026-10-05T09:52:51.993988+00:00",
+  "last_updated_human": "2026-10-05 09:52 UTC",
   "total_sites": 50,
   "data_source": "Field monitoring + Sentinel-2 satellite (GEE)",
   "sites": [
@@ -1186,7 +1186,7 @@
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-01.png",
-      "ndvi_image_date": "2026-09-24",
+      "ndvi_image_date": "2026-10-02",
       "report_url": "../reports/sites/WL-UTH-01_report.pdf"
     },
     {
@@ -1265,7 +1265,7 @@
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-02.png",
-      "ndvi_image_date": "2026-09-24",
+      "ndvi_image_date": "2026-10-02",
       "report_url": "../reports/sites/WL-UTH-02_report.pdf"
     },
     {
@@ -1344,7 +1344,7 @@
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-03.png",
-      "ndvi_image_date": "2026-09-24",
+      "ndvi_image_date": "2026-10-02",
       "report_url": "../reports/sites/WL-UTH-03_report.pdf"
     },
     {
@@ -1423,7 +1423,7 @@
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-04.png",
-      "ndvi_image_date": "2026-09-24",
+      "ndvi_image_date": "2026-10-02",
       "report_url": "../reports/sites/WL-UTH-04_report.pdf"
     },
     {
@@ -1502,7 +1502,7 @@
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-05.png",
-      "ndvi_image_date": "2026-09-24",
+      "ndvi_image_date": "2026-10-02",
       "report_url": "../reports/sites/WL-UTH-05_report.pdf"
     },
     {
@@ -1581,7 +1581,7 @@
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-06.png",
-      "ndvi_image_date": "2026-09-24",
+      "ndvi_image_date": "2026-10-02",
       "report_url": "../reports/sites/WL-UTH-06_report.pdf"
     },
     {
@@ -1660,7 +1660,7 @@
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-07.png",
-      "ndvi_image_date": "2026-09-24",
+      "ndvi_image_date": "2026-10-02",
       "report_url": "../reports/sites/WL-UTH-07_report.pdf"
     },
     {
@@ -1739,7 +1739,7 @@
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-08.png",
-      "ndvi_image_date": "2026-09-24",
+      "ndvi_image_date": "2026-10-02",
       "report_url": "../reports/sites/WL-UTH-08_report.pdf"
     },
     {
@@ -1818,7 +1818,7 @@
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-09.png",
-      "ndvi_image_date": "2026-09-24",
+      "ndvi_image_date": "2026-10-02",
       "report_url": "../reports/sites/WL-UTH-09_report.pdf"
     },
     {
@@ -1897,7 +1897,7 @@
         }
       ],
       "ndvi_image_url": "ndvi/WL-UTH-10.png",
-      "ndvi_image_date": "2026-09-24",
+      "ndvi_image_date": "2026-10-02",
       "report_url": "../reports/sites/WL-UTH-10_report.pdf"
     },
     {
